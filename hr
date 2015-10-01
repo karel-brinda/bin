@@ -1,0 +1,15 @@
+#! /usr/bin/env python3
+# Encoding: UTF-8
+
+"""Print a horizontal line across the screen"""
+
+import fcntl
+import termios
+import struct
+
+def terminal_size():
+    data = fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack('HHHH', 0, 0, 0, 0))
+    h, w, hp, wp = struct.unpack('HHHH', data)
+    return w, h
+
+print ('–' * terminal_size()[0])
