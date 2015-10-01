@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo "illegal number of parameters"
+fi
+
+(
+cd "$1"
+for d in `ls -d */`; 
+do
+	(
+	echo 
+	echo "============================="
+	echo $d
+	echo "============================="
+	echo 
+
+	cd "$d"
+	if [ -d ".git" ]; then
+		git pull --rebase || git pull
+	else
+		echo "not a git repo"
+	fi
+	)
+done;
+)

@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+# Shortcut to gzcat | less
+
+if [ $# -ne 1 ]; then
+	echo "illegal number of parameters"
+fi
+
+gzcat "$1" | less
+
