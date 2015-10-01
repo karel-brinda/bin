@@ -15,7 +15,7 @@ def terminal_size():
 
 number=1
 if len(sys.argv)>1:
-	number=int(sys.argv[1])
-
+		number=int(sys.argv[1])
+		
 for _ in range(number):
-	print ('–' * terminal_size()[0])
+	print ('=' * terminal_size()[0])
