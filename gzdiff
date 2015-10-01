@@ -2,6 +2,7 @@
 
 if [ $# -ne 2 ]; then
 	echo "illegal number of parameters"
+	exit 1
 fi
 
 diff <(gzcat "$1") <(gzcat "$2")
