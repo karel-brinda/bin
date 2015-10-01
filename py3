@@ -1,4 +1,4 @@
 #! /bin/bash
 # Evaluate something
 
-echo print '(' "$*" ')' | python3
+echo import math\;import sys\;import os\;import time\;import re\;import random\;import platform\;print '(' "$*" ')' | python3
