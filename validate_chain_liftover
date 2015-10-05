@@ -4,6 +4,10 @@
 
 import sys
 
+if len(sys.argv)!=2:
+	print("Illegal number of arguments",file=sys.stderr)
+	sys.exit(1)
+
 chain_fn=sys.argv[1]
 
 with open(chain_fn) as f:
