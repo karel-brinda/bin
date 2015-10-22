@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+#set -x
+set -o pipefail
+
 if [ $# -ne 1 ]; then
 	echo "illegal number of parameters"
 	exit 1
@@ -10,17 +13,18 @@ cd "$1"
 for d in `ls -d */`; 
 do
 	(
+	echo
+	hrr	
 	echo 
-	echo "============================="
-	echo $d
-	echo "============================="
+	echo "Directory  $d"
 	echo 
 
 	cd "$d"
 	if [ -d ".git" ]; then
 		git pull --rebase || git pull
 	else
-		echo "not a git repo"
+		echo "not a git repo; going to iterate though its subdirs"
+		$0 ./
 	fi
 	)
 done;
