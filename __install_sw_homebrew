@@ -1,0 +1,59 @@
+#! /usr/bin/env bash
+
+set -o verbose
+
+# remove programs with their dependencies
+brew tap beeftornado/rmtree && brew install brew-rmtree
+
+# several useful Linux tools
+brew install unrar
+brew install gcc
+brew install graphviz
+brew install gnuplot
+brew install wget
+brew install socat
+
+# repository for scientifical software
+brew tap homebrew/science
+
+# tools for bioinformatics formats
+brew install picard-tools
+brew install samtools
+brew install sambamba
+brew install bamtools
+brew install bcftools
+brew install vcftools
+brew install bioawk
+brew install fastq-tools
+
+# tools for genome assembly
+brew install blast
+brew install celera-assembler
+brew install gatb
+brew install kissplice
+
+# tools for read simulation
+brew install dwgsim
+brew install flux-simulator
+
+# tools for read mapping
+brew install mrfast
+brew install novoalign
+brew install bowtie2
+brew install bwa
+brew install snap-aligner
+brew install gmap-gsnap
+brew install last
+
+# read counters
+brew install jellyfish kmc
+brew install kraken
+
+# other bioinformatics tools
+brew install seqan
+brew install igv
+brew install igvtools
+
+# tools for manipulation with newick trees
+brew install newick-utils
+brew install newicktools
