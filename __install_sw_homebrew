@@ -2,8 +2,11 @@
 
 set -o verbose
 
-# remove programs with their dependencies
+# programt to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
+
+# pdf library for gnuplot
+brew install pdflib-lite
 
 # several useful Linux tools
 brew install unrar
