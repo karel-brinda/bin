@@ -2,7 +2,10 @@
 
 set -o verbose
 
-# programt to remove programs with their dependencies
+# repository for scientifical software
+brew tap homebrew/science
+
+# program to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
 
 # pypy
@@ -20,8 +23,6 @@ brew install gnuplot
 brew install wget
 brew install socat
 
-# repository for scientifical software
-brew tap homebrew/science
 
 # tools for bioinformatics formats
 brew install picard-tools
