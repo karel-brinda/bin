@@ -8,9 +8,17 @@ brew tap homebrew/science
 # program to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
 
+#node.js
+brew install npm
+
+# tldr
+brew tap tldr-pages/tldr
+brew install tldr
+
 # tools for pdf
 brew install pdfgrep
 brew install svg2pdf
+brew install imagemagick
 
 # docker
 #brew install docker
