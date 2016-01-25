@@ -18,6 +18,12 @@ brew install tldr
 # tools for pdf
 brew install pdfgrep
 brew install svg2pdf
+
+# graphical editors
+brew cask install xquartz
+brew cask install dia
+brew cask install inkscape
+brew cask install gimp
 brew install imagemagick
 
 # docker
