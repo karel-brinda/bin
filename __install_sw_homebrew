@@ -5,7 +5,11 @@ set -o verbose
 # program to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
 
+#tldr
+brew tap tldr-pages/tldr && brew install tldr
+
 # pypy
+brew install readline --without-ncurses
 brew install pypy pypy3
 
 # pdf library for gnuplot
