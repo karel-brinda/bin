@@ -27,6 +27,11 @@ brew cask install gimp
 brew cask install libreoffice
 brew install imagemagick
 
+# latexdiff
+brew install homebrew/tex/latexdiff
+brew install homebrew/tex/git-latexdiff
+
+
 # docker
 #brew install docker
 #brew install docker-machine
