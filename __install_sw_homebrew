@@ -8,7 +8,8 @@ brew tap homebrew/science
 # program to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
 
-# development toolsb
+# development tools
+brew install emacs
 brew install vim
 brew install gdb
 brew install valgrind
