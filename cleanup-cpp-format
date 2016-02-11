@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# taken from https://matt.sh/howto-c
+#
+#    usage:
+#       cleanup-format -i *.{c,h,cc,cpp,hpp,cxx}
+#
+
+clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}" "$@"
