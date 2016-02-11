@@ -13,6 +13,9 @@ brew install emacs
 brew install vim
 brew install gdb
 brew install valgrind
+brew install Caskroom/cask/netbeans-cpp
+brew install gperftools
+brew install homebrew/x11/gv
 
 #node.js
 brew install npm
