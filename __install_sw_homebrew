@@ -25,6 +25,9 @@ brew install npm
 brew tap tldr-pages/tldr
 brew install tldr
 
+# htop
+brew install htop
+
 # tools for pdf
 brew install pdfgrep
 brew install svg2pdf
