@@ -17,6 +17,8 @@ brew install Caskroom/cask/netbeans-cpp
 brew install gperftools
 brew install homebrew/x11/gv
 brew install clang-format
+brew install autoconf
+brew install automake
 
 #node.js
 brew install npm
