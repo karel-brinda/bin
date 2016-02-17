@@ -3,7 +3,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 alias cg='cd ~/github'		
 
-export PATH="~/anaconda3/bin:$PATH"
+export PATH="$PATH:~/anaconda3/bin"
 export PATH="~/bin:$PATH"
 
 # vim as default editor for git
@@ -15,7 +15,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # gateway in Curie
-ifconfig en0 | grep 10.249.
+(ifconfig en0 | grep 10.249.) >/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
 	export http_proxy="www-cache:3128"
 	export https_proxy="www-cache:3128"
