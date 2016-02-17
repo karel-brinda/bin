@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
-ls -Galh $@
+ls --color -Galh $@
 
