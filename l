@@ -4,7 +4,7 @@
 if [[ `uname` == 'Darwin' ]]; then
 	colors="-G"
 else
-	color="--color"
+	colors="--color"
 fi
 
 ls $colors -Galh $@
