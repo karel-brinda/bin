@@ -6,5 +6,5 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
-git clone "ssh://git@github.com/$1"
+git clone --recursive "ssh://git@github.com/$1"
 

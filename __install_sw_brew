@@ -27,8 +27,9 @@ brew install npm
 brew tap tldr-pages/tldr
 brew install tldr
 
-# htop
+# other unix utilities
 brew install htop
+brew install links
 
 # tools for pdf
 brew install pdfgrep
