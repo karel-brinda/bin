@@ -104,6 +104,7 @@ brew install jellyfish kmc
 brew install kraken
 
 # other bioinformatics tools
+brew install kallisto
 brew install seqan
 brew install igv
 brew install igvtools
