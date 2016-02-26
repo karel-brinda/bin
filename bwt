@@ -1,0 +1,26 @@
+#! /usr/bin/env python
+
+import sys
+
+def bwt(seq):
+	seq=list(seq) #+["$"]
+
+	shifts=[seq[i:] + seq[:i] for i in range(len(seq)) ]
+	res=["".join(x) for x in sorted(shifts)]
+	return res
+
+seqs=[]
+
+if len(sys.argv)==0:
+	inp=sys.stdin
+else:
+	inp=sys.argv[1:]
+
+for line in inp:
+	seqs.append(line.strip())
+
+seq="".join(seqs)
+
+for row in bwt(seq):
+	print(row)
+
