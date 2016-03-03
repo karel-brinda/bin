@@ -1,7 +1,8 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-alias cg='cd ~/github'		
+alias cg='cd ~/github'
+alias cgm='cd ~/github/my'
 
 export PATH="$PATH:~/anaconda3/bin"
 export PATH="~/bin:$PATH"

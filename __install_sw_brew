@@ -20,16 +20,19 @@ brew install clang-format
 brew install autoconf
 brew install automake
 
+# libraries
+brew install boost
+brew install libstxxl
+brew install tclap
+
 #node.js
 brew install npm
-
-# tldr
-brew tap tldr-pages/tldr
-brew install tldr
 
 # other unix utilities
 brew install htop
 brew install links
+brew tap tldr-pages/tldr
+brew install tldr
 
 # tools for pdf
 brew install pdfgrep
