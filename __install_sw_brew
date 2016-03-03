@@ -8,9 +8,18 @@ brew tap homebrew/science
 # program to remove programs with their dependencies
 brew tap beeftornado/rmtree && brew install brew-rmtree
 
+# git
+brew install git
+brew install git-lfs
+brew install git-extras
+brew install git-review
+brew install git-svn-abandon
+brew install git-fixup
+brew install git-open
+
 # development tools
 brew install emacs
-brew install vim
+#brew install vim
 brew install gdb
 brew install valgrind
 brew install Caskroom/cask/netbeans-cpp
