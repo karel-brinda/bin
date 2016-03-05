@@ -1,26 +1,70 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
+import argparse
 import sys
+import os
 
-def bwt(seq):
+def bwt_matrix(seq):
 	seq=list(seq) #+["$"]
-
 	shifts=[seq[i:] + seq[:i] for i in range(len(seq)) ]
 	res=["".join(x) for x in sorted(shifts)]
 	return res
 
-seqs=[]
+# get count of c in prefix of s of lenght i 
+def rank(s,q):
+	return s.count(q)
 
-if len(sys.argv)==0:
-	inp=sys.stdin
+# locate i-th occurrence of c in s
+def select(s,q,i):
+	p=0
+	o=0
+	for p in range(len(s)):
+		if (s[p]==q):
+			o+=1
+			if o==i:
+				return p
+	raise ValueError([s,q,i])
+
+def lf(L,F,i):
+	q=seq[i]
+	x=rank(L[:i+1],q)
+	j=select(F,q,x)
+	assert(F[j]==L[i])
+	return j
+
+def debwt(seq):
+	seq_sorted="".join(sorted(list(seq)))
+	i=0
+	s=[]
+	for _ in range(len(seq)):
+		s.insert(0,seq_sorted[i])
+		#print(i,seq_sorted[i],s)
+		i=lf(F=seq_sorted,L=seq,i=i)
+	return "".join(s)
+
+
+
+parser = argparse.ArgumentParser(prog='myprogram')
+parser.add_argument("-m", help="print the entire BWT matrix", action="store_true", dest="matrix")
+parser.add_argument("-d", help="inverse transformation", action="store_true", dest="debwt")
+parser.add_argument("string", nargs="*")
+args = parser.parse_args()
+
+if len(args.string)==0:
+	seq = "".join([x.strip() for x in sys.stdin])
 else:
-	inp=sys.argv[1:]
+	seq="".join(args.string)
 
-for line in inp:
-	seqs.append(line.strip())
+if args.debwt:
+	seq=debwt(seq)
 
-seq="".join(seqs)
+bwt_m=bwt_matrix(seq)
 
-for row in bwt(seq):
-	print(row)
-
+if args.matrix:
+	for row in bwt_matrix(seq):
+		print(row)
+else:
+	if args.debwt:
+		print (seq)
+	else:
+		print ("".join([x[-1] for x in bwt_m]))
