@@ -42,7 +42,17 @@ def debwt(seq):
 		i=lf(F=seq_sorted,L=seq,i=i)
 	return "".join(s)
 
-
+def debwt2(seq):
+	matrix=[[] for x in seq]
+	for _ in range(len(seq)):
+		for i in range(len(seq)):
+			matrix[i].insert(0,seq[i])
+		matrix=sorted(matrix)
+	#for x in matrix:
+	#	print("".join(x))
+	#print()
+	x=matrix[0]
+	return "".join(x[1:]+[x[0]])
 
 parser = argparse.ArgumentParser(prog='myprogram')
 parser.add_argument("-m", help="print the entire BWT matrix", action="store_true", dest="matrix")
