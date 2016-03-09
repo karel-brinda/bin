@@ -1,3 +1,6 @@
 [submodule "vim-sensible"]
 	path = vim-sensible
 	url = https://github.com/tpope/vim-sensible
+[submodule "bash-sensible"]
+	path = bash-sensible
+	url = https://github.com/mrzool/bash-sensible
