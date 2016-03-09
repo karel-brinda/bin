@@ -38,6 +38,9 @@ brew install tclap
 brew install npm
 
 # other unix utilities
+if [[ `uname` == 'Linux' ]]; then
+	brew install bash
+fi
 brew install htop
 brew install links
 brew tap tldr-pages/tldr
