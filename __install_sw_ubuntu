@@ -18,7 +18,8 @@ sudo add-apt-repository ppa:ubuntu-elisp/ppa -y
 sudo add-apt-repository ppa:nilarimogard/webupd8 -y
 sudo add-apt-repository ppa:webupd8team/atom -y
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-add-repository ppa:webupd8team/java
+sudo apt-add-repository ppa:webupd8team/java -y
+sudo apt-add-repository ppa:stvs/tomate -y
 sudo apt-get update
 
 # editors
@@ -61,6 +62,7 @@ sudo apt-get install -y bats
 sudo apt-get install -y tmux
 sudo apt-get install -y htop
 sudo apt-get install -y grive
+sudo apt-get install -y tomate
 
 # makes
 sudo apt-get install -y software-properties-common
@@ -88,6 +90,7 @@ sudo apt-get install -y libcurl4-openssl-dev
 sudo apt-get install -y octave
 sudo apt-get install -y golang
 sudo apt-get install -y oracle-java8-installer
+sudo apt-get install -y clang
 
 # bioinformatics
 sudo apt-get install -y igv
