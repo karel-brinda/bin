@@ -15,6 +15,12 @@ export EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# open in Linux using gnome-open
+
+if [[ `uname` == 'Linux' ]]; then
+	alias open=gnome-open
+fi;
+
 # gateway in Curie
 (ifconfig en0 | grep 10.249.) >/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
