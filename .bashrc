@@ -2,7 +2,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 if [ -f ~/bin/bash-sensible/sensible.bash ]; then
-   source ~/bin/bash-sensible/sensible.bash
+	source ~/bin/bash-sensible/sensible.bash
 fi
 
 alias cg='cd ~/github'
@@ -21,10 +21,6 @@ export LANG=en_US.UTF-8
 
 # open in Linux using gnome-open
 
-if [[ `uname` == 'Linux' ]]; then
-	alias open=gnome-open
-fi;
-
 # gateway in Curie
 (ifconfig en0 | grep 10.249.) >/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
@@ -33,3 +29,8 @@ if [ $? -eq 0 ]; then
 	export ftp_proxy="www-cache:8021"
 fi;
 
+if [[ `uname` == 'Linux' ]]; then
+	source ~/bin/.bashrc.linux
+else
+	source ~/bin/.bashrc.osx
+fi;

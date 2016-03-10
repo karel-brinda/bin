@@ -1,0 +1,2 @@
+alias open=gnome-open
+export PATH=$PATH:~/.linuxbrew/bin/
