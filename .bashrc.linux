@@ -1,2 +1,6 @@
 alias open=gnome-open
-export PATH=$PATH:~/.linuxbrew/bin/
+alias edit=subl
+
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
