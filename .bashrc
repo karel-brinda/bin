@@ -6,6 +6,11 @@ if [ -f ~/bin/bash-sensible/sensible.bash ]; then
 	#source ~/bin/bash-sensible/sensible.bash
 fi
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 alias cg='cd ~/github'
 alias cgm='cd ~/github/my'
 
