@@ -1,1 +1,1 @@
-alias edit='open -s "Sublime Text"'
+alias edit='open -a "Sublime Text"'
