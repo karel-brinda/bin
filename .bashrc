@@ -8,6 +8,14 @@ fi
 alias cg='cd ~/github'
 alias cgm='cd ~/github/my'
 
+alias ga='git add'
+alias gb='git branch'
+alias gs='git status'
+alias gt='git commit'
+
+alias sm='snakemake -p --cores'
+
+
 export PATH="$PATH:~/anaconda3/bin"
 export PATH="~/bin:$PATH"
 
