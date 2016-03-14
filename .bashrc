@@ -6,6 +6,11 @@ if [ -f ~/bin/bash-sensible/sensible.bash ]; then
 	#source ~/bin/bash-sensible/sensible.bash
 fi
 
+alias cd-='cd -'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
+alias cd.....='cd ../../../..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -18,6 +23,11 @@ alias ga='git add'
 alias gb='git branch'
 alias gs='git status'
 alias gt='git commit'
+alias gf='git diff --cached'
+alias gpull='git pull --rebase'
+alias gpush='git push'
+alias g{='git stash -u'
+alias g}='git stash pop'
 
 alias sm='snakemake -p --cores'
 
