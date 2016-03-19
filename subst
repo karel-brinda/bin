@@ -57,6 +57,13 @@ parser.add_argument(
 		type=int,
 		default="60",
 	)
+parser.add_argument(
+		"-d","--append-dolar",
+		dest="d",
+		action='store_true',
+		#type=bool,
+		#default=False,
+	)
 
 args = parser.parse_args()
 
@@ -65,6 +72,9 @@ subst = substitutions[args.s]
 
 for _ in range(args.i):
 	word = apply_subst(subst, word)
+
+if args.d:
+	word=word+"$"
 
 for i in range(int(math.ceil(len(word)/args.w))):
 	print (word[i*args.w:(i+1)*args.w])
