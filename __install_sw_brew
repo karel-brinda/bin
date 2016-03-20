@@ -83,7 +83,7 @@ brew install graphviz
 brew install gnuplot
 brew install wget
 brew install socat
-
+brew install rename
 
 # tools for bioinformatics formats
 brew install picard-tools
