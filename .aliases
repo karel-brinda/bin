@@ -27,6 +27,7 @@ alias g}='git stash pop'
 alias gindex-='git update-index --assume-unchanged'
 alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git mv'
+alias gcl='git clean -fxd .'
 
 # snakemake
 
