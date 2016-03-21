@@ -50,6 +50,7 @@ sudo apt-get install -y texlive-latex-extra
 sudo apt-get install -y texlive-generic-extra
 sudo apt-get install -y texlive-fonts-recommended
 sudo apt-get install -y texlive-xetex
+sudo apt-get install -y texlive-humanities
 sudo apt-get install -y texstudio
 sudo apt-get install -y latexmk
 
