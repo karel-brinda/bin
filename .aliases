@@ -29,6 +29,7 @@ alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git mv'
 alias gcl='git clean -fxd .'
 
-# snakemake
+# makes
 
+alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p --cores'
