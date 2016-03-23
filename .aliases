@@ -31,5 +31,6 @@ alias gcl='git clean -fxd .'
 
 # makes
 
+alias m='make'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p --cores'
