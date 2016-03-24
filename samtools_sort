@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+# Sort a BAM file 
+
+if [ $# -ne 2 ]; then
+	echo "illegal number of parameters"
+	exit 1
+fi
+
+samtools sort -T $1.tmp -o $2 $1
+

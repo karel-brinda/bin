@@ -1,0 +1,3 @@
+alias edit='open -a "Sublime Text"'
+
+alias l='ls -G -Galh'
