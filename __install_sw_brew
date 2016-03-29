@@ -43,6 +43,7 @@ if [[ `uname` == 'Linux' ]]; then
 fi
 brew install htop
 brew install links
+brew install mc
 brew tap tldr-pages/tldr
 brew install tldr
 
@@ -84,6 +85,10 @@ brew install gnuplot
 brew install wget
 brew install socat
 brew install rename
+
+
+# video
+brew install ffmpeg
 
 # tools for bioinformatics formats
 brew install picard-tools
