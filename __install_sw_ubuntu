@@ -32,6 +32,7 @@ sudo apt-get install -y emacs-snapshot-el
 sudo apt-get install -y atom
 sudo apt-get install -y eric
 sudo apt-get install -y netbeans
+sudo apt-get install -y kdevelop
 
 # players
 sudo apt-get install -y mplayer
