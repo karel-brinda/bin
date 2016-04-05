@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+pip install snakemake
+pip install pysam
+pip install biopython
+pip install autopep8
+
+pip install smbl
+pip install rnftools
+
