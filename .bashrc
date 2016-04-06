@@ -10,6 +10,7 @@ source ~/bin/.aliases
 
 export PATH="$PATH:~/anaconda3/bin"
 export PATH="~/bin:$PATH"
+export PATH="$PATH:~/gocode/bin"
 
 # vim as default editor for git
 export VISUAL=vim
