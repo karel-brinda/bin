@@ -57,6 +57,7 @@ brew cask install dia
 brew cask install inkscape
 brew cask install gimp
 brew cask install libreoffice
+brew install Caskroom/cask/wkhtmltopdf
 brew install imagemagick
 
 # latexdiff
