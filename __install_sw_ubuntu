@@ -103,12 +103,13 @@ sudo apt-get install -y clang
 # bioinformatics
 sudo apt-get install -y igv
 
-# others
+# tools
 sudo apt-get install -y tmux
 sudo apt-get install -y htop
 sudo apt-get install -y tomate
 sudo apt-get install -y openssh-server
 sudo apt-get install -y sshfs
+sudo apt-get install -y parallel
 
 # non-oss
 sudo apt-get install -y acroread
