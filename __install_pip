@@ -7,4 +7,5 @@ pip install autopep8
 
 pip install smbl
 pip install rnftools
+pip install svg42pdf
 

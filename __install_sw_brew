@@ -87,7 +87,7 @@ brew install wget
 brew install socat
 brew install rename
 brew install ascii
-
+brew install parallel
 
 # video
 brew install ffmpeg
