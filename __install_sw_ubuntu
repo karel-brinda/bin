@@ -47,6 +47,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 
 # tex
 sudo apt-get install -y lmodern
+sudo apt-get install -y texlive-full
 sudo apt-get install -y texlive-latex-recommended
 sudo apt-get install -y texlive-latex-extra
 sudo apt-get install -y texlive-generic-extra
