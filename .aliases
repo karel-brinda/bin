@@ -28,6 +28,7 @@ alias gindex-='git update-index --assume-unchanged'
 alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git mv'
 alias gcl='git clean -fxd .'
+alias gl='git log'
 
 # makes
 
