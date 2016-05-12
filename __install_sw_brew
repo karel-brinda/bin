@@ -35,6 +35,7 @@ brew install libstxxl
 brew install tclap
 
 #node.js
+brew install ruby
 brew install npm
 
 # other unix utilities
