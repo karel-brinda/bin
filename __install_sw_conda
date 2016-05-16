@@ -1,15 +1,36 @@
 #! /usr/bin/env bash
 
-conda install -y bwa samtools snakemake vcftools bcftools bedtools vcftools picard
+conda install -y bwa
+conda install -y samtools
+conda install -y snakemake
+conda install -y vcftools
+conda install -y bcftools
+conda install -y bedtools
+conda install -y vcftools
+conda install -y picard
 
 conda install -y bioawk
 
-conda install -y blast bwa novoalign last bowtie2 hisat2 minimap tophat mosaic star
+conda install -y blast
+conda install -y bwa
+conda install -y novoalign
+conda install -y last
+conda install -y bowtie2
+conda install -y hisat2
+conda install -y minimap
+conda install -y tophat
+conda install -y mosaic
+conda install -y star
 
-conda install -y miniasm daligner
+conda install -y miniasm
+conda install -y daligner
 
-conda install -y freebayes gatk-framework varscan
+conda install -y freebayes 
+conda install -y gatk-framework 
+conda install -y varscan
 
-conda install -y kraken kallisto 
+conda install -y kraken 
+conda install -y kallisto 
 
-conda install -y jellyfish khmer 
+conda install -y jellyfish 
+conda install -y khmer 
