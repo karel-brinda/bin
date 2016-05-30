@@ -27,7 +27,7 @@ def strip_comments(source):
 
     #One-line comments
     def t_PERCENT(t):
-        r"\%"
+        r"\%."
         t.lexer.begin("linecomment")
 
     #Escaped percent signs
