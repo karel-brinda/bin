@@ -28,6 +28,7 @@ brew install homebrew/x11/gv
 brew install clang-format
 brew install autoconf
 brew install automake
+brew install rust
 
 # libraries
 brew install boost

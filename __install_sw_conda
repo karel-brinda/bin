@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+conda install -y r
+
 conda install -y bwa
 conda install -y samtools
 conda install -y snakemake
