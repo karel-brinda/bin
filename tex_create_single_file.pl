@@ -17,7 +17,10 @@ sub p_inc {
       }
       print "%%%---------- close: ", $DateiName, "\n";
       close $datei;
-    } else { print "%%%<===== file soesn't exist\n"; }
+    } else {
+      print "%%%<===== file doesn't exist\n";
+      die "ERROR: file doesn't exist:".$DateiName.".tex\n";
+    }
 }
 #
 @zeilen = (<>);
