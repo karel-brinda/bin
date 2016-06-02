@@ -2,7 +2,7 @@
 
 if [ $# -ne 3 ]; then
 	echo "illegal number of parameters"
-	echo "syntax: pdf_extract_pages inpdf pages outpdf"
+	echo "usage: pdf_extract_pages <inpdf> <pages> <outpdf>"
 	exit 1
 fi
 
