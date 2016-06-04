@@ -17,6 +17,7 @@ alias cgm='cd ~/github/my'
 
 alias ga='git add'
 alias gb='git branch'
+alias gba='git branch --all'
 alias gs='git status'
 alias gt='git commit'
 alias gf='git diff --cached'
