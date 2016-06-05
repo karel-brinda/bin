@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -x
+
+conda update --all -y
+brew update && brew upgrade
+gur
+
