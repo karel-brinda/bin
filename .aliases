@@ -13,6 +13,9 @@ alias .....='cd ../../../..'
 alias cg='cd ~/github'
 alias cgm='cd ~/github/my'
 
+alias ff='find . -type f'
+alias fd='find . -type d'
+
 # git
 
 alias ga='git add'
