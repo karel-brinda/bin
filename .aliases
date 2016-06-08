@@ -18,6 +18,8 @@ alias fd='find . -type d'
 
 # git
 
+alias gur='_git_update_repos'
+
 alias ga='git add'
 alias gb='git branch'
 alias gba='git branch --all'
