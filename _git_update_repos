@@ -18,13 +18,16 @@ fi
 for d in `ls -d */`; 
 do
 	(
+	cd "$d"
+	
+	p=`pwd`
+	
 	echo
 	hrr	
 	echo 
-	echo "Directory  $d"
+	echo "Directory  $p"
 	echo 
 
-	cd "$d"
 	if [ -d ".git" ]; then
 		git pull --rebase || git pull
 	else
