@@ -30,6 +30,9 @@ brew install autoconf
 brew install automake
 brew install rust
 
+# misc tools
+brew install gnu-time
+
 # libraries
 brew install boost
 brew install libstxxl
