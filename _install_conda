@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+conda config --add channels r
+conda config --add channels bioconda
+
 # programming & plotting
 conda install -y gnuplot
 conda install -y julia
