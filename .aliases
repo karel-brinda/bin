@@ -1,3 +1,6 @@
+# misc
+alias grep='grep --color=always'
+
 # cd
 
 alias cd-='cd -'
