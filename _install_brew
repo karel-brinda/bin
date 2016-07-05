@@ -18,6 +18,7 @@ brew install git-fixup
 brew install git-open
 
 # development tools
+brew install pv
 brew install emacs
 #brew install vim
 brew install gdb
