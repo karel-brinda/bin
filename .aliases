@@ -1,6 +1,3 @@
-# misc
-alias grep='grep --color=always'
-
 # cd
 
 alias cd-='cd -'
@@ -17,8 +14,13 @@ alias cg='cd ~/github'
 alias cdd='cd ~/Dropbox'
 alias cgm='cd ~/github/my'
 
+# misc
+
 alias ff='find . -type f'
 alias fd='find . -type d'
+
+alias grep='grep --color=always'
+alias ffgrep='ff | xargs grep --color'
 
 # git
 
