@@ -22,7 +22,7 @@ alias fd='find . -type d'
 alias grep='grep --color=always'
 alias ffgrep='ff | xargs grep --color'
 
-alias c='clean'
+alias c='clear'
 
 # git
 
