@@ -47,6 +47,6 @@ alias gl='git log'
 
 # makes
 
-alias m='make'
+alias m='make VERBOSE=1'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p --cores'
