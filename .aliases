@@ -20,7 +20,7 @@ alias ff='find . -type f'
 alias fd='find . -type d'
 
 alias grep='grep --color=always'
-alias ffgrep='ff | xargs grep --color'
+alias ffgrep='c && ff | xargs grep --color'
 
 alias c='clear'
 
