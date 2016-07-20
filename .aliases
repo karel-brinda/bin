@@ -19,7 +19,7 @@ alias cgm='cd ~/github/my'
 alias ff='find . -type f'
 alias fd='find . -type d'
 
-alias grep='grep --color=always'
+alias grep='grep --color=auto'
 alias ffgrep='c && ff | xargs grep --color'
 
 alias c='clear'
