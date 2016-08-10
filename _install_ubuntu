@@ -58,6 +58,7 @@ sudo apt-get install -y texstudio
 sudo apt-get install -y latexmk
 sudo apt-get install -y texlive-bibtex-extra 
 sudo apt-get install -y biber
+sudo apt-get install -y xzdec
 
 # graphical editors
 sudo apt-get install -y inkscape
