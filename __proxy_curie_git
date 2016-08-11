@@ -1,4 +1,0 @@
-#! /usr/bin/env bash
-
-exec socat STDIO PROXY:www-cache:$1:$2,proxyport=3128
-
