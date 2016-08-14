@@ -10,3 +10,6 @@ filetype plugin indent on
 syntax on
 set number
 
+" allow aliases
+:set shellcmdflag=-ic
+
