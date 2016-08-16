@@ -13,3 +13,6 @@ set number
 " allow aliases
 :set shellcmdflag=-ic
 
+map <f9> :w<CR>:! make<CR>
+
+
