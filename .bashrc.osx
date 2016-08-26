@@ -1,4 +1,6 @@
 alias edit='open -a "Sublime Text"'
 alias macvim='open -a MacVim '
+alias gvim=macvim
 
 alias l='ls -G -Galh'
+
