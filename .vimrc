@@ -14,5 +14,7 @@ set number
 :set shellcmdflag=-ic
 
 map <f9> :w<CR>:! make<CR>
+set tabstop=4
+set shiftwidth=4
 
 
