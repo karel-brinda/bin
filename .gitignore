@@ -5,11 +5,16 @@
 Session.vim
 .netrwhist
 
-# Mac OS X
+# OS
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
 ._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # IDE stuffs
 .idea/
