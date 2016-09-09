@@ -1,16 +1,18 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-if [ -f ~/bin/bash-sensible/sensible.bash ]; then
-	echo "" > /dev/null
-	#source ~/bin/bash-sensible/sensible.bash
-fi
+#if [ -f ~/bin/bash-sensible/sensible.bash ]; then
+#	echo "" > /dev/null
+#	source ~/bin/bash-sensible/sensible.bash
+#fi
 
 source ~/bin/.aliases
 
-export PATH="$PATH:~/anaconda3/bin"
+ANACONDA_ROOT=~/anaconda
+export PATH="$PATH:$ANACONDA_ROOT/bin"
+export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
+
 export PATH="~/bin:$PATH"
-export PATH="$PATH:~/gocode/bin"
 
 # vim as default editor for git
 export VISUAL=vim
@@ -19,8 +21,6 @@ export EDITOR="$VISUAL"
 # default languages
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# open in Linux using gnome-open
 
 # gateway in Curie
 (ifconfig en0 | grep 10.249.) >/dev/null 2>/dev/null
