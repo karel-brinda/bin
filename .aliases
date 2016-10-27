@@ -54,3 +54,7 @@ alias gl='git log'
 alias m='make VERBOSE=1'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p --cores'
+
+# pdf
+
+alias pdf_merge='pdfunite'
