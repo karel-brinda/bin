@@ -21,6 +21,7 @@ alias cgm='cd ~/github/my'
 alias p='pwd'
 alias t='touch'
 alias sa='source activate'
+alias sd='source deactivate'
 
 alias ff='find . -type f'
 alias fd='find . -type d'
