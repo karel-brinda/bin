@@ -1,4 +1,4 @@
-alias edit='open -a "Sublime Text"'
+alias edit='"/Applications/Sublime Text.app/Contents/MacOS/Sublime Text" -a'
 alias macvim='open -a MacVim '
 alias gvim=macvim
 
