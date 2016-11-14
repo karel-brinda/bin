@@ -27,7 +27,7 @@ alias ff='find . -type f'
 alias fd='find . -type d'
 
 alias grep='grep --color=auto'
-alias ffgrep='c && ff | xargs grep --color'
+alias ffgrep='c && find . -type f -exec xargs grep --color {}'
 
 alias c='clear'
 
@@ -56,7 +56,7 @@ alias gl='git log'
 
 # makes
 
-alias m='make VERBOSE=1'
+alias m='make V=1'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p --cores'
 
