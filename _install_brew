@@ -142,3 +142,6 @@ brew install igvtools
 # tools for manipulation with newick trees
 brew install newick-utils
 brew install newicktools
+
+brew install dict
+
