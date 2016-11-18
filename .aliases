@@ -27,7 +27,7 @@ alias ff='find . -type f'
 alias fd='find . -type d'
 
 alias grep='grep --color=auto'
-alias ffgrep='c && find . -type f -exec xargs grep --color {}'
+#alias ffgrep='c && find . -type f -exec xargs grep --color {} \;'
 
 alias c='clear'
 
