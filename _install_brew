@@ -30,6 +30,7 @@ brew install clang-format
 brew install autoconf
 brew install automake
 brew install rust
+brew install ccat
 
 # misc tools
 brew install gnu-time
