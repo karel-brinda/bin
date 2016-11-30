@@ -4,3 +4,6 @@
 [submodule "bash-sensible"]
 	path = bash-sensible
 	url = https://github.com/mrzool/bash-sensible
+[submodule "tabulator"]
+	path = tabulator
+	url = https://github.com/stefan-schroedl/tabulator
