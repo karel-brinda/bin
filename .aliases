@@ -11,10 +11,12 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 alias cg='cd ~/github'
+alias cgm='cd ~/github/my'
+
 alias cdd='cd ~/Desktop'
 alias cdx='cd ~/Dropbox'
 alias cdp='cd ~/phd-thesis'
-alias cgm='cd ~/github/my'
+alias cds='cd ~/downloads || cd ~/Downloads'
 
 # misc
 
