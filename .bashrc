@@ -35,3 +35,7 @@ if [[ `uname` == 'Linux' ]]; then
 else
 	source ~/bin/.bashrc.osx
 fi;
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+fi

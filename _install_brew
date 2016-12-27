@@ -36,6 +36,10 @@ brew install ccat
 # misc tools
 brew install gnu-time
 
+# bash completion
+brew install bash-completion
+brew tap homebrew/completions
+
 # libraries
 brew install boost
 brew install libstxxl
