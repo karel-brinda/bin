@@ -16,6 +16,7 @@ brew install git-review
 brew install git-svn-abandon
 brew install git-fixup
 brew install git-open
+brew install hub
 
 # development tools
 brew install pv

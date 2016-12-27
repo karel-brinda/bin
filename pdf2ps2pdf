@@ -10,6 +10,8 @@ if [ -z "$1" ]; then
 	exit 1
 else
 	temp_file=$(mktemp)
-	pdftops $1 ${temp_file}.ps
-	pstopdf ${temp_file}.ps $1
+	pdf2ps $1 ${temp_file}.ps
+	ps2pdf ${temp_file}.ps $1
+	#pdftops $1 ${temp_file}.ps
+	#pstopdf ${temp_file}.ps $1
 fi
