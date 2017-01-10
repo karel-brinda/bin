@@ -37,7 +37,12 @@ alias c='clear'
 
 alias gur='_git_update_repos'
 
-alias git=hub
+if hash hub 2>/dev/null;
+then
+	alias git=hub
+else
+	alias git=git
+fi
 
 alias g='git'
 
