@@ -152,3 +152,5 @@ brew install newicktools
 brew install eict
 brew install armadillo
 brew install mobile-shell
+
+brew install rename
