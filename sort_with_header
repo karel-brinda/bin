@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo "illegal number of parameters"
+	exit 1
+fi
+
+(head -n 1 $1 && tail -n +2 $1 | sort)
+
