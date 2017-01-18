@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo "use one parameter for the new file"
+	exit 1
+fi
+
+echo "#! /usr/bin/env python3" > $1
+echo "" >> $1
+echo "" >> $1
+
+chmod +x $1
