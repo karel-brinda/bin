@@ -4,3 +4,5 @@ alias gvim=macvim
 
 alias l='ls -G -Galh'
 
+alias oepn='open'
+
