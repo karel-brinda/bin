@@ -22,13 +22,12 @@ do
 	
 	p=`pwd`
 	
-	echo
-	hrr	
-	echo 
-	echo "Directory  $p"
-	echo 
-
 	if [ -d ".git" ]; then
+		echo
+		hrr
+		echo "Directory  $p"
+		hrr
+
 		git pull --rebase || git pull
 	else
 		echo "not a git repo; going to iterate though its subdirs"
