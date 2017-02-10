@@ -18,20 +18,24 @@ fi
 for d in `ls -d */`; 
 do
 	(
-	cd "$d"
-	
-	p=`pwd`
-	
-	if [ -d ".git" ]; then
-		echo
-		hrr
-		echo "Directory  $p"
-		hrr
-
-		git pull --rebase || git pull
+	if [ -L $d ]; then
+		1
 	else
-		echo "not a git repo; going to iterate though its subdirs"
-		$0 ./
+		cd "$d"
+
+		p=`pwd`
+
+		if [ -d ".git" ]; then
+			echo
+			hrr
+			echo "Directory  $p"
+			hrr
+
+			git pull --rebase || git pull
+		else
+			#echo "not a git repo; going to iterate though its subdirs"
+			$0 ./
+		fi
 	fi
 	)
 done;
