@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo "use one parameter for the new file"
+	exit 1
+fi
+
+BASEDIR=$(dirname "$0")
+cp $BASEDIR/samples/sample.docx $1

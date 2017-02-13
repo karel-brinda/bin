@@ -1,5 +1,7 @@
 # Global gitignore.
 
+~*
+
 # Vim
 .*.s[a-w][a-z]
 Session.vim
