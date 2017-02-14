@@ -14,10 +14,11 @@ alias cg='cd ~/github'
 alias cgm='cd ~/github/my'
 
 alias cde='cd ~/Desktop'
-alias cdd='cd ~/Downloads'
+alias cdd='cd ~/downloads || cd ~/Downloads'
 alias cdx='cd ~/Dropbox'
 alias cdp='cd ~/phd-thesis'
-alias cds='cd ~/downloads || cd ~/Downloads'
+
+alias md=makedir
 
 # misc
 
