@@ -12,7 +12,7 @@ ANACONDA_ROOT=~/anaconda
 export PATH="$PATH:$ANACONDA_ROOT/bin"
 export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 
-export PATH="~/bin:~/bin2:~/bin/tabulator/bin:$PATH"
+export PATH="~/bin:~/bin2:~/github/my/projects/bin:~/bin/tabulator/bin:$PATH"
 
 # vim as default editor for git
 export VISUAL=vim
