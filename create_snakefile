@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
 BASEDIR=$(dirname "$0")
-SAMPLE="$BASEDIR/samples/sample.mk"
+SAMPLE="$BASEDIR/samples/sample.snakefile"
 
 if [ $# -eq 0 ]; then
-	cp $SAMPLE Makefile
+	cp $SAMPLE Snakefile
 	exit 0
 fi
 
@@ -12,7 +12,6 @@ if [ $# -eq 1 ]; then
 	cp $SAMPLE "$1"
 	exit 0
 fi
-
 
 echo "use at most parameter for the new file or no parameter for Makefile"
 exit 1
