@@ -5,8 +5,5 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
-echo "#! /usr/bin/env python3" > $1
-echo "" >> $1
-echo "" >> $1
-
-chmod +x $1
+BASEDIR=$(dirname "$0")
+cp $BASEDIR/samples/sample.py $1
