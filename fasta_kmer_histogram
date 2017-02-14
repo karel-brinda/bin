@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# requires coreutils for sysctl
+# requires coreutils for realpath
 
 if [ $# -ne 3 ]; then
 	echo "use two parameters (fasta, k, histogram)"
