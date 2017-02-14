@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# requires coreutils
+# requires coreutils for sysctl
 
 if [ $# -ne 3 ]; then
 	echo "use two parameters (fasta, k, histogram)"
@@ -18,5 +18,5 @@ chars=`ls -l $fasta | awk '{ print $5 }'`
 
 cd $tmpdir
 
-jellyfish count -m $k -t 4 -s $chars -C $fasta
+jellyfish count -m $k -t $cores -s $chars -C $fasta
 jellyfish histo mer_counts.jf > $hist
