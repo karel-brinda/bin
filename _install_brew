@@ -5,9 +5,6 @@ set -o verbose
 # repository for scientifical software
 brew tap homebrew/science
 
-# program to remove programs with their dependencies
-brew tap beeftornado/rmtree && brew install brew-rmtree
-
 # git
 brew install git
 brew install git-lfs
@@ -24,9 +21,9 @@ brew install emacs
 #brew install vim
 brew install gdb
 brew install valgrind
-brew install Caskroom/cask/netbeans-cpp
+#brew install Caskroom/cask/netbeans-cpp
 brew install gperftools
-brew install homebrew/x11/gv
+#brew install homebrew/x11/gv
 brew install clang-format
 brew install autoconf
 brew install automake
@@ -52,6 +49,7 @@ brew install npm
 # other unix utilities
 if [[ `uname` == 'Linux' ]]; then
 #	brew install bash
+	echo ""
 else
 	brew install gcc
 fi
