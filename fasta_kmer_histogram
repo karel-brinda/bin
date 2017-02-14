@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+# requires coreutils
+
+if [ $# -ne 3 ]; then
+	echo "use two parameters (fasta, k, histogram)"
+	exit 1
+fi
+
+fasta=`realpath $1`
+k=$2
+hist=`realpath $3`
+
+tmpdir=`mktemp -d`
+
+cores=`sysctl -n hw.ncpu`
+chars=`ls -l $fasta | awk '{ print $5 }'`
+
+cd $tmpdir
+
+jellyfish count -m $k -t 4 -s $chars -C $fasta
+jellyfish histo mer_counts.jf > $hist
