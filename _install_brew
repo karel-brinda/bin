@@ -41,6 +41,7 @@ brew tap homebrew/completions
 brew install boost
 brew install libstxxl
 brew install tclap
+brew install open-mpi
 
 #node.js
 brew install ruby
