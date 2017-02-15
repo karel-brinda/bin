@@ -19,11 +19,12 @@ alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
 alias cdp='cd ~/phd-thesis'
 
-alias md=makedir
+alias md='makedir'
 
 # misc
 
 alias o='open'
+alias o.='open .'
 alias p='pwd'
 alias t='touch'
 alias sa='source activate'
