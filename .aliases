@@ -22,6 +22,7 @@ alias md=makedir
 
 # misc
 
+alias o='open'
 alias p='pwd'
 alias t='touch'
 alias sa='source activate'
