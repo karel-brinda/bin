@@ -19,7 +19,7 @@ alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
 alias cdp='cd ~/phd-thesis'
 
-alias md='makedir'
+alias md='mkdir'
 
 # misc
 
