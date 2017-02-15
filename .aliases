@@ -65,6 +65,11 @@ alias gm='git mv'
 alias gcl='git clean -fxd .'
 alias gl='git log'
 
+# samtools
+
+alias sv='samtools view'
+
+
 # makes
 
 alias m='make V=1'
