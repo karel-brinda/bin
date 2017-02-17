@@ -102,6 +102,7 @@ brew install socat
 brew install rename
 brew install ascii
 brew install parallel
+brew install http://git.io/sshpass.rb
 
 # video
 brew install ffmpeg
