@@ -1,5 +1,4 @@
 alias open='gnome-open'
-alias edit='subl -a'
 
 alias ds='dropbox status'
 alias l='ls --color=auto -Galh'

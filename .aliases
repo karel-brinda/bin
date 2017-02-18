@@ -23,6 +23,8 @@ alias md='mkdir'
 
 # misc
 
+alias e='subl'
+alias edit='subl'
 alias o='open'
 alias o.='open .'
 alias p='pwd'

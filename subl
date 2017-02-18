@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [[ `uname` == 'Linux' ]]; then
+	s=subl
+else
+	s="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
+fi;
+
+"$s" -a $@
+
