@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+# compute sha256 for a file at given url (http redirection allowed), print it and copy it to clipboard
+# example: https://github.com/Martinsos/edlib/archive/v1.1.2.tar.gz 
+
+
+if [ $# -ne 1 ]; then
+	echo "use one parameter for the web address"
+	exit 1
+fi
+
+sum=`curl -L $1 | shasum -a 256 | awk '{print $1;}'`
+
+echo $1
+echo $sum
+echo -n $sum | pbcopy
+
