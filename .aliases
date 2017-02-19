@@ -25,6 +25,7 @@ alias md='mkdir'
 # misc
 
 alias e='subl'
+alias e.='subl .'
 alias edit='subl'
 alias o='open'
 alias o.='open .'
@@ -68,7 +69,7 @@ alias g}='git stash pop'
 alias gindex-='git update-index --assume-unchanged'
 alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git mv'
-alias gcl='git clean -fxd .'
+alias gcl='git clean -fxd'
 alias gl='git log'
 
 # samtools
