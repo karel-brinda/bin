@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 # Shortcut to gzcat | less
 
-set -x
 set -e
 
 prog=`basename $0`

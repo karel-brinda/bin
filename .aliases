@@ -43,7 +43,7 @@ alias c='clear'
 
 # git
 
-alias gur='_git_update_repos'
+alias gur='git_update_repos'
 
 if hash hub 2>/dev/null;
 then
