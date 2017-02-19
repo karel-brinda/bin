@@ -12,6 +12,7 @@ alias .....='cd ../../../..'
 
 alias cg='cd ~/github'
 alias cgm='cd ~/github/my'
+alias cgp='cd ~/github/my/projects'
 
 alias cde='cd ~/Desktop'
 alias cdd='cd ~/downloads || cd ~/Downloads'
