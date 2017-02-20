@@ -31,7 +31,7 @@ do
 			echo "Directory  $p"
 			hrr
 
-			git pull --rebase || git pull
+			git pull --rebase --all || git pull --all
 		else
 			#echo "not a git repo; going to iterate though its subdirs"
 			$0 ./
