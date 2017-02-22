@@ -19,14 +19,23 @@ fi
 for d in `ls -d */ 2>/dev/null || echo ""`; 
 do
 	(
+	p_up=`pwd`
+	p_home=$(cd ~ && echo `pwd`)
+
+
+	# dir/ => dir; otherwise test on link does not work
+	d=${d%/}
 	if [ -L $d ]; then
-		true
+		symlink_file=$p_up/$d
+		symlink_file_rel_home=`realpath --no-symlinks --relative-to=${p_home} $symlink_file`
+
+		r=`readlink $d`
+		p_rel=`realpath --relative-to=${p_home} $p_up`
+		echo "mkdir -p $p_rel && ln -s $r $symlink_file_rel_home"
 	else
 		cd "$d"
 		p=`pwd`
 
-		p_up=$(cd .. && echo `pwd`)
-		p_home=$(cd ~ && echo `pwd`)
 
 		if [ -d ".git" ]; then
 			p_rel=`realpath --relative-to=${p_home} $p`
