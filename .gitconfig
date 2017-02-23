@@ -3,7 +3,9 @@
 	name = Karel Brinda
 
 [core]
-	pager = less -F
+	#pager = less -F
+	pager =  less -+F -+X 
+
 
 	# do not quote non-ascii characters; display unicodes as-is
 	quotepath = false
