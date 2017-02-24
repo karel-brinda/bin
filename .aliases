@@ -23,6 +23,11 @@ alias cdp='cd ~/phd-thesis'
 
 alias md='mkdir'
 
+mcd () {
+	mkdir -p $1
+		cd $1
+}
+
 # misc
 
 alias e='subl'
