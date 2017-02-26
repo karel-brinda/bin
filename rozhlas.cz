@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# example: rozhlas.cz 3661168
+
+if [ $# -ne 1 ]; then
+	echo "use one parameter (ID of the Rozhlas.cz media file)"
+	exit 1
+fi
+
+wget http://media.rozhlas.cz/_audio/$1.mp3
+
