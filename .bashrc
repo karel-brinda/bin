@@ -13,7 +13,7 @@ for ANACONDA_ROOT in ~/anaconda ~/miniconda3 ~/anaconda3; do
 	export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 done;
 
-export PATH="~/bin:~/bin2:~/github/my/projects/bin:~/bin/tabulator/bin:$PATH"
+export PATH="~/bin:~/bin2:~/github/my/projects/bin:~/bin/tabulator/bin:~/bin/programs/briss-0.9:$PATH"
 
 # vim as default editor for git
 export VISUAL=vim
