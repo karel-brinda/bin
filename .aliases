@@ -93,6 +93,7 @@ alias sv='samtools view'
 
 alias m='make V=1'
 alias mj='make V=1 -j'
+alias mcl='make clean'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
 alias smj='snakemake -p --cores'
