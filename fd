@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+
+if [[ $# -eq 0 ]]; then
+	find . -type d
+	exit 0
+fi
+
+if [[ $# -eq 1 ]]; then
+	find $1 -type d
+	exit 0
+fi
+
+echo "use none or one parameter for the directory"
+exit 1
+
