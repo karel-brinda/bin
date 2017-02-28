@@ -84,6 +84,7 @@ alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git merge'
 alias gcl='git clean -fxd'
 alias gl='git log'
+alias gh='git history'
 
 alias piu='pip install --upgrade'
 
