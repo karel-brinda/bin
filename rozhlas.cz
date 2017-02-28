@@ -1,15 +1,18 @@
 #! /usr/bin/env bash
 
 # example: rozhlas.cz 3661168
+# also url can be used (e.g., http://prehravac.rozhlas.cz/audio/3808068)
 
 if [[ $# -ne 1  && $# -ne 2 ]]; then
 	echo "rozhlas.cz media_id [file]"
 	exit 1
 fi
 
+media=`echo $1 | sed 's@http://prehravac.rozhlas.cz/audio/@@'`
+
 if [[ $# -eq 1 ]]; then
-	wget http://media.rozhlas.cz/_audio/$1.mp3
+	wget http://media.rozhlas.cz/_audio/$media.mp3
 else
-	curl http://media.rozhlas.cz/_audio/$1.mp3 > $2.mp3
+	curl http://media.rozhlas.cz/_audio/$media.mp3 > $2.mp3
 fi
 
