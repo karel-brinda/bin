@@ -1,24 +1,25 @@
 #! /usr/bin/env bash
 
-set -e
+#set -e
 
 envs=(
-		"nanopore:poretools"
+		"nanopore:poretools bwa graphmap last minimap miniasm samtools blast"
+		"prophyle:python==3.4 ete3 bitarray cmake parallel blast samtools"
 		"py37:python=2.7"
 		"py33:python=3.3"
 		"py34:python=3.4"
 		"py35:python=3.5"
 		"py36:python=3.6"
-		"prophyle:python==3.4 ete3 ete3_external_apps bitarray cmake parallel blast samtools"
 	)
 
 for e in "${envs[@]}"; do
     k=${e%%:*}
     v=${e#*:}
+	echo "===================="
+	echo "$k"
+	echo "===================="
 	conda create --name $k -y || echo "Environment $k already exists"
 	source activate $k
-	for p in "$v"; do
-		conda install -y $p
-	done
+	conda install -y $v
 	source deactivate
 done
