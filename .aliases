@@ -86,7 +86,7 @@ alias gcl='git clean -fxd'
 alias gl='git log'
 alias gh='git history'
 
-alias piu='pip install --upgrade'
+alias piu='pip install --upgrade .'
 
 # samtools
 
