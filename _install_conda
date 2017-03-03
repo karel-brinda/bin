@@ -100,3 +100,4 @@ conda install -y khmer
 conda install -y art
 conda install -y flux-simulator
 conda install -y simlord
+conda install -y nanosimh
