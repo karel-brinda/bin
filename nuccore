@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo "use one parameter for the nuccore id"
+	exit 1
+fi
+
+curl "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?db=nuccore&dopt=fasta&val=$1&sendto=on"
+
