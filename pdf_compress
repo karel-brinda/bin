@@ -3,11 +3,10 @@
 
 set -o
 
-prog=`basename $0`
-
 if [ $# -ne 2 ]; then
+	s=`basename $0`
 	echo "compress pdf using ghost script"
-	echo "usage: $prog in.pdf out.pdf"
+	echo "usage: $s in.pdf out.pdf"
 	exit 1
 fi
 

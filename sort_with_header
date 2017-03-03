@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 
 if [ $# -ne 1 ]; then
-	echo "illegal number of parameters"
+	s=`basename $0`
+	echo "USAGE: $s file"
 	exit 1
 fi
 

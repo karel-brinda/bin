@@ -5,7 +5,8 @@
 
 
 if [ $# -ne 1 ]; then
-	echo "use one parameter for the web address"
+	s=`basename $0`
+	echo "USAGE: $s url"
 	exit 1
 fi
 

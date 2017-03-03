@@ -11,6 +11,7 @@ if [[ $# -eq 1 ]]; then
 	exit 0
 fi
 
-echo "use none or one parameter for the directory"
+s=`basename $0`
+echo "usage $0 [directory]"
 exit 1
 

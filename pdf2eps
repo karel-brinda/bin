@@ -5,8 +5,8 @@
 # pdf2eps <page number> <pdf file without ext>
 
 if [ $# -ne 2 ]; then
-	echo "illegal number of parameters"
-	echo "usage: pdf2eps <page number> <pdf file without ext>"
+	s=`basename $0`
+	echo "usage: $s page_nb pdf_file_without_ext"
 	exit 1
 fi
 

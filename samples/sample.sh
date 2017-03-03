@@ -2,7 +2,8 @@
 
 
 #if [ $# -ne 1 ]; then
-#	echo "use one parameter for the new file"
+#	s=`basename $0`
+#	echo "USAGE: $s param"
 #	exit 1
 #fi
 

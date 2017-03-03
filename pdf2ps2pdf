@@ -1,12 +1,10 @@
 #!/bin/bash
 # normalize PDF
 
-set -x
-
 if [ -z "$1" ]; then
 	# display usage if no parameters given
-	b=`basename $0`
-	echo "Usage: $b file.pdf"
+	s=`basename $0`
+	echo "usage: $s file.pdf"
 	exit 1
 else
 	temp_file=$(mktemp)

@@ -3,7 +3,8 @@
 # requires coreutils for realpath
 
 if [ $# -ne 3 ]; then
-	echo "use two parameters (fasta, k, histogram)"
+	s=`basename $0`
+	echo "usage: $s file.fa k histogram.txt"
 	exit 1
 fi
 

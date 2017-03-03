@@ -4,7 +4,8 @@ BASEDIR=$(dirname "$0")
 SAMPLE="$BASEDIR/samples/sample.latex.tex"
 
 if [ $# -ne 1 ]; then
-	echo "use one parameter for the new file"
+	s=`basename $0`
+	echo "usage: $s file.tex"
 	exit 1
 fi
 

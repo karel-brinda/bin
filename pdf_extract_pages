@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 if [ $# -ne 3 ]; then
-	echo "illegal number of parameters"
-	echo "usage: pdf_extract_pages <inpdf> <pages> <outpdf>"
+	s=`basename $0`
+	echo "usage: $s <inpdf> <pages> <outpdf>"
 	exit 1
 fi
 

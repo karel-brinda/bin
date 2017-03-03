@@ -5,8 +5,9 @@ set -e
 
 prog=`basename $0`
 if [ $# -ne 1 ]; then
+	s=`basename $0`
 	echo "compress pdf using ghost script"
-	echo "usage: $prog dir"
+	echo "usage: $s dir"
 	exit 1
 fi
 

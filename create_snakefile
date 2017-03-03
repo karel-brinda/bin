@@ -13,5 +13,6 @@ if [ $# -eq 1 ]; then
 	exit 0
 fi
 
-echo "use at most parameter for the new file or no parameter for Makefile"
+s=`basename $0`
+echo "usage: $s [Snakefile]"
 exit 1

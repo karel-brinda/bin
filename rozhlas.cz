@@ -4,7 +4,8 @@
 # also url can be used (e.g., http://prehravac.rozhlas.cz/audio/3808068)
 
 if [[ $# -ne 1  && $# -ne 2 ]]; then
-	echo "rozhlas.cz media_id [file]"
+	s=`basename $0`
+	echo "USAGE: $s media_id [file]"
 	exit 1
 fi
 

@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 
 if [ $# -ne 1 ]; then
-	echo "use one parameter for the nuccore id"
+	s=`basename $0`
+	echo "usage: $s nuccore_id"
 	exit 1
 fi
 

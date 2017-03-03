@@ -14,5 +14,6 @@ if [ $# -eq 1 ]; then
 fi
 
 
-echo "use at most parameter for the new file or no parameter for Makefile"
+s=`basename $0`
+echo "usage: $s [Makefile]"
 exit 1

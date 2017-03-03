@@ -4,7 +4,8 @@
 set -o pipefail
 
 if [ $# -ne 1 ] && [ $# -ne 0 ]; then
-	echo "illegal number of parameters"
+	s=`basename $0`
+	echo "usage: $s [directory]"
 	exit 1
 fi
 

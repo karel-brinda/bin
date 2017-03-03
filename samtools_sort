@@ -2,7 +2,8 @@
 # Sort a BAM file 
 
 if [ $# -ne 2 ]; then
-	echo "illegal number of parameters"
+	s=`basename $0`
+	echo "USAGE: $s in.sam out.bam"
 	exit 1
 fi
 
