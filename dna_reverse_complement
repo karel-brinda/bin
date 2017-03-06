@@ -1,0 +1,24 @@
+#! /usr/bin/env python3
+
+import sys
+
+complement = {
+		'A': 'T',
+		'C': 'G',
+		'G': 'C',
+		'T': 'A',
+		}
+
+keys=complement.keys()
+
+for x in list(keys):
+	c=complement[x]
+	complement[x.lower()]=c.lower()
+	complement[x.upper()]=c.upper()
+
+def rev_compl(s):
+	return "".join([complement[x] if x in complement else x for x in s[::-1]])
+
+for x in sys.argv[1:]:
+    print (rev_compl(x))
+
