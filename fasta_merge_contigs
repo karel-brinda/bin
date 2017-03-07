@@ -1,0 +1,39 @@
+#! /usr/bin/env python3
+
+import argparse
+import os
+import sys
+
+def merge_contigs(fasta_fn, fasta_line_width=80):
+	seqs=[]
+	with open(fasta_fn) as f:
+		for x in f:
+			if len(x)==0 or x[0]==">":
+				continue
+			else:
+				seqs.append(x.strip())
+	seq="".join(seqs)
+
+	out=[]
+
+	for fasta_line in [seq[i:i+fasta_line_width] for i in range(0, len(seq), fasta_line_width)]:
+		out.append(fasta_line)
+	return "\n".join(out)
+
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser(description="")
+
+	parser.add_argument('-f', '--fasta',
+			type=str,
+			metavar='str',
+			required=True,
+			dest='fasta_fn',
+			help='Fasta file with contigs',
+		)
+
+	args = parser.parse_args()
+
+	result=merge_contigs(args.fasta_fn)
+	print(">merged")
+	print(result)
