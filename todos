@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+t=todo
+grep -i -n -r --color=auto "$t:" .
+
