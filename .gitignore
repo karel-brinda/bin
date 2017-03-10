@@ -1,6 +1,7 @@
 # Global gitignore.
 
 ~*
+*.sw*
 
 # Vim
 .*.s[a-w][a-z]
