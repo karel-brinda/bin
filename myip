@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+ip=`curl http://ipecho.net/plain 2> /dev/null`
+echo "ip   = $ip"
+name=`nslookup $ip | grep -o 'name.*$'`
+echo "$name"
+
