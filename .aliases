@@ -31,7 +31,7 @@ mcd () {
 
 # misc
 
-alias ca='cp -ar'
+alias cpa='cp -ar'
 alias e='subl'
 alias e.='subl .'
 alias edit='subl'
