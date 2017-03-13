@@ -59,8 +59,6 @@ brew install htop
 #brew install iotop
 brew install links
 brew install mc
-brew tap tldr-pages/tldr
-brew install tldr
 
 # tools for pdf
 brew install pdfgrep

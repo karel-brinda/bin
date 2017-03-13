@@ -4,5 +4,6 @@ set -x
 
 conda update --all -y
 brew update && brew upgrade
+npm update -g
 git_update_repos
 
