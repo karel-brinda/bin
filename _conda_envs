@@ -3,6 +3,7 @@
 #set -e
 
 envs=(
+		"rase:python=3.5 pyqt=4 bwa last r minimap samtools ete3 blast"
 		"nanopore:poretools bwa graphmap last minimap miniasm samtools blast nanosimh"
 		"prophyle:python==3.4 ete3 bitarray cmake parallel blast samtools"
 		"py37:python=2.7"
