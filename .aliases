@@ -106,7 +106,7 @@ alias mj='make V=1 -j'
 alias mcl='make clean'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
-alias smj='snakemake -p --cores'
+alias smj='snakemake -p --cores 4242'
 
 # pdf
 
