@@ -26,7 +26,7 @@ alias md='mkdir'
 
 mcd () {
 	mkdir -p $1
-		cd $1
+	cd $1
 }
 
 # misc
@@ -51,6 +51,7 @@ alias exif_delete_metadata='exiftool -all=""'
 alias ret='echo $?'
 
 alias grep='grep --color=auto'
+alias grepi='grep --color=auto -i'
 #alias ffgrep='c && find . -type f -exec xargs grep --color {} \;'
 
 alias c='clear'
