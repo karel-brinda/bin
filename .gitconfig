@@ -1,10 +1,10 @@
 [user]
 	email = karel.brinda@gmail.com
-	name = Karel Brinda
+	name = Karel Břinda
 
 [core]
 	#pager = less -F
-	pager =  less -+F -+X 
+	pager =  less -+F -+X
 
 
 	# do not quote non-ascii characters; display unicodes as-is
