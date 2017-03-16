@@ -33,6 +33,7 @@ brew install ccat
 # misc tools
 brew install gnu-time
 brew install coreutils
+brew install exiftool
 
 # bash completion
 brew install bash-completion
