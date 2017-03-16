@@ -34,6 +34,7 @@ brew install ccat
 brew install gnu-time
 brew install coreutils
 brew install exiftool
+brew install recoverjpeg
 
 # bash completion
 brew install bash-completion
