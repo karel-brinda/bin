@@ -19,8 +19,8 @@ def tree_to_list(root):
 	for node in root.traverse("postorder"):
 		d={}
 		for x in node.features:
-			if x=="support" or x=="dist":
-				continue
+			#if x=="support" or x=="dist":
+			#	continue
 			d[x]=getattr(node,x)
 		if len(node.children)>0:
 			d["children"]=[x.name for x in node.children]
