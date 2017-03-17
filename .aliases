@@ -22,7 +22,7 @@ alias cdd='cd ~/downloads || cd ~/Downloads'
 alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
 alias ct='cd /tmp'
-alias ctt='t=`date +%Y%m%d-%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
+alias ctt='t=`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
 alias md='mkdir'
 
