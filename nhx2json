@@ -1,0 +1,54 @@
+#! /usr/bin/env python3
+
+import argparse
+import os
+import sys
+import ete3
+import json
+
+def node_to_dict(node):
+	d={}
+	for x in node.features:
+		d[x]=getattr(node,x)
+	if len(node.children)>0:
+		d["children"]=[node_to_dict(x) for x in node.children]
+	return d
+
+def tree_to_list(root):
+	l=[]
+	for node in root.traverse("postorder"):
+		d={}
+		for x in node.features:
+			if x=="support" or x=="dist":
+				continue
+			d[x]=getattr(node,x)
+		if len(node.children)>0:
+			d["children"]=[x.name for x in node.children]
+		try:
+			d["parent"]=node.up.name
+		except AttributeError:
+			d["parent"]=""
+		l.append(d)
+	return l
+
+
+def tree_to_json(in_tree_fn):
+	tree=ete3.Tree(in_tree_fn, format=1)
+	tl=tree_to_list(tree)
+	tl.sort(key=lambda x: x['name'])
+	print(json.dumps(tl, sort_keys=True, indent=4))
+
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser(description="")
+
+	parser.add_argument('-i', '--in-tree',
+			type=str,
+			metavar='str',
+			required=True,
+			dest='in_tree_fn',
+			help='Input Newick/NHX tree',
+		)
+
+	args = parser.parse_args()
+	tree_to_json(args.in_tree_fn)
