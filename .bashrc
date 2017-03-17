@@ -8,7 +8,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 source ~/bin/.aliases
 
-for ANACONDA_ROOT in ~/anaconda ~/miniconda3 ~/anaconda3; do
+for ANACONDA_ROOT in ~/anaconda ~/anaconda3 ~/miniconda ~/miniconda3 ; do
 	export PATH="$PATH:$ANACONDA_ROOT/bin"
 	export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 done;

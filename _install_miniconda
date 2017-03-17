@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+d=`mktemp -d`
+
+if [[ `uname` == 'Linux' ]]; then
+	url=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+else
+	url=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+fi
+
+cd $d
+curl $url > miniconda.sh
+bash miniconda.sh -b -p $HOME/miniconda
+
+export PATH=$PATH:$HOME/miniconda/bin
+conda update conda -y
+conda update --all -y
+
