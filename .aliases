@@ -17,6 +17,7 @@ alias cgp='cd ~/github/my/projects'
 
 alias cdb='cd ~/bin'
 alias cde='cd ~/Desktop'
+alias cdr='cd ~/github/my/rase'
 alias cdd='cd ~/downloads || cd ~/Downloads'
 alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
