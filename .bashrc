@@ -8,9 +8,9 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 source ~/bin/.aliases
 
-for ANACONDA_ROOT in ~/anaconda ~/anaconda3 ~/miniconda ~/miniconda3 ; do
+for ANACONDA_ROOT in ~/miniconda ; do
 	export PATH="$PATH:$ANACONDA_ROOT/bin"
-	export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
+	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 done;
 
 export PATH="~/bin:~/bin2:~/.node_modules_global/bin:~/github/my/projects/bin:~/bin/tabulator/bin:$PATH"
