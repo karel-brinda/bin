@@ -20,7 +20,7 @@ brew install pv
 brew install emacs
 #brew install vim
 brew install gdb
-brew install valgrind
+#brew install valgrind
 #brew install Caskroom/cask/netbeans-cpp
 brew install gperftools
 #brew install homebrew/x11/gv
@@ -98,7 +98,7 @@ brew install unrar
 brew install graphviz
 brew install gnuplot
 brew install wget
-brew install socat
+#brew install socat
 brew install rename
 brew install ascii
 brew install parallel
@@ -119,9 +119,9 @@ brew install fastq-tools
 
 # tools for genome assembly
 brew install blast
-brew install celera-assembler
+#brew install celera-assembler
 brew install gatb
-brew install kissplice
+#brew install kissplice
 
 # tools for read simulation
 brew install dwgsim

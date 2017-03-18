@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+./_install_miniconda
+
 conda config --add channels r
 conda config --add channels bioconda
 

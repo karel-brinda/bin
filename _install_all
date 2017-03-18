@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+d=`dirname $0`
+s=`basename $0`
+cd $d
+
+for x in _install_*; do
+	if [ $x = $s ]; then
+		continue
+	fi
+
+	if [[ $x == *"ubuntu"* && `uname` != 'Linux' ]]; then
+		continue
+	fi
+
+	./$x
+done;
+
