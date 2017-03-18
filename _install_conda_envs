@@ -19,8 +19,8 @@ for e in "${envs[@]}"; do
 	echo "===================="
 	echo "$k"
 	echo "===================="
-	conda create --name $k -y || echo "Environment $k already exists"
-	source activate $k
-	conda install -y $v
-	source deactivate
+	conda create -c bioconda --name $k -y $v || echo "Environment $k already exists"
+	#source activate $k
+	#conda install -y $v
+	#source deactivate
 done
