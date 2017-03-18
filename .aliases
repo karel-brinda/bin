@@ -33,7 +33,7 @@ mcd () {
 
 # misc
 
-alias psk='ps aux | grep "^\(kbrinda\|karel\|brinda\)"'
+alias psk='ps aux | grep "^$USER"'
 alias u='_update_all'
 alias perlsed='perl -pe'
 alias cpa='cp -av'
