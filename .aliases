@@ -33,6 +33,7 @@ mcd () {
 
 # misc
 
+alias u='_update_all'
 alias perlsed='perl -pe'
 alias cpa='cp -av'
 alias e='subl'
