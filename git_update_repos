@@ -3,8 +3,11 @@
 #set -x
 set -o pipefail
 
+. colors.sh
+
 if [ $# -ne 1 ] && [ $# -ne 0 ]; then
 	s=`basename $0`
+	echo "update recursively all git repositories (in ~/github or in a user-specified directory)"
 	echo "usage: $s [directory]"
 	exit 1
 fi
@@ -16,7 +19,7 @@ else
 	cd "$1"
 fi
 
-for d in `ls -d */ || echo ""`; 
+for d in `ls -d */ 2>/dev/null || echo ""`;
 do
 	(
 	if [ -L $d ]; then
@@ -27,12 +30,9 @@ do
 		p=`pwd`
 
 		if [ -d ".git" ]; then
-			echo
-			hrr
-			echo "Directory  $p"
-			hrr
-
-			git pull --rebase --all || git pull --all
+			orig=`git remote -v | grep origin | awk '{print $2}' | uniq`
+			echo -e "Updating git repository $GREEN$p$NC ($orig)"
+			(git pull --rebase --all || git pull --all) | grep -v "^Fetching" | grep -v "^Already"
 		else
 			#echo "not a git repo; going to iterate though its subdirs"
 			$0 ./
