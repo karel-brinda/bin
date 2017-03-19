@@ -2,11 +2,22 @@
 
 set -x
 
+# git
 git_update_repos && echo "Git update finished"
+
+# conda
 conda update -y conda && conda update --all -y && echo "Conda update finished"
+
+# brew
 brew update && brew upgrade && echo "Brew update finished"
+
+# npm
 npm update -g && echo "NPM update finished"
+
+# gem
 (gem update `gem list | cut -d ' ' -f 1`) && echo "GEM update finished"
+
+# tldr
 tldr --update && echo "TL;DR update finished"
 
 echo "All updates finished"
