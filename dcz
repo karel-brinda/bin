@@ -1,0 +1,41 @@
+#! /usr/bin/env bash
+
+#set -e -o pipefail
+
+# prerequisities:
+# - links: brew install links
+
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "usage: $s param"
+	exit 1
+fi
+
+#perl -pe 's/\*\*/\n\*/g' | \
+
+tmp=`mktemp`
+
+#perl -pe 's/[0-9]+\./\n/g' | \
+links -dump "http://ssjc.ujc.cas.cz/search.php?hledej=Hledat&heslo=$1&sti=EMPTY&where=hesla&hsubstr=no" | \
+	perl -pe 's/\*//g' | \
+	grep -v '\[ [A-Za-z]* *\] ' | \
+	perl -pe 's/†//g' | \
+	grep -v "^ *$" | \
+	grep -v "©" \
+	> $tmp
+
+#echo $tmp
+
+grep '^ *Nalezeno ' $tmp > /dev/null 2> /dev/null
+if [ $? -eq 0 ]; then
+	cat $tmp | \
+	perl -pe 's/^   /\* /g' | \
+	perl -pe 's/^\* {4,50}/\t/g' | \
+	grep -v '^* Nalezeno '
+else
+	cat $tmp | \
+	sed '1s/^ */\* /' | \
+	perl -pe 's/^ +/\t/g'
+fi
+
