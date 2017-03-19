@@ -5,8 +5,10 @@ set -e -o pipefail
 
 if [ $# -eq 0 ]; then
 	s=`basename $0`
-	echo "usage: $s word"
+	echo "usage: $s phrase"
 	exit 1
 fi
 
-open "https://translate.google.com/#de/fr/$*"
+q=`echo "$*" | sed 's/ /\+/g'`
+
+open "https://translate.google.com/#de/fr/$q"
