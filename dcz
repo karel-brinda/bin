@@ -17,25 +17,26 @@ fi
 tmp=`mktemp`
 
 #perl -pe 's/[0-9]+\./\n/g' | \
-links -dump "http://ssjc.ujc.cas.cz/search.php?hledej=Hledat&heslo=$1&sti=EMPTY&where=hesla&hsubstr=no" | \
+links -dump "http://ssjc.ujc.cas.cz/search.php?heslo=$1&where=full_text&hsubstr=no" | \
 	perl -pe 's/\*//g' | \
 	grep -v '\[ [A-Za-z]* *\] ' | \
 	perl -pe 's/†//g' | \
-	grep -v "^ *$" | \
+	grep -v "^\s*$" | \
 	grep -v "©" \
 	> $tmp
 
-#echo $tmp
-
-grep '^ *Nalezeno ' $tmp > /dev/null 2> /dev/null
+egrep '^\s*(Nalezeno |Upozornění)' $tmp > /dev/null 2> /dev/null
 if [ $? -eq 0 ]; then
 	cat $tmp | \
+	egrep -v '^ *(Nalezeno|Upozornění)' | \
+	grep -v '^\s*statí.\s*$' | \
 	perl -pe 's/^   /\* /g' | \
-	perl -pe 's/^\* {4,50}/\t/g' | \
-	grep -v '^* Nalezeno '
+	perl -pe 's/^\*\s{4,50}/\t/g' | \
+	egrep --color=auto "$1|$"
 else
 	cat $tmp | \
-	sed '1s/^ */\* /' | \
-	perl -pe 's/^ +/\t/g'
+	sed '1s/^\s*/\* /' | \
+	perl -pe 's/^\s+/\t/g' | \
+	egrep --color=auto "$1|$"
 fi
 
