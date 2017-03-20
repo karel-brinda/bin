@@ -54,6 +54,7 @@ alias exif_delete_metadata='exiftool -all=""'
 alias ret='echo $?'
 
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
 alias grepi='grep --color=auto -i'
 #alias ffgrep='c && find . -type f -exec xargs grep --color {} \;'
 
