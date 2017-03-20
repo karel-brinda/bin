@@ -6,16 +6,16 @@ import sys
 import stat
 
 g_lang_codes = {
-	"c": "cs",
-	"e": "en",
-	"f": "fr",
-	"d": "de",
+	"cz": "cs",
+	"en": "en",
+	"fr": "fr",
+	"de": "de",
 }
 
 l_lang_codes = {
-	"e": "Anglicko",
-	"f": "Francouzsko",
-	"d": "Nemecko",
+	"en": "Anglicko",
+	"fr": "Francouzsko",
+	"de": "Nemecko",
 }
 
 
@@ -63,8 +63,8 @@ for fr in langs:
 		if fr==to:
 			continue
 		gtrans("g.{}{}".format(fr,to),fr,to)
-		if to=="c":
-			ltrans("l.{}{}".format(fr,"c"),fr)
-			ltrans("l.{}{}".format("c",fr),fr)
+		if to=="cz":
+			ltrans("l.{}{}".format(fr,"cz"),fr)
+			ltrans("l.{}{}".format("cz",fr),fr)
 
 
