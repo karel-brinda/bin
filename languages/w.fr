@@ -12,4 +12,4 @@ fi
 q=`echo "$*" | sed 's/ /\+/g'`
 r=`echo "$*" | sed 's/ /_/g'`
 
-open "https://translate.google.com/#en/de/$q"
+open "https://fr.wikipedia.org/w/index.php?search=$r"

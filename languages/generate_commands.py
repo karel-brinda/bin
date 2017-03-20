@@ -33,6 +33,7 @@ if [ $# -eq 0 ]; then
 fi
 
 q=`echo "$*" | sed 's/ /\+/g'`
+r=`echo "$*" | sed 's/ /_/g'`
 """
 
 def chmodx(fn):
@@ -58,7 +59,16 @@ def ltrans(fn,fr):
 		))
 	chmodx(fn)
 
+def wikipedia(fn,fr):
+	with open(fn,"w") as f:
+		f.write('{te}\nopen "https://{fr}.wikipedia.org/w/index.php?search=$r"'.format(
+			te=template_transl,
+			fr=g_lang_codes[fr],
+		))
+	chmodx(fn)
+
 for fr in langs:
+	wikipedia("w.{}".format(fr),fr)
 	for to in langs:
 		if fr==to:
 			continue

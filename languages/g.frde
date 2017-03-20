@@ -10,5 +10,6 @@ if [ $# -eq 0 ]; then
 fi
 
 q=`echo "$*" | sed 's/ /\+/g'`
+r=`echo "$*" | sed 's/ /_/g'`
 
 open "https://translate.google.com/#fr/de/$q"
