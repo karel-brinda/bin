@@ -11,4 +11,4 @@ fi
 
 q=`echo "$*" | sed 's/ /\+/g'`
 
-open "https://translate.google.com/#cs/en/$q"
+open "https://translate.google.com/#fr/de/$q"

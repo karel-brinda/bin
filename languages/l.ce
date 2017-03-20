@@ -11,4 +11,4 @@ fi
 
 q=`echo "$*" | sed 's/ /\+/g'`
 
-open "https://translate.google.com/#fr/en/$q"
+open "https://slovniky.lingea.cz/Anglicko-cesky/$q"
