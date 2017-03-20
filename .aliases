@@ -60,7 +60,7 @@ alias grepi='grep --color=auto -i'
 
 alias c='clear'
 
-alias pdf='open http://brinda.cz/publications/brinda_phd.pdf'
+alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
 
 # git
 
