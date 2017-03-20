@@ -9,10 +9,6 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-if [ $# -eq 1 ]; then
-	open "http://dictionary.cambridge.org/dictionary/english/$1"
-else
-	q=`echo $* | sed 's/ /\+/g'`
-	open "http://dictionary.cambridge.org/spellcheck/english/?q=$q"
-fi	
+q=`echo $* | sed 's/ /\+/g'`
+open "http://dictionary.cambridge.org/search/english/direct/?q=$q"
 
