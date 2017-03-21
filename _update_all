@@ -12,7 +12,7 @@ conda update -y conda && conda update --all -y && echo "Conda update finished"
 brew update && brew upgrade && echo "Brew update finished"
 
 # npm
-npm update -g && echo "NPM update finished"
+npm update npm && npm update -g && echo "NPM update finished"
 
 # gem
 (gem update `gem list | cut -d ' ' -f 1`) && echo "GEM update finished"
