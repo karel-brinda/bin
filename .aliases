@@ -54,7 +54,7 @@ alias dush='du -sh'
 alias briss='java -jar ~/bin/programs/briss-0.9/briss-0.9.jar'
 alias exif_delete_metadata='exiftool -all=""'
 
-alias ret='echo $?'
+alias r='echo $?'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
