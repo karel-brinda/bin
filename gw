@@ -10,7 +10,24 @@ if [ $# -ne 0 ]; then
 	exit 1
 fi
 
-url=`git remote -v | grep fetch | awk '{print $2}' | sed 's@^.*github@http://github@g'`
-echo "Repo URL: $url"
-open "$url"
+url=`git remote -v | grep fetch | awk '{print $2}'`
+http=`echo $url | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^http/https/g'`
+branch=`git branch | grep "*" | awk '{print $2}'`
+
+#echo "Repo URL:       $url"
+#echo "HTTP address:   $http"
+#echo "Current branch: $branch"
+
+# todo: add directory
+# todo: add support for bitbucket
+
+if [[ "$branch" == "master" ]]; then
+	open="$http"
+else
+	open="$http/tree/$branch"
+fi
+
+#echo "URL:            $open"
+
+open "$open"
 
