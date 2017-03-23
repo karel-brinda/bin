@@ -10,6 +10,9 @@ if [ $# -ne 0 ]; then
 	exit 1
 fi
 
+git status > /dev/null 2> /dev/null || open "http://github.com"
+git status > /dev/null 2> /dev/null || exit 0
+
 url=`git remote -v | grep fetch | awk '{print $2}'`
 http=`echo $url | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^http/https/g'`
 branch=`git branch | grep "*" | awk '{print $2}'`
