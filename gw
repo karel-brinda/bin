@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+
+if [ $# -ne 0 ]; then
+	s=`basename $0`
+	echo "open web of the current git repository"
+	echo "usage: $s"
+	exit 1
+fi
+
+url=`git remote -v | grep fetch | awk '{print $2}' | sed 's@^.*github@http://github@g'`
+echo "Repo URL: $url"
+open "$url"
+
