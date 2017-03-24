@@ -2,13 +2,43 @@
 
 set -e -o pipefail
 
+# todo: add support for bitbucket
 
-if [ $# -ne 0 ]; then
-	s=`basename $0`
-	echo "open web of the current git repository"
-	echo "usage: $s"
-	exit 1
-fi
+what=master
+
+usage() {
+    cat <<EOM
+usage: $(basename $0)  open the current Github repository
+       -h     print help
+       -c     open current commit
+       -b     open current branch
+EOM
+}
+
+debug=0
+
+while getopts "bchd" opt; do
+	case $opt in
+	b)
+		what=branch
+		;;
+	c)
+		what=commit
+		;;
+	h)
+		usage
+		exit 0
+		;;
+	d)
+		debug=1
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		usage
+		exit 1
+		;;
+	esac
+done
 
 git status > /dev/null 2> /dev/null || open "http://github.com"
 git status > /dev/null 2> /dev/null || exit 0
@@ -16,21 +46,36 @@ git status > /dev/null 2> /dev/null || exit 0
 url=`git remote -v | grep fetch | awk '{print $2}'`
 http=`echo $url | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^http/https/g'`
 branch=`git branch | grep "*" | awk '{print $2}'`
+commit=`git rev-parse HEAD`
+p=`pwd -P`
+toplevel=`git rev-parse --show-toplevel`
+rel=`echo $p | sed "s@^$toplevel@@g" | sed 's@^/@@g'`
 
-#echo "Repo URL:       $url"
-#echo "HTTP address:   $http"
-#echo "Current branch: $branch"
-
-# todo: add directory
-# todo: add support for bitbucket
-
-if [[ "$branch" == "master" ]]; then
-	open="$http"
-else
-	open="$http/tree/$branch"
+if [[ $branch =~ ^\( && "$what" != "master" ]]; then
+	what=commit
 fi
 
-#echo "URL:            $open"
+if [[ $debug -eq 1 ]]; then
+	echo "Repo URL:         $url"
+	echo "HTTP address:     $http"
+	echo "Current branch:   $branch"
+	echo "Commit:           $commit"
+	echo "Git toplelevel:   $toplevel"
+	echo "Rel path:         $rel"
+	exit 0
+fi
 
-open "$open"
+
+
+case "$what" in
+	master)
+		open "$http"
+		;;
+	branch)
+		open "$http/tree/$branch/$rel"
+		;;
+	commit)
+		open "$http/tree/$commit/$rel"
+		;;
+esac
 
