@@ -13,7 +13,8 @@ for ANACONDA_ROOT in ~/miniconda ; do
 	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 done;
 
-export PATH="~/bin:~/bin2:~/.node_modules_global/bin:~/github/my/projects/bin:~/bin/tabulator/bin:~/bin/languages:$PATH"
+export PATH="~/bin2:~/.node_modules_global/bin:~/github/my/projects/bin:$PATH"
+export PATH="~/bin:~/bin/tabulator/bin:~/bin/languages:~/bin/git:$PATH"
 
 # vim as default editor for git
 export VISUAL=vim

@@ -12,12 +12,6 @@
 	excludesfile = ~/bin/.gitignore
 
 [alias]
-	history = log --graph --pretty=format:'%C(yellow)%h%Creset \
-		-%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
-		--abbrev-commit --date=short --date-order -n30
-
-	amend = commit --amend -v
-
 	wdiff = diff --color-words
 	wshow = show --color-words
 
