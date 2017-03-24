@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 alias open='gnome-open'
 
 alias ds='dropbox status'
