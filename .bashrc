@@ -9,11 +9,10 @@ for ANACONDA_ROOT in ~/miniconda ; do
 done;
 
 
-for d in ~/bin/tabulator/bin ~/bin/languages ~/bin/git ; do
+for d in ~/bin ~/bin/tabulator/bin ~/bin/languages ~/bin/git ; do
 	if [ -d $d ]; then
 		export PATH="$d:$PATH"
-
-		if [ -f $d/.bashrc ]; then
+		if [ $d != ~/bin ] && [ -f $d/.bashrc ]; then
 			source "$d/.bashrc"
 		fi
 
