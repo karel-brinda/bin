@@ -72,9 +72,10 @@ for fr in langs:
 	for to in langs:
 		if fr==to:
 			continue
-		gtrans("g.{}{}".format(fr,to),fr,to)
+		gtrans("d.{}{}.g".format(fr,to),fr,to)
+		os.symlink("d.{}{}.g".format(fr,to),"d.{}{}".format(fr,to))
 		if to=="cz":
-			ltrans("l.{}{}".format(fr,"cz"),fr)
-			ltrans("l.{}{}".format("cz",fr),fr)
+			ltrans("d.{}{}.l".format(fr,"cz"),fr)
+			ltrans("d.{}{}.l".format("cz",fr),fr)
 
 
