@@ -76,6 +76,7 @@ brew install svg2pdf
 #brew cask install libreoffice
 #brew install Caskroom/cask/wkhtmltopdf
 brew install imagemagick
+brew install ghostscript
 
 # latexdiff
 #brew install latexdiff
