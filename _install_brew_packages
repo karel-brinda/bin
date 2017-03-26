@@ -8,6 +8,7 @@ brew tap homebrew/science
 # git
 brew install git
 brew install git-lfs
+git lfs install
 brew install git-extras
 brew install git-review
 brew install git-svn-abandon
@@ -47,7 +48,7 @@ brew install tclap
 brew install open-mpi
 
 #node.js
-brew install ruby
+#brew install ruby
 brew install npm
 
 # other unix utilities
@@ -60,6 +61,7 @@ fi
 brew install htop
 #brew install iotop
 brew install links
+brew install lynx
 brew install mc
 
 # tools for pdf
@@ -67,17 +69,17 @@ brew install pdfgrep
 brew install svg2pdf
 
 # graphical editors
-brew cask install xquartz
-brew cask install dia
-brew cask install inkscape
-brew cask install gimp
-brew cask install libreoffice
+#brew cask install xquartz
+#brew cask install dia
+#brew cask install inkscape
+#brew cask install gimp
+#brew cask install libreoffice
 #brew install Caskroom/cask/wkhtmltopdf
 brew install imagemagick
 
 # latexdiff
-brew install homebrew/tex/latexdiff
-brew install homebrew/tex/git-latexdiff
+#brew install latexdiff
+#brew install git-latexdiff
 
 
 # docker

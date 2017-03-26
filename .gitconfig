@@ -46,3 +46,8 @@
 	# Make all new branches to automatically use rebase rather than merge, on pull
 	autosetuprebase = always
 
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

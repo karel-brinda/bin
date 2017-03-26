@@ -20,5 +20,10 @@ npm update npm && npm update -g && echo "NPM update finished"
 # tldr
 tldr --update && echo "TL;DR update finished"
 
+# pip
+pip_pypy install --upgrade pip setuptools
+pip_pypy3 install --upgrade pip setuptools
+
+
 echo "All updates finished"
 

@@ -23,7 +23,7 @@ for d in ~/bin ~/bin/tabulator/bin ~/bin/languages ~/bin/git ; do
 done
 
 
-export PATH="~/bin2:~/.node_modules_global/bin:~/github/my/projects/bin:$PATH"
+export PATH="~/bin2:~/.rvm/bin/:~/.node_modules_global/bin:~/github/my/projects/bin:$PATH"
 
 # vim as default editor for git
 export VISUAL=vim
