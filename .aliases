@@ -76,6 +76,8 @@ alias sv='samtools view'
 
 alias m='make V=1'
 alias mj='make V=1 -j'
+alias mC='make -C'
+alias mjC='make -j -C'
 alias mcl='make clean'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
