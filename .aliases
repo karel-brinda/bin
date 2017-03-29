@@ -84,6 +84,11 @@ alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
 alias smj='snakemake -p --cores 4242'
 
+# pip
+
+alias piu='pip install --upgrade'
+alias piu.='pip install --upgrade .'
+
 # pdf
 
 alias pdf_merge='pdfunite'
