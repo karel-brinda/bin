@@ -53,6 +53,7 @@ alias p='pwd'
 alias t='touch'
 alias dfh='df -h'
 alias dush='du -sh'
+alias wcl='wc -l'
 alias briss='java -jar ~/bin/programs/briss-0.9/briss-0.9.jar'
 alias exif_delete_metadata='exiftool -all=""'
 
