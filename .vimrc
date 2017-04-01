@@ -5,6 +5,8 @@ behave mswin
 
 colo torte
 
+set guifont=Hack:h11
+
 au BufNewFile,BufRead Snakefile set syntax=python
 filetype plugin indent on
 
