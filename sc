@@ -2,7 +2,7 @@
 
 if [[ $# -eq 0 ]]; then
 	s=`basename $0`
-	echo "create a new conda environment"
+	echo "create a new Conda environment"
 	echo "usage: $s env_name [packages]"
 	exit 1
 fi
