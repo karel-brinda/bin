@@ -2,3 +2,4 @@
 
 * Link bin, .bashrc, .pypirc, .vimrc, .gitconfig, .hyper.js
 * Change alt setting in terminal Terminal > Preferences > Settings > ‘Use option as meta key’
+* Change Terminal font to Hack

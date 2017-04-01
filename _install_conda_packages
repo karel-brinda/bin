@@ -11,6 +11,7 @@ conda install -y julia
 conda install -y r
 conda install -y pandoc
 conda install -y pyqt
+conda install -y markdown
 
 # libs
 conda install -y ete2
