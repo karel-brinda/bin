@@ -41,6 +41,7 @@ alias sl='conda info --envs'
 
 # misc
 
+alias ggdb='sudo gdb --args'
 alias psk='ps aux | grep "^$USER"'
 alias u='_update_all'
 alias perlsed='perl -pe'
