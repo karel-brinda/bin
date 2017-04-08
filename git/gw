@@ -12,13 +12,21 @@ usage: $(basename $0)  open the current Github repository
        -h     print help
        -c     open current commit
        -b     open current branch
+       -i     open issues
+       -p     open pull requests
 EOM
 }
 
 debug=0
 
-while getopts "bchd" opt; do
+while getopts "bchdip" opt; do
 	case $opt in
+	i)
+		what=issues
+		;;
+	p)
+		what=pullreq
+		;;
 	b)
 		what=branch
 		;;
@@ -70,6 +78,12 @@ fi
 case "$what" in
 	master)
 		open "$http"
+		;;
+	pullreq)
+		open "$http/pulls"
+		;;
+	issues)
+		open "$http/issues"
 		;;
 	branch)
 		open "$http/tree/$branch/$rel"
