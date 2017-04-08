@@ -1,4 +1,4 @@
-#! /usr/bin/env bash -f -e -o pipefail
+#! /usr/bin/env bash -u -f -e -o pipefail
 
 #if [ $# -ne 1 ]; then
 #	s=`basename $0`
