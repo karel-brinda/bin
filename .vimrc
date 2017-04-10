@@ -1,7 +1,18 @@
 source ~/bin/vim-sensible/plugin/sensible.vim
 
-source $VIMRUNTIME/mswin.vim
-behave mswin
+" source $VIMRUNTIME/mswin.vim
+if has("clipboard")
+    " CTRL-X is Cut
+    vnoremap <C-X> "+x
+
+    " CTRL-C is Copy
+    vnoremap <C-C> "+y
+
+    " CTRL-V is Paste
+    map <C-V>		"+gP
+    cmap <C-V>		<C-R>+
+endif
+
 
 colo torte
 
