@@ -42,13 +42,10 @@ def tree_to_json(in_tree_fn):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="")
 
-	parser.add_argument('-i', '--in-tree',
+	parser.add_argument('tree',
 			type=str,
-			metavar='str',
-			required=True,
-			dest='in_tree_fn',
 			help='Input Newick/NHX tree',
 		)
 
 	args = parser.parse_args()
-	tree_to_json(args.in_tree_fn)
+	tree_to_json(args.tree)
