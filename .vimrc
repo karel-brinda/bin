@@ -1,4 +1,4 @@
-source `pwd`/vim/vim-sensible/plugin/sensible.vim
+source $HOME/bin/vim/vim-sensible/plugin/sensible.vim
 
 " source $VIMRUNTIME/mswin.vim
 if has("clipboard")
@@ -47,7 +47,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=`pwd`/vim/bundle/vundle.vim
+set rtp+=$HOME/bin/vim/bundle/vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
