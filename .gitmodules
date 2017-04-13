@@ -7,3 +7,6 @@
 [submodule "tabulator"]
 	path = tabulator
 	url = https://github.com/stefan-schroedl/tabulator
+[submodule "vim/vundle.vim"]
+	path = vim/vundle.vim
+	url = http://github.com/vundlevim/vundle.vim
