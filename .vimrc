@@ -50,6 +50,7 @@ filetype off                  " required
 set rtp+=$HOME/bin/vim/bundle/vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
