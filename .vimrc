@@ -53,8 +53,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
-
-
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
