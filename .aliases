@@ -1,7 +1,11 @@
-# cd
+####################
+# CHANGE DIRECTORY #
+####################
 
+alias b='cd -'
 alias cd-='cd -'
 alias cd..='cd ..'
+
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
@@ -9,7 +13,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias b='cd -'
 
 alias cg='cd ~/github'
 alias cgc='cd ~/github/c2-d2'
@@ -17,7 +20,6 @@ alias cgb='cd ~/github/my/bin'
 alias cgm='cd ~/github/my'
 alias cgp='cd ~/github/my/projects'
 alias cgpp='cd ~/github/my/prophyle'
-
 alias cdb='cd ~/bin'
 alias cde='cd ~/Desktop'
 alias cdr='cd ~/github/my/rase'
@@ -27,6 +29,11 @@ alias cdg='cd ~/*Google*/'
 alias ct='cd /tmp'
 alias ctt='t=`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
+
+############
+# MAKE DIR #
+############
+
 alias md='mkdir -p'
 
 mcd () {
@@ -34,19 +41,23 @@ mcd () {
 	cd $1
 }
 
-#
+
+##################
+# CONDA & PYTHON #
+##################
+
 alias sa='source activate'
 alias sd='source deactivate'
 alias sl='conda info --envs'
 
-# misc
+alias piu='pip install --upgrade'
+alias piu.='pip install --upgrade .'
 
-alias ggdb='sudo gdb --args'
-alias psk='ps aux | grep "^$USER"'
-alias u='_update_all'
-alias perlsed='perl -pe'
-alias md2html='markdown_py'
-alias cpa='cp -av'
+
+###############
+# EDIT & OPEN #
+###############
+
 alias e='subl'
 alias en='subl -n'
 alias e.='subl .'
@@ -54,35 +65,45 @@ alias en.='subl -n .'
 alias edit='subl'
 alias o='open'
 alias o.='open .'
+
+
+###############
+# FIND & GREP #
+###############
+
+alias f='find'
+alias f.='find .'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias grepi='grep --color=auto -i'
+
+
+#########
+# SHELL #
+#########
+
+alias r='echo $?'
+alias psk='ps aux | grep "^$USER"'
+alias cpa='cp -av'
 alias p='pwd'
 alias t='touch'
 alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
-alias f='find'
-alias f.='find .'
 
-alias briss='java -jar ~/bin/programs/briss-0.9/briss-0.9.jar'
-alias exif_delete_metadata='exiftool -all=""'
 
-alias r='echo $?'
+##################
+# BIOINFORMATICS #
+##################
 
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias grepi='grep --color=auto -i'
-#alias ffgrep='c && find . -type f -exec xargs grep --color {} \;'
-
-alias c='clear'
-
+alias sv='samtools view'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
 
 
-# samtools
-
-alias sv='samtools view'
-
-
-# makes
+####################
+# MAKE & SNAKEMAKE #
+####################
 
 alias m='make V=1'
 alias mj='make V=1 -j'
@@ -93,11 +114,21 @@ alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
 alias smj='snakemake -p --cores 4242'
 
-# pip
 
-alias piu='pip install --upgrade'
-alias piu.='pip install --upgrade .'
-
-# pdf
+#######
+# PDF #
+#######
 
 alias pdf_merge='pdfunite'
+alias briss='java -jar ~/bin/programs/briss-0.9/briss-0.9.jar'
+alias exif_delete_metadata='exiftool -all=""'
+
+
+########
+# MISC #
+########
+
+alias ggdb='sudo gdb --args'
+alias u='_update_all'
+alias pe='perl -pe'
+alias md2html='markdown_py'
