@@ -14,6 +14,9 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias cf='cd `ls -d */ | head -n 1`'
+alias cl='cd `ls -d */ | tail -n 1`'
+
 alias cg='cd ~/github'
 alias cgc='cd ~/github/c2-d2'
 alias cgb='cd ~/github/my/bin'
