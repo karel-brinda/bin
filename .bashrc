@@ -42,3 +42,5 @@ else
 	source ~/bin/.bashrc.osx
 fi;
 
+export HISTIGNORE=' *'
+
