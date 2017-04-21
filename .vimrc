@@ -13,6 +13,27 @@ if has("clipboard")
     cmap <C-V>		<C-R>+
 endif
 
+"""""""""""""""""""""
+" Use Enter as Esc,
+" Shift+Enter in insert mode = multiline mode
+"""""""""""""""""""""
+:inoremap <CR> <Esc>
+function! ToggleEnterMapping()
+  if empty(mapcheck('<CR>', 'i'))
+    inoremap <CR> <Esc>`^
+    return "\<Esc>"
+  else
+    iunmap <CR>
+    return "\<CR>"
+  endif
+endfunction
+call ToggleEnterMapping()
+inoremap <expr> <S-CR> ToggleEnterMapping()
+" Optional (so <CR> cancels prefix, selection, operator).
+nnoremap <CR> <Esc>
+vnoremap <CR> <Esc>gV
+onoremap <CR> <Esc>
+"""""""""""""""""""""
 
 colo torte
 
