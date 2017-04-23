@@ -102,6 +102,7 @@ brew install unrar
 brew install graphviz
 brew install gnuplot
 brew install wget
+brew install cmake
 #brew install socat
 brew install rename
 brew install ascii
