@@ -66,6 +66,9 @@ alias sl='conda info --envs'
 
 alias piu='pip install --upgrade'
 alias piu.='pip install --upgrade .'
+alias piu..='pip install --upgrade ..'
+alias piu...='pip install --upgrade ../..'
+alias piu....='pip install --upgrade ../../..'
 
 
 ###############
