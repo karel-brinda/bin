@@ -32,6 +32,16 @@ alias cdg='cd ~/*Google*/'
 alias ct='cd /tmp'
 alias ctt='t=`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
+############
+# CALENDAR #
+############
+
+# see https://github.com/insanum/gcalcli
+
+alias calm='gcalcli calm -w 15 --monday'
+alias calw='gcalcli calw -w 15 --monday'
+alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tomorrow" "+%Y-%m-%d"`'
+
 
 ############
 # MAKE DIR #
