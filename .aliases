@@ -29,6 +29,7 @@ alias cdr='cd ~/github/my/rase'
 alias cdd='cd ~/downloads || cd ~/Downloads'
 alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
+alias cdo='cd ~/OneDrive/'
 alias ct='cd /tmp'
 alias ctt='t=`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
