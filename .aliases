@@ -39,6 +39,7 @@ alias ctt='t=`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
 # see https://github.com/insanum/gcalcli
 
+alias cal='open https://calendar.google.com/calendar/render#main_7'
 alias calm='gcalcli calm -w 15 --monday'
 alias calw='gcalcli calw -w 15 --monday'
 alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tomorrow" "+%Y-%m-%d"`'
