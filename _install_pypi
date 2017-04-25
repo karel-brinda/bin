@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
-pip install --upgrade gcalcli vobject parsedatetime
+/usr/bin/env pip2.7 install --upgrade gcalcli vobject parsedatetime
 
