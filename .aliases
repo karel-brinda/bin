@@ -114,6 +114,7 @@ alias t='touch'
 alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
+alias x='xargs'
 
 
 ##################
@@ -155,3 +156,4 @@ alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
 alias md2html='markdown_py'
+alias p3='/usr/bin/env python3'
