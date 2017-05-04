@@ -14,12 +14,13 @@ usage: $(basename $0)  open the current Github repository
        -b     open current branch
        -i     open issues
        -p     open pull requests
+       -t     open Travis
 EOM
 }
 
 debug=0
 
-while getopts "bchdip" opt; do
+while getopts "bchdtip" opt; do
 	case $opt in
 	i)
 		what=issues
@@ -32,6 +33,9 @@ while getopts "bchdip" opt; do
 		;;
 	c)
 		what=commit
+		;;
+	t)
+		what=travis
 		;;
 	h)
 		usage
@@ -53,6 +57,7 @@ git status > /dev/null 2> /dev/null || exit 0
 
 url=`git remote -v | grep fetch | awk '{print $2}'`
 http=`echo $url | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^http/https/g'`
+repo=`echo $http | sed 's/.*github\.com\///g'`
 branch=`git branch | grep "*" | awk '{print $2}'`
 commit=`git rev-parse HEAD`
 p=`pwd -P`
@@ -66,6 +71,7 @@ fi
 if [[ $debug -eq 1 ]]; then
 	echo "Repo URL:         $url"
 	echo "HTTP address:     $http"
+	echo "Repo:             $repo"
 	echo "Current branch:   $branch"
 	echo "Commit:           $commit"
 	echo "Git toplelevel:   $toplevel"
@@ -87,6 +93,9 @@ case "$what" in
 		;;
 	branch)
 		open "$http/tree/$branch/$rel"
+		;;
+	travis)
+		open "https://travis-ci.org/$repo"
 		;;
 	commit)
 		open "$http/tree/$commit/$rel"
