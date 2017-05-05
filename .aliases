@@ -58,6 +58,8 @@ mcd () {
 	cd $1
 }
 
+alias cdm='mcd'
+
 
 ##################
 # CONDA & PYTHON #
