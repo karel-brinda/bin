@@ -52,6 +52,7 @@ alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tom
 ############
 
 alias md='mkdir -p'
+alias rd='rmdir'
 
 mcd () {
 	mkdir -p $1
@@ -74,6 +75,7 @@ alias piu.='pip install --upgrade .'
 alias piu..='pip install --upgrade ..'
 alias piu...='pip install --upgrade ../..'
 alias piu....='pip install --upgrade ../../..'
+alias pu='pip uninstall'
 
 
 ###############
