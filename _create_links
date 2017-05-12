@@ -1,0 +1,8 @@
+#! /usr/bin/env bash -u -f -e -o pipefail
+
+cd ~
+
+ln -s ~/bin/.vimrc
+ln -s ~/bin/.tmux.conf
+ln -s ~/bin/.gitconfig
+

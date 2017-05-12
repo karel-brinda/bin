@@ -35,9 +35,9 @@
 [merge]
 	conflictstyle = diff3
 
-[push]
-	# Adopt the new default in Git 2.x
-	default = simple
+#[push]
+#	# Adopt the new default in Git 2.x
+#	default = simple
 
 #[format]
 #	pretty = fuller
