@@ -8,9 +8,19 @@ set -o pipefail # fail if any command in a pipeline fails
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
+readonly NARGS="$#"
 
-#if [ $NARGS -ne 1 ]; then
-#	echo "usage: $PROGNAME options"
-#	exit 1
-#fi
+usage() {
+	cat <<- EOF
+	usage: $PROGNAME options
+	EOF
+}
 
+main() {
+	#if [ $NARGS -ne 1 ]; then
+	#	usage
+	#	exit 1
+	#fi
+}
+
+main
