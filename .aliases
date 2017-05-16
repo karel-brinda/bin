@@ -29,6 +29,7 @@ alias cgc='cd ~/github/c2-d2'
 alias cgb='cd ~/github/my/bin'
 alias cgm='cd ~/github/my'
 alias cgp='cd ~/github/my/projects'
+alias cgpb='cd ~/github/my/projects/bin'
 alias cgpp='cd ~/github/my/prophyle'
 alias cgr='cd ~/github/my/rase*'
 
