@@ -121,6 +121,7 @@ alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
 alias x='xargs'
+alias x1='xargs -n 1'
 
 
 ##################
@@ -173,4 +174,4 @@ alias bin_upd='(cd ~/bin && git pull) && . ~/bin/.bashrc'
 #######
 
 alias bj='bjobs'
-alias bjn='bjobs | awk '"'"'{print $1}'"'"
+alias bjn='bjobs | grep -v interactive | awk '"'"'{print $1}'"'"
