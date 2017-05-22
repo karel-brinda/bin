@@ -175,3 +175,5 @@ alias bin_upd='(cd ~/bin && git pull) && . ~/bin/.bashrc'
 
 alias bj='bjobs'
 alias bjn='bjobs | grep -v interactive | awk '"'"'{print $1}'"'"
+alias bjh='bjobs | head'
+alias bjt='bjobs | tail'
