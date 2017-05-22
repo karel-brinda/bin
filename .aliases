@@ -165,3 +165,11 @@ alias pe='perl -pe'
 alias md2html='markdown_py'
 alias p3='/usr/bin/env python3'
 alias pdflatexmk='latexmk -pdf'
+
+
+#######
+# LFS #
+#######
+
+alias bj='bjobs'
+alias bjn='bjobs | awk '"'"'{print $1}'"'"
