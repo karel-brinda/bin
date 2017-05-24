@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -o pipefail -e
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "usage: $s module"
+	exit 1
+fi
+
+module=$1
+init=$(/usr/bin/env python3 -c "import ${module}; print(${module}.__file__)") || echo "error: module ${module} not found" && exit 1
+dirname $init
