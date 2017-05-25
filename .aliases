@@ -114,7 +114,7 @@ alias grepi='grep --color=auto -i'
 alias r='echo $?'
 alias psk='ps aux | grep "^$USER"'
 alias cpa='cp -av'
-alias h='hostname'
+#alias h='hostname'
 alias p='pwd'
 alias t='touch'
 alias dfh='df -h'
@@ -122,6 +122,7 @@ alias dush='du -sh'
 alias wcl='wc -l'
 alias x='xargs'
 alias x1='xargs -n 1'
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 
 ##################
