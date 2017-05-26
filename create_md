@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+BASEDIR=$(dirname "$0")
+SUFFIX=md
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "$s file.$SUFFIX"
+	exit 1
+fi
+
+cp $BASEDIR/samples/sample.$SUFFIX $1
