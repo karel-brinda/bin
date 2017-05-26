@@ -1,3 +1,15 @@
+"
+" LINKS
+" =====
+" - http://nvie.com/posts/how-i-boosted-my-vim/
+"
+"
+
+
+
+
+
+
 source $HOME/bin/vim/vim-sensible/plugin/sensible.vim
 
 " source $VIMRUNTIME/mswin.vim
