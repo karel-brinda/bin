@@ -157,6 +157,14 @@ alias briss='java -jar ~/bin/programs/briss-0.9/briss-0.9.jar'
 alias exif_delete_metadata='exiftool -all=""'
 
 
+##########
+# PYTHON #
+##########
+
+alias a='((open  http://localhost:8888/)&);jupyter notebook'
+alias p3='/usr/bin/env python3'
+
+
 ########
 # MISC #
 ########
@@ -165,7 +173,6 @@ alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
 alias md2html='markdown_py'
-alias p3='/usr/bin/env python3'
 alias pdflatexmk='latexmk -pdf'
 alias bin_upd='(cd ~/bin && git pull) && . ~/bin/.bashrc'
 
