@@ -6,7 +6,7 @@ set -e
 set -o pipefail
 
 readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(readlink -m $(dirname $0))
+readonly PROGDIR=$(dirname $0)
 readonly ARGS="$@"
 
 #if [ $NARGS -ne 1 ]; then
