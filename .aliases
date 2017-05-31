@@ -161,7 +161,7 @@ alias exif_delete_metadata='exiftool -all=""'
 # PYTHON #
 ##########
 
-alias a='((open  http://localhost:8888/)&);jupyter notebook'
+alias jup='((open  http://localhost:8888/)&);jupyter notebook'
 alias p3='/usr/bin/env python3'
 
 
