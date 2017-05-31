@@ -10,6 +10,7 @@ conda install -y pandoc
 conda install -y pyqt
 conda install -y markdown
 conda install -y jupyter
+conda install -y pandas
 
 # libs
 conda install -y ete2
