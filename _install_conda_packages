@@ -2,9 +2,6 @@
 
 ./_install_miniconda
 
-conda config --add channels r
-conda config --add channels bioconda
-
 # programming & plotting
 conda install -y gnuplot
 conda install -y julia
@@ -12,6 +9,7 @@ conda install -y r
 conda install -y pandoc
 conda install -y pyqt
 conda install -y markdown
+conda install -y jupyter
 
 # libs
 conda install -y ete2
