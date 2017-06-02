@@ -120,6 +120,7 @@ alias t='touch'
 alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
+alias tab='column -t'
 alias x='xargs'
 alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
