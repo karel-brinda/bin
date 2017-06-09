@@ -2,15 +2,15 @@
 
 set -e -o pipefail
 
-gcl="git clean -fxd"
+gcl='git clean -fxd'
 
 if [ $# -eq 0 ]; then
-	$clean
+	$gcl
 	exit 0
 fi
 
 if [ $# -eq 1 ]; then
-	cd "$1" && $clean
+	cd "$1" && $gcl
 	exit 0
 fi
 
