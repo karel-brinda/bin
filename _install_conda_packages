@@ -12,6 +12,7 @@ conda install -y markdown
 conda install -y jupyter
 conda install -y tqdm # progress bar for Jupyter
 conda install -y pandas
+conda install -y pylint
 
 # libs
 conda install -y ete2
