@@ -13,6 +13,7 @@ conda install -y jupyter
 conda install -y tqdm # progress bar for Jupyter
 conda install -y pandas
 conda install -y pylint
+conda install -c conda-forge yapf # python formatting
 
 # libs
 conda install -y ete2
