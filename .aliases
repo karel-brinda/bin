@@ -89,6 +89,7 @@ alias en='subl -n'
 alias e.='subl .'
 alias en.='subl -n .'
 alias edit='subl'
+alias pc='open -a /Applications/PyCharm\ CE.app'
 
 alias o='open'
 alias o.='open .'
