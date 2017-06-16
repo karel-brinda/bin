@@ -79,7 +79,7 @@ filetype plugin indent on    " required
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set relativenumber
+"set relativenumber
 set undofile
 let mapleader = ","
 
@@ -119,13 +119,6 @@ nnoremap <leader>q gqip
 " split window and jump there
 nnoremap <leader>w <C-w>v<C-w>l
 
-" skip between windows
-nnoremap <leader>h <C-w>h
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>l <C-w>l
-
-
 " smart matching
 set ignorecase
 set smartcase
@@ -136,3 +129,15 @@ nnoremap ` '
 
 set title
 
+
+""" https://hashrocket.com/blog/posts/8-great-vim-mappings
+
+" Change tabs
+noremap <S-l> gt
+noremap <S-h> gT
+
+" Change panes
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
