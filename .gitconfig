@@ -9,7 +9,8 @@
 
 	# do not quote non-ascii characters; display unicodes as-is
 	quotepath = false
-	excludesfile = ~/bin/.gitignore
+	excludesfile = $(dirname $0)/.gitignore
+	#excludesfile = /bin/.gitignore
 
 [alias]
 	wdiff = diff --color-words

@@ -25,27 +25,6 @@ if has("clipboard")
     cmap <C-V>		<C-R>+
 endif
 
-"""""""""""""""""""""
-" Use Enter as Esc,
-" Shift+Enter in insert mode = multiline mode
-"""""""""""""""""""""
-:inoremap <CR> <Esc>
-function! ToggleEnterMapping()
-  if empty(mapcheck('<CR>', 'i'))
-    inoremap <CR> <Esc>`^
-    return "\<Esc>"
-  else
-    iunmap <CR>
-    return "\<CR>"
-  endif
-endfunction
-call ToggleEnterMapping()
-inoremap <expr> <S-CR> ToggleEnterMapping()
-" Optional (so <CR> cancels prefix, selection, operator).
-nnoremap <CR> <Esc>
-vnoremap <CR> <Esc>gV
-onoremap <CR> <Esc>
-"""""""""""""""""""""
 
 colo torte
 
@@ -65,11 +44,14 @@ set number
 map <f9> :w<CR>:! make<CR>
 
 augroup python_files
-    autocmd!
+autocmd!
     autocmd FileType python setlocal noexpandtab
     autocmd FileType python set tabstop=4
     autocmd FileType python set shiftwidth=4
     autocmd BufWritePre * %s/\s\+$//e
+
+    set list
+    set listchars=tab:▸\ ,eol:¬
 augroup END
 
 
@@ -91,3 +73,39 @@ Plugin 'stephpy/vim-yaml'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set relativenumber
+set undofile
+let mapleader = ","
+
+" fix regex
+nnoremap / /\v
+vnoremap / /\v
+
+" search highlighting
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+
+" match bracket pairs using tab
+nnoremap <tab> %
+vnoremap <tab> %
+
+" screen line instead of file line
+nnoremap j gj
+nnoremap k gk
+
+" get rid of F1=help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" ; := :
+nnoremap ; :
+

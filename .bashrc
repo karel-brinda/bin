@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+readonly PROGDIR=~/bin
+
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -9,7 +12,7 @@ for ANACONDA_ROOT in ~/miniconda ; do
 done;
 
 
-for d in ~/bin ~/bin/tabulator/bin ~/bin/dictionaries ~/bin/git ; do
+for d in ${PROGDIR} ${PROGDIR}/tabulator/bin ${PROGDIR}/dictionaries ${PROGDIR}/git ; do
 	if [ -d $d ]; then
 		export PATH="$d:$PATH"
 		if [ $d != ~/bin ] && [ -f $d/.bashrc ]; then
