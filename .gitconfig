@@ -9,7 +9,7 @@
 
 	# do not quote non-ascii characters; display unicodes as-is
 	quotepath = false
-	excludesfile = $(dirname $0)/.gitignore
+	excludesfile = ~/bin/.gitignore
 	#excludesfile = /bin/.gitignore
 
 [alias]

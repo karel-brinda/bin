@@ -109,3 +109,18 @@ vnoremap <F1> <ESC>
 " ; := :
 nnoremap ; :
 
+"" leader
+" strip all lines
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" reformat paragraphs
+nnoremap <leader>q gqip
+
+" split window and jump there
+nnoremap <leader>w <C-w>v<C-w>l
+
+" skip between windows
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
