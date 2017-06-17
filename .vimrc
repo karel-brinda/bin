@@ -5,11 +5,6 @@
 "
 "
 
-
-
-
-
-
 source $HOME/bin/vim/vim-sensible/plugin/sensible.vim
 
 " source $VIMRUNTIME/mswin.vim
@@ -30,9 +25,6 @@ colo torte
 
 set guifont=Hack:h11
 
-au BufNewFile,BufRead Snakefile set syntax=python
-filetype plugin indent on
-
 syntax on
 filetype indent plugin on
 set modeline
@@ -43,16 +35,6 @@ set number
 
 map <f9> :w<CR>:! make<CR>
 
-augroup python_files
-autocmd!
-    autocmd FileType python setlocal noexpandtab
-    autocmd FileType python set tabstop=4
-    autocmd FileType python set shiftwidth=4
-    autocmd BufWritePre * %s/\s\+$//e
-
-    set list
-    set listchars=tab:▸\ ,eol:¬
-augroup END
 
 
 
@@ -148,3 +130,32 @@ set wildmenu
 set wildmode=list:longest
 set scrolloff=3
 
+
+
+au BufNewFile,BufRead Snakefile set syntax=python
+filetype plugin indent on
+
+augroup python_files
+	autocmd!
+	autocmd FileType python setlocal noexpandtab
+	autocmd FileType python set tabstop=4
+	autocmd FileType python set shiftwidth=4
+	autocmd BufWritePre * %s/\s\+$//e
+
+	set list
+	set listchars=tab:▸\ ,eol:¬
+
+	nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
+augroup END
+
+augroup rst_files
+	nnoremap <leader>1 yypVr=
+	nnoremap <leader>2 yypVr-
+	nnoremap <leader>3 yypVr`
+	nnoremap <leader>4 yypVr'
+	nnoremap <leader>5 yypVr.
+	nnoremap <leader>6 yypVr~
+	nnoremap <leader>7 yypVr*
+	nnoremap <leader>7 yypVr+
+	nnoremap <leader>7 yypVr^
+augroup END
