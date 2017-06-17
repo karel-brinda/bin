@@ -33,7 +33,7 @@ set number
 " allow aliases
 :set shellcmdflag=-ic
 
-map <f9> :w<CR>:! make<CR>
+"map <f9> :w<CR>:! make!<CR>
 
 
 
@@ -75,7 +75,7 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <leader>r :w<cr> \| :so %<cr>
+nnoremap <leader>r :w<cr> \| :so ~/.vimrc<cr>
 
 " match bracket pairs using tab
 nnoremap <tab> %
@@ -102,6 +102,11 @@ nnoremap <leader>q gqip
 
 " split window and jump there
 nnoremap <leader>w <C-w>v<C-w>l
+
+set shellcmdflag=-ic
+
+nnoremap <leader>m :w<CR>:! make<CR>
+nnoremap <leader>m :w<CR>:! make<CR>
 
 " smart matching
 set ignorecase
