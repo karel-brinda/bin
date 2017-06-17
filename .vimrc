@@ -84,8 +84,8 @@ set undofile
 let mapleader = ","
 
 " fix regex
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" #vnoremap / /\v
 
 " search highlighting
 set incsearch
@@ -141,3 +141,10 @@ noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
+
+set hidden
+set history=1000
+set wildmenu
+set wildmode=list:longest
+set scrolloff=3
+
