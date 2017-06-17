@@ -140,10 +140,12 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus
 iab lllorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor
 
 
+set list
+set listchars=tab:▸\ ,eol:¬
 
-au BufNewFile,BufRead Snakefile set syntax=python
 filetype plugin indent on
 
+au BufNewFile,BufRead Snakefile set syntax=python
 augroup python_files
 	autocmd!
 	autocmd FileType python setlocal noexpandtab
@@ -151,20 +153,19 @@ augroup python_files
 	autocmd FileType python set shiftwidth=4
 	autocmd BufWritePre * %s/\s\+$//e
 
-	set list
-	set listchars=tab:▸\ ,eol:¬
 
-	nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
+	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
 
 augroup rst_files
-	nnoremap <leader>1 yypVr=
-	nnoremap <leader>2 yypVr-
-	nnoremap <leader>3 yypVr`
-	nnoremap <leader>4 yypVr'
-	nnoremap <leader>5 yypVr.
-	nnoremap <leader>6 yypVr~
-	nnoremap <leader>7 yypVr*
-	nnoremap <leader>7 yypVr+
-	nnoremap <leader>7 yypVr^
+	autocmd!
+	autocmd FileType rst nnoremap <leader>1 yypVr=
+	autocmd FileType rst nnoremap <leader>2 yypVr-
+	autocmd FileType rst nnoremap <leader>3 yypVr`
+	autocmd FileType rst nnoremap <leader>4 yypVr'
+	autocmd FileType rst nnoremap <leader>5 yypVr.
+	autocmd FileType rst nnoremap <leader>6 yypVr~
+	autocmd FileType rst nnoremap <leader>7 yypVr*
+	autocmd FileType rst nnoremap <leader>7 yypVr+
+	autocmd FileType rst nnoremap <leader>7 yypVr^
 augroup END
