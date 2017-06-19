@@ -131,6 +131,14 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 
+
+" Stop using arrows
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 set hidden
 set history=1000
 set wildmenu
@@ -174,3 +182,4 @@ augroup rst_files
 	autocmd FileType rst nnoremap <leader>7 yypVr+
 	autocmd FileType rst nnoremap <leader>7 yypVr^
 augroup END
+
