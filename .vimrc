@@ -5,7 +5,7 @@
 "
 "
 
-source $HOME/bin/vim/vim-sensible/plugin/sensible.vim
+source $HOME/bin/.vim/vim-sensible/plugin/sensible.vim
 
 " source $VIMRUNTIME/mswin.vim
 if has("clipboard")
@@ -22,6 +22,7 @@ endif
 
 
 "colorscheme elford
+colorscheme badwolf
 
 set guifont=Hack:h11
 
@@ -44,7 +45,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/bin/vim/bundle/vundle.vim
+set rtp+=$HOME/bin/.vim/bundle/vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
@@ -106,8 +107,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 set shellcmdflag=-ic
 
 nnoremap <leader>m :w<CR>:! make<CR>
-nnoremap <leader>m :w<CR>:! make<CR>
-
+nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
 " smart matching
 set ignorecase
 set smartcase
@@ -147,6 +147,7 @@ set scrolloff=3
 
 
 iab kg karel.brinda@gmail.com
+iab kh kbrinda@hsph.harvard.edu
 
 iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
 iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
@@ -179,7 +180,14 @@ augroup rst_files
 	autocmd FileType rst nnoremap <leader>5 yypVr.
 	autocmd FileType rst nnoremap <leader>6 yypVr~
 	autocmd FileType rst nnoremap <leader>7 yypVr*
-	autocmd FileType rst nnoremap <leader>7 yypVr+
-	autocmd FileType rst nnoremap <leader>7 yypVr^
+	autocmd FileType rst nnoremap <leader>8 yypVr+
+	autocmd FileType rst nnoremap <leader>9 yypVr^
+
+	autocmd FileType rst nnoremap <leader>c 0i::<Space>
 augroup END
+
+" Spellcheck
+nmap <silent> <F5> :set spell!<CR>
+set spelllang=en_us
+
 
