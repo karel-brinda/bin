@@ -68,7 +68,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 " NerdTree-tabs - NERDTree and tabs together in Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'jistr/vim-nerdtree-tabs'
-"let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=2
 
 """"""""""""""
 " Vim-fugitive
