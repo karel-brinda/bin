@@ -56,7 +56,10 @@ Plugin 'VundleVim/Vundle.vim'
 """"""""""""""""""""""""""""
 Plugin 'scrooloose/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
@@ -65,7 +68,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 " NerdTree-tabs - NERDTree and tabs together in Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'jistr/vim-nerdtree-tabs'
-let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 """"""""""""""
 " Vim-fugitive
