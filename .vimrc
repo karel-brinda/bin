@@ -106,7 +106,9 @@ Plugin 'sk1418/blockit'
 " Installation
 "   cd ~/.vim/bundle/YouCompleteMe
 "   ./install.py --clang-completer --system-libclang #--system-boost
-Plugin 'Valloric/YouCompleteMe'
+if v:version > 740
+	Plugin 'Valloric/YouCompleteMe'
+endif
 
 """"""""""""""""""
 " Vim-ansible-yaml
