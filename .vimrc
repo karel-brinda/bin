@@ -47,10 +47,21 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=$HOME/bin/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+" Vundle
 Plugin 'VundleVim/Vundle.vim'
+
+" a tree explorer
 Plugin 'scrooloose/nerdtree'
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+
+
 Plugin 'scrooloose/syntastic'
+
 Plugin 'tpope/vim-surround'
+
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'stephpy/vim-yaml'
 Plugin 'flazz/vim-colorschemes'
@@ -184,6 +195,11 @@ augroup rst_files
 	autocmd FileType rst nnoremap <leader>9 yypVr^
 
 	autocmd FileType rst nnoremap <leader>c 0i::<Space>
+augroup END
+
+augroup vim_files
+	autocmd!
+	autocmd FileType vim nnoremap <leader>1 I"<space><esc> \| A<space>"<esc> \| kkyypv$r" \| yykP
 augroup END
 
 " Spellcheck
