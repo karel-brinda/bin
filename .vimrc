@@ -34,11 +34,8 @@ set number
 
 "map <f9> :w<CR>:! make!<CR>
 
-
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 
 """""""""""""""""
 " PLUGINS - BEGIN
@@ -50,6 +47,8 @@ call vundle#begin()
 """"""""
 " Vundle
 """"""""
+" - :PluginInstall
+" - :PluginUpdate
 Plugin 'VundleVim/Vundle.vim'
 
 """"""""""""""""""""""""""""
@@ -59,6 +58,20 @@ Plugin 'scrooloose/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdTree-tabs - NERDTree and tabs together in Vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'jistr/vim-nerdtree-tabs'
+let g:nerdtree_tabs_open_on_console_startup=1
+
+""""""""""""""
+" Vim-fugitive
+""""""""""""""
+Plugin 'tpope/vim-fugitive'
+
 
 """"""""""""""""""""""""""""""
 " Syntastic - a syntax checker
@@ -76,19 +89,74 @@ let g:syntastic_check_on_open = 1
 " - ds"
 Plugin 'tpope/vim-surround'
 
+""""""""""""""""""""""""""
+" PowerLine - a status bar
+""""""""""""""""""""""""""
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Blockit - a vim plugin to wrap lines in a block
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" - visual block mode - <leader>bi
+Plugin 'sk1418/blockit'
+
 """"""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe - a code completition engine
 """"""""""""""""""""""""""""""""""""""""""""
+" Installation
+"   cd ~/.vim/bundle/YouCompleteMe
+"   ./install.py --clang-completer --system-libclang #--system-boost
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'stephpy/vim-yaml'
-Plugin 'ibab/vim-snakemake'
+
+""""""""""""""""""
+" Vim-ansible-yaml
+""""""""""""""""""
+Plugin 'avakhov/vim-yaml'
+
+""""""""""""""""""
+" Vim-colorschemes
+""""""""""""""""""
 Plugin 'flazz/vim-colorschemes'
+
+"""""""""""""""
+" Vim-Snakemake
+"""""""""""""""
+Plugin 'ibab/vim-snakemake'
+
+"""""""""""""
+" Python-mode
+"""""""""""""
+"Plugin 'python-mode/python-mode'
+"let g:pymode_python = 'python3'
+"" Override go-to.definition key shortcut to Ctrl-]
+"let g:pymode_rope_goto_definition_bind = "<C-]>"
+"
+"" Override run current python file key shortcut to Ctrl-Shift-e
+"let g:pymode_run_bind = "<C-S-e>"
+"
+"" Override view python doc key shortcut to Ctrl-Shift-d
+"let g:pymode_doc_bind = "<C-S-d>"
+
+
+"""""""""""""""
+" NerdCommenter
+"""""""""""""""
+" - [count]<leader>cc - comment
+" - [count]<leader>cu - uncomment
+
+Plugin 'scrooloose/nerdcommenter'
+
+
+""""
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 """""""""""""""
 " PLUGINS - END
 """""""""""""""
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
@@ -108,7 +176,7 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <leader>r :w<cr> \| :so ~/.vimrc<cr>
+nnoremap <leader>r :w<cr> \| :so ~/.vimrc \| :PluginInstall<cr>
 
 " match bracket pairs using tab
 nnoremap <tab> %
