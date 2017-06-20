@@ -1,8 +1,7 @@
-"
+"""""""
 " LINKS
-" =====
+"""""""
 " - http://nvie.com/posts/how-i-boosted-my-vim/
-"
 "
 
 source $HOME/bin/.vim/vim-sensible/plugin/sensible.vim
@@ -16,12 +15,11 @@ if has("clipboard")
     vnoremap <C-C> "+y
 
     " CTRL-V is Paste
-    map <C-V>		"+gP
-    cmap <C-V>		<C-R>+
+    map <C-V> "+gP
+    cmap <C-V>	<C-R>+
 endif
 
 
-"colorscheme elford
 colorscheme badwolf
 
 set guifont=Hack:h11
@@ -38,36 +36,59 @@ set number
 
 
 
-
-"""""""""""""""""""
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+
+"""""""""""""""""
+" PLUGINS - BEGIN
+"""""""""""""""""
+
 set rtp+=$HOME/bin/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+""""""""
 " Vundle
+""""""""
 Plugin 'VundleVim/Vundle.vim'
 
-" a tree explorer
+""""""""""""""""""""""""""""
+" Nerdtree - a tree explorer
+""""""""""""""""""""""""""""
 Plugin 'scrooloose/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
-
+""""""""""""""""""""""""""""""
+" Syntastic - a syntax checker
+""""""""""""""""""""""""""""""
+" - either flake8, pyflakes or pylint have to be installed
 Plugin 'scrooloose/syntastic'
+let g:syntastic_check_on_open = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-surround - transformation of ", ', (, [, ...
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" - cs"'
+" - cs'<q>
+" - cst"
+" - ds"
 Plugin 'tpope/vim-surround'
 
+""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe - a code completition engine
+""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'stephpy/vim-yaml'
+Plugin 'ibab/vim-snakemake'
 Plugin 'flazz/vim-colorschemes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+"""""""""""""""
+" PLUGINS - END
+"""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
@@ -170,14 +191,12 @@ set listchars=tab:▸\ ,eol:¬
 
 filetype plugin indent on
 
-au BufNewFile,BufRead Snakefile set syntax=python
 augroup python_files
 	autocmd!
 	autocmd FileType python setlocal noexpandtab
 	autocmd FileType python set tabstop=4
 	autocmd FileType python set shiftwidth=4
 	autocmd BufWritePre * %s/\s\+$//e
-
 
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
@@ -199,7 +218,8 @@ augroup END
 
 augroup vim_files
 	autocmd!
-	autocmd FileType vim nnoremap <leader>1 I"<space><esc> \| A<space>"<esc> \| kkyypv$r" \| yykP
+	autocmd FileType vim nnoremap <leader>1 I"<space><esc> \| VgU \| yyPv$r" \| yyjp
+	autocmd FileType vim nnoremap <leader>2 I"<space><esc> \| yyPv$r" \| yyjp
 augroup END
 
 " Spellcheck
