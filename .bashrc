@@ -2,6 +2,8 @@
 
 readonly PROGDIR=~/bin
 
+set -o pipefail
+set -o vi
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -15,7 +17,7 @@ done;
 for d in ${PROGDIR} ${PROGDIR}/tabulator/bin ${PROGDIR}/dictionaries ${PROGDIR}/git ; do
 	if [ -d $d ]; then
 		export PATH="$d:$PATH"
-		if [ $d != ~/bin ] && [ -f $d/.bashrc ]; then
+		if [ $d != $PROGDIR ] && [ -f $d/.bashrc ]; then
 			source "$d/.bashrc"
 		fi
 
@@ -36,13 +38,13 @@ export EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-source ~/bin/.aliases
+source ${PROGDIR}/.aliases
 
 
 if [[ `uname` == 'Linux' ]]; then
-	source ~/bin/.bashrc.linux
+	source ${PROGDIR}/.bashrc.linux
 else
-	source ~/bin/.bashrc.osx
+	source ${PROGDIR}/.bashrc.osx
 fi;
 
 export HISTIGNORE=' *'
