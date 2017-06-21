@@ -3,7 +3,7 @@
 readonly PROGDIR=~/bin
 
 set -o pipefail
-set -o vi
+#set -o vi
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
