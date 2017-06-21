@@ -182,7 +182,12 @@ alias pe='perl -pe'
 alias md2html='markdown_py'
 alias pdflatexmk='latexmk -pdf'
 alias bin_upd='(cd ~/bin && git pull) && . ~/bin/.bashrc'
-
+alias morning="open \
+		http://gmail.com\
+		http://github.com\
+		http://twitter.com\
+		https://bioinformatics.stackexchange.com\
+		"
 
 #######
 # LFS #
