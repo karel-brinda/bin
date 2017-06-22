@@ -274,6 +274,14 @@ augroup python_files
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
 
+augroup markdown_files
+	autocmd!
+	autocmd FileType markdown nnoremap <leader>1 0i#<space><esc>
+	autocmd FileType markdown nnoremap <leader>2 0i##<space><esc>
+	autocmd FileType markdown nnoremap <leader>3 0i###<space><esc>
+	autocmd FileType markdown nnoremap <leader>4 0i####<space><esc>
+augroup END
+
 augroup rst_files
 	autocmd!
 	autocmd FileType rst nnoremap <leader>1 yypVr=
@@ -286,7 +294,7 @@ augroup rst_files
 	autocmd FileType rst nnoremap <leader>8 yypVr+
 	autocmd FileType rst nnoremap <leader>9 yypVr^
 
-	autocmd FileType rst nnoremap <leader>c 0i::<Space>
+	autocmd FileType rst nnoremap <leader>c 0i::<space><esc>
 augroup END
 
 augroup vim_files
