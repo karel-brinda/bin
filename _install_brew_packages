@@ -19,6 +19,7 @@ brew install git-open
 brew install pv
 brew install emacs
 #brew install vim
+brew install neovim/neovim/neovim
 brew install gdb
 #brew install valgrind
 #brew install Caskroom/cask/netbeans-cpp
