@@ -62,7 +62,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
-
+let NERDTreeShowHidden=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree-tabs - NERDTree and tabs together in Vim
@@ -76,12 +76,16 @@ let g:nerdtree_tabs_open_on_console_startup=2
 Plugin 'tpope/vim-fugitive'
 
 
-""""""""""""""""""""""""""""""
-" Syntastic - a syntax checker
-""""""""""""""""""""""""""""""
-" - either flake8, pyflakes or pylint have to be installed
-Plugin 'scrooloose/syntastic'
-let g:syntastic_check_on_open = 1
+if !has('nvim')
+	""""""""""""""""""""""""""""""
+	" Syntastic - a syntax checker
+	""""""""""""""""""""""""""""""
+	" - either flake8, pyflakes or pylint have to be installed
+	Plugin 'scrooloose/syntastic'
+	let g:syntastic_check_on_open = 1
+else
+	Plugin 'neomake/neomake'
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround - transformation of ", ', (, [, ...
