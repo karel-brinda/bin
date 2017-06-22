@@ -98,6 +98,8 @@ Plugin 'tpope/vim-surround'
 " unfortunately, doesn't work with neovim
 if !has('nvim')
 	Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+else
+	Plugin 'bling/vim-airline'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
