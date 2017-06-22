@@ -95,7 +95,10 @@ Plugin 'tpope/vim-surround'
 """"""""""""""""""""""""""
 " PowerLine - a status bar
 """"""""""""""""""""""""""
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" unfortunately, doesn't work with neovim
+if !has('nvim')
+	Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Blockit - a vim plugin to wrap lines in a block
