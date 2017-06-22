@@ -15,11 +15,18 @@ brew install git-fixup
 brew install git-open
 #brew install hub
 
-# development tools
-brew install pv
+
+# editors
 brew install emacs
 #brew install vim
+brew install python
+brew install python3
+/usr/local/bin/pip2 install neovim --upgrade
+/usr/local/bin/pip3 install neovim --upgrade
 brew install neovim/neovim/neovim
+
+# development tools
+brew install pv
 brew install gdb
 #brew install valgrind
 #brew install Caskroom/cask/netbeans-cpp
