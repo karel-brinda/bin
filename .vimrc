@@ -162,6 +162,9 @@ Plugin 'scrooloose/nerdcommenter'
 
 
 """"
+if has('nvim')
+	Plugin 'roxma/nvim-completion-manager'
+endif
 
 call vundle#end()            " required
 filetype plugin indent on    " required
