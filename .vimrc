@@ -245,8 +245,12 @@ noremap <S-h> gT
 " Change panes
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+
+" Quick navigation
+noremap <C-j> 20j
+noremap <C-k> 20k
 
 
 " Stop using arrows
