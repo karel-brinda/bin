@@ -4,7 +4,9 @@ import argparse
 import os
 import sys
 
-#if __name__ == "__main__":
+def main():
+  pass
+
 #	parser = argparse.ArgumentParser(description="")
 #
 #	parser.add_argument('-p', '--param',
@@ -16,3 +18,6 @@ import sys
 #		)
 #
 #	args = parser.parse_args()
+
+if __name__ == "__main__":
+  main()
