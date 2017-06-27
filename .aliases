@@ -122,7 +122,7 @@ alias cpa='cp -av'
 #alias h='hostname'
 alias p='pwd'
 alias t='touch'
-alias lns='ln -s'
+alias lns='df -h'
 alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
@@ -137,6 +137,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 ##################
 
 alias sv='samtools view'
+alias sfi='samtools faidx'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
 
 
@@ -177,6 +178,10 @@ alias p3='/usr/bin/env python3'
 # MISC #
 ########
 
+alias v.='v .'
+alias v..='v ..'
+alias v...='v ../..'
+alias v....='v ../../..'
 alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'

@@ -19,6 +19,6 @@ fi
 
 s=`basename $0`
 echo "open an existing file or a directory using neovim/vim"
-echo "usage: $s file"
+echo "usage: $s file/directory"
 exit 1
 
