@@ -31,7 +31,7 @@ alias gf='git diff --cached'
 alias gfH='git diff HEAD'
 alias gff='git diff'
 
-alias gfo='git fetch origin'
+alias gfo='git fetch origin -v'
 
 alias gpull='git pull --rebase --all'
 alias gpush='git push'
