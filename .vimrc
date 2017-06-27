@@ -249,8 +249,8 @@ noremap <C-h> <C-w>h
 "noremap <C-k> <C-w>k
 
 " Quick navigation
-noremap <C-j> 20j
-noremap <C-k> 20k
+noremap <C-j> <C-d>z.
+noremap <C-k> <C-u>z.
 
 
 " Stop using arrows
