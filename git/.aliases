@@ -7,28 +7,39 @@ alias ga.='git add .'
 alias ga..='git add ..'
 alias ga...='git add ../..'
 alias ga....='git add ../../..'
+
 alias gb='git branch'
+alias gba='git branch --all'
+
 alias gc='git checkout'
 alias gc*='git checkout "*"'
 alias gcb='git checkout -b'
-alias gba='git branch --all'
+
 alias gs='git status'
 alias gs.='git status .'
 alias gs..='git status ..'
 alias gs...='git status ../..'
 alias gs....='git status ../../..'
+
 alias gt='git commit'
 alias gta='git commit --amend'
+
 alias gr='git reset'
 alias gr*='git reset "*"'
+
 alias gf='git diff --cached'
 alias gfH='git diff HEAD'
 alias gff='git diff'
+
+alias gfo='git fetch origin'
+
 alias gpull='git pull --rebase --all'
 alias gpush='git push'
 alias gp='git pull ; git push'
+
 alias g{='git stash -u'
 alias g}='git stash pop'
+
 alias gindex-='git update-index --assume-unchanged'
 alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git merge'
