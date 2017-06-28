@@ -12,22 +12,33 @@ _strpow () {
 	for i in $(seq $1);
 	do
 		echo -n "$2"
-	done;
+	done
 }
 
-# e.g., _dotcmd 10 cd: cd. = cd ., cd.. = cd ..
-_dotcmd () {
-	cmd=$1
+# to speed-up loading, precompute dot strings
+_dot_arrays () {
 	local j
 	for j in $(seq $NO_DOT_EXP);
 	do
 		local i=$(( $j + 1 ))
-		local d1=$(_strpow $i ".")
-		local d2=$(_strpow $j "../")
-		local dotcmd="$cmd$d1"
-		local expdotcmd="$cmd $d2"
-		alias $dotcmd="$expdotcmd"
-	done;
+		DOTS1[$j]=$(_strpow $i ".")
+		DOTS2[$j]=$(_strpow $j "../")
+	done
+}
+
+_dot_arrays $NO_DOT_EXP
+
+# e.g., _dotcmd cd: cd. = cd ., cd.. = cd ..
+_dotcmd () {
+	cmd="$1"
+	local j
+	alias "$cmd."="$cmd ."
+	for j in $(seq $NO_DOT_EXP);
+	do
+		dotcmd="${cmd}${DOTS1[$j]}"
+		expdotcmd="$cmd ${DOTS2[$j]}"
+		alias "$dotcmd"="$expdotcmd"
+	done
 }
 
 ####################

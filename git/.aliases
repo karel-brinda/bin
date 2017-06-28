@@ -3,10 +3,7 @@
 alias g='git'
 
 alias ga='git add'
-alias ga.='git add .'
-alias ga..='git add ..'
-alias ga...='git add ../..'
-alias ga....='git add ../../..'
+_dotcmd ga
 
 alias gb='git branch'
 alias gba='git branch --all'
@@ -16,10 +13,7 @@ alias gc*='git checkout "*"'
 alias gcb='git checkout -b'
 
 alias gs='git status'
-alias gs.='git status .'
-alias gs..='git status ..'
-alias gs...='git status ../..'
-alias gs....='git status ../../..'
+_dotcmd gs
 
 alias gt='git commit'
 alias gta='git commit --amend'
