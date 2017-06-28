@@ -1,18 +1,49 @@
+#! /usr/bin/env bash
+
+#######################
+# AUXILIARY FUNCTIONS #
+#######################
+
+NO_DOT_EXP=5
+
+# e.g.. _strpow 10 "hello"
+_strpow () {
+	local i
+	for i in $(seq $1);
+	do
+		echo -n "$2"
+	done;
+}
+
+# e.g., _dotcmd 10 cd: cd. = cd ., cd.. = cd ..
+_dotcmd () {
+	cmd=$1
+	local j
+	for j in $(seq $NO_DOT_EXP);
+	do
+		local i=$(( $j + 1 ))
+		local d1=$(_strpow $i ".")
+		local d2=$(_strpow $j "../")
+		local dotcmd="$cmd$d1"
+		local expdotcmd="$cmd $d2"
+		alias $dotcmd="$expdotcmd"
+	done;
+}
+
 ####################
 # CHANGE DIRECTORY #
 ####################
 
 alias b='cd -'
 alias cd-='cd -'
-alias cd..='cd ..'
 
-alias cd...='cd ../..'
-alias cd....='cd ../../..'
-alias cd.....='cd ../../../..'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+# cd..='cd ..', etc.
+_dotcmd cd
+
+alias ..='cd..'
+alias ...='cd...'
+alias ....='cd....'
+alias .....='cd.....'
 
 alias cf='cd `ls -d */ | head -n 1`'
 alias cl='cd `ls -d */ | tail -n 1`'
@@ -86,29 +117,40 @@ alias sd='source deactivate'
 alias sl='conda info --envs'
 
 alias piu='pip install --upgrade'
-alias piu.='pip install --upgrade .'
-alias piu..='pip install --upgrade ..'
-alias piu...='pip install --upgrade ../..'
-alias piu....='pip install --upgrade ../../..'
-alias piu.....='pip install --upgrade ../../../..'
-alias piu......='pip install --upgrade ../../../../..'
-alias piu.......='pip install --upgrade ../../../../../..'
+_dotcmd piu
+
 alias pu='pip uninstall'
+_dotcmd pu
 
 
-###############
-# EDIT & OPEN #
-###############
+########
+# EDIT #
+########
 
+# Vim
+alias v.='v .'
+_dotcmd v
+_dotcmd vv
+_dotcmd vim
+
+# Sublime
 alias e='subl'
+_dotcmd e
 alias en='subl -n'
-alias e.='subl .'
-alias en.='subl -n .'
-alias edit='subl'
+_dotcmd en
+
+# Charm
 alias charm='open -a /Applications/PyCharm\ CE.app'
+_dotcmd charm
+
+
+########
+# OPEN #
+########
 
 alias o='open'
-alias o.='open .'
+_dotcmd o
+
 alias of='open "`ls | head -n 1`"'
 alias ol='open "`ls | tail -n 1`"'
 
@@ -119,6 +161,8 @@ alias ol='open "`ls | tail -n 1`"'
 
 alias f='find'
 alias f.='find .'
+_dotcmd e
+
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -162,8 +206,14 @@ alias m='make V=1'
 alias mn='make -n'
 alias mj='make V=1 -j'
 alias mC='make -C'
+_dotcmd e
+
 alias mjC='make -j -C'
+_dotcmd e
+
 alias mCj='make -j -C'
+_dotcmd e
+
 alias mcl='make clean'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
@@ -191,10 +241,6 @@ alias p3='/usr/bin/env python3'
 # MISC #
 ########
 
-alias v.='v .'
-alias v..='v ..'
-alias v...='v ../..'
-alias v....='v ../../..'
 alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
