@@ -321,6 +321,7 @@ augroup END
 
 " Spellcheck
 nmap <silent> <F5> :set spell!<CR>
+nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
 
