@@ -57,12 +57,25 @@ alias md='mkdir -p'
 alias rd='rmdir'
 
 mcd () {
-	mkdir -p $1
-	cd $1
+	mkdir -p $1 && cd $1
 }
 
 alias cdm='mcd'
 
+
+###############
+# HEAD & TAIL #
+###############
+
+alias hh='head'
+for i in $(seq 20); do
+	alias hh$i="head -n $i"
+done
+
+alias tt='tail'
+for i in $(seq 20); do
+	alias tt$i="tail -n $i"
+done
 
 ##################
 # CONDA & PYTHON #
