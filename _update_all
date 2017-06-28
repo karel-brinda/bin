@@ -1,26 +1,47 @@
 #! /usr/bin/env bash
 
-set -x
+#set -x
 
 # git
-git_update_repos && echo "Git update finished"
+echo
+echo GIT
+echo
+(git_update_repos && echo "Git update finished") || echo "Git update - error"
 
 # conda
-conda update -y conda && conda update --all -y && echo "Conda update finished"
+echo
+echo Conda
+echo
+(conda update -y conda && conda update --all -y && echo "Conda update finished") || echo "Conda update error"
 
 # brew
-brew update && brew upgrade && echo "Brew update finished"
+echo
+echo Brew
+echo
+(brew update && brew upgrade && echo "Brew update finished") || echo "Brew update - error"
 
 # npm
-npm update npm && npm update -g && echo "NPM update finished"
+echo
+echo NPM
+echo
+(npm update npm && npm update -g && echo "NPM update finished") || echo "NPM update - error"
 
 # gem
-(yes | gem update `gem list | cut -d ' ' -f 1`) && echo "GEM update finished"
+echo
+echo GEM
+echo
+((yes | gem update `gem list | cut -d ' ' -f 1`) && echo "GEM update finished") || echo "GEM update - error"
 
 # tldr
-tldr --update && echo "TL;DR update finished"
+echo
+echo TLDR
+echo
+(tldr --update && echo "TL;DR update finished") || echo "TL;DR update - error"
 
 # pip
+echo
+echo PIP
+echo
 pip_pypy install --upgrade pip setuptools
 pip_pypy3 install --upgrade pip setuptools
 
