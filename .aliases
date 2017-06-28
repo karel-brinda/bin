@@ -175,6 +175,7 @@ alias f.='find .'
 _dotcmd e
 
 
+alias gg='grep --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias grepi='grep --color=auto -i'
