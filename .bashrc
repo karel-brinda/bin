@@ -60,10 +60,8 @@ source "${_BIN_DIR}/.aliases"
 
 if [[ `uname` == 'Linux' ]]; then
 	. "${_BIN_DIR}/.bashrc.linux"
-	echo ok
 else
 	. "${_BIN_DIR}/.bashrc.osx"
-	echo ok
 fi;
 
 export HISTIGNORE=' *'
