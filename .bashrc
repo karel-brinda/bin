@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-readonly PROGDIR=~/bin
+_BIN_DIR="$HOME/github/my/bin/"
 
 set -o pipefail
 #set -o vi
@@ -14,21 +14,38 @@ for ANACONDA_ROOT in ~/miniconda ; do
 done;
 
 
-for d in ${PROGDIR} ${PROGDIR}/tabulator/bin ${PROGDIR}/dictionaries ${PROGDIR}/git ; do
+# prepend
+for d in \
+	"${_BIN_DIR}" \
+	"${_BIN_DIR}/tabulator/bin" \
+	"${_BIN_DIR}/dictionaries" \
+	"${_BIN_DIR}/git" \
+	"$HOME/bin2" \
+	"$HOME/.rvm/bin/" \
+	"$HOME/.node_modules_global/bin" \
+	"$HOME/github/my/projects/bin" \
+	; do
 	if [ -d $d ]; then
 		export PATH="$d:$PATH"
-		if [ $d != $PROGDIR ] && [ -f $d/.bashrc ]; then
-			source "$d/.bashrc"
+		if [ $d != $_BIN_DIR ] && [ -f $d/.bashrc ]; then
+			. "$d/.bashrc"
 		fi
 
 		if [ -f $d/.aliases ]; then
-			source "$d/.aliases"
+			. "$d/.aliases"
 		fi
 	fi
 done
 
 
-export PATH="~/bin2:~/.rvm/bin/:~/.node_modules_global/bin:~/github/my/projects/bin:$PATH"
+# append
+for d in \
+	"$HOME/.linuxbrew/bin" \
+	; do
+	if [ -d "$d" ]; then
+		export PATH="$PATH:$d"
+	fi
+done
 
 # vim as default editor for git
 export VISUAL=vim
@@ -38,13 +55,15 @@ export EDITOR="$VISUAL"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-source ${PROGDIR}/.aliases
+source "${_BIN_DIR}/.aliases"
 
 
 if [[ `uname` == 'Linux' ]]; then
-	source ${PROGDIR}/.bashrc.linux
+	. "${_BIN_DIR}/.bashrc.linux"
+	echo ok
 else
-	source ${PROGDIR}/.bashrc.osx
+	. "${_BIN_DIR}/.bashrc.osx"
+	echo ok
 fi;
 
 export HISTIGNORE=' *'

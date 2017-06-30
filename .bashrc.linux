@@ -2,9 +2,5 @@
 
 alias open='gnome-open'
 
-alias ds='dropbox status'
 alias l='ls --color=auto -Galh'
 
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"

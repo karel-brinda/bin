@@ -139,7 +139,9 @@ _dotcmd pu
 ########
 
 # Vim
-alias v.='v .'
+
+alias vl='vim -u NONE'
+
 _dotcmd v
 _dotcmd vv
 _dotcmd vim
