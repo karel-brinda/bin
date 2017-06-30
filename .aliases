@@ -174,7 +174,7 @@ alias ol='open "`ls | tail -n 1`"'
 
 alias f='find'
 alias f.='find .'
-_dotcmd e
+_dotcmd f
 
 
 alias gg='grep --color=auto'
@@ -220,13 +220,13 @@ alias m='make V=1'
 alias mn='make -n'
 alias mj='make V=1 -j'
 alias mC='make -C'
-_dotcmd e
+_dotcmd mC
 
 alias mjC='make -j -C'
-_dotcmd e
+_dotcmd mjC
 
 alias mCj='make -j -C'
-_dotcmd e
+_dotcmd mCj
 
 alias mcl='make clean'
 alias cm='cmake . && clear && make -j 4'
