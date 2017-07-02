@@ -56,8 +56,9 @@ alias ...='cd...'
 alias ....='cd....'
 alias .....='cd.....'
 
-alias cf='cd `ls -d */ | head -n 1`'
-alias cl='cd `ls -d */ | tail -n 1`'
+# go to the first / last subdirectory
+alias cf='cd $(ls -d */ | head -n 1)'
+alias cl='cd $(ls -d */ | tail -n 1)'
 
 alias cdb='cd ~/bin'
 alias cdd='cd ~/downloads || cd ~/Downloads'
