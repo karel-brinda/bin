@@ -57,8 +57,17 @@ alias ....='cd....'
 alias .....='cd.....'
 
 # go to the first / last subdirectory
-alias cf='cd $(ls -d */ | head -n 1)'
-alias cl='cd $(ls -d */ | tail -n 1)'
+for i in $(seq 5);
+do
+	alias cf$i='cd "$(ls -d */ | ll '"$i"')"'
+done
+alias cf='cf1'
+
+for i in $(seq 5);
+do
+	alias cl$i='cd "$(ls -d */ | ll -'"$i"')"'
+done
+alias cl='cl1'
 
 alias cdb='cd ~/bin'
 alias cdd='cd ~/downloads || cd ~/Downloads'
@@ -120,6 +129,7 @@ for i in $(seq 20); do
 	alias tt$i="tail -n $i"
 done
 
+
 ##################
 # CONDA & PYTHON #
 ##################
@@ -168,6 +178,18 @@ _dotcmd o
 alias of='open "`ls | head -n 1`"'
 alias ol='open "`ls | tail -n 1`"'
 
+# open the first / last directory/file
+for i in $(seq 5);
+do
+	alias of$i='open "$(ls | ll '"$i"')"'
+done
+alias of='of1'
+
+for i in $(seq 5);
+do
+	alias ol$i='open "$(ls | ll -'"$i"')"'
+done
+alias ol='ol1'
 
 ###############
 # FIND & GREP #
