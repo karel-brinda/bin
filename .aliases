@@ -41,6 +41,20 @@ _dotcmd () {
 	done
 }
 
+
+######
+# LS #
+######
+
+#ls --color=auto >/dev/null 2>/dev/null
+#if [[ $? == "0" ]]; then
+#	alias ls='ls --color=auto'
+#	alias l='ls --color=auto -alh'
+#else
+#	alias ls='ls -G'
+#	alias l='ls -Galh'
+#fi
+
 ####################
 # CHANGE DIRECTORY #
 ####################
