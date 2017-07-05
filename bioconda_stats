@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+# bioconda download stats
+# example: bioconda_stats rnftools ococo prophyle
+
+for x in $@; do
+	echo $x
+	links -dump "https://anaconda.org/bioconda/$x/files" | grep conda | grep main
+	echo
+done
