@@ -8,7 +8,7 @@ set -o pipefail
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(dirname $0)
 readonly ARGS="$@"
-readonly ARGS="$#"
+readonly NARGS="$#"
 
 #if [ $NARGS -ne 1 ]; then
 #	echo "usage: $PROGNAME options"
