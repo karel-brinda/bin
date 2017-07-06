@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+# Sort a BAM file
+
+if [ $# -ne 2 ]; then
+	s=`basename $0`
+	echo "usage: $s ref.fa aln.bam"
+	exit 1
+fi
+
+igv -g "$1" "$2"
+
