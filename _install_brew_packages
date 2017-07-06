@@ -159,7 +159,7 @@ brew install ffmpeg
 # other bioinformatics tools
 #brew install kallisto
 #brew install seqan
-#brew install igv
+brew install igv
 #brew install igvtools
 
 # tools for manipulation with newick trees
