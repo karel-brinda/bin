@@ -5,6 +5,8 @@
 
 for x in $@; do
 	echo $x
-	links -dump "https://anaconda.org/bioconda/$x/files" | grep conda | grep main
+	links -dump "https://anaconda.org/bioconda/$x/files" | grep conda | grep main \
+		| perl -pe 's/ and \d+\s+(bioconda|N\/A)\s+(\d+)\s+main/\t\2/' \
+		| perl -pe 's/\[ \].*(osx|linux|\|)/\1/g'
 	echo
 done
