@@ -2,13 +2,13 @@
 
 set -e -o pipefail
 
-if [[ $# -ne 1 ]]; then
-	s=`basename $0`
-	echo "get help message"
-	echo "usage: $s program"
-	exit 1
-fi
-PROG=$1
+#if [[ $# -ne 1 ]]; then
+#	s=`basename $0`
+#	echo "get help message"
+#	echo "usage: $s program"
+#	exit 1
+#fi
+PROG=$@
 
 which $PROG ||
 	(
