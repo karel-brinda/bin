@@ -245,7 +245,8 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 ##################
 
 alias sv='samtools view'
-alias sfi='samtools faidx'
+alias fai='samtools faidx'
+alias bai='samtools index'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
 
 
