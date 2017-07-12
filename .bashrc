@@ -41,6 +41,7 @@ done
 # append
 for d in \
 	"$HOME/.linuxbrew/bin" \
+	"$HOME/go/bin" \
 	; do
 	if [ -d "$d" ]; then
 		export PATH="$PATH:$d"
