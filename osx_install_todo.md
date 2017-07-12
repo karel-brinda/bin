@@ -8,4 +8,4 @@
 * Change Caps Lock to Escape (System Preferences / Keyboard / Modifier Keys)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
 * `defaults write com.apple.desktopservices DSDontWriteNetworkStores -boolean true` - don't create .\_DS\_Store in mounted disks
-*
+* Install golang
