@@ -55,6 +55,8 @@ _dotcmd () {
 #	alias l='ls -Galh'
 #fi
 
+alias l1='ls -1'
+
 ####################
 # CHANGE DIRECTORY #
 ####################
