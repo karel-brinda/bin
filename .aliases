@@ -295,6 +295,8 @@ alias p3='/usr/bin/env python3'
 # MISC #
 ########
 
+alias c='cat'
+alias C='ccat'
 alias les='less -S'
 alias ggdb='sudo gdb --args'
 alias u='_update_all'

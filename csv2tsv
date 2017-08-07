@@ -1,7 +1,4 @@
 #! /usr/bin/env bash
-# Shortcut to gzcat | less
-
-set -o
 
 if [ $# -ne 1 ]; then
 	s=`basename $0`
