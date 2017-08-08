@@ -76,16 +76,16 @@ let g:nerdtree_tabs_open_on_console_startup=2
 Plugin 'tpope/vim-fugitive'
 
 
-if !has('nvim')
-	""""""""""""""""""""""""""""""
-	" Syntastic - a syntax checker
-	""""""""""""""""""""""""""""""
-	" - either flake8, pyflakes or pylint have to be installed
-	Plugin 'scrooloose/syntastic'
-	let g:syntastic_check_on_open = 1
-else
-	Plugin 'neomake/neomake'
-endif
+"if !has('nvim')
+"	""""""""""""""""""""""""""""""
+"	" Syntastic - a syntax checker
+"	""""""""""""""""""""""""""""""
+"	" - either flake8, pyflakes or pylint have to be installed
+"	Plugin 'scrooloose/syntastic'
+"	let g:syntastic_check_on_open = 1
+"else
+"	Plugin 'neomake/neomake'
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround - transformation of ", ', (, [, ...
