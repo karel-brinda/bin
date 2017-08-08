@@ -166,7 +166,7 @@ _dotcmd pu
 
 # Vim
 
-alias vl='vim -u NONE'
+alias V='vim -u ~/bin/.vimrc.light -U NONE -N -i NONE'
 
 _dotcmd v
 _dotcmd vv
