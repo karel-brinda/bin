@@ -295,6 +295,7 @@ alias p3='/usr/bin/env python3'
 
 alias c='cat'
 alias C='ccat'
+alias gzk='gzip -k'
 alias les='less -S'
 alias ggdb='sudo gdb --args'
 alias u='_update_all'
