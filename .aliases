@@ -85,7 +85,6 @@ do
 done
 alias cl='cl1'
 
-alias cdb='cd ~/bin'
 alias cdd='cd ~/downloads || cd ~/Downloads'
 alias cdx='cd ~/Dropbox'
 alias cdg='cd ~/*Google*/'
