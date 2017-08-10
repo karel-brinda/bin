@@ -7,5 +7,10 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-conda create -y -c bioconda --name $1 ${@:2}
+command="conda create -y -c bioconda -c defaults -c conda-forge --name $1 ${@:2}"
+echo
+echo "Command to create the enviroment:"
+echo "$command"
+echo
+$command
 
