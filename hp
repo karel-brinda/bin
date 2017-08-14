@@ -2,19 +2,14 @@
 
 set -e -o pipefail
 
-#if [[ $# -ne 1 ]]; then
-#	s=`basename $0`
-#	echo "get help message"
-#	echo "usage: $s program"
-#	exit 1
-#fi
-PROG=$@
+PROG="$1"
+CMD="$@"
 
-which $PROG ||
+which "$PROG" ||
 	(
 		echo "program $PROG is not installed"
 		exit 1
 	)
 
-($PROG --help || $PROG -h) 2>&1 | less
+($CMD --help || $CMD -h) 2>&1 | less
 
