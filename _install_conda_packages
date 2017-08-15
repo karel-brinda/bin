@@ -40,6 +40,7 @@ conda install -y ropebwt2
 
 # nanopore
 conda install -y nanopolish
+conda install -y pauvre
 
 # similarity search
 conda install -y blast
@@ -50,12 +51,12 @@ conda install -y bwa
 conda install -y bwakit
 conda install -y bowtie
 conda install -y bowtie2
-conda install -y bwa
 conda install -y gmap
 conda install -y graphmap
 conda install -y hisat2
 conda install -y last
 conda install -y minimap
+conda install -y minimap2
 conda install -y mosaic
 conda install -y nanoblaster
 conda install -y novoalign
