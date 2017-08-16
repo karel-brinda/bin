@@ -41,3 +41,5 @@ alias gcl.='gcl'
 alias gl='git log'
 
 alias gur='git_update_repos'
+
+alias gitignore='touch .gitignore && vim .gitignore'
