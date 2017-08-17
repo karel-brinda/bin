@@ -4,32 +4,43 @@ import argparse
 import os
 import sys
 
-def merge_contigs(fasta_fn, fasta_line_width=80):
-	seqs=[]
-	with open(fasta_fn) as f:
-		for x in f:
-			if len(x)==0 or x[0]==">":
-				continue
-			else:
-				seqs.append(x.strip())
-	seq="".join(seqs)
+def merge_contigs(fasta_fns):
+	for fasta_fn in fasta_fns:
+		seqs=[]
+		with open(fasta_fn) as f:
+			for x in f:
+				if len(x)==0 or x[0]==">":
+					continue
+				else:
+					seqs.append(x.strip())
 
-	out=[]
+	# fix: unfinished
+	seq=("").join(seqs)
+	return seq
 
-	for fasta_line in [seq[i:i+fasta_line_width] for i in range(0, len(seq), fasta_line_width)]:
-		out.append(fasta_line)
-	return "\n".join(out)
-
-
-if __name__ == "__main__":
+def main():
 	parser = argparse.ArgumentParser(description="")
 
-	parser.add_argument('-f', '--fasta',
+	parser.add_argument('fastas',
+			metavar='file.fa',
+			help='Fasta file with contigs',
+			nargs="+",
+		)
+
+	parser.add_argument('-n',
+			type=str,
+			metavar='int',
+			dest='ns',
+			help='Number of N\'s separating contigs [0]',
+			default=0,
+		)
+
+	parser.add_argument('-s',
 			type=str,
 			metavar='str',
-			required=True,
 			dest='fasta_fn',
-			help='Fasta file with contigs',
+			help='Name of the newly created sequence [merged]',
+			default='merged',
 		)
 
 	args = parser.parse_args()
@@ -37,3 +48,8 @@ if __name__ == "__main__":
 	result=merge_contigs(args.fasta_fn)
 	print(">merged")
 	print(result)
+
+
+if __name__ == "__main__":
+	main()
+
