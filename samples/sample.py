@@ -5,7 +5,7 @@ import os
 import sys
 
 def main():
-  pass
+	pass
 
 #	parser = argparse.ArgumentParser(description="")
 #
@@ -20,4 +20,4 @@ def main():
 #	args = parser.parse_args()
 
 if __name__ == "__main__":
-  main()
+	main()
