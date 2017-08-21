@@ -216,9 +216,12 @@ _dotcmd f
 
 
 alias gg='grep --color=auto'
+alias ggv='grep --color=auto -v'
+alias ggi='grep --color=auto -i'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias grepi='grep --color=auto -i'
+alias grepv='grep --color=auto -v'
 
 
 #########
