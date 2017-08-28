@@ -243,18 +243,6 @@ alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 
-##################
-# BIOINFORMATICS #
-##################
-
-alias sv='samtools view'
-alias svb='samtools view -b'
-alias svh='samtools view -h'
-alias fai='samtools faidx'
-alias bai='samtools index'
-alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
-
-
 ####################
 # MAKE & SNAKEMAKE #
 ####################

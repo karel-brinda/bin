@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-_BIN_DIR="$HOME/github/my/bin/"
+_BIN_DIR="$HOME/github/my/bin"
 
 set -o pipefail
 #set -o vi
@@ -17,6 +17,7 @@ done;
 # prepend
 for d in \
 	"${_BIN_DIR}" \
+	"${_BIN_DIR}/bioinformatics" \
 	"${_BIN_DIR}/tabulator/bin" \
 	"${_BIN_DIR}/dictionaries" \
 	"${_BIN_DIR}/git" \
