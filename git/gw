@@ -15,6 +15,7 @@ usage: $(basename $0)  open the current Github repository
        -d     open current directory in master
        -i     open issues
        -p     open pull requests
+       -a     open webpage of the author
        -t     open Travis
        -D     print debugging messages
 EOM
@@ -22,7 +23,7 @@ EOM
 
 debug=0
 
-while getopts "bchdtipD" opt; do
+while getopts "bchdatipD" opt; do
 	case $opt in
 	i)
 		what=issues
@@ -41,6 +42,9 @@ while getopts "bchdtipD" opt; do
 		;;
 	d)
 		what=directory
+		;;
+	a)
+		what=author
 		;;
 	h)
 		usage
@@ -65,6 +69,7 @@ git status > /dev/null 2> /dev/null || exit 0
 url=$(git remote -v | grep fetch | awk '{print $2}')
 http=$(echo "$url" | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^https?/https/g')
 repo=$(echo "$http" | sed 's/.*github\.com\///g')
+author=$(echo "$repo" | sed 's@/.*@@g')
 branch=$(git branch | grep "*" | awk '{print $2}')
 commit=$(git rev-parse HEAD)
 p=$(pwd -P)
@@ -80,6 +85,7 @@ if [[ $debug -eq 1 ]]; then
 	echo "Repo URL:         $url"
 	echo "HTTP address:     $http"
 	echo "Repo:             $repo"
+	echo "Author:           $author"
 	echo "Current branch:   $branch"
 	echo "Commit:           $commit"
 	echo "Git toplelevel:   $toplevel"
@@ -103,6 +109,9 @@ case "$what" in
 		;;
 	directory)
 		open "$http/tree/master/$rel"
+		;;
+	author)
+		open "https://github.com/$author"
 		;;
 	travis)
 		open "https://travis-ci.org/$repo"
