@@ -12,15 +12,17 @@ usage: $(basename $0)  open the current Github repository
        -h     print help
        -c     open current commit
        -b     open current branch
+       -d     open current directory in master
        -i     open issues
        -p     open pull requests
        -t     open Travis
+       -D     print debugging messages
 EOM
 }
 
 debug=0
 
-while getopts "bchdtip" opt; do
+while getopts "bchdtipD" opt; do
 	case $opt in
 	i)
 		what=issues
@@ -37,11 +39,14 @@ while getopts "bchdtip" opt; do
 	t)
 		what=travis
 		;;
+	d)
+		what=directory
+		;;
 	h)
 		usage
 		exit 0
 		;;
-	d)
+	D)
 		debug=1
 		;;
 	\?)
@@ -52,9 +57,11 @@ while getopts "bchdtip" opt; do
 	esac
 done
 
+# is it a git repo?
 git status > /dev/null 2> /dev/null || open "http://github.com"
 git status > /dev/null 2> /dev/null || exit 0
 
+# get info about current repo and state
 url=`git remote -v | grep fetch | awk '{print $2}'`
 http=`echo $url | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^http/https/g'`
 repo=`echo $http | sed 's/.*github\.com\///g'`
@@ -80,7 +87,6 @@ if [[ $debug -eq 1 ]]; then
 fi
 
 
-
 case "$what" in
 	master)
 		open "$http"
@@ -93,6 +99,9 @@ case "$what" in
 		;;
 	branch)
 		open "$http/tree/$branch/$rel"
+		;;
+	directory)
+		open "$http/tree/master/$rel"
 		;;
 	travis)
 		open "https://travis-ci.org/$repo"
