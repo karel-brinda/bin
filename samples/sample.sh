@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
-set -u
-set -f
 set -e
 set -o pipefail
+set -u
+#set -f
 
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(dirname $0)
