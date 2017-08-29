@@ -10,7 +10,7 @@ readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
-#if [ $NARGS -ne 1 ]; then
+#if [[ $NARGS -ne 1 ]]; then
 #	echo "usage: $PROGNAME options"
 #	exit 1
 #fi

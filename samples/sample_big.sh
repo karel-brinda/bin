@@ -17,7 +17,7 @@ usage() {
 }
 
 main() {
-	#if [ $NARGS -ne 1 ]; then
+	#if [[ $NARGS -ne 1 ]]; then
 	#	usage
 	#	exit 1
 	#fi
