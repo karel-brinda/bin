@@ -230,7 +230,7 @@ alias grepv='grep --color=auto -v'
 # SHELL #
 #########
 
-alias r='echo $?'
+alias r='echo "$?" "(${PIPESTATUS[*]})"'
 alias psk='ps aux | grep "^$USER"'
 alias cpa='cp -av'
 alias h='hostname'
