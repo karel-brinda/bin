@@ -159,9 +159,11 @@ alias piu='pip install --upgrade'
 _dotcmd piu
 
 alias pi='pip install'
+_dotcmd pi
 alias pu='pip uninstall'
 _dotcmd pu
 
+alias pui.='pu. && pi.'
 
 ########
 # EDIT #
