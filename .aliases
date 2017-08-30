@@ -158,6 +158,7 @@ alias sl='conda info --envs'
 alias piu='pip install --upgrade'
 _dotcmd piu
 
+alias pi='pip install'
 alias pu='pip uninstall'
 _dotcmd pu
 
