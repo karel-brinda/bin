@@ -3,6 +3,7 @@
 alias sv='samtools view'
 alias svb='samtools view -b'
 alias svh='samtools view -h'
+alias svH='samtools view -H'
 alias fai='samtools faidx'
 alias bai='samtools index'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
