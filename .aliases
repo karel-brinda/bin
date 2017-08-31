@@ -255,6 +255,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias m='make V=1'
 alias mn='make -n'
 alias mj='make V=1 -j'
+alias mt='make V=1 test'
 alias mC='make -C'
 _dotcmd mC
 
