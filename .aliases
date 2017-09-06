@@ -308,7 +308,7 @@ alias pe='perl -pe'
 alias timev='/usr/bin/time -v'
 alias md2html='markdown_py'
 alias pdflatexmk='latexmk -pdf'
-alias bin_upd='(cd ~/bin && git pull) && . ~/bin/.bashrc'
+alias bashrc='(cd ~/bin && git pull) && . ~/bin/.bashrc'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
 alias morning="open \
 		http://gmail.com\

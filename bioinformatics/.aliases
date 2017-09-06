@@ -7,4 +7,5 @@ alias svH='samtools view -H'
 alias fai='samtools faidx'
 alias bai='samtools index'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
+alias ggh='grep ">"'
 
