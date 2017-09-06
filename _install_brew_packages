@@ -90,7 +90,8 @@ brew install imagemagick
 brew install qpdf
 brew install ghostscript
 
-# latexdiff
+# diffs
+brew install colordiff
 #brew install latexdiff
 #brew install git-latexdiff
 
