@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+set -u
+set -f
+set -e
+set -o pipefail
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+usage() {
+	cat <<- EOF
+	usage: $PROGNAME alignments.bam
+	EOF
+}
+
+main() {
+	if [ $NARGS -ne 1 ]; then
+		usage
+		exit 1
+	fi
+	samtools view -h "${ARGS[0]}" | less -R
+}
+
+main
