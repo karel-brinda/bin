@@ -2,18 +2,21 @@
 
 set -e -o pipefail
 
-if [[ $# -eq 0 ]]; then
-	pwd
-	exit 0
-fi
+case "$#" in
+	0)
+		res=$(pwd)
+		;;
+	1)
+		res=$(realpath "$1")
+		;;
+	*)
+		s=`basename $0`
+		echo "print pwd/absolute path"
+		echo "usage: $s [file/directory]"
+		exit 1
+		;;
+esac
 
-if [[ $# -eq 1 ]]; then
-	realpath "$1"
-	exit 0
-fi
 
-s=`basename $0`
-echo "print pwd/absolute path"
-echo "usage: $s [file/directory]"
-exit 1
-
+echo "$res" | pbcopy || true
+echo "$res"
