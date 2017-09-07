@@ -16,6 +16,7 @@ alias gs='git status'
 _dotcmd gs
 
 alias gt='git commit'
+alias gtm='git commit -m'
 alias gta='git commit --amend'
 
 alias gr='git reset'
