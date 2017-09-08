@@ -314,6 +314,17 @@ alias morning="open \
 		https://bioinformatics.stackexchange.com\
 		"
 
+w () {
+	t=$(type "$1" 2>/dev/null || true)
+	w=$(which "$1" 2>/dev/null || true)
+	if [[ ! -z "$t" ]]; then
+		echo "type:  $t"
+	fi
+	if [[ ! -z "$w" ]]; then
+		echo "where: $w"
+	fi
+}
+
 #######
 # LFS #
 #######
