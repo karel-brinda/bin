@@ -294,6 +294,7 @@ alias p3='/usr/bin/env python3'
 # MISC #
 ########
 
+alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
 alias c='cat'
 alias C='ccat'
 alias gzk='gzip -k'
@@ -305,7 +306,6 @@ alias pe='perl -pe'
 alias timev='/usr/bin/time -v'
 alias md2html='markdown_py'
 alias pdflatexmk='latexmk -pdf'
-alias bashrc='(cd ~/bin && git pull) && . ~/bin/.bashrc'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
 alias morning="open \
 		http://gmail.com\
