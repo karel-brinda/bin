@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+set -u
+set -f
+set -e
+set -o pipefail
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+usage() {
+	cat <<- EOF
+	usage: $PROGNAME options
+	EOF
+}
+
+main() {
+	if [ $NARGS -ne 1 ]; then
+		usage
+		exit 1
+	fi
+	type "${ARGS[0]}"
+	which "${ARGS[0]}"
+}
+
+main
