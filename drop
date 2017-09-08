@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+# down and start dropbox
+
+set -u
+set -f
+set -e
+set -o pipefail
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+usage() {
+	cat <<- EOF
+	usage: $PROGNAME options
+	EOF
+}
+
+main() {
+	if [[ $NARGS -ne 0 ]]; then
+		usage
+		exit 1
+	fi
+
+	if [[ ! -d ~/.dropbox-dist  ]]; then
+		cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+	fi
+	~/.dropbox-dist/dropboxd &
+}
+
+main
