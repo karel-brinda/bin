@@ -2,23 +2,41 @@
 
 set -e -o pipefail
 
-if [[ $# -eq 0 ]]; then
-	nvim || vim
-	exit 0
-fi
-
-if [[ $# -eq 1 ]]; then
-	if [[ -f "$1" || -d "$1" ]]; then
-		nvim "$1" || vim "$1"
+case "$#" in
+	0)
+		nvim || vim
 		exit 0
-	else
-		echo "File '$1' does not exist" 1>&2
+		;;
+	1)
+		file="$1"
+		cmd=""
+		;;
+	2)
+		file="$1"
+		str="$2"
+		if [[ $str =~ ^[0-9]+$ ]]; then
+			cmd="+$str"
+		else
+			cmd="+/$str"
+		fi
+		;;
+	*)
+		s=`basename $0`
+		echo "open file/dir in vim"
+		echo "usage: $s [file/directory] [line_no/string_to_search]"
 		exit 1
-	fi
+		;;
+esac
+
+
+if ! [[ -f "$file" || -d "$file" ]]; then
+	echo "File '$file' does not exist" 1>&2
+	exit 1
 fi
 
-s=`basename $0`
-echo "open an existing file or a directory using neovim/vim"
-echo "usage: $s file/directory"
-exit 1
+if [[ ! -z "$cmd" ]]; then
+	nvim "$cmd" "$file" || vim "$cmd" "$file"
+else
+	nvim "$file" || vim "$file"
+fi
 
