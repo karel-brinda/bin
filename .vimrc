@@ -282,9 +282,9 @@ filetype plugin indent on
 
 augroup python_files
 	autocmd!
-	autocmd FileType python setlocal noexpandtab
-	autocmd FileType python set tabstop=4
-	autocmd FileType python set shiftwidth=4
+	"autocmd FileType python setlocal noexpandtab
+	"autocmd FileType python set tabstop=4
+	"autocmd FileType python set shiftwidth=4
 	autocmd BufWritePre * %s/\s\+$//e
 
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
