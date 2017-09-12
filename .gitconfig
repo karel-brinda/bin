@@ -37,12 +37,8 @@
 [merge]
 	conflictstyle = diff3
 
-#[push]
-#	# Adopt the new default in Git 2.x
-#	default = simple
-
-#[format]
-#	pretty = fuller
+[format]
+	pretty = fuller
 
 [branch]
 	# Make all new branches to automatically use rebase rather than merge, on pull
@@ -54,4 +50,4 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [push]
-	default = matching
+	default = simple # matching
