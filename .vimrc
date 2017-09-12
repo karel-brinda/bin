@@ -63,7 +63,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 let NERDTreeShowHidden=1
-let NERDTreeMapOpenInTab='<ENTER>'
+let NERDTreeMapOpenInTab='<CR>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
