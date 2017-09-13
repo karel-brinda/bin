@@ -4,6 +4,7 @@ alias g='git'
 
 alias ga='git add'
 _dotcmd ga
+alias g.a='git add .'
 
 alias gb='git branch'
 alias gba='git branch --all'
@@ -14,6 +15,7 @@ alias gcb='git checkout -b'
 
 alias gs='git status'
 _dotcmd gs
+alias g.s='git status .'
 
 alias gt='git commit'
 alias gtm='git commit -m'
