@@ -75,13 +75,13 @@ alias .....='cd.....'
 # go to the first / last subdirectory
 for i in $(seq 5);
 do
-	alias cf$i='cd "$(ls -d */ | ll '"$i"')"'
+	alias cf$i='cd "$(ls -d */ | mm '"$i"')"'
 done
 alias cf='cf1'
 
 for i in $(seq 5);
 do
-	alias cl$i='cd "$(ls -d */ | ll -'"$i"')"'
+	alias cl$i='cd "$(ls -d */ | mm -'"$i"')"'
 done
 alias cl='cl1'
 
@@ -204,13 +204,13 @@ alias ol='open "`ls | tail -n 1`"'
 # open the first / last directory/file
 for i in $(seq 5);
 do
-	alias of$i='open "$(ls | ll '"$i"')"'
+	alias of$i='open "$(ls | mm '"$i"')"'
 done
 alias of='of1'
 
 for i in $(seq 5);
 do
-	alias ol$i='open "$(ls | ll -'"$i"')"'
+	alias ol$i='open "$(ls | mm -'"$i"')"'
 done
 alias ol='ol1'
 
