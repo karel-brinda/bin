@@ -44,6 +44,7 @@ brew install clozure-cl
 # misc tools
 brew install gnu-time
 brew install coreutils
+brew install miller
 brew install exiftool
 brew install recoverjpeg
 
