@@ -75,13 +75,13 @@ alias .....='cd.....'
 # go to the first / last subdirectory
 for i in $(seq 5);
 do
-	alias cf$i='cd "$(ls -d */ | ll '"$i"')"'
+	alias cf$i='cd "$(ls -d */ | mm '"$i"')"'
 done
 alias cf='cf1'
 
 for i in $(seq 5);
 do
-	alias cl$i='cd "$(ls -d */ | ll -'"$i"')"'
+	alias cl$i='cd "$(ls -d */ | mm -'"$i"')"'
 done
 alias cl='cl1'
 

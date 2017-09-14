@@ -5,6 +5,7 @@ alias gvim=macvim
 alias inkscape='open -a inkscape'
 alias gimp='open -a gimp'
 
-alias l='ls -G -Galh'
+alias l='ls -Galh'
+alias ll='ls -Galhtr'
 
 alias oepn='open'

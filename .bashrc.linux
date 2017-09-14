@@ -3,4 +3,5 @@
 alias open='gnome-open'
 
 alias l='ls --color=auto -Galh'
+alias ll='ls --color=auto -Galhtr'
 
