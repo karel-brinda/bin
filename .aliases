@@ -243,7 +243,6 @@ alias grepv='grep --color=auto -v'
 
 alias r='echo "$?" "(${PIPESTATUS[*]})"'
 alias cpa='cp -av'
-alias h='hostname'
 alias t='touch'
 alias lns='ln -s'
 alias dfh='df -h'
