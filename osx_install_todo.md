@@ -3,6 +3,7 @@
 * Security & Privacy / General -> Require password immediately
 * Link bin, .bashrc, .pypirc, .gitconfig, .hyper.js, .config/nvim
 * Link .vimrc and .vim, and run :PluginInstall
+* Link ~/.config/nvim/init.vim to ~/bin/.config/nvim/init.vim
 * Change alt setting in terminal Terminal > Preferences > Settings > ‘Use option as meta key’
 * lns -s ~/bin/osx/KeyBindings/ ~/Library/KeyBindings
 * Change Terminal font to Hack
