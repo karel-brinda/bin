@@ -1,45 +1,48 @@
 #! /usr/bin/env bash
 
-#set -x
+set -e
 set -o pipefail
 
-. colors.sh
+readonly PROGDIR=$(dirname $0)
+readonly PROGNAME=$(basename $0)
 
-if [ $# -ne 1 ] && [ $# -ne 0 ]; then
-	s=`basename $0`
-	echo "update recursively all git repositories (in ~/github or in a user-specified directory)"
-	echo "usage: $s [directory]"
-	exit 1
-fi
+. ${PROGDIR}/../colors.sh
+
+case "$#" in
+	0)
+		td="$HOME/github"
+		;;
+	1)
+		td="$1"
+		;;
+	*)
+		echo "update all github repositories in the specified directory"
+		echo "usage: $PROGNAME [directory]"
+		exit 1
+		;;
+esac
 
 git_dir () {
-	for d in "$1/*";
+	local s="$1"
+	for d in $(ls "$s");
 	do
-		echo "$d"
-		if [ -L "$d" ]; then
+		if [[ -L "$d" ]]; then
+			# symbolic link
 			true
 		else
-			cd "$d"
+			nd="$s/$d"
 
-			p=$(pwd)
-
-			if [ -d ".git" ]; then
-				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
+			if [[ -d "$nd/.git" ]]; then
+				orig=$(cd "$nd" && git remote -v | grep origin | awk '{print $2}' | uniq)
 				echo -e "Updating git repository $GREEN$p$NC ($orig)"
-				(git pull --rebase --all || git pull --all) | grep -v "^Fetching" | grep -v "^Already"
+				((cd "$nd" && git pull --rebase --all || git pull --all) | grep -v "^Fetching" | grep -v "^Already") || echo "Error"
 			else
 				#echo "not a git repo; going to iterate though its subdirs"
-				git_dir ./
+				git_dir "$nd"
 			fi
 		fi
 
 	done
 }
 
-if [ $# -eq 0 ]; then
-	git_dir "~/github"
-else
-	git_dir "$1"
-fi
-
-
+git_dir "$td"
