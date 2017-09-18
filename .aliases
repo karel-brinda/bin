@@ -317,6 +317,7 @@ alias morning="open \
 		http://twitter.com\
 		https://bioinformatics.stackexchange.com\
 		"
+alias ch='open -a "Google Chrome"'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
