@@ -12,32 +12,34 @@ if [ $# -ne 1 ] && [ $# -ne 0 ]; then
 	exit 1
 fi
 
-(
+git_dir () {
+	for d in "$1/*";
+	do
+		echo "$d"
+		if [ -L "$d" ]; then
+			true
+		else
+			cd "$d"
+
+			p=$(pwd)
+
+			if [ -d ".git" ]; then
+				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
+				echo -e "Updating git repository $GREEN$p$NC ($orig)"
+				(git pull --rebase --all || git pull --all) | grep -v "^Fetching" | grep -v "^Already"
+			else
+				#echo "not a git repo; going to iterate though its subdirs"
+				git_dir ./
+			fi
+		fi
+
+	done
+}
+
 if [ $# -eq 0 ]; then
-	cd ~/github
+	git_dir "~/github"
 else
-	cd "$1"
+	git_dir "$1"
 fi
 
-for d in `ls -d */ 2>/dev/null || echo ""`;
-do
-	(
-	if [ -L $d ]; then
-		true
-	else
-		cd "$d"
 
-		p=`pwd`
-
-		if [ -d ".git" ]; then
-			orig=`git remote -v | grep origin | awk '{print $2}' | uniq`
-			echo -e "Updating git repository $GREEN$p$NC ($orig)"
-			(git pull --rebase --all || git pull --all) | grep -v "^Fetching" | grep -v "^Already"
-		else
-			#echo "not a git repo; going to iterate though its subdirs"
-			$0 ./
-		fi
-	fi
-	)
-done;
-)
