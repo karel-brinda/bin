@@ -18,5 +18,5 @@ case "$#" in
 esac
 
 
-echo "$res" | pbcopy || true
+(echo "$res" | pbcopy) 2>/dev/null || true
 echo "$res"
