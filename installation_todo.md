@@ -19,5 +19,6 @@
 * `ln -s ~/bin/.gitconfig ~/.gitconfig`
 * `ln -s ~/bin/.vimrc ~/.vimrc`
 * `ln -s ~/bin/.vim ~/.vim`
+* `ln -s ~/bin/.condarc ~/.condarc`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
