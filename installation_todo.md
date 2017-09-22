@@ -3,9 +3,10 @@
 ## OSX-specific
 
 * Security & Privacy / General -> Require password immediately
-* Change alt setting in terminal Terminal > Preferences > Settings > ‘Use option as meta key’
-* Change Terminal font to Hack
-* Change Caps Lock to Escape (System Preferences / Keyboard / Modifier Keys)
+* Change alt setting (Terminal > Preferences > Settings > ‘Use option as meta key’)
+* Set 100% opacity (Terminal > Preferences > Profiles > Pro > Text > Background button > Opacity 100%)
+* Change Terminal font to Hack (Terminal > Preferences > Profiles > Pro > Text > Font)
+* Change Caps Lock to Escape (System Preferences > Keyboard > Modifier Keys)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
 * `defaults write com.apple.desktopservices DSDontWriteNetworkStores -boolean true` - don't create .\_DS\_Store in mounted disks
 * `ln -s ~/bin/osx/KeyBindings/ ~/Library/KeyBindings`
@@ -14,6 +15,7 @@
 
 * `ln -s ~/github/my/bin/ ~/bin`
 * Add `. ~/bin/.bashrc` to ~/.bashrc
+* `echo ". .bashrc" >> ~/.bash_profile`
 * Add `. ~/bin/.bash_profile` to `~/.bash_profile`
 * `ln -s ~/bin/.pypirc ~/.pypirc`
 * `ln -s ~/bin/.gitconfig ~/.gitconfig`
