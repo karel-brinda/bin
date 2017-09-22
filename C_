@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+p=ccat;type $p 2>/dev/null >/dev/null || p=cat
+$p $@

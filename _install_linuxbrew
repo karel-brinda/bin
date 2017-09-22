@@ -1,4 +1,4 @@
-#! /usr/bin/env bash -u -f -e -o pipefail
+#! /usr/bin/env bash
 
 yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 
