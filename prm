@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+# pseudorm, to speed-up removing on clusters
+if [[ $# -eq 0 ]]; then
+	s=`basename $0`
+	echo "pseudoremove files/dir (move to ~/__to_delete__)"
+	echo "usage: $s files/dirs"
+	exit 1
+fi
+
+stamp=$(date +%Y%m%d%H%M%S)
+trash="$HOME/__to_delete__/$stamp"
+
+mkdir -p "$trash"
+
+for x in $@; do
+	echo "Pseudo-removing $x"
+	set -x
+	mv "$x" "$trash"
+	set +x
+done
