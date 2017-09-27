@@ -19,6 +19,7 @@ if has("clipboard")
     cmap <C-V>	<C-R>+
 endif
 
+nnoremap Y y$
 
 colorscheme badwolf
 
@@ -325,5 +326,4 @@ augroup END
 nmap <silent> <F5> :set spell!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
-
 
