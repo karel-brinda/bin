@@ -198,6 +198,9 @@ nnoremap <leader><space> :noh<cr>
 
 nnoremap <leader>r :w<cr> \| :so ~/.vimrc \| :PluginInstall<cr>
 
+" line numbers on/off
+nnoremap <leader>l :set number!<cr>
+
 " match bracket pairs using tab
 nnoremap <tab> %
 vnoremap <tab> %
