@@ -18,7 +18,11 @@ _dotcmd gs
 alias g.s='git status .'
 
 alias gt='git commit'
-alias gtm='git commit -m'
+function gtm {
+	command="git commit -m '"$@"'"
+	echo "$command"
+	$($command)
+}
 alias gta='git commit --amend'
 
 alias gr='git reset'
