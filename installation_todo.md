@@ -24,3 +24,10 @@
 * `ln -s ~/bin/.condarc ~/.condarc`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
+
+## Apps
+
+* [MikTex](http://www.tug.org/mactex/)
+* [Sublime text](https://www.sublimetext.com/)
+* [Mendeley](https://www.mendeley.com/download-mendeley-desktop/mac/)
+* [Dropbox](https://www.dropbox.com/downloading)
