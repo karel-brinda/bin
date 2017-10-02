@@ -21,7 +21,7 @@ alias gt='git commit'
 function gtm {
 	command="git commit -m '"$@"'"
 	echo "$command"
-	$($command)
+	$command
 }
 alias gta='git commit --amend'
 
