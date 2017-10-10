@@ -27,7 +27,7 @@ case "$#" in
 esac
 
 
-pyprof2calltree -k -i ./output_cop.prof $1 ||
+pyprof2calltree -k -i "$1" ||
 	(
 	echo "error, try to install the programs:"
 	echo
