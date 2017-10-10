@@ -318,6 +318,7 @@ alias morning="open \
 		https://bioinformatics.stackexchange.com\
 		"
 alias ch='open -a "Google Chrome"'
+alias pg='ping google.com'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
