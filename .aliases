@@ -292,6 +292,7 @@ alias exif_delete_metadata='exiftool -all=""'
 
 alias jp='((open  http://localhost:8888/)&);jupyter notebook'
 alias p3='/usr/bin/env python3'
+alias p3timeit='python -m timeit'
 
 
 ########
