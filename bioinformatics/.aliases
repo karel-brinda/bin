@@ -9,3 +9,7 @@ alias bai='samtools index'
 alias phd='open http://brinda.cz/publications/brinda_phd.pdf'
 alias ggh='grep ">"'
 
+# simplified SAM output (seqs, bases and cigars skipped)
+alias sX='cut -f1-5,7-9,12-'
+alias sXL='cut -f1-5,7-9,12- | less -R'
+
