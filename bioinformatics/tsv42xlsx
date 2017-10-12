@@ -10,7 +10,9 @@ from xlsxwriter.workbook import Workbook
 def tsv_to_xlsx(tsvs, xlsx):
     workbook = Workbook(xlsx)
     for tsv in tsvs:
-        worksheet = workbook.add_worksheet(tsv[:31])
+        name=os.path.basename(tsv)
+        xlsx_compatible_name=name[:31]
+        worksheet = workbook.add_worksheet(xlsx_compatible_name)
         with open(tsv, 'r') as f:
             tsv_reader = csv.reader(f, delimiter='\t')
             for row, data in enumerate(tsv_reader):
