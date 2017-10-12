@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# display fasta headers
+# FASTA -> FASTA headers
 
 set -u
 set -f
@@ -12,10 +12,15 @@ readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
-if [ $NARGS -ne 1 ]; then
-	echo "usage: $PROGNAME options"
-	exit 1
+if [[ $NARGS == 0 ]]; then
+	grep '^>'
+	exit 0
 fi
 
-grep '^>' "${ARGS[0]}"
+if [[ $NARGS == 1 ]]; then
+	grep '^>' "${ARGS[0]}"
+	exit 0
+fi
 
+echo "usage: $PROGNAME [seqs.fa]"
+exit 1
