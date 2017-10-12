@@ -8,79 +8,83 @@ Licence: MIT
 Description: Highlights nodes in a Newick/NHX tree.
 """
 
-import os
-import sys
 import argparse
 import ete3
-
+import os
+import sys
 
 def plot_tree(newick_in_fn, out_plot_fn, nnames):
-	tree = ete3.Tree(
-		newick_in_fn,
-		format=1
-	)
+    tree = ete3.Tree(
+        newick_in_fn,
+        format=1
+    )
 
-	nnodes=[
-		tree & nname
-		for nname in nnames
-	]
+    nnodes=[]
 
-	ts = ete3.TreeStyle()
-	ts.show_leaf_name = False
+    for nname in nnames:
+        try:
+            node= tree & nname
+        except ete3.coretype.tree.TreeError:
+            print("Error: node '{}' not found".format(nname))
+            sys.exit(1)
+        nnodes.append(node)
 
-	def my_layout(node):
-		t = node.name
+    ts = ete3.TreeStyle()
+    ts.show_leaf_name = False
 
-		f = ete3.TextFace(t, tight_text=True)
-		ete3.add_face_to_node(f, node, column=0, position="branch-right")
+    def my_layout(node):
+        t = node.name
 
-	for n in tree.traverse():
-		nstyle = ete3.NodeStyle()
-		nstyle["fgcolor"]="blue"
-		n.set_style(nstyle)
+        f = ete3.TextFace(t, tight_text=True)
+        ete3.add_face_to_node(f, node, column=0, position="branch-right")
 
-	for nnode in nnodes:
-		for n in nnode.traverse():
-			nstyle = ete3.NodeStyle()
-			nstyle["fgcolor"]="red"
-			if n==nnode:
-				nstyle["size"] = 20
-			n.set_style(nstyle)
+    for n in tree.traverse():
+        nstyle = ete3.NodeStyle()
+        nstyle["fgcolor"]="blue"
+        n.set_style(nstyle)
 
-	ts.layout_fn = my_layout
-	tree.render(out_plot_fn, tree_style=ts)
+    for nnode in nnodes:
+        for n in nnode.traverse():
+            nstyle = ete3.NodeStyle()
+            nstyle["fgcolor"]="red"
+            if n==nnode:
+                nstyle["size"] = 20
+            n.set_style(nstyle)
+
+    ts.layout_fn = my_layout
+    tree.render(out_plot_fn, tree_style=ts)
 
 
 def main():
-	parser = argparse.ArgumentParser(description='Plot a Newick/NHX tree')
+    parser = argparse.ArgumentParser(description='Plot a Newick/NHX tree')
 
-	parser.add_argument('newick_in_fn',
-		metavar='tree.nhx',
-		type=str,
-		help='phylogenetic tree (in Newick/NHX)',
-	)
+    parser.add_argument('newick_in_fn',
+        metavar='tree.nhx',
+        type=str,
+        help='phylogenetic tree (in Newick/NHX)',
+    )
 
-	parser.add_argument('out_plot_fn',
-		metavar='figure.{pdf,svg,..}',
-		type=str,
-		help='output figure',
-	)
+    parser.add_argument('out_plot_fn',
+        metavar='figure.{pdf,svg,..}',
+        type=str,
+        help='output figure',
+    )
 
-	parser.add_argument('node_name',
-		metavar='node_name',
-		type=str,
-		help='name of the node to highlight',
-		nargs='*',
-	)
+    parser.add_argument('node_name',
+        metavar='node_name',
+        type=str,
+        help='name of the node to highlight',
+        nargs='*',
+    )
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	plot_tree(
-		newick_in_fn=args.newick_in_fn,
-		out_plot_fn=args.out_plot_fn,
-		nnames=args.node_name,
-	)
+    plot_tree(
+        newick_in_fn=args.newick_in_fn,
+        out_plot_fn=args.out_plot_fn,
+        nnames=args.node_name,
+    )
 
 
 if __name__ == "__main__":
-	main()
+    main()
