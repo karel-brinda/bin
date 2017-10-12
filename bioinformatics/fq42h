@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+# FASTQ -> FASTQ headers
+
+set -u
+set -f
+set -e
+set -o pipefail
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS == 0 ]]; then
+	#$CMD
+	awk 'NR%4==1'
+	exit 0
+fi
+
+if [[ $NARGS == 1 ]]; then
+	awk 'NR%4==1' "${ARGS[0]}"
+	exit 0
+fi
+
+echo "usage: $PROGNAME [seqs.fq]"
+exit 1
