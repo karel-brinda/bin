@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+# FASTQ -> FASTQ-one-line format
+
+set -u
+set -f
+set -e
+set -o pipefail
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS == 0 ]]; then
+	paste - - - - | perl -pe 's/\r//g'
+	exit 0
+fi
+
+if [[ $NARGS == 1 ]]; then
+	cat "${ARGS[0]}" | paste - - - - | perl -pe 's/\r//g'
+	grep '^>'
+	exit 0
+fi
+
+echo "usage: $PROGNAME [seqs.fq]"
+exit 1
