@@ -228,7 +228,6 @@ alias lns='ln -s'
 alias dfh='df -h'
 alias dush='du -sh'
 alias wcl='wc -l'
-alias tab="column -t -s '	'"
 alias x='xargs'
 alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -285,6 +284,10 @@ alias C='C_'
 alias gzk='gzip -k'
 alias les='less -S'
 alias L='less -S'
+alias table="column -t -s '	'"
+function tableL {
+	column -t -s '	' $1 | less -S
+}
 alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
