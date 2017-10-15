@@ -194,6 +194,7 @@ do
 done
 alias ol='ol1'
 
+
 ###############
 # FIND & GREP #
 ###############
@@ -303,6 +304,7 @@ alias morning="open \
 		https://bioinformatics.stackexchange.com\
 		"
 alias ch='open -a "Google Chrome"'
+alias excel="open -a 'Microsoft Excel'"
 alias pg='ping google.com'
 
 function w {
