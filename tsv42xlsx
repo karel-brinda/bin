@@ -5,6 +5,8 @@
 
 import argparse
 import csv
+import os
+
 from xlsxwriter.workbook import Workbook
 
 def tsv_to_xlsx(tsvs, xlsx):
