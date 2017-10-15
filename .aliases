@@ -194,6 +194,8 @@ do
 done
 alias ol='ol1'
 
+alias a='open -a'
+
 
 ###############
 # FIND & GREP #
