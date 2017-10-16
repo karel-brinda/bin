@@ -292,6 +292,7 @@ function tableL {
 	column -t -s '	' $1 | less -S
 }
 alias tL='tableL'
+alias tl='tableL'
 alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
