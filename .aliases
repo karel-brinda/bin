@@ -56,6 +56,7 @@ _dotcmd () {
 #fi
 
 alias l1='ls -1'
+alias lsd='l -d */'
 
 ####################
 # CHANGE DIRECTORY #
