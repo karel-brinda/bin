@@ -283,6 +283,7 @@ alias p3timeit='python -m timeit'
 ########
 
 alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
+alias bin='bashrc'
 alias c='cat'
 alias C='C_'
 alias gzk='gzip -k'
