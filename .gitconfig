@@ -34,6 +34,10 @@
 	# smarter diff on splits around blank lines (Git 2.9.0+)
 	compactionHeuristic = true
 
+[diff "pandoc"]
+	textconv=pandoc --to=markdown
+	prompt = false
+
 [merge]
 	conflictstyle = diff3
 
@@ -51,3 +55,4 @@
 	smudge = git-lfs smudge -- %f
 [push]
 	default = simple # matching
+
