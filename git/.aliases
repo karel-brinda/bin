@@ -28,9 +28,9 @@ alias gta='git commit --amend'
 alias gr='git reset'
 alias gr*='git reset "*"'
 
-alias gf='git diff --cached'
-alias gfH='git diff HEAD'
-alias gff='git diff'
+alias gf='git wdiff --cached'
+alias gfH='git wdiff HEAD'
+alias gff='git wdiff'
 
 alias gfo='git fetch origin -v'
 
