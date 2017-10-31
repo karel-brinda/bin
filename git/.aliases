@@ -38,7 +38,7 @@ alias gfo='git fetch origin -v'
 
 alias gpull='git pull --rebase --all'
 alias gpush='git push'
-alias gp='(git pull ; git push) &'
+alias gp='git pull ; git push'
 
 alias g{='git stash -u'
 alias g}='git stash pop'
