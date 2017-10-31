@@ -16,6 +16,7 @@
 [alias]
 	wdiff = diff --color-words
 	wshow = show --color-words
+	g = grep --break --heading --line-number
 
 [color]
 	status = auto
@@ -56,3 +57,6 @@
 [push]
 	default = simple # matching
 
+[grep]
+	extendRegexp = true
+	lineNumber = true
