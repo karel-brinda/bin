@@ -9,4 +9,4 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
-cp $SAMPLE "$1"
+cp "$SAMPLE" "$1"

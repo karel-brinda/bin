@@ -5,19 +5,25 @@ import os
 import sys
 
 def main():
-	pass
+    pass
 
-#	parser = argparse.ArgumentParser(description="")
+#   parser = argparse.ArgumentParser(description="")
 #
-#	parser.add_argument('-p', '--param',
-#			type=str,
-#			metavar='str',
-#			required=True,
-#			dest='',
-#			help='',
-#		)
+#   parser.add_argument('pos',
+#           type=str,
+#           metavar='str',
+#           help='',
+#       )
 #
-#	args = parser.parse_args()
+#   parser.add_argument('-p', '--param',
+#           type=str,
+#           metavar='str',
+#           required=True,
+#           dest='',
+#           help='',
+#       )
+#
+#   args = parser.parse_args()
 
 if __name__ == "__main__":
-	main()
+    main()

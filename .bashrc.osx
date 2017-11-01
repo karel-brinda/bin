@@ -5,6 +5,10 @@ alias gvim=macvim
 alias inkscape='open -a inkscape'
 alias gimp='open -a gimp'
 
+alias word='open -a "Microsoft Word"'
+alias excel='open -a "Microsoft Excel"'
+alias Rstudio='open -a "Rstudio"'
+
 alias l='ls -Galh'
 alias ll='ls -Galhtr'
 

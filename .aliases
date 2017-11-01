@@ -282,6 +282,10 @@ alias p3timeit='python -m timeit'
 # MISC #
 ########
 
+G () {
+	q=$(echo "$@" | perl -pe 's/\s+/+/g')
+	open "https://google.com/search?q=$q"
+}
 alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
 alias bin='bashrc'
 alias c='cat'
