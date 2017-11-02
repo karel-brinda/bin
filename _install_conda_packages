@@ -3,7 +3,6 @@
 ./_install_miniconda
 
 # programming & plotting
-conda install -y gnuplot
 conda install -y julia
 conda install -y r
 conda install -y pandoc
@@ -16,15 +15,11 @@ conda install -y pylint
 conda install -c conda-forge yapf # python formatting
 
 # libs
-conda install -y ete2
 conda install -y htslib
 
 # data manipulation
-conda install -y bamtools
 conda install -y bcftools
 conda install -y bedtools
-conda install -y cramtools
-conda install -y htsbox
 conda install -y picard
 conda install -y sambamba
 conda install -y samtools
@@ -36,75 +31,72 @@ conda install -y snakemake
 conda install -y bioawk
 conda install -y crossmap
 conda install -y repeatmasker
-conda install -y ropebwt2
+#conda install -y ropebwt2
 
 # nanopore
-conda install -y nanopolish
-conda install -y pauvre
+#conda install -y nanopolish
+#conda install -y pauvre
 
 # similarity search
 conda install -y blast
-conda install -y fasta3
+#conda install -y fasta3
 
 # mappers
 conda install -y bwa
-conda install -y bwakit
-conda install -y bowtie
+#conda install -y bwakit
+#conda install -y bowtie
 conda install -y bowtie2
-conda install -y gmap
-conda install -y graphmap
-conda install -y hisat2
-conda install -y last
-conda install -y minimap
+#conda install -y gmap
+#conda install -y graphmap
+#conda install -y hisat2
+#conda install -y last
+#conda install -y minimap
 conda install -y minimap2
-conda install -y mosaic
-conda install -y nanoblaster
+#conda install -y mosaic
+#conda install -y nanoblaster
 conda install -y novoalign
-conda install -y rapmap
-conda install -y razers3
-conda install -y snap-aligner
-conda install -y sra-tools
-conda install -y star
-conda install -y subread
-conda install -y tophat
+#conda install -y rapmap
+#conda install -y razers3
+#conda install -y snap-aligner
+#conda install -y sra-tools
+#conda install -y star
+#conda install -y subread
+#conda install -y tophat
 
 # alignment
 conda install -y edlib
 
 # assemblers
-conda install -y abyss
-conda install -y amos
-conda install -y daligner
-conda install -y dazz_db
-conda install -y fermi
-conda install -y megahit
+#conda install -y abyss
+#conda install -y amos
+#conda install -y daligner
+#conda install -y dazz_db
+#conda install -y fermi
+#conda install -y megahit
 conda install -y miniasm
 
 # variant calling
 conda install -y freebayes
-conda install -y gatk-framework
-conda install -y somatic-sniper
+#conda install -y gatk-framework
+#conda install -y somatic-sniper
 conda install -y varscan
 
 # read correction
-conda install -y bfc
-
-# rna data
-conda install -y cufflinks
-conda install -y sailfish
-conda install -y salmon
+#conda install -y bfc
 
 # metagenomics
 conda install -y gb_taxonomy_tools
 conda install -y kraken-all
 conda install -y kallisto
+conda install -y centrifuge
 
 # k-mer counting
 conda install -y jellyfish
 conda install -y khmer
 
 # read simulation
-conda install -y art
-conda install -y flux-simulator
-conda install -y simlord
-conda install -y nanosimh
+conda install rnftools
+#conda install -y art
+#conda install -y flux-simulator
+#conda install -y simlord
+#conda install -y nanosimh
