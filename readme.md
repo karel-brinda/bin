@@ -17,7 +17,6 @@
 * Add `. ~/bin/.bashrc` to ~/.bashrc
 * `echo ". .bashrc" >> ~/.bash_profile`
 * Add `. ~/bin/.bash_profile` to `~/.bash_profile`
-* `ln -s ~/bin/.pypirc ~/.pypirc`
 * `ln -s ~/bin/.gitconfig ~/.gitconfig`
 * `ln -s ~/bin/.vimrc ~/.vimrc`
 * `ln -s ~/bin/.vim ~/.vim`
