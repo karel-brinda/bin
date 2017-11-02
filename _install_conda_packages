@@ -1,10 +1,14 @@
 #! /usr/bin/env bash
 
+set -o verbose
+
+
 ./_install_miniconda
 
 # programming & plotting
 conda install -y julia
 conda install -y r
+conda install -y r-ggplot2
 conda install -y pandoc
 conda install -y pyqt
 conda install -y markdown
@@ -12,7 +16,13 @@ conda install -y jupyter
 conda install -y tqdm # progress bar for Jupyter
 conda install -y pandas
 conda install -y pylint
-conda install -c conda-forge yapf # python formatting
+conda install -y yapf # python formatting
+conda install -y ffmpeg
+conda install -y biopython
+conda install -y pysam
+conda install -y parallel
+conda install -y imagemagick
+
 
 # libs
 conda install -y htslib
@@ -95,7 +105,7 @@ conda install -y jellyfish
 conda install -y khmer
 
 # read simulation
-conda install rnftools
+conda install -y rnftools
 #conda install -y art
 #conda install -y flux-simulator
 #conda install -y simlord
