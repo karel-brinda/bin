@@ -19,7 +19,7 @@ conda install -y htslib
 
 # data manipulation
 conda install -y bcftools
-conda install -y bedtools
+#conda install -y bedtools
 conda install -y picard
 conda install -y sambamba
 conda install -y samtools
@@ -29,8 +29,8 @@ conda install -y vcftools
 # auxiliary tools
 conda install -y snakemake
 conda install -y bioawk
-conda install -y crossmap
-conda install -y repeatmasker
+#conda install -y crossmap
+#conda install -y repeatmasker
 #conda install -y ropebwt2
 
 # nanopore
