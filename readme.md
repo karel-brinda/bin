@@ -1,4 +1,4 @@
-# Install TODO
+# Installation todo list
 
 ## OSX-specific
 
