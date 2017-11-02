@@ -141,11 +141,17 @@ alias sl='conda info --envs'
 
 alias piu='pip install --upgrade'
 _dotcmd piu
+alias ppiu='pp install --upgrade'
+_dotcmd ppiu
 
 alias pi='pip install'
 _dotcmd pi
+alias ppi='pp install'
+_dotcmd ppi
 alias pu='pip uninstall'
 _dotcmd pu
+alias ppu='pp uninstall'
+_dotcmd ppu
 
 alias pui.='pu. && pi.'
 
