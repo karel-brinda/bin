@@ -2,6 +2,11 @@
 
 set -e -o pipefail
 
+if [[ "$@" == *:* ]]; then
+	newargs=$(echo "$@" | perl -pe 's/:/ /g')
+	"$0" $newargs
+fi
+
 case "$#" in
 	0)
 		nvim || vim
