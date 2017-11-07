@@ -1,6 +1,6 @@
 .PHONY: all help clean
 
-SHELL=/usr/bin/env bash -euc -o pipefail
+SHELL=/usr/bin/env bash -eo pipefail
 
 .SECONDARY:
 
