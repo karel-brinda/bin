@@ -8,6 +8,7 @@
 * Change Terminal font to Hack (Terminal > Preferences > Profiles > Pro > Text > Font)
 * Change Caps Lock to Escape (System Preferences > Keyboard > Modifier Keys)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
+* Mendeley - Preference > File Organizer > Organize my files, Rename document files
 * `defaults write com.apple.desktopservices DSDontWriteNetworkStores -boolean true` - don't create .\_DS\_Store in mounted disks
 * `ln -s ~/bin/osx/KeyBindings/ ~/Library/KeyBindings`
 
