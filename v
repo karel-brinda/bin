@@ -9,7 +9,8 @@ fi
 
 case "$#" in
 	0)
-		nvim || vim
+		#nvim || vim
+		vim
 		exit 0
 		;;
 	1)
@@ -40,8 +41,10 @@ if ! [[ -f "$file" || -d "$file" ]]; then
 fi
 
 if [[ ! -z "$cmd" ]]; then
-	nvim "$cmd" "$file" || vim "$cmd" "$file"
+	#nvim "$cmd" "$file" || vim "$cmd" "$file"
+	vim "$cmd" "$file"
 else
-	nvim "$file" || vim "$file"
+	#nvim "$file" || vim "$file"
+	vim "$file"
 fi
 
