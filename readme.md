@@ -24,6 +24,7 @@
 * `ln -s ~/bin/.condarc ~/.condarc`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
+* `~/.vim/bundle/YouCompleteMe/install.sh`
 
 ## Apps
 
