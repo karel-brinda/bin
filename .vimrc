@@ -141,10 +141,17 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'ibab/vim-snakemake'
 
 
-"""""""""""""""
+"""""""""""
 " ctrlp.vim
-"""""""""""""""
+"""""""""""
 Plugin 'kien/ctrlp.vim'
+
+
+""""""""""
+" acck.vim
+""""""""""
+Plugin 'mileszs/ack.vim'
+
 
 """""""""""""
 " Python-mode
