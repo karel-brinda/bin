@@ -52,6 +52,7 @@ alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git merge'
 alias gcl.='gcl'
 alias gl='git log'
+alias gsh='git show'
 
 alias gur='git_update_repos'
 
