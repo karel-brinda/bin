@@ -15,9 +15,8 @@
 ## Others
 
 * `ln -s ~/github/my/bin/ ~/bin`
-* Add `. ~/bin/.bashrc` to ~/.bashrc
-* `echo ". ~/.bashrc" >> ~/.bash_profile`
-* Add `. ~/bin/.bash_profile` to `~/.bash_profile`
+* `echo ". ~/bin/.bashrc" >> ~/.bashrc`
+* `echo ". ~/bin/.bashrc" >> ~/.bash_profile`
 * `ln -s ~/bin/.gitconfig ~/.gitconfig`
 * `ln -s ~/bin/.vimrc ~/.vimrc`
 * `ln -s ~/bin/.vim ~/.vim`
