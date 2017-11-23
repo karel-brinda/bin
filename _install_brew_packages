@@ -20,7 +20,7 @@ brew install git-open
 brew install emacs
 #brew install vim
 brew install python
-brew install python3
+#brew install python3
 /usr/local/bin/pip2 install neovim --upgrade
 /usr/local/bin/pip3 install neovim --upgrade
 brew install neovim/neovim/neovim
