@@ -101,6 +101,8 @@ alias calm='gcalcli calm -w 15 --monday'
 alias calw='gcalcli calw -w 15 --monday'
 alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tomorrow" "+%Y-%m-%d"`'
 
+alias con='open https://google.com/contacts'
+
 
 ############
 # MAKE DIR #
