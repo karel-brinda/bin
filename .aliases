@@ -342,6 +342,7 @@ alias excel="open -a 'Microsoft Excel'"
 alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
 alias cx='chmod +x'
+alias fv='fg v || fg vim'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
