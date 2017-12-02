@@ -30,9 +30,13 @@ alias gta='git commit --amend'
 alias gr='git reset'
 alias gr*='git reset "*"'
 
-alias gf='git wdiff --cached'
-alias gfH='git wdiff HEAD'
-alias gff='git wdiff'
+alias gf='git diff --cached --ignore-space-at-eol'
+alias gff='git diff --ignore-space-at-eol'
+alias gfH='git diff HEAD --ignore-space-at-eol'
+
+alias gwff='git wdiff --ignore-space-at-eol'
+alias gwfH='git wdiff HEAD --ignore-space-at-eol'
+alias gwf='git wdiff --cached --ignore-space-at-eol'
 
 alias gfo='git fetch origin -v'
 

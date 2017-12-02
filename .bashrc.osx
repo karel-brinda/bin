@@ -9,7 +9,13 @@ alias word='open -a "Microsoft Word"'
 alias excel='open -a "Microsoft Excel"'
 alias Rstudio='open -a "Rstudio"'
 
+# sorted by name
 alias l='ls -Galh'
+
+# sorted by time
 alias ll='ls -Galhtr'
+
+# sorted by size
+alias lS='ls -GalhtSr'
 
 alias oepn='open'

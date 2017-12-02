@@ -2,6 +2,12 @@
 
 alias open='gnome-open'
 
+# sorted by name
 alias l='ls --color=auto -Galh'
+
+# sorted by date
 alias ll='ls --color=auto -Galhtr'
+
+# sorted by size
+alias lS='ls --color=auto -GalhSr'
 
