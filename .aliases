@@ -343,6 +343,7 @@ alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
 alias cx='chmod +x'
 alias fv='fg v || fg vim'
+alias hg='history | grep'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
