@@ -138,6 +138,7 @@ alias cdm='mcd'
 ###############
 
 alias hh='head'
+alias hhh='head -n 9999999999999'
 for i in $(seq 20); do
 	alias hh$i="head -n $i"
 done
