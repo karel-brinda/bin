@@ -364,7 +364,7 @@ unset ll
 # LFS #
 #######
 
-alias bj='bjobs'
+alias bj="bjobs | grep $USER"
 alias bjn='bjobs | grep -v interactive | awk '"'"'{print $1}'"'"
 alias bjh='bjobs | head'
 alias bjt='bjobs | tail'

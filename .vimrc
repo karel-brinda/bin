@@ -304,7 +304,15 @@ augroup python_files
 	"autocmd FileType python setlocal noexpandtab
 	"autocmd FileType python set tabstop=4
 	"autocmd FileType python set shiftwidth=4
+	au BufRead,BufNewFile *.py set expandtab
 	autocmd BufWritePre * %s/\s\+$//e
+
+	set expandtab           " enter spaces when tab is pressed
+	"set textwidth=120       " break lines when line length increases
+	set tabstop=4           " use 4 spaces to represent tab
+	set softtabstop=4
+	set shiftwidth=4        " number of spaces to use for auto indent
+	set autoindent          " copy indent from current line when starting a new line
 
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
