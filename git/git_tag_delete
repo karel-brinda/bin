@@ -8,11 +8,11 @@ case "$#" in
 		;;
 	*)
 		s=`basename $0`
-		echo "delete remote tag"
+		echo "delete remote and local tag"
 		echo "usage: $s tag"
 		exit 1
 		;;
 esac
 
+git tag -d $tag
 git push origin :refs/tags/$tag
-
