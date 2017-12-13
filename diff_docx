@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [[ $# -ne 2 ]]; then
+	s=`basename $0`
+	echo "usage: $s file1.docx file2.docx"
+	exit 1
+fi
+
+diff <(pandoc --to=markdown "$1") <(pandoc --to=markdown "$2")
+
