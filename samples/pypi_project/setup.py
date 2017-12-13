@@ -45,7 +45,7 @@ setuptools.setup(
 
     keywords='',
 
-    packages = ["samsift"],
+    packages = ["_NAME_"],
 
     install_requires=[
             'wheel',
