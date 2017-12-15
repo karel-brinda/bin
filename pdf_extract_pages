@@ -6,5 +6,6 @@ if [ $# -ne 3 ]; then
 	exit 1
 fi
 
+(pdftk 2>&1 >/dev/null || open https://stackoverflow.com/questions/32505951/pdftk-server-on-os-x-10-11/33248310#33248310)
 
 pdftk $1 cat $2 output $3
