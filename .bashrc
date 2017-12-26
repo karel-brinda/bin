@@ -21,6 +21,7 @@ for d in \
 	"${_BIN_DIR}/tabulator/bin" \
 	"${_BIN_DIR}/dictionaries" \
 	"${_BIN_DIR}/git" \
+	"${_BIN_DIR}/grep" \
 	"$HOME/bin2" \
 	"$HOME/.rvm/bin/" \
 	"$HOME/.node_modules_global/bin" \
