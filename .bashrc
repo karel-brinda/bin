@@ -22,6 +22,7 @@ for d in \
 	"${_BIN_DIR}/dictionaries" \
 	"${_BIN_DIR}/git" \
 	"${_BIN_DIR}/grep" \
+	"${_BIN_DIR}/programs/lein" \
 	"$HOME/bin2" \
 	"$HOME/.rvm/bin/" \
 	"$HOME/.node_modules_global/bin" \
