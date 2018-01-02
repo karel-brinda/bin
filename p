@@ -18,5 +18,5 @@ case "$#" in
 esac
 
 
-(printf "$res" | pbcopy) 2>/dev/null || true
+(printf '"'"$res"'"' | pbcopy) 2>/dev/null || true
 echo "$res"
