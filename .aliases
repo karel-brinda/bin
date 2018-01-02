@@ -272,7 +272,7 @@ alias mn='make -n'
 alias mj='make V=1 -j'
 alias mt='make V=1 test'
 alias mC='make -C'
-alias mb='make -b'
+alias mb='make -B'
 _dotcmd mC
 
 alias mjC='make -j -C'
