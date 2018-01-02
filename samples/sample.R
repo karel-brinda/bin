@@ -1,5 +1,3 @@
-#! /usr/bin/env python3
-
 #!/usr/bin/env Rscript
 
 isRStudio <- Sys.getenv("RSTUDIO") == "1"
