@@ -2,7 +2,7 @@
 
 set -e
 set -o pipefail
-set -u
+#set -u
 #set -f
 
 readonly PROGNAME=$(basename $0)
@@ -24,7 +24,7 @@ d="$1"
 a=$((\
     $(fs "$d/index.fa.sa") + \
     $(fs "$d/index.fa.ann") + \
-    $(fs "$d/index.fa.*.klcp") + \
+    $(fs $d/index.fa.*.klcp) + \
     $(fs "$d/tree.nw") + \
     $(fs "$d/index.fa.bwt") \
     ))
