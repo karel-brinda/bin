@@ -1,0 +1,31 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+fs () {
+    wc -c "$1" | xargs echo | cut  -d ' ' -f1
+}
+
+if [[ $NARGS -ne 1 ]]; then
+	echo "usage: $PROGNAME index.dir"
+	exit 1
+fi
+
+d="$1"
+
+a=$((\
+    $(fs "$d/index.fa.sa") + \
+    $(fs "$d/index.fa.ann") + \
+    $(fs "$d/index.fa.*.klcp") + \
+    $(fs "$d/tree.nw") + \
+    $(fs "$d/index.fa.bwt") \
+    ))
+/usr/bin/env python3 -c "print('{:0.1f} MB'.format($a/(1024**2)))"
