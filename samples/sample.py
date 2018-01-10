@@ -10,8 +10,8 @@ def main():
 
 #   parser = argparse.ArgumentParser(description="")
 #
-#   parser.add_argument('pos',
-#           type=str,
+#   parser.add_argument('file',
+#           type=argparse.FileType('r'),
 #           metavar='str',
 #           help='',
 #       )
