@@ -346,6 +346,7 @@ alias hi='history'
 alias cx='chmod +x'
 alias fv='fg v || fg vim'
 alias hg='history | grep'
+alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit; git push)'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
@@ -371,3 +372,4 @@ alias bjn='bjobs | grep -v interactive | awk '"'"'{print $1}'"'"
 alias bjh='bjobs | head'
 alias bjt='bjobs | tail'
 alias bjr='bjobs | grep RUN'
+
