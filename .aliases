@@ -244,6 +244,9 @@ alias egrep='egrep --color=auto'
 alias grepi='grep --color=auto -i'
 alias grepv='grep --color=auto -v'
 
+function ggr(){
+    grep --color=auto -R $@ .
+}
 
 #########
 # SHELL #
