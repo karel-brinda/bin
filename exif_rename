@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 2 ]; then
+	s=`basename $0`
+	echo "usage: $s dir_original dir_new"
+	exit 1
+fi
+
+if [[ ! -d "$2" ]]; then
+    echo "$2" is not a directory
+    exit 1
+fi
+
+for x in "$1"/*.jpg; do
+    datetime=$(exiftool "$x" | grep "Date/Time Original" | head -n 1 | perl -pe 's/.* : //g')
+    y="$2/$datetime.jpg"
+    echo "$x -> $y"
+    cp "$x" "$y"
+done
+
