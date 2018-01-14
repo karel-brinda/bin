@@ -404,3 +404,9 @@ function h.m {
     open "dash://manpages:$q"
 }
 
+# Make
+function h.mm {
+    q=$(echo "$@" | perl -pe 's/ /%20/g')
+    open "dash://make:$q"
+}
+
