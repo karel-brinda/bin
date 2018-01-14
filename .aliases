@@ -373,3 +373,25 @@ alias bjh='bjobs | head'
 alias bjt='bjobs | tail'
 alias bjr='bjobs | grep RUN'
 
+########
+# DASH #
+########
+
+# C++
+function h.c {
+    q=$(echo "$@" | perl -pe 's/ /%20/g')
+    open "dash://cpp:$q"
+}
+
+# C
+function h.cc {
+    q=$(echo "$@" | perl -pe 's/ /%20/g')
+    open "dash://c:$q"
+}
+
+# Python 3
+function h.p {
+    q=$(echo "$@" | perl -pe 's/ /%20/g')
+    open "dash://python3:$q"
+}
+
