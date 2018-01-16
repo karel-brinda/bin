@@ -24,11 +24,6 @@ function gtm {
 	command="git commit -m '$@'"
 	echo "$command"
 	eval $command
-}
-function gtmp {
-	command="git commit -m '$@'"
-	echo "$command"
-	eval $command
     git push
 }
 alias gta='git commit --amend'
