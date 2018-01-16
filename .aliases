@@ -405,7 +405,7 @@ function h.m {
 }
 
 # Make
-function h.mm {
+function h.mk {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://make:$q"
 }
