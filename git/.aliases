@@ -21,9 +21,15 @@ alias g.s='git status .'
 
 alias gt='git commit'
 function gtm {
-	command="git commit -m '"$@"'"
+	command="git commit -m '$@'"
 	echo "$command"
-	$command
+	eval $command
+}
+function gtmp {
+	command="git commit -m '$@'"
+	echo "$command"
+	eval $command
+    git push
 }
 alias gta='git commit --amend'
 
