@@ -1,8 +1,8 @@
 _NAME_
 ==================================================================================
 
-.. image:: https://travis-ci.org/karel-brinda/prophyle.svg?branch=master
-        :target: https://travis-ci.org/karel-brinda/prophyle
+.. image:: https://travis-ci.org/karel-brinda/_NAME_.svg?branch=master
+        :target: https://travis-ci.org/karel-brinda/_NAME_
 
 
 Introduction
