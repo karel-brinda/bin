@@ -345,6 +345,7 @@ alias morning="open \
 		"
 alias ch='open -a "Google Chrome"'
 alias excel="open -a 'Microsoft Excel'"
+alias gdoc="open https://docs.google.com/document/create"
 alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
 alias cx='chmod +x'
