@@ -383,31 +383,31 @@ alias bjr='bjobs | grep RUN'
 ########
 
 # C++
-function h.c {
+function D.c {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://cpp:$q"
 }
 
 # C
-function h.cc {
+function D.cc {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://c:$q"
 }
 
 # Python 3
-function h.p {
+function D.p {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://python3:$q"
 }
 
 # Man pages
-function h.m {
+function D.m {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://manpages:$q"
 }
 
 # Make
-function h.mk {
+function D.mk {
     q=$(echo "$@" | perl -pe 's/ /%20/g')
     open "dash://make:$q"
 }
