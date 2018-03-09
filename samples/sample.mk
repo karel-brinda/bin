@@ -4,6 +4,8 @@ SHELL=/usr/bin/env bash -eo pipefail
 
 .SECONDARY:
 
+.SUFFIXES:
+
 all:
 
 help: ## Print help message
