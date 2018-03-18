@@ -21,7 +21,7 @@ main() {
 		usage
 		exit 1
 	fi
-	samtools view "${ARGS[0]}" | less -R
+	samtools view "${ARGS[0]}" | less -S
 }
 
 main
