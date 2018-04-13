@@ -7,20 +7,8 @@ set -f
 set -e
 set -o pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
 
-if [[ $NARGS == 0 ]]; then
-	grep '^>'
-	exit 0
-fi
+for x in "$@"; do
+	grep '^>' "$x"
+done
 
-if [[ $NARGS == 1 ]]; then
-	grep '^>' "${ARGS[0]}"
-	exit 0
-fi
-
-echo "usage: $PROGNAME [seqs.fa]"
-exit 1
