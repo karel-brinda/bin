@@ -155,6 +155,8 @@ done
 
 alias sa='source activate'
 alias sd='source deactivate'
+alias si='conda install'
+alias ss='conda search'
 alias sl='conda info --envs'
 
 alias piu='pip install --upgrade'
