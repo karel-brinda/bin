@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+case "$#" in
+    1)
+        ifile="$1"
+        pandoc -s "$ifile" -t markdown --wrap=none -o -
+        ;;
+    2)
+        ifile="$1"
+        ofile="$2"
+        pandoc -s "$ifile" -t markdown --wrap=none -o "$ofile"
+        ;;
+    *)
+        s=`basename $0`
+        echo "convert docx to txt"
+        echo "usage: $s file.docx [file.txt]"
+        exit 1
+        ;;
+esac
