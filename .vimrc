@@ -122,7 +122,7 @@ Plugin 'sk1418/blockit'
 "   cd ~/.vim/bundle/YouCompleteMe
 "   ./install.py --clang-completer --system-libclang #--system-boost
 if v:version > 740
-	Plugin 'Valloric/YouCompleteMe'
+	"Plugin 'Valloric/YouCompleteMe'
 endif
 
 """"""""""""""""""
