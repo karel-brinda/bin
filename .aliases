@@ -287,6 +287,7 @@ alias mCj='make -j -C'
 _dotcmd mCj
 
 alias mcl='make clean'
+alias mcll='make cleanall'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
 alias smj='snakemake -p --cores 4242'
