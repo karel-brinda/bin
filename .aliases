@@ -100,7 +100,7 @@ alias calm='gcalcli calm -w 15 --monday'
 alias calw='gcalcli calw -w 15 --monday'
 alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tomorrow" "+%Y-%m-%d"`'
 
-cal(){
+function cal {
 	x=$(echo "$@" | perl -pe 's/ /%20/g')
 	if [[ "$x" == "" ]]; then
 		open "https://calendar.google.com/calendar/render#main_7"
@@ -109,7 +109,7 @@ cal(){
 	fi
 }
 
-con(){
+function con {
 	x=$(echo "$@" | perl -pe 's/ /%20/g')
 	if [[ "$x" == "" ]]; then
 		open "https://contacts.google.com"
