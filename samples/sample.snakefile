@@ -1,5 +1,5 @@
 rule all:
 	input:
 	output:
-	run:
+	shell:
 		print("hello")
