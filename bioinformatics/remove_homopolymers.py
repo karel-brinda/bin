@@ -73,10 +73,10 @@ def remove_homopolymers_from_file(infile, ofile):
             pseudoname=name
         else:
             pseudoname="{} {}".format(name, comment)
-        if len(qual)==0:
-            ofile.write(">{}\n{}\n".format(pseudoname, seq_wo_hpolys))
-        else:
+        if qual:
             ofile.write("@{}\n{}\n+{}\n{}\n".format(pseudoname, seq_wo_hpolys, "", quals_wo_hpolys))
+        else:
+            ofile.write(">{}\n{}\n".format(pseudoname, seq_wo_hpolys))
 
 
 def main():
