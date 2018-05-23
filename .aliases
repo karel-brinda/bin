@@ -90,17 +90,6 @@ alias cl='cl1'
 alias ct='cd /tmp'
 alias ctt='t=~`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 
-# open in a tmp dir
-function ott {
-    (
-    p=$(pwd)
-    t=$(date +%Y%m%d%H%M%S)
-    mkdir "/tmp/$t"
-    cd "/tmp/$t"
-    cp "$p/$1" .
-    open "$1"
-    )
-}
 
 ############
 # CALENDAR #
@@ -234,7 +223,19 @@ done
 alias ol='ol1'
 
 alias a='open -a'
+alias op='open -a Preview'
 
+# open in a tmp dir
+function ott {
+    (
+    p=$(pwd)
+    t=$(date +%Y%m%d%H%M%S)
+    mkdir "/tmp/$t"
+    cd "/tmp/$t"
+    cp "$p/$1" .
+    open "$1"
+    )
+}
 
 ###############
 # FIND & GREP #
