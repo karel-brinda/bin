@@ -270,6 +270,11 @@ alias r='echo "$?" "(${PIPESTATUS[*]})"'
 alias cpa='cp -av'
 alias t='touch'
 alias lns='ln -s'
+function lnsa {
+    for x in $@; do
+        ln -s "$x"
+    done;
+}
 alias dfh='df -h'
 alias dush='du -sh'
 alias dh='du -sh'
