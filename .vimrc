@@ -138,7 +138,7 @@ Plugin 'flazz/vim-colorschemes'
 """""""""""""""
 " Vim-Snakemake
 """""""""""""""
-Plugin 'ibab/vim-snakemake'
+Plugin 'karel-brinda/vim-snakemake'
 
 
 """""""""""
