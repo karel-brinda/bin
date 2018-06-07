@@ -5,7 +5,9 @@ set -o verbose
 
 ./_install_miniconda
 
+
 # programming & plotting
+conda install -y ipython
 conda install -y julia
 conda install -y r
 conda install -y r-ggplot2
@@ -86,16 +88,16 @@ conda install -y edlib
 conda install -y miniasm
 
 # variant calling
-conda install -y freebayes
+#conda install -y freebayes
 #conda install -y gatk-framework
 #conda install -y somatic-sniper
-conda install -y varscan
+#conda install -y varscan
 
 # read correction
 #conda install -y bfc
 
 # metagenomics
-conda install -y gb_taxonomy_tools
+#conda install -y gb_taxonomy_tools
 conda install -y kraken-all
 conda install -y kallisto
 conda install -y centrifuge
