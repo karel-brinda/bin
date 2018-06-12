@@ -48,8 +48,8 @@ def main():
     parser = argparse.ArgumentParser(description="Clean")
 
     parser.add_argument('sam',
-        metavar='str',
-        help='assignments.sam',
+        metavar='file.sam',
+        help="SAM file (to use BAM, use samtools and '-')",
         type=argparse.FileType('r')
     )
 
