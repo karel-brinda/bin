@@ -26,8 +26,20 @@ def mask_mismatches(seq, bit_mask):
 
 
 def clean_sam_line(l):
+    assert len(l)>0
+
+    # SAM header
+    if l[0]=="@":
+        return l
+
     parts=l.split("\t")
     seq,cigar=parts[9],parts[5]
+
+    # unaligned / info unavailable
+    if seq in ("", "*") or cigar in ("", "*"):
+        return line
+
+    # aligned
     bm=cigar_to_bitmask(cigar)
     newseq=mask_mismatches(seq, bm)
     parts[9]=newseq
@@ -38,10 +50,8 @@ def process_sam(sam):
     for l in sam:
         if len(l)==0:
             continue
-        elif l[0]=="@":
-            print(l,end="")
-        elif l.find("ii:i:1\t")!=-1:
-            print(clean_sam_line(l),end="")
+        else:
+            print(clean_sam_line(l), end="")
 
 
 def main():
