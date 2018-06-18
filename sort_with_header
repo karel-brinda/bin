@@ -1,10 +1,4 @@
 #! /usr/bin/env bash
 
-if [ $# -ne 1 ]; then
-	s=`basename $0`
-	echo "usage: $s file"
-	exit 1
-fi
-
-(head -n 1 $1 && tail -n +2 $1 | sort)
+(read -r; printf "%s\n" "$REPLY"; sort $@)
 
