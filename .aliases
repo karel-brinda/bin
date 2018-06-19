@@ -298,6 +298,10 @@ alias mj='make V=1 -j'
 alias mt='make V=1 test'
 alias mC='make -C'
 alias mb='make -B'
+alias mjb='make -B -j'
+alias mbj='make -B -j'
+alias mjB='make -B -j'
+alias mBj='make -B -j'
 _dotcmd mC
 
 alias mjC='make -j -C'
