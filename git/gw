@@ -23,7 +23,7 @@ EOM
 
 debug=0
 
-while getopts "bchdatipD" opt; do
+while getopts "bschdatipD" opt; do
 	case $opt in
 	i)
 		what=issues
@@ -45,6 +45,9 @@ while getopts "bchdatipD" opt; do
 		;;
 	a)
 		what=author
+		;;
+	s)
+		what=settings
 		;;
 	h)
 		usage
@@ -103,6 +106,9 @@ case "$what" in
 		;;
 	issues)
 		open "$http/issues"
+		;;
+	settings)
+		open "$http/settings"
 		;;
 	branch)
 		open "$http/tree/$branch/$rel"
