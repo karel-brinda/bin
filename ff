@@ -1,14 +1,19 @@
 #! /usr/bin/env bash
 
 
+fff(){
+    find "$1" -type f | grep -v "\.git/" | grep -v "\.snakemake"
+}
+
+
 if [[ $# -eq 0 ]]; then
-	find . -type f
-	exit 0
+    fff .
+    exit 0
 fi
 
 if [[ $# -eq 1 ]]; then
-	find $1 -type f
-	exit 0
+    fff $1
+    exit 0
 fi
 
 s=`basename $0`
