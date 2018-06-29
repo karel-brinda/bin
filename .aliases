@@ -374,6 +374,7 @@ alias ch='open -a "Google Chrome"'
 alias excel="open -a 'Microsoft Excel'"
 alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
+alias hist='history'
 alias cx='chmod +x'
 alias fv='fg v || fg vim'
 alias hg='history | grep'
