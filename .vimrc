@@ -317,6 +317,10 @@ augroup python_files
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
 
+augroup sh_files
+    set noexpandtab
+augroup END
+
 augroup markdown_files
 	autocmd!
 	autocmd FileType markdown nnoremap <leader>1 0i#<space><esc>
