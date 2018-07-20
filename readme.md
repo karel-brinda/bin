@@ -28,7 +28,10 @@
 
 ## Apps
 
+* [Google Chrome](https://www.google.com/chrome/)
+* [Git](https://git-scm.com/download/mac)
 * [MikTex](http://www.tug.org/mactex/)
 * [Sublime text](https://www.sublimetext.com/)
 * [Mendeley](https://www.mendeley.com/download-mendeley-desktop/mac/)
 * [Dropbox](https://www.dropbox.com/downloading)
+* [Slack](https://slack.com/downloads/osx)
