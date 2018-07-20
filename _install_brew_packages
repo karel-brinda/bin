@@ -2,18 +2,18 @@
 
 set -o verbose
 
-# repository for scientifical software
-brew tap homebrew/science
-
-# git
-brew install git
-brew install git-lfs && git lfs install
-brew install git-extras
-brew install git-review
-brew install git-svn-abandon
-brew install git-fixup
-brew install git-open
-#brew install hub
+## repository for scientifical software
+#brew tap homebrew/science
+#
+## git
+#brew install git
+#brew install git-lfs && git lfs install
+#brew install git-extras
+#brew install git-review
+#brew install git-svn-abandon
+#brew install git-fixup
+#brew install git-open
+##brew install hub
 
 
 # editors
@@ -49,9 +49,9 @@ brew install miller
 brew install exiftool
 brew install recoverjpeg
 
-# bash completion
-brew tap homebrew/completions
-brew install bash-completion
+## bash completion
+#brew tap homebrew/completions
+#brew install bash-completion
 
 # libraries
 brew install boost
@@ -162,7 +162,7 @@ brew install ffmpeg
 # other bioinformatics tools
 #brew install kallisto
 #brew install seqan
-brew install igv
+#brew install igv
 #brew install igvtools
 
 # tools for manipulation with newick trees
