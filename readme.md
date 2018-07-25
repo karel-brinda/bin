@@ -3,6 +3,7 @@
 ## OSX-specific
 
 * Security & Privacy / General -> Require password immediately
+* Energy Saver / Power Adapter -> on Prevent computer from sleeping, off Enable Power Nap
 * Change alt setting (Terminal > Preferences > Settings > ‘Use option as meta key’)
 * Set 100% opacity (Terminal > Preferences > Profiles > Pro > Text > Background button > Opacity 100%)
 * Change Terminal font to Hack (Terminal > Preferences > Profiles > Pro > Text > Font)
