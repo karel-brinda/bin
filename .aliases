@@ -306,6 +306,7 @@ _dotcmd mCj
 
 alias mcl='make clean'
 alias mcll='make cleanall'
+alias mcla='make cleanall'
 alias mw='make view'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
