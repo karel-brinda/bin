@@ -8,6 +8,10 @@ set -o pipefail
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
+	. ~/miniconda/etc/profile.d/conda.sh
+fi
+
 for ANACONDA_ROOT in ~/miniconda ; do
 	export PATH="$PATH:$ANACONDA_ROOT/bin"
 	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
