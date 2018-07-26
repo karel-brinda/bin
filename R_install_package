@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+# downloaded from https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
+
+set -e
+set -o pipefail
+set -u
+
+pkg=${1}
+
+function help {
+  echo "Usage: $(basename $0) <package name>"
+  exit 1
+}
+
+[ -z ${pkg} ] && help
+
+REXEC=$(which R)
+
+if [ -z ${REXEC} ]; then
+  echo "R not found, please ensure R is available and try again."
+  exit 1
+fi
+
+echo "install.packages(\"${pkg}\", repos=\"https://cran.rstudio.com\")" | R --no-save
