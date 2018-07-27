@@ -156,7 +156,7 @@ done
 
 alias sa='conda activate'
 alias sd='conda deactivate'
-alias si='conda install'
+alias si='conda install -y'
 alias ss='conda search'
 alias sl='conda info --envs'
 
