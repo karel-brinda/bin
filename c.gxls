@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+open "https://docs.google.com/spreadsheets/create"
+
