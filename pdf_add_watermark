@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 3 ]; then
+	s=`basename $0`
+	echo "usage: $s <inpdf> <watermark> <outpdf>"
+	exit 1
+fi
+
+BASEDIR=$(dirname "$0")
+watermark_t="$BASEDIR/samples/watermark.ps"
+
+old="$1"
+wm_text="$2"
+new="$3"
+
+d=$(mktemp -d)
+echo "Temp directory: $d"
+
+cp "$old" "$d/old.pdf"
+cat "$watermark_t" | sed "s/_TEXT_/$wm_text/g" > "$d/watermark.ps"
+/usr/bin/env gs -q -dNOPAUSE -dSAFER -dBATCH  -sOutputFile="$d/new.pdf" -sDEVICE=pdfwrite  "$d/watermark.ps" "$d/old.pdf"
+cp "$d/new.pdf" "$new"
+
