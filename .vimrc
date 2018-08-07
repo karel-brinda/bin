@@ -140,6 +140,10 @@ Plugin 'flazz/vim-colorschemes'
 """""""""""""""
 Plugin 'karel-brinda/vim-snakemake'
 
+"""""
+" ALE
+"""""
+Plugin 'w0rp/ale'
 
 """""""""""
 " ctrlp.vim
@@ -354,4 +358,18 @@ augroup END
 nmap <silent> <F5> :set spell!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
+
+
+
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
+
+
+let g:ale_completion_enabled = 1
 
