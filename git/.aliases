@@ -57,7 +57,7 @@ alias gl='git log'
 
 alias gur='git_update_repos'
 
-alias gitignore='touch .gitignore && vim .gitignore'
+alias gitignore='touch .gitignore && ~/bin/v .gitignore'
 alias gi='gitignore'
 
 alias cgs='gcs'
