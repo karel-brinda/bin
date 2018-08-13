@@ -2,7 +2,7 @@
 
 if [ $# -ne 3 ]; then
 	s=`basename $0`
-	echo "usage: $s <inpdf> <watermark> <outpdf>"
+	echo "usage: $s <in.pdf> <watermark> <out.pdf>"
 	exit 1
 fi
 
