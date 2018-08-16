@@ -16,6 +16,9 @@ alias l='ls -Galh'
 # sorted by time
 alias ll='ls -Galhtr'
 
+# sorted by name, followed symlinks
+alias lll='ls -GalhL'
+
 # sorted by size
 alias lS='ls -GalhtSr'
 
