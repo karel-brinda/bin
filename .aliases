@@ -158,7 +158,7 @@ alias sa='conda activate'
 alias sd='conda deactivate'
 alias si='conda install -y'
 alias ss='conda search'
-alias sl='conda info --envs'
+alias se='conda info --envs'
 
 alias piu='pip install --upgrade'
 _dotcmd piu
