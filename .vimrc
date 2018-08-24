@@ -21,7 +21,9 @@ endif
 
 nnoremap Y y$
 
-colorscheme badwolf
+if !exists('g:colors_name') || g:colors_name != 'badwolf'
+	colorscheme badwolf
+endif
 
 set guifont=Hack:h11
 
