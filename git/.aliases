@@ -60,4 +60,6 @@ alias gur='git_update_repos'
 alias gitignore='touch .gitignore && ~/bin/v .gitignore'
 alias gi='gitignore'
 
+alias rme='readme'
+
 alias cgs='gcs'
