@@ -80,6 +80,7 @@ brew install ranger
 # tools for pdf
 brew install pdfgrep
 brew install svg2pdf
+brew install diff-pdf
 
 # graphical editors
 #brew cask install xquartz
