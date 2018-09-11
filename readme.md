@@ -39,3 +39,4 @@
 * [Google Drive](https://www.google.com/drive/download/)
 * [Slack](https://slack.com/downloads/osx)
 * [Office](https://www.office.com/)
+* [PDFTK](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg)
