@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+markdown_py -h > /dev/null 2> /dev/null || (echo "Run: conda install -y markdown" && exit 1)
+
+markdown_py "$@"
+

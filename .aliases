@@ -358,7 +358,6 @@ alias ggdb='sudo gdb --args'
 alias u='_update_all'
 alias pe='perl -pe'
 alias timev='/usr/bin/time -v'
-alias md2html='markdown_py'
 alias pdflatexmk='latexmk -pdf'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
 alias morning="open \
