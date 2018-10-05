@@ -132,6 +132,7 @@ mcd () {
 }
 
 alias cdm='mcd'
+alias M='mcd'
 
 
 ###############
