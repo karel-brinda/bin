@@ -6,8 +6,9 @@ set -o verbose
 #brew tap homebrew/science
 #
 ## git
-#brew install git
-#brew install git-lfs && git lfs install
+brew install git
+brew install git-lfs && git lfs install
+brew install git-ftp
 #brew install git-extras
 #brew install git-review
 #brew install git-svn-abandon
