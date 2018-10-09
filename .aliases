@@ -225,6 +225,7 @@ alias ol='ol1'
 
 alias a='open -a'
 alias ww='open -a Preview'
+alias ow='open -a Preview'
 
 # open in a tmp dir
 function ott {
