@@ -6,7 +6,7 @@
 * Energy Saver / Power Adapter -> on Prevent computer from sleeping, off Enable Power Nap
 * Change alt setting (Terminal > Preferences > Settings > ‘Use option as meta key’)
 * Set 100% opacity (Terminal > Preferences > Profiles > Pro > Text > Background button > Opacity 100%)
-* Change Terminal font to Hack (Terminal > Preferences > Profiles > Pro > Text > Font)
+* Change Terminal font to [Hack](https://sourcefoundry.org/hack/#download) (Terminal > Preferences > Profiles > Pro > Text > Font)
 * Change Caps Lock to Escape (System Preferences > Keyboard > Modifier Keys)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
 * Mendeley - Preference > File Organizer > Organize my files, Rename document files
