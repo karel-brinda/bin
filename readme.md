@@ -42,3 +42,5 @@
 * [Adobe](https://www.adobe.com/creativecloud/desktop-app.html)
 * [PDFTK](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg)
 * [WKHTMLTOPDF](https://wkhtmltopdf.org/downloads.html)
+* [Rstudio](https://www.rstudio.com/products/rstudio/download/)
+* [R](https://mirrors.nic.cz/R/)
