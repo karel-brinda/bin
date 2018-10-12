@@ -11,7 +11,7 @@ readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
 #if [[ $NARGS -ne 1 ]]; then
-#	echo "usage: $PROGNAME options"
+#	>&2 echo "usage: $PROGNAME options"
 #	exit 1
 #fi
 
