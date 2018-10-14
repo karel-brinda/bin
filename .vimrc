@@ -35,7 +35,11 @@ set number
 " allow aliases
 :set shellcmdflag=-ic
 
-"map <f9> :w<CR>:! make!<CR>
+" CTRL-A comment, CTRL-B uncomment
+ source ~/bin/vcomments.vim
+map <C-a> :call Comment()<CR>
+map <C-b> :call Uncomment()<CR>
+
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
