@@ -8,6 +8,7 @@ alias gimp='open -a gimp'
 alias word='open -a "Microsoft Word"'
 alias excel='open -a "Microsoft Excel"'
 alias illustrator='open -a "Adobe Illustrator"'
+alias acrobat='open -a "Adobe Acrobat"'
 alias Rstudio='open -a "Rstudio"'
 
 # sorted by name

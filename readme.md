@@ -27,6 +27,15 @@
 * Start `vim` and run `:PluginInstall`
 * `~/.vim/bundle/YouCompleteMe/install.sh`
 
+## Machine-specific
+
+* Harvard Odyssey `.bashrc` (to fix sftp):
+  ```bash
+  if [ "$SSH_TTY" ]; then
+        . ~/bin/.bashrc
+  fi
+  ```
+
 ## Apps
 
 * [Adobe](https://www.adobe.com/creativecloud/desktop-app.html)
