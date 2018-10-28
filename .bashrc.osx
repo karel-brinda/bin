@@ -12,15 +12,15 @@ alias acrobat='open -a "Adobe Acrobat"'
 alias Rstudio='open -a "Rstudio"'
 
 # sorted by name
-alias l='ls -Galh --color=auto'
+alias l='ls -Galh'
 
 # sorted by time
-alias ll='ls -Galhtr --color=auto'
+alias ll='ls -Galhtr'
 
 # sorted by name, followed symlinks
-alias lll='ls -GalhL --color=auto'
+alias lll='ls -GalhL'
 
 # sorted by size
-alias lS='ls -GalhtSr --color=auto'
+alias lS='ls -GalhtSr'
 
 alias oepn='open'
