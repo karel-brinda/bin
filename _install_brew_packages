@@ -85,6 +85,7 @@ brew install pandoc-citeproc
 # tools for pdf
 brew install pdfgrep
 brew install svg2pdf
+brew install pdf2svg
 brew install diff-pdf
 
 # graphical editors
