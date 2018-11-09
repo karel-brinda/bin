@@ -24,3 +24,15 @@ alias lll='ls -GalhL'
 alias lS='ls -GalhtSr'
 
 alias oepn='open'
+
+alias a='open -a'
+alias ww='open -a Preview'
+alias ow='open -a Preview'
+
+alias charm='open -a /Applications/PyCharm\ CE.app'
+
+alias ch='open -a "Google Chrome"'
+alias chrome='open -a "Google Chrome"'
+
+alias excel="open -a 'Microsoft Excel'"
+
