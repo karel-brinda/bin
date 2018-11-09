@@ -25,5 +25,5 @@ export PATH=$PATH:$minid/bin
 conda update conda -y
 conda update --all -y
 
-conda install conda-build
+conda install -y conda-build
 
