@@ -270,6 +270,7 @@ alias dush='du -sh'
 alias dh='du -sh'
 alias 'dh*'='du -sh *'
 alias wcl='wc -l'
+alias wcc='wc -c'
 alias x='xargs'
 alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
