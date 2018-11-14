@@ -195,10 +195,6 @@ _dotcmd e
 alias en='subl -n'
 _dotcmd en
 
-# Charm
-alias charm='open -a /Applications/PyCharm\ CE.app'
-_dotcmd charm
-
 
 ########
 # OPEN #
@@ -222,10 +218,6 @@ do
 	alias ol$i='open "$(ls | mm -'"$i"')"'
 done
 alias ol='ol1'
-
-alias a='open -a'
-alias ww='open -a Preview'
-alias ow='open -a Preview'
 
 # open in a tmp dir
 function ott {
@@ -368,8 +360,6 @@ alias morning="open \
 		http://twitter.com\
 		https://bioinformatics.stackexchange.com\
 		"
-alias ch='open -a "Google Chrome"'
-alias excel="open -a 'Microsoft Excel'"
 alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
 alias hist='history'
