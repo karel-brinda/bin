@@ -163,6 +163,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 
+""""""""""""""
+" html5-syntax
+""""""""""""""
+Plugin 'othree/html5-syntax.vim'
+
+
 """""""""""""
 " Python-mode
 """""""""""""
