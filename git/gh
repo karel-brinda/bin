@@ -2,4 +2,13 @@
 
 set -e -o pipefail
 
-git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --date-order $@
+readonly NARGS="$#"
+
+if  [[ "$NARGS" = "0" ]]; then
+	args=
+else
+	args="--follow $@"
+fi
+
+git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --date-order $args
+
