@@ -183,6 +183,9 @@ let g:pymode_run_bind = "<C-S-e>"
 " Override view python doc key shortcut to Ctrl-Shift-d
 let g:pymode_doc_bind = "<C-S-d>"
 
+let g:pymode_options_colorcolumn = 0
+
+
 
 """""""""""""""
 " NerdCommenter
