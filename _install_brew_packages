@@ -9,21 +9,11 @@ set -o verbose
 brew install git
 brew install git-lfs && git lfs install
 brew install git-ftp
-#brew install git-extras
-#brew install git-review
-#brew install git-svn-abandon
-#brew install git-fixup
-#brew install git-open
-##brew install hub
-
 
 # editors
 brew install emacs
-#brew install vim
-brew install python
-#brew install python3
-/usr/local/bin/pip2 install neovim --upgrade
-/usr/local/bin/pip3 install neovim --upgrade
+/usr/local/bin/pip2 install neovim --upgrade --user
+/usr/local/bin/pip3 install neovim --upgrade --user
 brew install neovim/neovim/neovim
 
 # development tools
