@@ -85,16 +85,16 @@ let g:nerdtree_tabs_open_on_console_startup=2
 Plugin 'tpope/vim-fugitive'
 
 
-"if !has('nvim')
-"	""""""""""""""""""""""""""""""
-"	" Syntastic - a syntax checker
-"	""""""""""""""""""""""""""""""
-"	" - either flake8, pyflakes or pylint have to be installed
-"	Plugin 'scrooloose/syntastic'
-"	let g:syntastic_check_on_open = 1
-"else
-"	Plugin 'neomake/neomake'
-"endif
+if !has('nvim')
+	""""""""""""""""""""""""""""""
+	" Syntastic - a syntax checker
+	""""""""""""""""""""""""""""""
+	" - either flake8, pyflakes or pylint have to be installed
+	Plugin 'scrooloose/syntastic'
+	let g:syntastic_check_on_open = 1
+else
+	Plugin 'neomake/neomake'
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround - transformation of ", ', (, [, ...
@@ -163,25 +163,25 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 
-""""""""""""""
+""""""""""
 " html5-syntax
-""""""""""""""
+""""""""""
 Plugin 'othree/html5-syntax.vim'
 
 
 """""""""""""
 " Python-mode
 """""""""""""
-"Plugin 'python-mode/python-mode'
-"let g:pymode_python = 'python3'
-"" Override go-to.definition key shortcut to Ctrl-]
-"let g:pymode_rope_goto_definition_bind = "<C-]>"
+Plugin 'python-mode/python-mode'
+let g:pymode_python = 'python3'
+" Override go-to.definition key shortcut to Ctrl-]
+let g:pymode_rope_goto_definition_bind = "<C-]>"
 "
-"" Override run current python file key shortcut to Ctrl-Shift-e
-"let g:pymode_run_bind = "<C-S-e>"
+" Override run current python file key shortcut to Ctrl-Shift-e
+let g:pymode_run_bind = "<C-S-e>"
 "
-"" Override view python doc key shortcut to Ctrl-Shift-d
-"let g:pymode_doc_bind = "<C-S-d>"
+" Override view python doc key shortcut to Ctrl-Shift-d
+let g:pymode_doc_bind = "<C-S-d>"
 
 
 """""""""""""""
