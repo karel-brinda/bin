@@ -15,12 +15,12 @@ readonly NARGS="$#"
 
 for x in README.md readme.md README.rst readme.rst README.txt readme.txt README readme; do
 	if [[ -f "$x" ]]; then
-		vim  "$x"
+		v  "$x"
 		exit 0;
 	fi
 done
 
 touch readme.md
-vim readme.md
+v readme.md
 exit 0
 
