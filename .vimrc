@@ -169,6 +169,12 @@ Plugin 'mileszs/ack.vim'
 Plugin 'othree/html5-syntax.vim'
 
 
+""""""""
+" vimtex
+""""""""
+Plugin 'lervag/vimtex'
+
+
 """""""""""""
 " Python-mode
 """""""""""""
