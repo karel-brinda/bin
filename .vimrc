@@ -202,6 +202,20 @@ let g:pymode_options_colorcolumn = 0
 Plugin 'scrooloose/nerdcommenter'
 
 
+""""""""""""
+" vim-pencil
+""""""""""""
+" activate by :Pencil
+Plugin 'reedes/vim-pencil'
+
+
+""""""
+" goyo
+""""""
+" activate by :goyo
+Plugin 'junegunn/goyo.vim' " Full screen writing mode
+
+
 """"
 "if has('nvim')
 "	Plugin 'roxma/nvim-completion-manager'
