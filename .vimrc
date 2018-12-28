@@ -216,6 +216,14 @@ Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/goyo.vim' " Full screen writing mode
 
 
+
+""""""
+" goyo
+""""""
+" you can see the contents of the registers
+Plugin 'junegunn/vim-peekaboo'
+
+
 """"
 "if has('nvim')
 "	Plugin 'roxma/nvim-completion-manager'
