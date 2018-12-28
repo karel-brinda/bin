@@ -8,15 +8,15 @@ source $HOME/bin/.vim/vim-sensible/plugin/sensible.vim
 
 " source $VIMRUNTIME/mswin.vim
 if has("clipboard")
-    " CTRL-X is Cut
-    vnoremap <C-X> "+x
+	" CTRL-X is Cut
+	vnoremap <C-X> "+x
 
-    " CTRL-C is Copy
-    vnoremap <C-C> "+y
+	" CTRL-C is Copy
+	vnoremap <C-C> "+y
 
-    " CTRL-V is Paste
-    map <C-V> "+gP
-    cmap <C-V>	<C-R>+
+	" CTRL-V is Paste
+	map <C-V> "+gP
+	cmap <C-V>	<C-R>+
 endif
 
 nnoremap Y y$
@@ -36,7 +36,7 @@ set number
 :set shellcmdflag=-ic
 
 " CTRL-A comment, CTRL-B uncomment
- source ~/bin/vcomments.vim
+source ~/bin/vcomments.vim
 map <C-a> :call Comment()<CR>
 map <C-b> :call Uncomment()<CR>
 
@@ -357,7 +357,7 @@ augroup python_files
 augroup END
 
 augroup sh_files
-    set noexpandtab
+	set noexpandtab
 augroup END
 
 augroup markdown_files
@@ -388,6 +388,25 @@ augroup vim_files
 	autocmd FileType vim nnoremap <leader>1 I"<space><esc> \| VgU \| yyPv$r" \| yyjp
 	autocmd FileType vim nnoremap <leader>2 I"<space><esc> \| yyPv$r" \| yyjp
 augroup END
+
+augroup pencil
+	autocmd!
+	autocmd filetype markdown,mkd call pencil#init()
+				\ | call lexical#init()
+				\ | call litecorrect#init()
+				\ | setl spell spl=en_us fdl=4 noru nonu nornu
+				\ | setl fdo+=search
+augroup END
+" Pencil / Writing Controls {{{
+let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#textwidth = 74
+let g:pencil#joinspaces = 0
+let g:pencil#cursorwrap = 1
+let g:pencil#conceallevel = 3
+let g:pencil#concealcursor = 'c'
+let g:pencil#softDetectSample = 20
+let g:pencil#softDetectThreshold = 130
+" }}}
 
 " Spellcheck
 nmap <silent> <F5> :set spell!<CR>
