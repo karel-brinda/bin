@@ -224,6 +224,12 @@ Plugin 'junegunn/goyo.vim' " Full screen writing mode
 Plugin 'junegunn/vim-peekaboo'
 
 
+""""""""""""""
+" vim-markdown
+""""""""""""""
+Plugin 'gabrielelana/vim-markdown'
+
+
 """"
 "if has('nvim')
 "	Plugin 'roxma/nvim-completion-manager'
