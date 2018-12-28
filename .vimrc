@@ -217,9 +217,9 @@ Plugin 'junegunn/goyo.vim' " Full screen writing mode
 
 
 
-""""""
-" goyo
-""""""
+""""""""""""""
+" vim-peekaboo
+""""""""""""""
 " you can see the contents of the registers
 Plugin 'junegunn/vim-peekaboo'
 
@@ -400,7 +400,6 @@ augroup END
 augroup pencil
 	autocmd!
 	autocmd filetype markdown,mkd call pencil#init()
-				\ | call lexical#init()
 				\ | setl fdo+=search
 augroup END
 " Pencil / Writing Controls {{{
