@@ -406,8 +406,23 @@ augroup END
 augroup pencil
 	autocmd!
 	autocmd filetype markdown,mkd call pencil#init()
-				\ | setl fdo+=search
 augroup END
+
+function! s:auto_goyo()
+  if &ft == 'markdown'
+    Goyo
+  else
+    "let bufnr = bufnr('%')
+    "Goyo!
+    "execute 'b '.bufnr
+  endif
+endfunction
+
+augroup goyo_markdown
+  autocmd!
+  autocmd BufNewFile,BufRead * call s:auto_goyo()
+augroup END
+
 " Pencil / Writing Controls {{{
 let g:pencil#wrapModeDefault = 'soft'
 let g:pencil#textwidth = 74
