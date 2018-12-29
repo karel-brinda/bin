@@ -424,6 +424,8 @@ nmap <silent> <F5> :set spell!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
+" Goyo
+nmap <silent> <leader>g :Goyo<CR>
 
 
 " Put these lines at the very end of your vimrc file.
