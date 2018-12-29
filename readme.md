@@ -53,5 +53,6 @@
 * [Rstudio](https://www.rstudio.com/products/rstudio/download/)
 * [Slack](https://slack.com/downloads/osx)
 * [Sublime 3](https://www.sublimetext.com/3)
+* [Texts](http://www.texts.io/download/)
 * [WKHTMLTOPDF](https://wkhtmltopdf.org/downloads.html)
 
