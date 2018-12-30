@@ -1,16 +1,20 @@
 #! /usr/bin/env bash
 
-alias macvim='open -a MacVim '
-alias gvim=macvim
-alias inkscape='open -a inkscape'
-alias gimp='open -a gimp'
-
-alias word='open -a "Microsoft Word"'
-alias vscode='open -a "Visual Studio Code"'
-alias excel='open -a "Microsoft Excel"'
-alias illustrator='open -a "Adobe Illustrator"'
-alias acrobat='open -a "Adobe Acrobat"'
 alias Rstudio='open -a "Rstudio"'
+alias acrobat='open -a "Adobe Acrobat"'
+alias ch='open -a "Google Chrome"'
+alias charm='open -a /Applications/PyCharm\ CE.app'
+alias chrome='open -a "Google Chrome"'
+alias excel='open -a "Microsoft Excel"'
+alias gimp='open -a gimp'
+alias gvim='macvim'
+alias illustrator='open -a "Adobe Illustrator"'
+alias inkscape='open -a inkscape'
+alias macvim='open -a MacVim '
+alias ow='open -a Preview'
+alias vscode='open -a "Visual Studio Code"'
+alias word='open -a "Microsoft Word"'
+alias ww='open -a Preview'
 
 # sorted by name
 alias l='ls -Galh'
@@ -26,14 +30,6 @@ alias lS='ls -GalhtSr'
 
 alias oepn='open'
 
-alias a='open -a'
-alias ww='open -a Preview'
-alias ow='open -a Preview'
 
-alias charm='open -a /Applications/PyCharm\ CE.app'
 
-alias ch='open -a "Google Chrome"'
-alias chrome='open -a "Google Chrome"'
-
-alias excel="open -a 'Microsoft Excel'"
 
