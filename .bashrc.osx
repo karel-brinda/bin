@@ -6,6 +6,7 @@ alias inkscape='open -a inkscape'
 alias gimp='open -a gimp'
 
 alias word='open -a "Microsoft Word"'
+alias vscode='open -a "Visual Studio Code"'
 alias excel='open -a "Microsoft Excel"'
 alias illustrator='open -a "Adobe Illustrator"'
 alias acrobat='open -a "Adobe Acrobat"'
