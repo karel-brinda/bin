@@ -37,8 +37,8 @@ set number
 
 " CTRL-A comment, CTRL-B uncomment
 source ~/bin/vcomments.vim
-map <C-a> :call Comment()<CR>
-map <C-b> :call Uncomment()<CR>
+map <C-]> :call Comment()<CR>
+map <C-[> :call Uncomment()<CR>
 
 
 set nocompatible              " be iMproved, required
