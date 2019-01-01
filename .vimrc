@@ -425,18 +425,18 @@ augroup pencil
 augroup END
 
 function! s:auto_goyo()
-  if &ft == 'markdown'
-    Goyo
-  else
-    "let bufnr = bufnr('%')
-    "Goyo!
-    "execute 'b '.bufnr
-  endif
+	if &ft == 'markdown'
+		Goyo
+	else
+		"let bufnr = bufnr('%')
+		"Goyo!
+		"execute 'b '.bufnr
+	endif
 endfunction
 
 augroup goyo_markdown
-  autocmd!
-  autocmd BufNewFile,BufRead * call s:auto_goyo()
+	autocmd!
+	autocmd BufNewFile,BufRead * call s:auto_goyo()
 augroup END
 
 " Pencil / Writing Controls {{{
