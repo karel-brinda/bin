@@ -12,10 +12,15 @@ if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
 	. ~/miniconda/etc/profile.d/conda.sh
 fi
 
-for ANACONDA_ROOT in ~/miniconda ; do
-	export PATH="$PATH:$ANACONDA_ROOT/bin"
-	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
-done;
+#for ANACONDA_ROOT in ~/miniconda ; do
+#	export PATH="$PATH:$ANACONDA_ROOT/bin"
+#	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
+#done;
+
+c="~/miniconda/etc/profile.d/conda.sh"
+if [ -f "$c" ]; then
+	. "$c"
+fi
 
 
 # prepend
@@ -73,4 +78,5 @@ else
 fi;
 
 export HISTIGNORE=' *'
+
 
