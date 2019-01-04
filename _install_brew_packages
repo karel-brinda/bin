@@ -65,6 +65,7 @@ else
 	brew install gcc@5
 fi
 brew install htop
+brew install tree
 #brew install iotop
 brew install links
 brew install lynx
