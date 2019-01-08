@@ -49,7 +49,7 @@
 * [MikTex](http://www.tug.org/mactex/)
 * [Office](https://www.office.com/)
 * [PDFTK](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg)
-* [R](https://mirrors.nic.cz/R/)
+* [R](https://cran.r-project.org/bin/macosx/)
 * [Rstudio](https://www.rstudio.com/products/rstudio/download/)
 * [Slack](https://slack.com/downloads/osx)
 * [Sublime 3](https://www.sublimetext.com/3)
