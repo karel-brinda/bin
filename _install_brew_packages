@@ -28,6 +28,7 @@ brew install autoconf
 brew install automake
 brew install ccat
 brew install bat
+brew install datamash
 
 brew install rust
 brew install sbcl
