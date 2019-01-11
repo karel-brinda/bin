@@ -22,6 +22,7 @@
 * `ln -s ~/bin/.vimrc ~/.vimrc`
 * `ln -s ~/bin/.vim ~/.vim`
 * `ln -s ~/bin/.ipython/`
+* `ln -s ~/bin/.Rprofile`
 * `ln -s ~/bin/.condarc ~/.condarc`
 * `ln -s ~/bin/.condarc ~/.Rprofile`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
