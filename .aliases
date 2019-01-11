@@ -327,6 +327,13 @@ alias py3='ipython --no-confirm-exit || /usr/bin/env python3 -i -c "import re;im
 alias p3timeit='python -m timeit'
 
 
+#####
+# R #
+#####
+
+alias R="R --no-save"
+
+
 ########
 # MISC #
 ########
