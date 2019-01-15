@@ -55,6 +55,8 @@
 * [Slack](https://slack.com/downloads/osx)
 * [Sublime 3](https://www.sublimetext.com/3)
 * [Texts](http://www.texts.io/download/)
+* [VLC](https://www.videolan.org/vlc/index.html)
 * [VSCode](https://code.visualstudio.com/docs/?dv=osx)
+* XCode (app store)
 * [WKHTMLTOPDF](https://wkhtmltopdf.org/downloads.html)
 
