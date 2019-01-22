@@ -1,7 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
   - defaults
-  - r
 show_channel_urls: true
 
