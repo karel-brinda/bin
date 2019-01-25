@@ -24,6 +24,7 @@
 * `ln -s ~/bin/.ipython/`
 * `ln -s ~/bin/.Rprofile`
 * `ln -s ~/bin/.tmux.conf`
+* `ln -s ~/bin/.hushlogin`
 * `ln -s ~/bin/.condarc ~/.condarc`
 * `ln -s ~/bin/.condarc ~/.Rprofile`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
