@@ -327,6 +327,13 @@ alias py3='ipython --no-confirm-exit || /usr/bin/env python3 -i -c "import re;im
 alias p3timeit='python -m timeit'
 
 
+#####
+# R #
+#####
+
+alias R="R --no-save"
+
+
 ########
 # MISC #
 ########
@@ -370,6 +377,7 @@ alias fv='fg v || fg vim'
 alias hg='history | grep'
 alias rdm='readme'
 alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit -m "Update log"; git push)'
+alias tm='tmux attach-session || tmux'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
