@@ -230,6 +230,14 @@ Plugin 'junegunn/vim-peekaboo'
 Plugin 'gabrielelana/vim-markdown'
 
 
+""""""""""""""""""
+" vim-markdown-toc
+""""""""""""""""""
+" generating github toc:
+" :GenTocGFM
+Plugin 'mzlogin/vim-markdown-toc'
+
+
 """"
 "if has('nvim')
 "	Plugin 'roxma/nvim-completion-manager'
