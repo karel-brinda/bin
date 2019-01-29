@@ -4,11 +4,14 @@
 library(formatR)
 
 args = commandArgs(trailingOnly=TRUE)
+
 options(width = 120)
 
-## these options seem not to work:
-#options(arrow = T)
-#options(keep.blank.line = F)
+options(formatR.arrow=T)
+options(formatR.comment=T)
+options(formatR.blank=T)
+options(formatR.indent=3)
+options(formatR.brace.newline=F)
 
 tidy_source(args[1], file=args[1])
 
