@@ -1,0 +1,14 @@
+#!/usr/bin/env Rscript --vanilla
+
+#install.packages("formatR", repos = "http://cran.rstudio.com")
+library(formatR)
+
+args = commandArgs(trailingOnly=TRUE)
+options(width = 120)
+
+## these options seem not to work:
+#options(arrow = T)
+#options(keep.blank.line = F)
+
+tidy_source(args[1], file=args[1])
+
