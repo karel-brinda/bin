@@ -16,6 +16,8 @@ alias vscode='open -a "Visual Studio Code"'
 alias word='open -a "Microsoft Word"'
 alias ww='open -a Preview'
 
+alias orp='open *.Rproj'
+
 # sorted by name
 alias l='ls -Galh'
 
