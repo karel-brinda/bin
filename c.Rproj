@@ -9,4 +9,4 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
-cp $BASEDIR/samples/sample.$SUFFIX $1
+cp $BASEDIR/samples/sample.$SUFFIX $1.Rproj
