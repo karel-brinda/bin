@@ -156,6 +156,11 @@ Plugin 'w0rp/ale'
 """""""""""
 Plugin 'kien/ctrlp.vim'
 
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
 
 """"""""""
 " acck.vim
@@ -191,6 +196,14 @@ let g:pymode_doc_bind = "<C-S-d>"
 
 let g:pymode_options_colorcolumn = 0
 
+
+"""""""""""
+" gundo.vim
+"""""""""""
+Plugin 'sjl/gundo.vim'
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
 
 """""""""""""""
@@ -290,6 +303,9 @@ filetype plugin indent on    " required
 set undofile
 let mapleader = ","
 
+" toggle gundo
+nnoremap <leader>u :GundoToggle<CR>
+
 " fix regex
 " nnoremap / /\v
 " #vnoremap / /\v
@@ -320,6 +336,10 @@ vnoremap <F1> <ESC>
 
 " ; := :
 nnoremap ; :
+
+" jk is escape
+inoremap jk <esc>
+
 
 "" leader
 " strip all lines
