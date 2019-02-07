@@ -233,9 +233,18 @@ function! s:goyo_leave()
   endif
 endfunction
 
+function! s:auto_goyo()
+	if &ft == 'markdown'
+		Goyo
+	else
+		"let bufnr = bufnr('%')
+		"Goyo!
+		"execute 'b '.bufnr
+	endif
+endfunction
+
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
-
 
 
 """"""""""""""
@@ -453,20 +462,11 @@ augroup pencil
 	autocmd filetype markdown,mkd call pencil#init()
 augroup END
 
-function! s:auto_goyo()
-	if &ft == 'markdown'
-		Goyo
-	else
-		"let bufnr = bufnr('%')
-		"Goyo!
-		"execute 'b '.bufnr
-	endif
-endfunction
-
 augroup goyo_markdown
 	autocmd!
 	autocmd BufNewFile,BufRead * call s:auto_goyo()
 augroup END
+
 
 " Pencil / Writing Controls {{{
 let g:pencil#wrapModeDefault = 'soft'
