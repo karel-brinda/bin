@@ -20,7 +20,6 @@ brew install neovim/neovim/neovim
 brew install pv
 brew install gdb
 #brew install valgrind
-#brew install Caskroom/cask/netbeans-cpp
 brew install gperftools
 #brew install homebrew/x11/gv
 brew install clang-format
@@ -85,12 +84,6 @@ brew install pdf2svg
 brew install diff-pdf
 
 # graphical editors
-#brew cask install xquartz
-#brew cask install dia
-#brew cask install inkscape
-#brew cask install gimp
-#brew cask install libreoffice
-#brew install Caskroom/cask/wkhtmltopdf
 brew install imagemagick
 brew install qpdf
 brew install ghostscript
@@ -99,12 +92,6 @@ brew install ghostscript
 brew install colordiff
 #brew install latexdiff
 #brew install git-latexdiff
-
-
-# docker
-#brew install docker
-#brew install docker-machine
-#brew install docker-compose
 
 # pypy
 brew install readline --without-ncurses
@@ -120,59 +107,13 @@ brew install graphviz
 brew install gnuplot
 brew install wget
 brew install cmake
-#brew install socat
 brew install rename
 brew install ascii
 brew install parallel
 brew install http://git.io/sshpass.rb
+brew install rename
+brew install ag
 
 # video
 brew install ffmpeg
 
-# tools for bioinformatics formats
-#brew install picard-tools
-#brew install samtools
-#brew install sambamba
-#brew install bamtools
-#brew install bcftools
-#brew install vcftools
-#brew install bioawk
-#brew install fastq-tools
-
-# tools for genome assembly
-#brew install blast
-#brew install celera-assembler
-#brew install gatb
-#brew install kissplice
-
-# tools for read simulation
-#brew install dwgsim
-#brew install flux-simulator
-
-# tools for read mapping
-#brew install mrfast
-#brew install novoalign
-#brew install bowtie2
-#brew install bwa
-#brew install snap-aligner
-#brew install gmap-gsnap
-#brew install last
-
-# read counters
-#brew install jellyfish kmc
-#brew install kraken
-
-# other bioinformatics tools
-#brew install kallisto
-#brew install seqan
-#brew install igv
-#brew install igvtools
-
-# tools for manipulation with newick trees
-#brew install newick-utils
-#brew install newicktools
-
-#brew install armadillo
-#brew install mobile-shell
-
-brew install rename
