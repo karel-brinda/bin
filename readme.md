@@ -8,6 +8,7 @@
 * Set 100% opacity (Terminal > Preferences > Profiles > Pro > Text > Background button > Opacity 100%)
 * Change Terminal font to [Hack](https://sourcefoundry.org/hack/#download) (Terminal > Preferences > Profiles > Pro > Text > Font)
 * Change Caps Lock to Escape (System Preferences > Keyboard > Modifier Keys)
+* Three fingers dragging (Accessibility / Mouse and Trackpad / Trackpad / Options / Enable dragging - three fingers)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
 * Mendeley - Preference > File Organizer > Organize my files, Rename document files
 * `defaults write com.apple.desktopservices DSDontWriteNetworkStores -boolean true` - don't create .\_DS\_Store in mounted disks
