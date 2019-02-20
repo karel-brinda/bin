@@ -11,7 +11,7 @@ if (isRStudio) {
       height = 5)
 }
 
-df <- read.delim("data.txt", header = TRUE)
+df <- read.delim("data.txt", header = TRUE, stringsAsFactors = F)
 
 
 
