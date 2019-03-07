@@ -4,4 +4,4 @@ set -e
 set -o pipefail
 set -u
 
-md5sum $(find . -type f) > md5sum.txt
+find . -type f | sort | xargs md5sum > md5sum.txt
