@@ -345,7 +345,7 @@ G () {
 alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
 alias brc=bashrc
 alias bin='bashrc'
-alias c='cat'
+alias c='C_'
 alias C='C_'
 alias gzk='gzip -k'
 alias les='less -S'
