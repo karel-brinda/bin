@@ -4,4 +4,4 @@ set -e
 set -o pipefail
 set -u
 
-md5sum *.tar > md5sum.txt
+md5sum $(find . -type f) > md5sum.txt
