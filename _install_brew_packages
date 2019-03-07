@@ -11,7 +11,7 @@ brew install git-lfs && git lfs install
 brew install git-ftp
 
 # editors
-brew install emacs
+#brew install emacs
 /usr/local/bin/pip2 install neovim --upgrade --user
 /usr/local/bin/pip3 install neovim --upgrade --user
 brew install neovim/neovim/neovim
@@ -30,10 +30,10 @@ brew install bat
 brew install datamash
 brew install tmux
 
-brew install rust
-brew install sbcl
-brew install clojure
-brew install clozure-cl
+#brew install rust
+#brew install sbcl
+#brew install clojure
+#brew install clozure-cl
 
 # misc tools
 brew install gnu-time
@@ -70,8 +70,8 @@ brew install tree
 #brew install iotop
 brew install links
 brew install lynx
-brew install mc
-brew install ranger
+#brew install mc
+#brew install ranger
 
 # document conversion
 brew install pandoc
@@ -94,9 +94,9 @@ brew install colordiff
 #brew install git-latexdiff
 
 # pypy
-brew install readline --without-ncurses
-brew install pypy
-brew install pypy3
+#brew install readline --without-ncurses
+#brew install pypy
+#brew install pypy3
 
 # pdf library for gnuplot
 brew install pdflib-lite
@@ -110,7 +110,7 @@ brew install cmake
 brew install rename
 brew install ascii
 brew install parallel
-brew install http://git.io/sshpass.rb
+#brew install http://git.io/sshpass.rb
 brew install rename
 brew install ag
 
