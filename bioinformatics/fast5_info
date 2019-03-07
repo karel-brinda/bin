@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -ne 1 ]]; then
+	echo "usage: $PROGNAME onp_dir"
+	exit 1
+fi
+
+f=$(find "$1" -type f -name '*.fast5' | head -n1)
+
+date=$(h5dump "$f" | grep '(0): "20' | head -n1)
+
+echo "Date:       $date"
+
