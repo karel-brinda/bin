@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+if [[ "$@" == *:* ]]; then
+	newargs=$(echo "$@" | perl -pe 's/:/ /g')
+	"$0" $newargs
+fi
+
+case "$#" in
+	0)
+		rs -c'	' -C'	' -T
+		;;
+	1)
+		file="$1"
+		rs -c'	' -C'	' -T "$1"
+		cmd=""
+		;;
+	*)
+		s=`basename $0`
+		echo "transpose a tsv"
+		echo "usage: $s [file]"
+		exit 1
+		;;
+esac
+
