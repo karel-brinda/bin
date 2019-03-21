@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 alias Rstudio='open -a "Rstudio"'
+alias Rproj='open -a "Rstudio" *.Rproj'
 alias acrobat='open -a "Adobe Acrobat"'
 alias ch='open -a "Google Chrome"'
 alias charm='open -a /Applications/PyCharm\ CE.app'
