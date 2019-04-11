@@ -32,11 +32,12 @@ conda install -y htslib
 # data manipulation
 conda install -y bcftools
 #conda install -y bedtools
-conda install -y picard
+#conda install -y picard
 conda install -y sambamba
 conda install -y samtools
 conda install -y seqtk
 conda install -y vcftools
+conda install -y entrez-direct
 
 # auxiliary tools
 conda install -y snakemake
@@ -98,13 +99,13 @@ conda install -y miniasm
 
 # metagenomics
 #conda install -y gb_taxonomy_tools
-conda install -y kraken-all
-conda install -y kallisto
-conda install -y centrifuge
+#conda install -y kraken-all
+#conda install -y kallisto
+#conda install -y centrifuge
 
 # k-mer counting
 conda install -y jellyfish
-conda install -y khmer
+#conda install -y khmer
 
 # read simulation
 conda install -y rnftools
