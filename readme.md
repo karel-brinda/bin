@@ -28,7 +28,7 @@
 * `ln -s ~/bin/.tmux.conf`
 * `ln -s ~/bin/.hushlogin`
 * `ln -s ~/bin/.condarc ~/.condarc`
-* `ln -s ~/bin/.condarc ~/.Rprofile`
+* `ln -s ~/bin/.Rprofile ~/.Rprofile`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
 * `~/.vim/bundle/YouCompleteMe/install.sh`
