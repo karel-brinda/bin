@@ -33,6 +33,8 @@
 * Start `vim` and run `:PluginInstall`
 * `~/.vim/bundle/YouCompleteMe/install.sh`
 
+Rapid installation of useful stuff using brew cask: https://gist.github.com/somebox/6b00f47451956c1af6b4
+
 ## Machine-specific
 
 * Harvard Odyssey `.bashrc` (to fix sftp):
