@@ -6,7 +6,8 @@
 * Energy Saver / Power Adapter -> on Prevent computer from sleeping, off Enable Power Nap
 * Change alt setting (Terminal > Preferences > Settings > ‘Use option as meta key’)
 * Set 100% opacity (Terminal > Preferences > Profiles > Pro > Text > Background button > Opacity 100%)
-* Change Terminal font to [Hack](https://sourcefoundry.org/hack/#download) (Terminal > Preferences > Profiles > Pro > Text > Font)
+* Install fonts using _install_brew_fonts
+* Change Terminal font to Hack (Terminal > Preferences > Profiles > Pro > Text > Font)
 * Change Caps Lock to Escape (System Preferences > Keyboard > Modifier Keys)
 * Three fingers dragging (Accessibility / Mouse and Trackpad / Trackpad / Options / Enable dragging - three fingers)
 * Switch off animations: System Preferences > Accessibility > Display > Reduce Motion
@@ -27,11 +28,12 @@
 * `ln -s ~/bin/.Rprofile`
 * `ln -s ~/bin/.tmux.conf`
 * `ln -s ~/bin/.hushlogin`
-* `ln -s ~/bin/.condarc ~/.condarc`
-* `ln -s ~/bin/.condarc ~/.Rprofile`
+* `ln -s ~/bin/.condarc`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
 * `~/.vim/bundle/YouCompleteMe/install.sh`
+
+Rapid installation of useful stuff using brew cask: https://gist.github.com/somebox/6b00f47451956c1af6b4
 
 ## Machine-specific
 
