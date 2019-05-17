@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+squeue -u $USER | grep short | perl -pe 's/^\s+//g' | cut -f 1 -d ' ' | xargs scancel
+
