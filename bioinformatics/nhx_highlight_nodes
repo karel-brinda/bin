@@ -88,7 +88,7 @@ def main():
         dest='size',
         type=int,
         default=20,
-        help='size of highlighted nodes',
+        help='size of highlighted nodes [20]',
     )
 
     parser.add_argument(
@@ -96,7 +96,7 @@ def main():
         dest='scale',
         type=float,
         default=0.1,
-        help='branch scale factor',
+        help='branch scale factor [0.1]',
     )
 
     parser.add_argument(
