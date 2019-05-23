@@ -4,77 +4,89 @@ import argparse
 import sys
 import os
 
-def bwt_matrix(seq):
-	seq=list(seq) #+["$"]
-	shifts=[seq[i:] + seq[:i] for i in range(len(seq)) ]
-	res=["".join(x) for x in sorted(shifts)]
-	return res
 
-# get count of c in prefix of s of lenght i 
-def rank(s,q):
-	return s.count(q)
+def bwt_matrix(seq):
+    seq = list(seq)  #+["$"]
+    shifts = [seq[i:] + seq[:i] for i in range(len(seq))]
+    res = ["".join(x) for x in sorted(shifts)]
+    return res
+
+
+# get count of c in prefix of s of lenght i
+def rank(s, q):
+    return s.count(q)
+
 
 # locate i-th occurrence of c in s
-def select(s,q,i):
-	p=0
-	o=0
-	for p in range(len(s)):
-		if (s[p]==q):
-			o+=1
-			if o==i:
-				return p
-	raise ValueError([s,q,i])
+def select(s, q, i):
+    p = 0
+    o = 0
+    for p in range(len(s)):
+        if (s[p] == q):
+            o += 1
+            if o == i:
+                return p
+    raise ValueError([s, q, i])
 
-def lf(L,F,i):
-	q=seq[i]
-	x=rank(L[:i+1],q)
-	j=select(F,q,x)
-	assert(F[j]==L[i])
-	return j
+
+def lf(L, F, i):
+    q = seq[i]
+    x = rank(L[:i + 1], q)
+    j = select(F, q, x)
+    assert (F[j] == L[i])
+    return j
+
 
 def debwt(seq):
-	seq_sorted="".join(sorted(list(seq)))
-	i=0
-	s=[]
-	for _ in range(len(seq)):
-		s.insert(0,seq_sorted[i])
-		#print(i,seq_sorted[i],s)
-		i=lf(F=seq_sorted,L=seq,i=i)
-	return "".join(s)
+    seq_sorted = "".join(sorted(list(seq)))
+    i = 0
+    s = []
+    for _ in range(len(seq)):
+        s.insert(0, seq_sorted[i])
+        #print(i,seq_sorted[i],s)
+        i = lf(F=seq_sorted, L=seq, i=i)
+    return "".join(s)
+
 
 def debwt2(seq):
-	matrix=[[] for x in seq]
-	for _ in range(len(seq)):
-		for i in range(len(seq)):
-			matrix[i].insert(0,seq[i])
-		matrix=sorted(matrix)
-	#for x in matrix:
-	#	print("".join(x))
-	#print()
-	x=matrix[0]
-	return "".join(x[1:]+[x[0]])
+    matrix = [[] for x in seq]
+    for _ in range(len(seq)):
+        for i in range(len(seq)):
+            matrix[i].insert(0, seq[i])
+        matrix = sorted(matrix)
+    #for x in matrix:
+    #	print("".join(x))
+    #print()
+    x = matrix[0]
+    return "".join(x[1:] + [x[0]])
+
 
 parser = argparse.ArgumentParser(prog='myprogram')
-parser.add_argument("-m", help="print the entire BWT matrix", action="store_true", dest="matrix")
-parser.add_argument("-d", help="inverse transformation", action="store_true", dest="debwt")
+parser.add_argument(
+    "-m",
+    help="print the entire BWT matrix",
+    action="store_true",
+    dest="matrix")
+parser.add_argument(
+    "-d", help="inverse transformation", action="store_true", dest="debwt")
 parser.add_argument("string", nargs="*")
 args = parser.parse_args()
 
-if len(args.string)==0:
-	seq = "".join([x.strip() for x in sys.stdin])
+if len(args.string) == 0:
+    seq = "".join([x.strip() for x in sys.stdin])
 else:
-	seq="".join(args.string)
+    seq = "".join(args.string)
 
 if args.debwt:
-	seq=debwt(seq)
+    seq = debwt(seq)
 
-bwt_m=bwt_matrix(seq)
+bwt_m = bwt_matrix(seq)
 
 if args.matrix:
-	for row in bwt_matrix(seq):
-		print(row)
+    for row in bwt_matrix(seq):
+        print(row)
 else:
-	if args.debwt:
-		print (seq)
-	else:
-		print ("".join([x[-1] for x in bwt_m]))
+    if args.debwt:
+        print(seq)
+    else:
+        print("".join([x[-1] for x in bwt_m]))

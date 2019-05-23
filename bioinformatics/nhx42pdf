@@ -7,21 +7,19 @@ from ete3 import *
 
 
 def tree_to_pdf(nhx, pdf):
-	tree=Tree(nhx, format=1)
-	tree.render(pdf)
+    tree = Tree(nhx, format=1)
+    tree.render(pdf)
 
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description="")
+    parser = argparse.ArgumentParser(description="")
 
-	parser.add_argument('tree',
-			metavar='<tree.nhx>',
-		)
+    parser.add_argument(
+        'tree',
+        metavar='<tree.nhx>',
+    )
 
-	parser.add_argument('plot',
-			metavar='<plot.pdf>'
-		)
+    parser.add_argument('plot', metavar='<plot.pdf>')
 
-	args = parser.parse_args()
-	tree_to_pdf(args.tree, args.plot)
-
+    args = parser.parse_args()
+    tree_to_pdf(args.tree, args.plot)
