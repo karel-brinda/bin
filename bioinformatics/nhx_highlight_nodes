@@ -49,7 +49,7 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
 
     for nnode in nnodes:
         nstyle = ete3.NodeStyle()
-        nstyle["fgcolor"]="red"
+        nstyle["fgcolor"]=nnodes[nnode]
         nstyle["size"] = 20
         nnode.set_style(nstyle)
 
