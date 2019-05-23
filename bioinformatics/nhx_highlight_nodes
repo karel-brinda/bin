@@ -19,15 +19,19 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
         format=1
     )
 
-    nnodes=[]
+    nnodes={}
 
-    for nname in nnames:
+    for nnamecol in nnames:
+        if ":" in nnames:
+            ncol,nname=nnamecol.split(":")
+        else:
+            ncol,nname="black",nnamecol
         try:
             node= tree & nname
         except ete3.coretype.tree.TreeError:
             print("Error: node '{}' not found".format(nname))
             sys.exit(1)
-        nnodes.append(node)
+        nnodes[node]=ncol
 
     ts = ete3.TreeStyle()
     ts.show_leaf_name = False
@@ -40,7 +44,7 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
 
     for n in tree.traverse():
         nstyle = ete3.NodeStyle()
-        nstyle["fgcolor"]="blue"
+        nstyle["fgcolor"]="black"
         n.set_style(nstyle)
 
     for nnode in nnodes:
