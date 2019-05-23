@@ -25,7 +25,7 @@ def print_distances(newick_in_fn, nname):
             dist=0.0
         else:
             dist=tree.get_distance(n.name, nname)
-        l.append([n.name, dist])
+        l.append([n.name, int(round(dist))])
     l.sort(key=lambda x: x[1])
 
     print("node", "dist to {}".format(nname), sep="\t")
