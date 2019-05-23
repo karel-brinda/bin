@@ -22,7 +22,7 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
     nnodes={}
 
     for nnamecol in nnames:
-        if ":" in nnames:
+        if ":" in nnamecol:
             ncol,nname=nnamecol.split(":")
         else:
             ncol,nname="black",nnamecol
