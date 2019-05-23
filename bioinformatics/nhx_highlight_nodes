@@ -13,7 +13,7 @@ import os
 import sys
 
 
-def plot_tree(newick_in_fn, out_plot_fn, nnames):
+def plot_tree(newick_in_fn, out_plot_fn, nnames, lca, size, scale):
     tree = ete3.Tree(newick_in_fn, format=1)
 
     nnodes = {}
@@ -30,7 +30,11 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
             sys.exit(1)
         nnodes[node] = ncol
 
+    if lca:
+        tree = tree.get_common_ancestor(*nnodes.keys())
+
     ts = ete3.TreeStyle()
+    ts.scale = scale
     ts.show_leaf_name = False
 
     def my_layout(node):
@@ -47,7 +51,7 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
     for nnode in nnodes:
         nstyle = ete3.NodeStyle()
         nstyle["fgcolor"] = nnodes[nnode]
-        nstyle["size"] = 20
+        nstyle["size"] = size
         nnode.set_style(nstyle)
 
     ts.layout_fn = my_layout
@@ -79,12 +83,38 @@ def main():
         nargs='*',
     )
 
+    parser.add_argument(
+        '--size',
+        dest='size',
+        type=int,
+        default=20,
+        help='size of highlighted nodes',
+    )
+
+    parser.add_argument(
+        '--scale',
+        dest='scale',
+        type=float,
+        default=0.1,
+        help='branch scale factor',
+    )
+
+    parser.add_argument(
+        '--lca',
+        dest='lca',
+        action='store_true',
+        help='plots smallest complete subtree containg highlighted nodes',
+    )
+
     args = parser.parse_args()
 
     plot_tree(
         newick_in_fn=args.newick_in_fn,
         out_plot_fn=args.out_plot_fn,
         nnames=args.node_name,
+        lca=args.lca,
+        scale=args.scale,
+        size=args.size,
     )
 
 
