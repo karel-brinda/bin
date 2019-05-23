@@ -48,12 +48,10 @@ def plot_tree(newick_in_fn, out_plot_fn, nnames):
         n.set_style(nstyle)
 
     for nnode in nnodes:
-        for n in nnode.traverse():
-            nstyle = ete3.NodeStyle()
-            nstyle["fgcolor"]="red"
-            if n==nnode:
-                nstyle["size"] = 20
-            n.set_style(nstyle)
+        nstyle = ete3.NodeStyle()
+        nstyle["fgcolor"]="red"
+        nstyle["size"] = 20
+        nnode.set_style(nstyle)
 
     ts.layout_fn = my_layout
     tree.render(out_plot_fn, tree_style=ts)
