@@ -4,70 +4,70 @@
 
 import sys
 
-if len(sys.argv)!=2:
-	print("Illegal number of arguments",file=sys.stderr)
-	sys.exit(1)
+if len(sys.argv) != 2:
+    print("Illegal number of arguments", file=sys.stderr)
+    sys.exit(1)
 
-chain_fn=sys.argv[1]
+chain_fn = sys.argv[1]
 
 with open(chain_fn) as f:
 
-	for line in f:
+    for line in f:
 
-		line=line.strip()
+        line = line.strip()
 
-		if line=="":
-			continue
+        if line == "":
+            continue
 
-		parts=line.split(" ")
+        parts = line.split(" ")
 
-		if len(parts)==13:
-			print(line)
-			[
-				_,
-				score,
-				tName,
-				tSize,
-				tStrand,
-				tStart,
-				tEnd,
-				qName,
-				qSize,
-				qStrand,
-				qStart,
-				qEnd,
-				iid,
-			]=parts
+        if len(parts) == 13:
+            print(line)
+            [
+                _,
+                score,
+                tName,
+                tSize,
+                tStrand,
+                tStart,
+                tEnd,
+                qName,
+                qSize,
+                qStrand,
+                qStart,
+                qEnd,
+                iid,
+            ] = parts
 
-			score =int (score)
-			tSize = int(tSize)
-			tStart = int(tStart)
-			tEnd = int(tEnd)
-			qSize = int(qSize)
-			qStart = int(qStart)
-			qEnd = int(qEnd)
-			iid = int(iid)
+            score = int(score)
+            tSize = int(tSize)
+            tStart = int(tStart)
+            tEnd = int(tEnd)
+            qSize = int(qSize)
+            qStart = int(qStart)
+            qEnd = int(qEnd)
+            iid = int(iid)
 
-			assert tStrand in "+-"
-			assert qStrand in "+-"
+            assert tStrand in "+-"
+            assert qStrand in "+-"
 
-			counter_l=tStart+tSize-tEnd
-			counter_r=qStart+qSize-qEnd
+            counter_l = tStart + tSize - tEnd
+            counter_r = qStart + qSize - qEnd
 
-		elif len(parts)==3:
-			#print(parts)
-			parts=list(map(int,parts))
-			counter_l+=parts[0]+parts[1]
-			counter_r+=parts[0]+parts[2]
+        elif len(parts) == 3:
+            #print(parts)
+            parts = list(map(int, parts))
+            counter_l += parts[0] + parts[1]
+            counter_r += parts[0] + parts[2]
 
-		elif len(parts)==1:
-			parts=list(map(int,parts))
-			counter_l+=parts[0]
-			counter_r+=parts[0]
-			assert counter_l==tSize, "{} {}".format(counter_l, tSize)
-			assert counter_r==qSize, "{} {}".format(counter_r, qSize)
+        elif len(parts) == 1:
+            parts = list(map(int, parts))
+            counter_l += parts[0]
+            counter_r += parts[0]
+            assert counter_l == tSize, "{} {}".format(counter_l, tSize)
+            assert counter_r == qSize, "{} {}".format(counter_r, qSize)
 
-		else:
-			assert 1==2
+        else:
+            assert 1 == 2
 
-print ("ok")
+print("ok")
