@@ -73,17 +73,16 @@ def cell2text(cell, ss_list):
         return v_elt.text
 
 
-def sheet_report():
-    global sheet_xs
+def sheet_report(sheet_xs):
     print("Sheets in this file:", file=sys.stderr)
     for i, x in enumerate(sheet_xs):
         print("%3d: %s" % (i + 1, x.get('name')), file=sys.stderr)
     sys.exit(1)
 
 
-def sheet_error(msg):
+def sheet_error(msg, sheet_xs):
     print(msg, file=sys.stderr)
-    sheet_report()
+    sheet_report(sheet_xs)
 
 
 def warning(s):
@@ -146,9 +145,9 @@ def main():
         name = sheet_num
         inds = [i for i, x in enumerate(sheet_xs) if x.get('name') == name]
         if not inds:
-            sheet_error("Can't find sheet with name '%s'" % name)
+            sheet_error("Can't find sheet with name '%s'" % name, sheet_xs)
         if len(inds) > 1:
-            sheet_error("Multiple sheets with name '%s'" % name)
+            sheet_error("Multiple sheets with name '%s'" % name, sheet_xs)
         sheet_num = inds[0] + 1
 
     ss_xml = z.read("xl/sharedStrings.xml")
