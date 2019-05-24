@@ -100,6 +100,13 @@ def make_cells(max_col):
     return [None] * (max_col + 1)
 
 
+def sheet_count(z):
+    sheet_filenames = [
+        f for f in z.namelist() if re.search("^xl/worksheets/sheet.*xml$", f)
+    ]
+    return len(sheet_filenames)
+
+
 def print_sheet(z, sheet_num):
     sheet_filenames = [
         f for f in z.namelist() if re.search("^xl/worksheets/sheet.*xml$", f)
@@ -160,13 +167,15 @@ def main():
     parser.add_argument(
         'sheet',
         type=int,
-        metavar='str',
-        nargs='+',
+        metavar='int',
+        nargs='*',
         help='sheet name',
     )
     args = parser.parse_args()
     z = zipfile.ZipFile(args.xlsx)
     sheets = args.sheet
+    if len(sheets) == 0:
+        sheets = range(1, sheet_count(z) + 1)
 
     for sheet_num in sheets:
         print_sheet(z, sheet_num)
