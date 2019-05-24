@@ -105,50 +105,12 @@ def make_cells(max_col):
     return [None] * (max_col + 1)
 
 
-def main():
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument(
-        'xlsx',
-        metavar='file.xlsx',
-        help='Excel file',
-    )
-
-    parser.add_argument(
-        'sheet',
-        type=int,
-        metavar='str',
-        nargs='+',
-        help='sheet name',
-    )
-    args = parser.parse_args()
-    z = zipfile.ZipFile(args.xlsx)
-    sheets = args.sheet
-
+def print_sheet(z, sheet_num):
     sheet_filenames = [
         f for f in z.namelist() if re.search("^xl/worksheets/sheet.*xml$", f)
     ]
     workbook_x = ET.XML(z.read("xl/workbook.xml"))
     sheet_xs = workbook_x.find(n("sheets")).findall(n("sheet"))
-
-    sheet_num = sheets[0]
-
-    #if not args and len(sheet_filenames) > 1:
-    #    sheet_error(
-    #        "There are multiple sheets -- need to specify a sheet number or name."
-    #    )
-    #elif not args and len(sheet_filenames) == 1:
-    #    sheet_num = 1
-    #elif args:
-    #    sheet_num = args.pop(0)
-
-    if sheet_num > len(sheet_filenames):
-        name = sheet_num
-        inds = [i for i, x in enumerate(sheet_xs) if x.get('name') == name]
-        if not inds:
-            sheet_error("Can't find sheet with name '%s'" % name, sheet_xs)
-        if len(inds) > 1:
-            sheet_error("Multiple sheets with name '%s'" % name, sheet_xs)
-        sheet_num = inds[0] + 1
 
     ss_xml = z.read("xl/sharedStrings.xml")
     ss_list = ET.XML(ss_xml).findall(n("si"))
@@ -184,6 +146,41 @@ def main():
             "%d total warnings, %d hidden" % (warning_count,
                                               warning_count - warning_max),
             file=sys.stderr)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument(
+        'xlsx',
+        metavar='file.xlsx',
+        help='Excel file',
+    )
+
+    parser.add_argument(
+        'sheet',
+        type=int,
+        metavar='str',
+        nargs='+',
+        help='sheet name',
+    )
+    args = parser.parse_args()
+    z = zipfile.ZipFile(args.xlsx)
+    sheets = args.sheet
+
+    sheet_num = sheets[0]
+
+    #if sheet_num > len(sheet_filenames):
+    #    sheet_error("Sheet {} does not exist".format(sheet_num), sheet_xs)
+
+    print_sheet(z, sheet_num)
+    #if not args and len(sheet_filenames) > 1:
+    #    sheet_error(
+    #        "There are multiple sheets -- need to specify a sheet number or name."
+    #    )
+    #elif not args and len(sheet_filenames) == 1:
+    #    sheet_num = 1
+    #elif args:
+    #    sheet_num = args.pop(0)
 
 
 if __name__ == "__main__":
