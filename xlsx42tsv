@@ -19,8 +19,14 @@ Modified by: Karel Brinda (converted to python3, refactor and modified)
 """
 
 #from __future__ import print_function
+
 import xml.etree.ElementTree as ET
-import os, sys, zipfile, re, itertools
+import argparse
+import os
+import sys
+import zipfile
+import re
+import itertools
 
 
 def myjoin(seq, sep=" "):
@@ -36,11 +42,15 @@ def letter2col_index(letter):
     ]) - 1
 
 
+def n(x):
+    return "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}%s" % x
+
+
 def flatten(iter):
     return list(itertools.chain(*iter))
 
 
-def cell2text(cell):
+def cell2text(cell, ss_list):
     if cell is None:
         return ""
     elif 't' in cell.attrib and cell.attrib['t'] == 's':
@@ -96,69 +106,96 @@ def make_cells(max_col):
     return [None] * (max_col + 1)
 
 
-args = sys.argv[:]
-args.pop(0)
-if args:
-    z = zipfile.ZipFile(args.pop(0))
-elif not sys.stdin.isatty():
-    z = zipfile.ZipFile(sys.stdin)
-else:
-    print(__doc__.strip())
-    sys.exit(1)
+def main():
+    #    parser = argparse.ArgumentParser(description="")
+    #
+    #    parser.add_argument(
+    #        'file',
+    #        type=argparse.FileType('r'),
+    #        metavar='str',
+    #        help='',
+    #    )
+    #
+    #    parser.add_argument(
+    #        '-p',
+    #        '--param',
+    #        type=str,
+    #        metavar='str',
+    #        required=True,
+    #        dest='',
+    #        help='',
+    #    )
 
-n = lambda x: "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}%s" % x
+    #args = parser.parse_args()
 
-sheet_filenames = [
-    f for f in z.namelist() if re.search("^xl/worksheets/sheet.*xml$", f)
-]
-workbook_x = ET.XML(z.read("xl/workbook.xml"))
-sheet_xs = workbook_x.find(n("sheets")).findall(n("sheet"))
+    args = sys.argv[:]
+    args.pop(0)
+    if args:
+        z = zipfile.ZipFile(args.pop(0))
+    elif not sys.stdin.isatty():
+        z = zipfile.ZipFile(sys.stdin)
+    else:
+        print(__doc__.strip())
+        sys.exit(1)
 
-if not args and len(sheet_filenames) > 1:
-    sheet_error(
-        "There are multiple sheets -- need to specify a sheet number or name.")
-elif not args and len(sheet_filenames) == 1:
-    sheet_num = 1
-elif args:
-    sheet_num = args.pop(0)
+    sheet_filenames = [
+        f for f in z.namelist() if re.search("^xl/worksheets/sheet.*xml$", f)
+    ]
+    workbook_x = ET.XML(z.read("xl/workbook.xml"))
+    sheet_xs = workbook_x.find(n("sheets")).findall(n("sheet"))
 
-if isinstance(sheet_num, str) and (not re.search('^[0-9]+$', sheet_num)
-                                   or int(sheet_num) > len(sheet_filenames)):
-    name = sheet_num
-    inds = [i for i, x in enumerate(sheet_xs) if x.get('name') == name]
-    if not inds: sheet_error("Can't find sheet with name '%s'" % name)
-    if len(inds) > 1: sheet_error("Multiple sheets with name '%s'" % name)
-    sheet_num = inds[0] + 1
+    if not args and len(sheet_filenames) > 1:
+        sheet_error(
+            "There are multiple sheets -- need to specify a sheet number or name."
+        )
+    elif not args and len(sheet_filenames) == 1:
+        sheet_num = 1
+    elif args:
+        sheet_num = args.pop(0)
 
-ss_xml = z.read("xl/sharedStrings.xml")
-ss_list = ET.XML(ss_xml).findall(n("si"))
+    if isinstance(sheet_num, str) and (not re.search('^[0-9]+$', sheet_num) or
+                                       int(sheet_num) > len(sheet_filenames)):
+        name = sheet_num
+        inds = [i for i, x in enumerate(sheet_xs) if x.get('name') == name]
+        if not inds: sheet_error("Can't find sheet with name '%s'" % name)
+        if len(inds) > 1: sheet_error("Multiple sheets with name '%s'" % name)
+        sheet_num = inds[0] + 1
 
-xml = z.read("xl/worksheets/sheet%s.xml" % sheet_num)
-s = ET.fromstring(xml)
-rows = s.findall(n("sheetData") + "/" + n("row"))
+    ss_xml = z.read("xl/sharedStrings.xml")
+    ss_list = ET.XML(ss_xml).findall(n("si"))
 
-all_cells = flatten([[c for c in row.findall(n("c"))] for row in rows])
-max_col = max(
-    letter2col_index(re.search("^[A-Z]+", c.attrib['r']).group())
-    for c in all_cells)
+    xml = z.read("xl/worksheets/sheet%s.xml" % sheet_num)
+    s = ET.fromstring(xml)
+    rows = s.findall(n("sheetData") + "/" + n("row"))
 
-warning_count = 0
-warning_max = 50
+    all_cells = flatten([[c for c in row.findall(n("c"))] for row in rows])
+    max_col = max(
+        letter2col_index(re.search("^[A-Z]+", c.attrib['r']).group())
+        for c in all_cells)
 
-for row in rows:
-    cells_elts = row.findall(n("c"))
-    inds = []  # parallel
-    for c in cells_elts:
-        letter = re.search("^[A-Z]+", c.attrib['r']).group()
-        inds.append(letter2col_index(letter))
-    cells = make_cells(max_col)
-    for c, j in zip(cells_elts, inds):
-        cells[j] = c
-    #print( *(cell2text( c ).encode("utf-8").replace("\t"," ") for c in cells), sep="\t")
-    print(myjoin((cell_text_clean(cell2text(c)) for c in cells), sep="\t"))
+    warning_count = 0
+    warning_max = 50
 
-if warning_count > warning_max:
-    print(
-        "%d total warnings, %d hidden" % (warning_count,
-                                          warning_count - warning_max),
-        file=sys.stderr)
+    for row in rows:
+        cells_elts = row.findall(n("c"))
+        inds = []  # parallel
+        for c in cells_elts:
+            letter = re.search("^[A-Z]+", c.attrib['r']).group()
+            inds.append(letter2col_index(letter))
+        cells = make_cells(max_col)
+        for c, j in zip(cells_elts, inds):
+            cells[j] = c
+        #print( *(cell2text( c ).encode("utf-8").replace("\t"," ") for c in cells), sep="\t")
+        print(
+            myjoin((cell_text_clean(cell2text(c, ss_list)) for c in cells),
+                   sep="\t"))
+
+    if warning_count > warning_max:
+        print(
+            "%d total warnings, %d hidden" % (warning_count,
+                                              warning_count - warning_max),
+            file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
