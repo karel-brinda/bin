@@ -29,11 +29,6 @@ import re
 import itertools
 
 
-def myjoin(seq, sep=" "):
-    " because str.join() is annoying "
-    return sep.join(str(x) for x in seq)
-
-
 def letter2col_index(letter):
     """ A -> 0, B -> 1, Z -> 25, AA -> 26, BA -> 52 """
     base26digits = [1 + ord(x) - ord("A") for x in letter]
@@ -127,6 +122,8 @@ def print_sheet(z, sheet_num):
     warning_count = 0
     warning_max = 50
 
+    rows_text = []
+
     for row in rows:
         cells_elts = row.findall(n("c"))
         inds = []  # parallel
@@ -137,9 +134,13 @@ def print_sheet(z, sheet_num):
         for c, j in zip(cells_elts, inds):
             cells[j] = c
         #print( *(cell2text( c ).encode("utf-8").replace("\t"," ") for c in cells), sep="\t")
-        print(
-            myjoin((cell_text_clean(cell2text(c, ss_list)) for c in cells),
-                   sep="\t"))
+        cell_text = [cell_text_clean(cell2text(c, ss_list)) for c in cells]
+        rows_text.append("\t".join(cell_text))
+
+    while len(rows_text) > 0 and rows_text[-1].strip() == "":
+        del rows_text[-1]
+
+    print(*rows_text, sep="\n")
 
     if warning_count > warning_max:
         print(
@@ -167,20 +168,8 @@ def main():
     z = zipfile.ZipFile(args.xlsx)
     sheets = args.sheet
 
-    sheet_num = sheets[0]
-
-    #if sheet_num > len(sheet_filenames):
-    #    sheet_error("Sheet {} does not exist".format(sheet_num), sheet_xs)
-
-    print_sheet(z, sheet_num)
-    #if not args and len(sheet_filenames) > 1:
-    #    sheet_error(
-    #        "There are multiple sheets -- need to specify a sheet number or name."
-    #    )
-    #elif not args and len(sheet_filenames) == 1:
-    #    sheet_num = 1
-    #elif args:
-    #    sheet_num = args.pop(0)
+    for sheet_num in sheets:
+        print_sheet(z, sheet_num)
 
 
 if __name__ == "__main__":
