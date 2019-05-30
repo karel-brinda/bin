@@ -39,6 +39,10 @@
 	textconv=pandoc --to=markdown
 	prompt = false
 
+[diff "xlsx42tsv"]
+	textconv=xlsx42tsv
+	prompt = false
+
 [diff "pdf42txt"]
 	textconv = pdf42txt
 	binary = true
