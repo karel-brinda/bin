@@ -185,6 +185,18 @@ Plugin 'othree/html5-syntax.vim'
 Plugin 'lervag/vimtex'
 
 
+"""""""""""""""""""
+" vim-pandoc-syntax
+"""""""""""""""""""
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+
+"""""""""""""""
+" vim-rmarkdown
+"""""""""""""""
+Plugin 'vim-pandoc/vim-rmarkdown'
+
+
 """""""""""""
 " Python-mode
 """""""""""""
