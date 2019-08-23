@@ -1,5 +1,7 @@
 rule all:
-	input:
-	output:
-	shell:
-		print("hello")
+    input:
+    output:
+    shell:
+        """
+            echo Hello
+        """
