@@ -7,10 +7,10 @@ SHELL=/usr/bin/env bash -eo pipefail
 .SUFFIXES:
 
 all: ## Run everything
-	snakemake
+	snakemake -j --printshellcmds
 
 cluster: ## Submit jobs to a cluster
-	snakemake --cores 9999 -p --keep-going \
+	snakemake --cores 9999 --printshellcmds --keep-going \
 		--cluster-config cluster.json \
 		--cluster 'sbatch -p {cluster.queue} -c {cluster.n} -t {cluster.time} --mem={cluster.memory}'
 
