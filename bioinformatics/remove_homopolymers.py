@@ -10,22 +10,22 @@ import sys
 def remove_homopolymers(seq, quals=None):
     """ Take sequences and remove homopolymers (e.g., CAAAAAG -> CAG).
     """
-    last_nucl=None
-    oseq=[]
-    oqual=[]
-    if quals is None or quals=='':
+    last_nucl = None
+    oseq = []
+    oqual = []
+    if quals is None or quals == '':
         for nucl in seq:
-            if nucl!=last_nucl:
+            if nucl != last_nucl:
                 oseq.append(nucl)
-                last_nucl=nucl
+                last_nucl = nucl
         return "".join(oseq), None
     else:
-        zipped=zip(seq, quals)
-        for nucl,qual in zipped:
-            if nucl!=last_nucl:
+        zipped = zip(seq, quals)
+        for nucl, qual in zipped:
+            if nucl != last_nucl:
                 oseq.append(nucl)
                 oqual.append(qual)
-                last_nucl=nucl
+                last_nucl = nucl
         return "".join(oseq), "".join(oqual)
 
 
@@ -41,7 +41,7 @@ def readfq(fp):
                     break
         if not last:
             break
-        name, _, comment  = last[1:].partition(" ")
+        name, _, comment = last[1:].partition(" ")
         seqs, last = [], None
         for l in fp:
             if l[0] in '@+>':
@@ -68,13 +68,14 @@ def readfq(fp):
 
 def remove_homopolymers_from_file(infile, ofile):
     for name, comment, seq, qual in readfq(infile):
-        seq_wo_hpolys, quals_wo_hpolys=remove_homopolymers(seq, qual)
-        if comment=='':
-            pseudoname=name
+        seq_wo_hpolys, quals_wo_hpolys = remove_homopolymers(seq, qual)
+        if comment == '':
+            pseudoname = name
         else:
-            pseudoname="{} {}".format(name, comment)
+            pseudoname = "{} {}".format(name, comment)
         if qual:
-            ofile.write("@{}\n{}\n+{}\n{}\n".format(pseudoname, seq_wo_hpolys, "", quals_wo_hpolys))
+            ofile.write("@{}\n{}\n+{}\n{}\n".format(pseudoname, seq_wo_hpolys,
+                                                    "", quals_wo_hpolys))
         else:
             ofile.write(">{}\n{}\n".format(pseudoname, seq_wo_hpolys))
 
@@ -82,17 +83,19 @@ def remove_homopolymers_from_file(infile, ofile):
 def main():
     parser = argparse.ArgumentParser(description="")
 
-    parser.add_argument('ifile',
-            type=argparse.FileType('r'),
-            metavar='in.file',
-            help='Input file',
-        )
+    parser.add_argument(
+        'ifile',
+        type=argparse.FileType('r'),
+        metavar='in.file',
+        help='Input file',
+    )
 
-    parser.add_argument('ofile',
-            type=argparse.FileType('w'),
-            metavar='out.file',
-            help='Output file',
-        )
+    parser.add_argument(
+        'ofile',
+        type=argparse.FileType('w'),
+        metavar='out.file',
+        help='Output file',
+    )
 
     args = parser.parse_args()
 

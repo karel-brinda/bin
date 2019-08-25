@@ -4,52 +4,56 @@ import argparse
 import os
 import sys
 
-def merge_contigs(fasta_fns):
-	for fasta_fn in fasta_fns:
-		seqs=[]
-		with open(fasta_fn) as f:
-			for x in f:
-				if len(x)==0 or x[0]==">":
-					continue
-				else:
-					seqs.append(x.strip())
 
-	# fix: unfinished
-	seq=("").join(seqs)
-	return seq
+def merge_contigs(fasta_fns):
+    for fasta_fn in fasta_fns:
+        seqs = []
+        with open(fasta_fn) as f:
+            for x in f:
+                if len(x) == 0 or x[0] == ">":
+                    continue
+                else:
+                    seqs.append(x.strip())
+
+    # fix: unfinished
+    seq = ("").join(seqs)
+    return seq
+
 
 def main():
-	parser = argparse.ArgumentParser(description="")
+    parser = argparse.ArgumentParser(description="")
 
-	parser.add_argument('fastas',
-			metavar='file.fa',
-			help='Fasta file with contigs',
-			nargs="+",
-		)
+    parser.add_argument(
+        'fastas',
+        metavar='file.fa',
+        help='Fasta file with contigs',
+        nargs="+",
+    )
 
-	parser.add_argument('-n',
-			type=str,
-			metavar='int',
-			dest='ns',
-			help='Number of N\'s separating contigs [0]',
-			default=0,
-		)
+    parser.add_argument(
+        '-n',
+        type=str,
+        metavar='int',
+        dest='ns',
+        help='Number of N\'s separating contigs [0]',
+        default=0,
+    )
 
-	parser.add_argument('-s',
-			type=str,
-			metavar='str',
-			dest='fasta_fn',
-			help='Name of the newly created sequence [merged]',
-			default='merged',
-		)
+    parser.add_argument(
+        '-s',
+        type=str,
+        metavar='str',
+        dest='fasta_fn',
+        help='Name of the newly created sequence [merged]',
+        default='merged',
+    )
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	result=merge_contigs(args.fasta_fn)
-	print(">merged")
-	print(result)
+    result = merge_contigs(args.fasta_fn)
+    print(">merged")
+    print(result)
 
 
 if __name__ == "__main__":
-	main()
-
+    main()

@@ -6,27 +6,25 @@ import argparse
 import math
 
 substitutions = {
-
-	"fibonacci" : {
-			"0": "01",
-			"1": "0",
-			},
-
-	"tribonacci" : {
-			"0": "01",
-			"1": "02",
-			"2": "0",
-			},
-
-	"thuemorse" : {
-			"0": "01",
-			"1": "10",
-			},
-
+    "fibonacci": {
+        "0": "01",
+        "1": "0",
+    },
+    "tribonacci": {
+        "0": "01",
+        "1": "02",
+        "2": "0",
+    },
+    "thuemorse": {
+        "0": "01",
+        "1": "10",
+    },
 }
 
-def apply_subst(subst,word):
-	return "".join([subst[x] for x in word])
+
+def apply_subst(subst, word):
+    return "".join([subst[x] for x in word])
+
 
 parser = argparse.ArgumentParser()
 #parser.add_argument(
@@ -35,35 +33,40 @@ parser = argparse.ArgumentParser()
 #		help="display a square of a given number"
 #	)
 parser.add_argument(
-		"-s","--substitution",
-		choices=substitutions.keys(),
-		dest="s",
-		default="tribonacci",
-	)
+    "-s",
+    "--substitution",
+    choices=substitutions.keys(),
+    dest="s",
+    default="tribonacci",
+)
 parser.add_argument(
-		"-i","--iterations",
-		dest="i",
-		type=int,
-		default=10,
-	)
+    "-i",
+    "--iterations",
+    dest="i",
+    type=int,
+    default=10,
+)
 parser.add_argument(
-		"-a","--init-letter",
-		dest="a",
-		default="0",
-	)
+    "-a",
+    "--init-letter",
+    dest="a",
+    default="0",
+)
 parser.add_argument(
-		"-w","--line-width",
-		dest="w",
-		type=int,
-		default="60",
-	)
+    "-w",
+    "--line-width",
+    dest="w",
+    type=int,
+    default="60",
+)
 parser.add_argument(
-		"-d","--append-dolar",
-		dest="d",
-		action='store_true',
-		#type=bool,
-		#default=False,
-	)
+    "-d",
+    "--append-dolar",
+    dest="d",
+    action='store_true',
+    #type=bool,
+    #default=False,
+)
 
 args = parser.parse_args()
 
@@ -71,12 +74,10 @@ word = args.a
 subst = substitutions[args.s]
 
 for _ in range(args.i):
-	word = apply_subst(subst, word)
+    word = apply_subst(subst, word)
 
 if args.d:
-	word=word+"$"
+    word = word + "$"
 
-for i in range(int(math.ceil(len(word)/args.w))):
-	print (word[i*args.w:(i+1)*args.w])
-
-
+for i in range(int(math.ceil(len(word) / args.w))):
+    print(word[i * args.w:(i + 1) * args.w])

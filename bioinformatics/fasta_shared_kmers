@@ -7,110 +7,126 @@ import collections
 
 # todo: fix non-ACGT letters (regex split)
 
-compl={
-	"A":"T",
-	"T":"A",
-	"C":"G",
-	"G":"C",
+compl = {
+    "A": "T",
+    "T": "A",
+    "C": "G",
+    "G": "C",
 }
 
+
 def reverse_complement(kmer):
-	return "".join([compl[x] for x in kmer[::1]])
+    return "".join([compl[x] for x in kmer[::1]])
+
 
 def canonical_kmer(kmer):
-	return min(kmer,reverse_complement(kmer))
+    return min(kmer, reverse_complement(kmer))
+
 
 def contigs_from_fasta(fasta_fn, fasta_line_width=80):
-	seqs=collections.OrderedDict()
-	seq_name=""
-	with open(fasta_fn) as f:
-		for x in f:
-			if len(x)==0:
-				continue
-			elif x[0]==">":
-				seqname=x[1:-1].split(" ")[0]
-				seqs[seqname]=[]
-			else:
-				seqs[seqname].append(x.strip().upper())
-	for k in seqs:
-		seqs[k]="".join(seqs[k])
+    seqs = collections.OrderedDict()
+    seq_name = ""
+    with open(fasta_fn) as f:
+        for x in f:
+            if len(x) == 0:
+                continue
+            elif x[0] == ">":
+                seqname = x[1:-1].split(" ")[0]
+                seqs[seqname] = []
+            else:
+                seqs[seqname].append(x.strip().upper())
+    for k in seqs:
+        seqs[k] = "".join(seqs[k])
 
-	return seqs
+    return seqs
 
-def kmers_from_contigs(contigs,k,canonical):
-	kmers=collections.OrderedDict()
-	for cn in contigs:
-		print("Computing kmers for {}".format(cn),file=sys.stderr)
-		c=contigs[cn]
-		for i in range(len(c)-k+1):
-			kmer=c[i:i+k]
-			try:
-				kmers[cn].add(kmer)
-			except KeyError:
-				kmers[cn]=set(kmer)
 
-	if canonical:
-		canonical_kmers=collections.OrderedDict()
-		for cn in kmers:
-			print("Computing canonical kmers for {}".format(cn),file=sys.stderr)
-			canonical_kmers[cn]=set([canonical_kmer(y) for y in kmers[cn]])
-		return canonical_kmers
-	else:
-		return kmers
+def kmers_from_contigs(contigs, k, canonical):
+    kmers = collections.OrderedDict()
+    for cn in contigs:
+        print("Computing kmers for {}".format(cn), file=sys.stderr)
+        c = contigs[cn]
+        for i in range(len(c) - k + 1):
+            kmer = c[i:i + k]
+            try:
+                kmers[cn].add(kmer)
+            except KeyError:
+                kmers[cn] = set(kmer)
+
+    if canonical:
+        canonical_kmers = collections.OrderedDict()
+        for cn in kmers:
+            print(
+                "Computing canonical kmers for {}".format(cn), file=sys.stderr)
+            canonical_kmers[cn] = set([canonical_kmer(y) for y in kmers[cn]])
+        return canonical_kmers
+    else:
+        return kmers
+
 
 def compute_distances(kmer_dict, jaccard):
-	computed=set()
-	dist=collections.OrderedDict()
-	for n1 in kmer_dict:
-		print("Computing distances for {}".format(n1),file=sys.stderr)
-		row=collections.OrderedDict()
-		for n2 in kmer_dict:
-			if n2 in computed:
-				row[n2]=dist[n2][n1]
-			else:
-				shared_k=len(kmer_dict[n1] & kmer_dict[n2])
-				if jaccard:
-					all_k=len(kmer_dict[n1]) + len(kmer_dict[n2]) - shared_k
-					row[n2]= shared_k / all_k
-				else:
-					row[n2]= shared_k
-		dist[n1]=row
-		computed.add(n1)
-	return dist
+    computed = set()
+    dist = collections.OrderedDict()
+    for n1 in kmer_dict:
+        print("Computing distances for {}".format(n1), file=sys.stderr)
+        row = collections.OrderedDict()
+        for n2 in kmer_dict:
+            if n2 in computed:
+                row[n2] = dist[n2][n1]
+            else:
+                shared_k = len(kmer_dict[n1] & kmer_dict[n2])
+                if jaccard:
+                    all_k = len(kmer_dict[n1]) + len(kmer_dict[n2]) - shared_k
+                    row[n2] = shared_k / all_k
+                else:
+                    row[n2] = shared_k
+        dist[n1] = row
+        computed.add(n1)
+    return dist
 
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description="Compute number of shared k-mers between contigs")
+    parser = argparse.ArgumentParser(
+        description="Compute number of shared k-mers between contigs")
 
-	parser.add_argument('-f', '--fasta',
-			type=str,
-			metavar='str',
-			required=True,
-			dest='fasta_fn',
-			help='Fasta file with contigs',
-		)
-	parser.add_argument('-k', '--kmer-length',
-			type=int,
-			metavar='int',
-			required=True,
-			dest='k',
-			help='length of the k-mers',
-		)
-	parser.add_argument('-c', '--canonical',
-			action='store_true',
-			dest='canonical',
-			help='use canonical k-mers',
-		)
-	parser.add_argument('-j', '--jaccard',
-			action='store_true',
-			dest='jaccard',
-			help='compute Jaccard index instead of nb. of shared k-mers',
-		)
+    parser.add_argument(
+        '-f',
+        '--fasta',
+        type=str,
+        metavar='str',
+        required=True,
+        dest='fasta_fn',
+        help='Fasta file with contigs',
+    )
+    parser.add_argument(
+        '-k',
+        '--kmer-length',
+        type=int,
+        metavar='int',
+        required=True,
+        dest='k',
+        help='length of the k-mers',
+    )
+    parser.add_argument(
+        '-c',
+        '--canonical',
+        action='store_true',
+        dest='canonical',
+        help='use canonical k-mers',
+    )
+    parser.add_argument(
+        '-j',
+        '--jaccard',
+        action='store_true',
+        dest='jaccard',
+        help='compute Jaccard index instead of nb. of shared k-mers',
+    )
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	contigs=contigs_from_fasta(args.fasta_fn)
-	kmer_sets=kmers_from_contigs(contigs=contigs, k=args.k, canonical=args.canonical)
-	distances = compute_distances(kmer_sets,args.jaccard)
-	for k1 in distances:
-		print("\t".join(map(str,distances[k1].values())))
+    contigs = contigs_from_fasta(args.fasta_fn)
+    kmer_sets = kmers_from_contigs(
+        contigs=contigs, k=args.k, canonical=args.canonical)
+    distances = compute_distances(kmer_sets, args.jaccard)
+    for k1 in distances:
+        print("\t".join(map(str, distances[k1].values())))

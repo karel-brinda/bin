@@ -1,0 +1,61 @@
+#! /usr/bin/env python3
+"""
+Author: Karel Brinda <kbrinda@hsph.harvard.edu>
+
+Licence: MIT
+
+Description: Print distances from a node to all other nodes in a Newick/NHX tree.
+"""
+
+import argparse
+import ete3
+import os
+import sys
+
+
+def print_distances(newick_in_fn, nname):
+    tree = ete3.Tree(newick_in_fn, format=1)
+
+    l = []
+    for n in tree:
+        if n.name == nname:
+            dist = 0.0
+        else:
+            dist = tree.get_distance(n.name, nname)
+        l.append([n.name, int(round(dist))])
+    l.sort(key=lambda x: x[1])
+
+    print("node", "dist to {}".format(nname), sep="\t")
+    for p in l:
+        print(*p, sep="\t")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description=
+        'Print distances from a node to all other nodes in a Newick/NHX tree')
+
+    parser.add_argument(
+        'newick_in_fn',
+        metavar='tree.nhx',
+        type=str,
+        help='phylogenetic tree (in Newick/NHX)',
+    )
+
+    parser.add_argument(
+        'node_name',
+        metavar='node_name',
+        type=str,
+        help='name of the node to highlight',
+    )
+
+    args = parser.parse_args()
+
+    print_distances(
+        newick_in_fn=args.newick_in_fn,
+        nname=args.node_name,
+    )
+
+
+if __name__ == "__main__":
+    main()
