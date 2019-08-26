@@ -58,6 +58,7 @@ _dotcmd () {
 alias l1='ls -1'
 alias lsd='l -d */'
 alias lsf="find . -type f -maxdepth 1 | xargs ls -Alh"
+alias uu="awk '"'!x[$0]++'"'" # uniq lines without sorting
 
 ####################
 # CHANGE DIRECTORY #
