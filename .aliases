@@ -309,6 +309,7 @@ alias mw='make view'
 alias cm='cmake . && clear && make -j 4'
 alias sm='snakemake -p'
 alias smj='snakemake -p --cores 4242'
+alias smn='snakemake -n -p'
 
 
 #######
