@@ -21,6 +21,7 @@ alias gcb='git checkout -b'
 alias gs='git status'
 _dotcmd gs
 alias g.s='git status .'
+alias gss='git sizer -v --branches'
 
 alias gt='git commit'
 function gtm {
