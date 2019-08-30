@@ -114,6 +114,7 @@ brew install parallel
 brew install rename
 brew install ag
 brew install wtfutil
+brew install git-sizer
 
 # video
 brew install ffmpeg
