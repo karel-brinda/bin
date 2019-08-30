@@ -113,6 +113,7 @@ brew install parallel
 #brew install http://git.io/sshpass.rb
 brew install rename
 brew install ag
+brew install wtfutil
 
 # video
 brew install ffmpeg
