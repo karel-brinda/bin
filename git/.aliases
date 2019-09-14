@@ -7,9 +7,9 @@ alias gggc='git grep -B 2 -A 2'
 alias gggcc='git grep -B 5 -A 5'
 alias gggccc='git grep -B 20 -A 20'
 
-alias ga='git add'
+alias ga='git add -v'
 _dotcmd ga
-alias g.a='git add .'
+alias g.a='git add -v .'
 
 alias gb='git branch'
 alias gba='git branch --all'
