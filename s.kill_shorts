@@ -4,5 +4,5 @@ set -e
 set -o pipefail
 set -u
 
-squeue -u $USER | grep -E '(short|shared|requeue)' | perl -pe 's/^\s+//g' | cut -f 1 -d ' ' | xargs scancel
+squeue -u $USER | grep -E '(short|shared|requeue|serial)' | perl -pe 's/^\s+//g' | cut -f 1 -d ' ' | xargs scancel
 
