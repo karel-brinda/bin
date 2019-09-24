@@ -69,9 +69,19 @@ git status > /dev/null 2> /dev/null || open "http://github.com"
 git status > /dev/null 2> /dev/null || exit 0
 
 # get info about current repo and state
-url=$(git remote -v | grep fetch | awk '{print $2}')
-http=$(echo "$url" | sed 's/^git/http/g' | sed 's/ssh:\/\/[a-z]*\@/http:\/\//g' | sed 's/^https?/https/g' | sed 's/\.git$//g')
-repo=$(echo "$http" | sed 's/.*github\.com\///g')
+url=$(git remote -v \
+	| grep fetch \
+	| awk '{print $2}')
+
+base=$(echo "$url" \
+	| perl -pe 's/^(ssh|git|http|https):\/\///g' \
+	| perl -pe 's/^.*\@//g' \
+	| perl -pe 's/:/\//g' \
+	| perl -pe 's/\.git$//g')
+
+http="https://$base"
+
+repo=$(echo "$base" | perl -pe 's/^.*?\///g')
 author=$(echo "$repo" | sed 's@/.*@@g')
 branch=$(git branch | grep "*" | awk '{print $2}')
 commit=$(git rev-parse HEAD)
@@ -86,12 +96,14 @@ fi
 
 if [[ $debug -eq 1 ]]; then
 	echo "Repo URL:         $url"
+	echo "Base:             $base"
 	echo "HTTP address:     $http"
 	echo "Repo:             $repo"
 	echo "Author:           $author"
 	echo "Current branch:   $branch"
 	echo "Commit:           $commit"
-	echo "Git toplelevel:   $toplevel"
+	echo "Path:             $p"
+	echo "Git toplevel:     $toplevel"
 	echo "Rel path:         $rel"
 	exit 0
 fi
