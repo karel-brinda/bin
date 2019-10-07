@@ -3,6 +3,7 @@
 alias g='git'
 
 alias ggg='git grep'
+alias gggi='git grep -i'
 alias gggc='git grep -B 2 -A 2'
 alias gggcc='git grep -B 5 -A 5'
 alias gggccc='git grep -B 20 -A 20'
