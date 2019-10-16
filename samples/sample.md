@@ -1,5 +1,5 @@
 # a
 
-<!--
-[link](http://address.com)
--->
+<!-- vim-markdown-toc GFM -->
+
+<!-- vim-markdown-toc -->
