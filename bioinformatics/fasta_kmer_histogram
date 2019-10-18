@@ -14,7 +14,7 @@ hist=`realpath $3`
 
 tmpdir=`mktemp -d`
 
-cores=`python -c 'import multiprocessing as mp; print mp.cpu_count()'`
+cores=`python -c 'import multiprocessing as mp; print (mp.cpu_count())'`
 chars=`ls -l $fasta | awk '{ print $5 }'`
 
 cd $tmpdir
