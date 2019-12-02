@@ -194,7 +194,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 """""""""""""""
 " vim-rmarkdown
 """""""""""""""
-Plugin 'vim-pandoc/vim-rmarkdown'
+"Plugin 'vim-pandoc/vim-rmarkdown'
 
 
 """""""""""""
