@@ -7,6 +7,7 @@ set -o pipefail
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
 	. ~/miniconda/etc/profile.d/conda.sh
