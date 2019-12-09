@@ -38,13 +38,6 @@ echo TLDR
 echo
 (tldr --update && echo "TL;DR update finished") || echo "TL;DR update - error"
 
-# pip
-echo
-echo PIP
-echo
-pip_pypy install --upgrade pip setuptools
-pip_pypy3 install --upgrade pip setuptools
-
 
 echo "All updates finished"
 

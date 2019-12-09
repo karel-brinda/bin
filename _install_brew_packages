@@ -93,11 +93,6 @@ brew install colordiff
 #brew install latexdiff
 #brew install git-latexdiff
 
-# pypy
-#brew install readline --without-ncurses
-#brew install pypy
-#brew install pypy3
-
 # pdf library for gnuplot
 brew install pdflib-lite
 
