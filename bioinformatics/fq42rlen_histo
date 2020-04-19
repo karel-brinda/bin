@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+# based on https://github.com/crazyhottommy/bioinformatics-one-liners
+awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' \
+	| sort -n
+
