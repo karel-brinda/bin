@@ -9,19 +9,19 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
-	. ~/miniconda/etc/profile.d/conda.sh
-fi
+#if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
+#	. ~/miniconda/etc/profile.d/conda.sh
+#fi
 
 for ANACONDA_ROOT in ~/miniconda ; do
 	export PATH="$PATH:$ANACONDA_ROOT/bin"
 	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 done;
 
-c="~/miniconda/etc/profile.d/conda.sh"
-if [ -f "$c" ]; then
-	. "$c"
-fi
+#c="~/miniconda/etc/profile.d/conda.sh"
+#if [ -f "$c" ]; then
+#	. "$c"
+#fi
 
 
 # prepend
