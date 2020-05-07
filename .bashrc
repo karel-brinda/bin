@@ -3,26 +3,10 @@
 _BIN_DIR="$HOME/github/my/bin"
 
 set -o pipefail
-#set -o vi
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-#if [[ -s ~/miniconda/etc/profile.d/conda.sh ]]; then
-#	. ~/miniconda/etc/profile.d/conda.sh
-#fi
-
-for ANACONDA_ROOT in ~/miniconda ; do
-	export PATH="$PATH:$ANACONDA_ROOT/bin"
-	#export MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
-done;
-
-#c="~/miniconda/etc/profile.d/conda.sh"
-#if [ -f "$c" ]; then
-#	. "$c"
-#fi
-
 
 # prepend
 for d in \
@@ -34,6 +18,7 @@ for d in \
 	"${_BIN_DIR}/grep" \
 	"${_BIN_DIR}/programs/lein" \
 	"$HOME/bin2" \
+	"$HOME/miniconda/bin" \
 	"$HOME/.rvm/bin/" \
 	"$HOME/.node_modules_global/bin" \
 	"$HOME/github/my/projects/bin" \
