@@ -6,14 +6,14 @@ SHELL=/usr/bin/env bash -eo pipefail
 
 .SUFFIXES:
 
-FROM_SUF="from"
-TO_SUF="to"
+FROM_SUF=from
+TO_SUF=to
 
 FROM=$(wildcard *.$(FROM_SUF))
 TO=$(patsubst %.$(FROM_SUF),%.$(TO_SUF),$(FROM))
 
-$(info "From", $(FROM))
-$(info "To", $(TO))
+$(info From: $(FROM))
+$(info To:   $(TO))
 
 all: $(TO)
 
