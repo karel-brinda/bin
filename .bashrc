@@ -19,8 +19,7 @@ for d in \
 	"${_BIN_DIR}/programs/lein" \
 	"$HOME/bin2" \
 	"$HOME/miniconda/bin" \
-	"$HOME/.rvm/bin/" \
-	"$HOME/.node_modules_global/bin" \
+	"$HOME/.linuxbrew/bin" \
 	"$HOME/github/my/projects/bin" \
 	; do
 	if [ -d $d ]; then
@@ -38,7 +37,6 @@ done
 
 # append
 for d in \
-	"$HOME/.linuxbrew/bin" \
 	"$HOME/go/bin" \
 	; do
 	if [ -d "$d" ]; then
