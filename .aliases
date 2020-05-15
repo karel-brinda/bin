@@ -383,6 +383,7 @@ alias hg='history | grep'
 alias rdm='readme'
 alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit -m "Update log"; git push)'
 alias tm='tmux attach-session || tmux'
+alias nohup.tm='nohup tmux attach-session'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
