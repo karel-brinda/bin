@@ -17,13 +17,13 @@ else
 fi
 
 cd $d
-curl $url > miniconda.sh
-bash miniconda.sh -b -p $minid
+wget -O miniconda.sh "$url"
+bash miniconda.sh -b -p "$minid"
 
-export PATH=$PATH:$minid/bin
+export PATH=$PATH:"$minid/bin"
 
 conda update conda -y
 conda update --all -y
 
-conda install -y conda-build
+#conda install -y conda-build
 
