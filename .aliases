@@ -157,7 +157,8 @@ done
 # CONDA & PYTHON #
 ##################
 
-alias sa='conda activate'
+alias sa='source activate'
+alias ca='conda activate'
 alias sd='conda deactivate'
 alias si='conda install -y'
 alias ss='conda search'
