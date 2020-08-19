@@ -5,12 +5,13 @@ set -o verbose
 
 ./_install_miniconda
 
+# jupyter
+conda install -y jupyterlab
+conda install -y bash_kernel
 
 # programming & plotting
 conda install -y pyqt
 conda install -y markdown
-conda install -y jupyterlab
-conda install -y tqdm # progress bar for Jupyter
 conda install -y pandas
 conda install -y pylint
 conda install -y yapf # python formatting
@@ -25,7 +26,6 @@ conda install -y picard
 conda install -y sambamba
 conda install -y samtools
 conda install -y seqtk
-conda install -y vcftools
 conda install -y entrez-direct
 
 # auxiliary tools
