@@ -5,54 +5,36 @@ set -o verbose
 
 ./_install_miniconda
 
+# jupyter
+conda install -y jupyterlab
+conda install -y bash_kernel
 
 # programming & plotting
-conda install -y ipython
-conda install -y julia
-conda install -y r
-conda install -y r-ggplot2
-conda install -y pandoc
 conda install -y pyqt
 conda install -y markdown
-conda install -y jupyter
-conda install -y tqdm # progress bar for Jupyter
 conda install -y pandas
 conda install -y pylint
 conda install -y yapf # python formatting
-conda install -y ffmpeg
 conda install -y biopython
 conda install -y pysam
-conda install -y parallel
-conda install -y imagemagick
 
-
-# libs
-conda install -y htslib
 
 # data manipulation
 conda install -y bcftools
-#conda install -y bedtools
-#conda install -y picard
+conda install -y bedtools
+conda install -y picard
 conda install -y sambamba
 conda install -y samtools
 conda install -y seqtk
-conda install -y vcftools
 conda install -y entrez-direct
 
 # auxiliary tools
 conda install -y snakemake
 conda install -y bioawk
-#conda install -y crossmap
-#conda install -y repeatmasker
-#conda install -y ropebwt2
 
-# nanopore
-#conda install -y nanopolish
-#conda install -y pauvre
 
 # similarity search
 conda install -y blast
-#conda install -y fasta3
 
 # mappers
 conda install -y bwa
@@ -65,9 +47,10 @@ conda install -y bowtie2
 #conda install -y last
 #conda install -y minimap
 conda install -y minimap2
+conda install -y ococo
 #conda install -y mosaic
 #conda install -y nanoblaster
-conda install -y novoalign
+#conda install -y novoalign
 #conda install -y rapmap
 #conda install -y razers3
 #conda install -y snap-aligner
@@ -87,12 +70,13 @@ conda install -y edlib
 #conda install -y fermi
 #conda install -y megahit
 conda install -y miniasm
+conda install -y mccortex
 
 # variant calling
-#conda install -y freebayes
+conda install -y freebayes
 #conda install -y gatk-framework
 #conda install -y somatic-sniper
-#conda install -y varscan
+conda install -y varscan
 
 # read correction
 #conda install -y bfc
@@ -102,14 +86,17 @@ conda install -y miniasm
 #conda install -y kraken-all
 #conda install -y kallisto
 #conda install -y centrifuge
+conda install -y prophyle
+conda install -y prophasm
+conda install -y prophex
 
 # k-mer counting
 conda install -y jellyfish
-#conda install -y khmer
+conda install -y khmer
 
 # read simulation
 conda install -y rnftools
 #conda install -y art
 #conda install -y flux-simulator
 #conda install -y simlord
-#conda install -y nanosimh
+conda install -y nanosimh

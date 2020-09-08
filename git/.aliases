@@ -61,6 +61,7 @@ alias gindex+='git update-index --no-assume-unchanged'
 alias gm='git merge'
 alias gcl.='gcl'
 alias gl='git log'
+alias gci='git check-ignore -v'
 
 alias gur='git_update_repos'
 

@@ -157,7 +157,8 @@ done
 # CONDA & PYTHON #
 ##################
 
-alias sa='conda activate'
+alias sa='source activate'
+alias ca='conda activate'
 alias sd='conda deactivate'
 alias si='conda install -y'
 alias ss='conda search'
@@ -326,7 +327,7 @@ alias exif_delete_metadata='exiftool -all=""'
 # PYTHON #
 ##########
 
-alias jp='((open  http://localhost:8888/)&);jupyter notebook'
+alias jp='jupyter lab'
 alias py3='ipython --no-confirm-exit || /usr/bin/env python3 -i -c "import re;import os;import sys;import math;import glob;import collections;import itertools;"'
 alias p3timeit='python -m timeit'
 

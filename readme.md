@@ -48,6 +48,7 @@ Rapid installation of useful stuff using brew cask: https://gist.github.com/some
 
 * [Adobe](https://www.adobe.com/creativecloud/desktop-app.html)
 * [Atom](https://atom.io/download/mac)
+* [CheatSheet](https://www.mediaatelier.com/CheatSheet/)
 * [Dropbox](https://www.dropbox.com/downloading)
 * [FigTree](https://github.com/rambaut/figtree/releases)
 * [Git](https://git-scm.com/download/mac)
