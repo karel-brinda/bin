@@ -68,3 +68,5 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[pull]
+	ff = only
