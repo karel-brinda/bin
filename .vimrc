@@ -183,6 +183,7 @@ Plugin 'othree/html5-syntax.vim'
 " vimtex
 """"""""
 Plugin 'lervag/vimtex'
+let g:tex_flavor = 'latex'
 
 
 """""""""""""""""""
