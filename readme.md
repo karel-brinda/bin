@@ -53,6 +53,7 @@ Rapid installation of useful stuff using brew cask: https://gist.github.com/some
 * [FigTree](https://github.com/rambaut/figtree/releases)
 * [Git](https://git-scm.com/download/mac)
 * [Google Chrome](https://www.google.com/chrome/)
+  * Always show url - chrome://flags/#omnibox-context-menu-show-full-urls
 * [Google Drive](https://www.google.com/drive/download/)
 * [Mendeley](https://www.mendeley.com/download-mendeley-desktop/mac/)
 * [MikTex](http://www.tug.org/mactex/)
