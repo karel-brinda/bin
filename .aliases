@@ -187,6 +187,8 @@ alias pui.='pu. && pi.'
 # Vim
 
 alias V='vim -u ~/bin/.vimrc.light -U NONE -N -i NONE'
+alias svim='vim -u ~/.SpaceVim/vimrc'
+
 
 _dotcmd v
 _dotcmd vv
