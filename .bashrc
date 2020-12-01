@@ -44,6 +44,10 @@ for d in \
 	fi
 done
 
+if [ -f $HOME/.cargo/env ]; then
+	source $HOME/.cargo/env
+fi
+
 # vim as default editor for git
 export VISUAL=vim
 export EDITOR="$VISUAL"
