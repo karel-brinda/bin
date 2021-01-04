@@ -6,7 +6,7 @@ alias svh='samtools view -h'
 alias svH='samtools view -H'
 alias fai='samtools faidx'
 alias bai='samtools index'
-alias phd='open ~/github/my/brinda.cz/publications/brinda_phd.pdf || open http://brinda.cz/publications/brinda_phd.pdf'
+alias phd='open https://docs.google.com/viewerng/viewer?url=https://zenodo.org/record/1045317/files/brinda_phd.pdf'
 alias ggh='grep ">"'
 
 # simplified SAM output (seqs, bases and cigars skipped)
