@@ -161,7 +161,7 @@ alias sa='source activate'
 alias ca='conda activate'
 alias sd='conda deactivate'
 alias si='conda install -y'
-alias ss='conda search'
+#alias ss='conda search'
 alias sl='conda info --envs'
 
 alias piu='pip install --upgrade'
@@ -390,6 +390,8 @@ alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/pr
 alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
 
 alias kw='killall "Microsoft Word"'
+
+alias ss='seqtk seq'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
