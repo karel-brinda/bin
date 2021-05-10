@@ -21,9 +21,9 @@ source $HOME/bin/.vim/vim-sensible/plugin/sensible.vim
 
 nnoremap Y y$
 
-if !exists('g:colors_name') || g:colors_name != 'badwolf'
-	colorscheme badwolf
-endif
+"if !exists('g:colors_name') || g:colors_name != 'badwolf'
+colorscheme badwolf
+"endif
 
 set guifont=Hack:h11
 
@@ -139,7 +139,8 @@ Plugin 'avakhov/vim-yaml'
 """"""""""""""""""
 " Vim-colorschemes
 """"""""""""""""""
-Plugin 'flazz/vim-colorschemes'
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'sjl/badwolf'
 
 """""""""""""""
 " Vim-Snakemake
