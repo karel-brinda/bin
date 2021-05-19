@@ -1,3 +1,5 @@
+shell.prefix("set -euo pipefail")
+
 rule all:
     input:
     output:
