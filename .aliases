@@ -161,6 +161,7 @@ alias sa='source activate'
 alias ca='conda activate'
 alias sd='conda deactivate'
 alias si='conda install -y'
+alias mi='mamba install -y'
 #alias ss='conda search'
 alias sl='conda info --envs'
 
