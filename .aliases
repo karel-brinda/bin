@@ -358,6 +358,7 @@ alias bin='bashrc'
 alias c='C_'
 alias C='C_'
 alias gzk='gzip -k'
+alias tarcat='tar -xOvf'
 alias les='less -S'
 alias L='less -S'
 alias table="column -t -s '	'"
