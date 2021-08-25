@@ -58,6 +58,7 @@ Rapid installation of useful stuff using brew cask: https://gist.github.com/some
 * [Mendeley](https://www.mendeley.com/download-mendeley-desktop/mac/)
 * [MikTex](http://www.tug.org/mactex/)
 * [Office](https://www.office.com/)
+* [Rectangle](https://rectangleapp.com/)
 * [PDFTK](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg)
 * [R](https://cran.r-project.org/bin/macosx/)
 * [Rstudio](https://www.rstudio.com/products/rstudio/download/)
