@@ -344,6 +344,15 @@ alias p3timeit='python -m timeit'
 alias R="R --no-save"
 
 
+#########
+# DATES #
+#########
+
+alias date.date='date "+%Y-%m-%d"'
+alias date.datetime='date "+%Y-%m-%d_%H_%M_%S"'
+
+
+
 ########
 # MISC #
 ########
