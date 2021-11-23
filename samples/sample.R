@@ -1,24 +1,6 @@
 #!/usr/bin/env Rscript
 
-isRStudio <- Sys.getenv("RSTUDIO") == "1"
+library(tidyverse)
+
 set.seed(42)
 
-if (isRStudio) {
-
-} else {
-  pdf("plot.pdf",
-      width = 5,
-      height = 5)
-}
-
-df <- read.delim("data.txt", header = TRUE, stringsAsFactors = F)
-
-
-
-
-
-
-
-if (!isRStudio) {
-  dev.off()
-}
