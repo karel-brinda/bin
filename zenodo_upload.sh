@@ -21,7 +21,11 @@ DEPOSITION=$1
 FILEPATH=$2
 FILENAME=$(echo $FILEPATH | sed 's+.*/++g')
 
-BUCKET=$(curl -H "Accept: application/json" -H "Authorization: Bearer $ZENODO_TOKEN" "https://www.zenodo.org/api/deposit/depositions/$DEPOSITION" | jq --raw-output .links.bucket)
+echo "Deposition: $1; filepath: $2"
 
+BUCKET=$(curl -H "Accept: application/json" -H "Authorization: Bearer $ZENODO_TOKEN" "https://www.zenodo.org/api/deposit/depositions/$DEPOSITION" | tee -a "$DEPOSITION.log" | jq --raw-output .links.bucket)
+
+echo
+echo
 
 curl --progress-bar --upload-file $FILEPATH $BUCKET/$FILENAME?access_token=$ZENODO_TOKEN
