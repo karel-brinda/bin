@@ -17,18 +17,18 @@
 
 ## Others
 
-* `ln -s ~/github/my/bin/ ~/bin`
+* `ln -fs ~/github/my/bin/ ~/bin`
 * `echo ". ~/bin/.bashrc" >> ~/.bashrc`
 * `echo ". ~/bin/.bashrc" >> ~/.bash_profile`
-* `ln -s ~/bin/.gitconfig ~/.gitconfig`
-* `ln -s ~/bin/.vimrc ~/.vimrc`
-* `ln -s ~/bin/.vim ~/.vim`
-* `ln -s ~/bin/.ipython/`
-* `ln -s ~/bin/.parallel/`
-* `ln -s ~/bin/.Rprofile`
-* `ln -s ~/bin/.tmux.conf`
-* `ln -s ~/bin/.hushlogin`
-* `ln -s ~/bin/.condarc`
+* `ln -fs ~/bin/.gitconfig ~/.gitconfig`
+* `ln -fs ~/bin/.vimrc ~/.vimrc`
+* `ln -fs ~/bin/.vim ~/.vim`
+* `ln -fs ~/bin/.ipython/`
+* `ln -fs ~/bin/.parallel/`
+* `ln -fs ~/bin/.Rprofile`
+* `ln -fs ~/bin/.tmux.conf`
+* `ln -fs ~/bin/.hushlogin`
+* `ln -fs ~/bin/.condarc`
 * `mkdir -p ~/.config/nvim && ln -s ~/bin/.config/nvim/init.vim ~/.config/nvim/init.vim`
 * Start `vim` and run `:PluginInstall`
 * `~/.vim/bundle/YouCompleteMe/install.sh`
