@@ -412,6 +412,7 @@ function w {
 	fi
 	if [[ ! -z "$w" ]]; then
 		echo "where: $w"
+		echo "$w" | pbcopy || true
 	fi
 }
 
