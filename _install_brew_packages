@@ -14,7 +14,8 @@ brew install git-ftp
 #brew install emacs
 /usr/local/bin/pip2 install neovim --upgrade --user
 /usr/local/bin/pip3 install neovim --upgrade --user
-brew install neovim/neovim/neovim
+#brew install neovim/neovim/neovim
+brew install neovim
 
 # development tools
 brew install pv
