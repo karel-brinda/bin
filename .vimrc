@@ -415,9 +415,9 @@ set wildmenu
 set wildmode=list:longest
 set scrolloff=3
 
+set mouse=r
 
 iab kg karel.brinda@gmail.com
-iab kh kbrinda@hsph.harvard.edu
 
 iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
 iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
