@@ -101,7 +101,7 @@ brew install colordiff
 brew install pdflib-lite
 
 # several useful Linux tools
-brew install unrar
+brew install --cask rar
 brew install graphviz
 brew install gnuplot
 brew install wget
