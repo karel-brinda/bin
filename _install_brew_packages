@@ -62,7 +62,6 @@ if [[ `uname` == 'Linux' ]]; then
 	echo ""
 else
 	brew install gcc
-	brew install gcc@4.9
 	brew install gcc@5
 fi
 brew install htop
