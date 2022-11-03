@@ -26,7 +26,6 @@ brew install clang-format
 brew install autoconf
 brew install automake
 brew install ccat
-brew install bat
 brew install datamash
 brew install tmux
 
@@ -73,9 +72,14 @@ brew install lynx
 #brew install mc
 #brew install ranger
 
-# document conversion
+# tools for document conversion
 brew install pandoc
 brew install pandoc-citeproc
+
+# misc tools from @sharkdp
+brew install insect
+brew install bat
+brew install hexyl
 
 # tools for pdf
 brew install pdfgrep
