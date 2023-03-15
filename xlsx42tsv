@@ -28,6 +28,9 @@ import zipfile
 import re
 import itertools
 
+warning_count=0
+warning_max=0
+
 
 def letter2col_index(letter):
     """ A -> 0, B -> 1, Z -> 25, AA -> 26, BA -> 52 """
