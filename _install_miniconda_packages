@@ -26,8 +26,9 @@ $x snakemake
 ######################
 # PROGRAMMING & PLOTTING
 ######################
+$x pandas xopen numpy ete3
 $x jupyterlab bash_kernel
-$x pyqt
+#$x pyqt
 $x markdown
 $x pandas
 $x pylint
@@ -53,11 +54,7 @@ $x sra-tools
 ######################
 # BIODATA MANIPULATION
 ######################
-$x bcftools
-$x sambamba
-$x samtools
-$x seqtk
-$x bioawk
+$x bcftools sambamba samtools seqtk bioawk
 
 
 ######################
