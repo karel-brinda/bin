@@ -10,8 +10,10 @@ readonly NARGS="$#"
 ######################
 # SETUP ENV
 ######################
-$PROGDIR/_install_miniconda_base
-conda install -y mamba
+if [[ ! -f ~/miniconda/bin/mamba ]]; then
+	$PROGDIR/_install_miniconda_base
+	conda install -y mamba
+fi
 x="mamba install -y"
 
 
