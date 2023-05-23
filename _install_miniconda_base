@@ -1,29 +1,60 @@
 #! /usr/bin/env bash
 
-set -e -o pipefail
+set -e
+set -o pipefail
 
-d=`mktemp -d`
-minid=$HOME/miniconda
 
-if [[ -d $minid ]]; then
-	echo "Miniconda directory already exists ($minid)"
+#####################
+# 1) SET UP VARIABLES
+#####################
+
+echo "Setting up variables"
+d="$HOME/miniconda"
+tmpd="$(mktemp -d)"
+
+conda="$d/bin/conda"
+mamba="$d/bin/mamba"
+
+if [[ -f "$conda" && -f "$mamba" ]]; then
+	echo "Both conda and mamba already installed, quitting"
 	exit 0
 fi
 
-if [[ `uname` == 'Linux' ]]; then
-	url=https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+if [[ "$(uname)" == "Linux" ]]; then
+	url="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 else
-	url=https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+	url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
 fi
 
-cd $d
-wget -O miniconda.sh "$url"
-bash miniconda.sh -b -p "$minid"
 
-export PATH=$PATH:"$minid/bin"
+######################
+# 2) INSTALL MINICONDA
+######################
 
-conda update conda -y
-conda update --all -y
+if [[ -f "$conda" ]]; then
+	echo "Conda already installed ($conda), skipping"
+else
+	echo "Installing miniconda"
+	(cd "$tmpd" && wget -O miniconda.sh "$url")
+	/usr/bin/env bash "$tmpd/miniconda.sh" -b -p "$d"
+fi
 
-#conda install -y conda-build
+
+##################
+# 3) INSTALL MAMBA
+##################
+
+if [[ -f "$mamba" ]]; then
+	echo "Mamba already installed ($mamba), skipping"
+else
+	"$conda" install -y mamba
+fi
+
+
+######################
+# 4) UPDATE EVERYTHING
+######################
+
+"$mamba" update conda -y
+"$mamba" update --all -y
 
