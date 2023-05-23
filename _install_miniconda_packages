@@ -107,7 +107,7 @@ $x kraken2
 # READ SIMULATION
 ######################
 $x rnftools
-$x nanosimh
+$x nanosim-h
 #$x art
 #$x flux-simulator
 #$x simlord
