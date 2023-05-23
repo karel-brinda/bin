@@ -2,102 +2,111 @@
 
 set -o verbose
 
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
 
-./_install_miniconda
-
-
-# jupyter
-conda install -y jupyterlab
-conda install -y bash_kernel
-
-# programming & plotting
-conda install -y pyqt
-conda install -y markdown
-conda install -y pandas
-conda install -y pylint
-conda install -y yapf # python formatting
-conda install -y biopython
-conda install -y pysam
+######################
+# SETUP ENV
+######################
+$PROGDIR/_install_miniconda_base
+conda install -y mamba
+x="mamba install -y"
 
 
-# data manipulation
-conda install -y bcftools
-#conda install -y bedtools
-#conda install -y picard
-conda install -y sambamba
-conda install -y samtools
-conda install -y seqtk
-#conda install -y entrez-direct
-
-# auxiliary tools
-conda install -y snakemake
-conda install -y bioawk
+######################
+# WORKFLOW MANAGERS
+######################
+$x snakemake
 
 
-# similarity search
-#conda install -y blast
+######################
+# PROGRAMMING & PLOTTING
+######################
+$x jupyterlab bash_kernel
+$x pyqt
+$x markdown
+$x pandas
+$x pylint
+$x yapf
+$x biopython
+$x pysam
 
-# mappers
-conda install -y bwa
-#conda install -y bwakit
-#conda install -y bowtie
-conda install -y bowtie2
-#conda install -y gmap
-#conda install -y graphmap
-#conda install -y hisat2
-#conda install -y last
-#conda install -y minimap
-conda install -y minimap2
-conda install -y ococo
-#conda install -y mosaic
-#conda install -y nanoblaster
-#conda install -y novoalign
-#conda install -y rapmap
-#conda install -y razers3
-#conda install -y snap-aligner
-#conda install -y sra-tools
-#conda install -y star
-#conda install -y subread
-#conda install -y tophat
 
-# alignment
-conda install -y edlib
+######################
+# K-MER COUNTING
+######################
+$x jellyfish
+$x khmer
 
-# assemblers
-#conda install -y abyss
-#conda install -y amos
-#conda install -y daligner
-#conda install -y dazz_db
-#conda install -y fermi
-#conda install -y megahit
-conda install -y miniasm
-#conda install -y mccortex
 
-# variant calling
-conda install -y freebayes
-#conda install -y gatk-framework
-#conda install -y somatic-sniper
-conda install -y varscan
+######################
+# DATA DOWNLOADERS
+######################
+$x sra-tools
+#$x entrez-direct
 
-# read correction
-#conda install -y bfc
 
-# metagenomics
-#conda install -y gb_taxonomy_tools
-#conda install -y kraken-all
-#conda install -y kallisto
-#conda install -y centrifuge
-conda install -y prophyle
-conda install -y prophasm
-conda install -y prophex
+######################
+# BIODATA MANIPULATION
+######################
+$x bcftools
+$x sambamba
+$x samtools
+$x seqtk
+$x bioawk
 
-# k-mer counting
-conda install -y jellyfish
-#conda install -y khmer
 
-# read simulation
-conda install -y rnftools
-#conda install -y art
-#conda install -y flux-simulator
-#conda install -y simlord
-conda install -y nanosimh
+######################
+# ALIGNMENT
+######################
+$x blast
+$x bwa
+$x bowtie2
+$x minimap2
+$x edlib
+
+
+######################
+# VARIANT CALLING
+######################
+$x ococo
+$x freebayes
+#$x gatk-framework
+$x varscan
+
+
+######################
+# ASSEMBLY
+######################
+$x miniasm
+$x mccortex
+#$x abyss
+#$x amos
+#$x daligner
+#$x dazz_db
+#$x fermi
+#$x megahit
+
+
+######################
+# METAGENOMICS
+######################
+$x prophyle prophasm prophex
+$x kraken2
+#$x gb_taxonomy_tools
+#$x kraken-all
+#$x kallisto
+#$x centrifuge
+
+
+######################
+# READ SIMULATION
+######################
+$x rnftools
+$x nanosimh
+#$x art
+#$x flux-simulator
+#$x simlord
+
