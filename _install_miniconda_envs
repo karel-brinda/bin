@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
 #set -e
+set -x
 
 envs=(
-		"py37:python=2.7"
-		"py33:python=3.3"
-		"py34:python=3.4"
-		"py35:python=3.5"
-		"py36:python=3.6"
+		"p:prophyle pandas xopen"
+		"py38:python=3.8"
+		"py39:python=3.9"
+		"py310:python=3.10"
 	)
 
 for e in "${envs[@]}"; do
@@ -16,7 +16,7 @@ for e in "${envs[@]}"; do
 	echo "===================="
 	echo "$k"
 	echo "===================="
-	conda create -c bioconda --name $k -y $v || echo "Environment $k already exists"
+	mamba create -c bioconda --name $k -y $v || echo "Environment $k already exists"
 	#source activate $k
 	#conda install -y $v
 	#source deactivate
