@@ -8,10 +8,15 @@ if [[ $# -eq 0 ]]; then
 fi
 
 #command="conda create -y -c bioconda -c conda-forge -c defaults --name $1 ${@:2}"
-command="conda create -y --name $1 ${@:2}"
-echo
-echo "Command to create the enviroment:"
-echo "$command"
-echo
-$command
-
+command1="mamba create -y --name $1 ${@:2}"
+command2="conda create -y --name $1 ${@:2}"
+(
+	echo "Command to create the enviroment:"
+	echo "$command1"
+	$command1
+) || (
+	echo "Failed."
+	echo "Alternative command to create the enviroment:"
+	echo "$command2"
+	$command2
+)
