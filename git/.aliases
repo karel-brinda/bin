@@ -31,6 +31,11 @@ function gtm {
 	eval $command
     git push
 }
+function gtmm {
+	command="git commit -m "'"'$@'"'
+	echo "$command"
+	eval $command
+}
 alias gta='git commit --amend'
 
 alias gr='git reset'
