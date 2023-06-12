@@ -9,7 +9,7 @@
 
 	# do not quote non-ascii characters; display unicodes as-is
 	quotepath = false
-	excludesfile = ~/bin/.gitignore
+	excludesfile = ~/bin/git/.gitignore
 	editor = vim -u ~/bin/.vimrc.light -U NONE -N -i NONE
 	#excludesfile = /bin/.gitignore
 
