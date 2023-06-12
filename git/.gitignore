@@ -1,4 +1,42 @@
+# Global gitignore.
+
 Icon
 Icon
+
+
 Rplot.*
 Rplots.*
+
+.Rhistory
+.vim
+.nvimlog
+
+*.un~
+~*
+*~
+*.sw*
+
+# Vim
+.*.s[a-w][a-z]
+Session.vim
+.netrwhist
+
+# OS
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE stuffs
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.ipynb_checkpoints/
+
