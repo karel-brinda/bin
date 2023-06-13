@@ -26,11 +26,14 @@ fi
 if [[ "$(uname)" == "Linux" ]]; then
 	url="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 else
-	if [[ "$(uname -m)" == "arm64" ]]; then
-		url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
-	else
-		url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-	fi
+	url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+
+	## note: the following lines are to be commented until bioconda starts supporting arm64
+	#if [[ "$(uname -m)" == "arm64" ]]; then
+	#	url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+	#else
+	#	url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+	#fi
 fi
 echo "url=$url"
 
