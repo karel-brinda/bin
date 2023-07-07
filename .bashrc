@@ -21,6 +21,7 @@ for d in \
 	"$HOME/miniconda/bin" \
 	"$HOME/.linuxbrew/bin" \
 	"$HOME/github/my/projects/bin" \
+	"/opt/homebrew/opt/ruby/bin" \
 	; do
 	if [ -d $d ]; then
 		export PATH="$d:$PATH"
