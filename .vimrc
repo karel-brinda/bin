@@ -202,7 +202,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 """""""""""""
 " Python-mode
 """""""""""""
-Plugin 'python-mode/python-mode'
+"Plugin 'python-mode/python-mode'
 let g:pymode_python = 'python3'
 " Override go-to.definition key shortcut to Ctrl-]
 let g:pymode_rope_goto_definition_bind = "<C-]>"
