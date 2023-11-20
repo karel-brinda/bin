@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -eq 0 ]]; then
+	>&2 echo "usage: $PROGNAME [DOI ...]"
+	exit 1
+fi
+
+i=0
+for x in $@; do
+	i=$(( $i + 1))
+	y=$(curl -s -LH "Accept: text/bibliography" "http://doi.org/$x";)
+	printf '[%d] %s\n' "$i" "$y"
+done
+
+
+
