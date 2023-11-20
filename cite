@@ -28,9 +28,13 @@ else
 	for x in $@; do
 		y=$(curl -s -LH "accept: text/bibliography; style=bibtex" "http://doi.org/$x";)
 		yy=$(echo "$y" \
-			| perl -pe 's/^\s+//g' \
-			| perl -pe 's/, /,\n\t/g'\
-			| perl -pe 's/ }/\n}/g')
+			| perl -pe 's/,/,\n/' \
+			| perl -pe 's/},/},\n/g' \
+			| perl -pe 's/ }/\n}/g' \
+			| perl -pe 's/^\s+/\t/g' \
+			| perl -pe 's/^\t@/@/g'
+		)
+					#\
 		echo "$yy"
 	done
 fi
