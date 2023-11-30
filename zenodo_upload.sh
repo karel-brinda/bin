@@ -7,6 +7,8 @@ set -o pipefail
 set -u
 #set -f
 
+set -x
+
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
@@ -23,7 +25,7 @@ FILENAME=$(echo $FILEPATH | sed 's+.*/++g')
 
 echo "Deposition: $1; filepath: $2"
 
-BUCKET=$(curl -H "Accept: application/json" -H "Authorization: Bearer $ZENODO_TOKEN" "https://www.zenodo.org/api/deposit/depositions/$DEPOSITION" | tee -a "$DEPOSITION.log" | jq --raw-output .links.bucket)
+BUCKET=$(curl -H "Accept: application/json" -H "Authorization: Bearer $ZENODO_TOKEN" "https://zenodo.org/api/deposit/depositions/$DEPOSITION" | tee -a "$DEPOSITION.log" | jq --raw-output .links.bucket)
 
 echo
 echo
