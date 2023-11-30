@@ -7,7 +7,7 @@ set -o pipefail
 set -u
 #set -f
 
-#set -x
+set -x
 
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(dirname $0)
