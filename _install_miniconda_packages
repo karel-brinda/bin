@@ -7,14 +7,22 @@ readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
-######################
-# SETUP ENV
-######################
-if [[ ! -f ~/miniconda/bin/mamba ]]; then
-	$PROGDIR/_install_miniconda_base
-	conda install -y mamba
-fi
 x="mamba install -y"
+
+
+$x \
+	snakemake \
+	pandas xopen numpy ete3 markdown biopython \
+	jupyterlab bash_kernel \
+	pylint yapf \
+	sra-tools \
+	samtools seqtk \
+	bwa bowtie2 minimap2 blast \
+	ococo prophasm prophex \
+	mccortex bcalm \
+	mashtree
+
+exit 0
 
 
 ######################
@@ -26,25 +34,17 @@ $x snakemake
 ######################
 # PROGRAMMING & PLOTTING
 ######################
-$x pandas xopen numpy ete3 maskdown biopython
+$x pandas xopen numpy ete3 markdown biopython
 $x jupyterlab bash_kernel
 #$x pyqt
-$x pylint $x yapf
+$x pylint yapf
 #$x pysam
-
-
-######################
-# K-MER COUNTING
-######################
-$x jellyfish=2
-#$x khmer
 
 
 ######################
 # DATA DOWNLOADERS
 ######################
-#$x sra-tools
-#$x entrez-direct
+$x sra-tools
 
 
 ######################
@@ -56,52 +56,18 @@ $x samtools seqtk #pysam
 ######################
 # ALIGNMENT
 ######################
-#$x blast
-$x bwa
-$x bowtie2
-$x minimap2
-#$x edlib
+$x bwa bowtie2 minimap2 blast
 
 
-######################
-# VARIANT CALLING
-######################
-$x ococo
-#$x freebayes
-#$x gatk-framework
-#$x varscan
-
-
-######################
-# ASSEMBLY
-######################
-#$x miniasm
-$x mccortex
-#$x abyss
-#$x amos
-#$x daligner
-#$x dazz_db
-#$x fermi
-#$x megahit
-
-
-######################
-# METAGENOMICS
-######################
+##########
+# MY TOOLS
+##########
+$x ococo rnftools nanosim-h
 $x prophyle prophasm prophex
-#$x kraken2
-#$x gb_taxonomy_tools
-#$x kraken-all
-#$x kallisto
-#$x centrifuge
 
 
-######################
-# READ SIMULATION
-######################
-#$x rnftools
-#$x nanosim-h
-#$x art
-#$x flux-simulator
-#$x simlord
+##################
+# De Bruijn graphs
+##################
+$x mccortex ggcat
 
