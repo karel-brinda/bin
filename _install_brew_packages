@@ -2,59 +2,51 @@
 
 set -o verbose
 
-## repository for scientifical software
-#brew tap homebrew/science
-#
-## git
-brew install git
-brew install git-lfs && git lfs install
-brew install git-ftp
 
-# editors
-#brew install emacs
-/usr/local/bin/pip2 install neovim --upgrade --user
-/usr/local/bin/pip3 install neovim --upgrade --user
+######
+## GIT
+######
+brew install git
+
+
+###################
+## BASIC UNIX TOOLS
+###################
+brew install wget gnu-time coreutils
+brew install pv cmake rename ascii parallel
+brew install rename ag wtfutil git-sizer
+brew install bat ccat
+brew install autoconf automake
+brew install tmux screen htop
+
+# misc tools from @sharkdp
+#brew install insect hexyl
+#
+#brew install tree
+#brew install iotop
+#brew install links
+#brew install lynx
+#brew install mc
+#brew install ranger
+
+
+#########
+# EDITORS
+#########
+#/usr/local/bin/pip2 install neovim --upgrade --user
+#/usr/local/bin/pip3 install neovim --upgrade --user
 #brew install neovim/neovim/neovim
 brew install neovim
 
-# development tools
-brew install pv
-brew install gdb
-#brew install valgrind
-brew install gperftools
-#brew install homebrew/x11/gv
-brew install clang-format
-brew install autoconf
-brew install automake
-brew install ccat
-brew install datamash
-brew install tmux
 
-#brew install rust
-#brew install sbcl
-#brew install clojure
-#brew install clozure-cl
-
-# misc tools
-brew install gnu-time
-brew install coreutils
-brew install miller
-brew install exiftool
-brew install recoverjpeg
-
-## bash completion
-#brew tap homebrew/completions
-#brew install bash-completion
-
-# libraries
-brew install boost
-brew install libstxxl
-brew install tclap
-brew install open-mpi
-
-#node.js
+#######################
+# COMPILERS & LIBRARIES
+#######################
+brew install rust
 #brew install ruby
 brew install npm
+brew install clang-format yapf
+brew install boost libstxxl open-mpi
 
 # other unix utilities
 if [[ `uname` == 'Linux' ]]; then
@@ -64,57 +56,13 @@ else
 	brew install gcc
 	brew install gcc@5
 fi
-brew install htop
-brew install tree
-#brew install iotop
-brew install links
-brew install lynx
-#brew install mc
-#brew install ranger
 
-# tools for document conversion
-brew install pandoc
-brew install pandoc-citeproc
 
-# misc tools from @sharkdp
-brew install insect
-brew install bat
-brew install hexyl
-
-# tools for pdf
-brew install pdfgrep
-brew install svg2pdf
-brew install pdf2svg
-brew install diff-pdf
-
-# graphical editors
-brew install imagemagick
-brew install qpdf
-brew install ghostscript
-
-# diffs
-brew install colordiff
-#brew install latexdiff
-#brew install git-latexdiff
-
-# pdf library for gnuplot
-brew install pdflib-lite
-
-# several useful Linux tools
-brew install --cask rar
-brew install graphviz
-brew install gnuplot
-brew install wget
-brew install cmake
-brew install rename
-brew install ascii
-brew install parallel
-#brew install http://git.io/sshpass.rb
-brew install rename
-brew install ag
-brew install wtfutil
-brew install git-sizer
-
-# video
-brew install ffmpeg
+###############################
+# TOOLS FOR DOCUMENT CONVERSION
+###############################
+brew install ghostscript pandoc pandoc-citeproc
+brew install imagemagick qpdf ffmpeg exiftool
+brew install pdfgrep svg2pdf pdf2svg
+brew install colordiff diff-pdf latexdiff git-latexdiff
 
