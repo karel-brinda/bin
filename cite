@@ -10,12 +10,35 @@ readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
+
+usage() {
+    cat <<EOM
+print citations in bibtex or txt
+usage: $(basename $0) [-t] DOI [DOI] [[DOI]]
+       -t     print txt instead of bibtext
+EOM
+}
+
 if [[ $NARGS -eq 0 ]]; then
-	>&2 echo "usage: $PROGNAME [DOI ...]"
+	usage
 	exit 1
 fi
 
 format="bibtex"
+
+while getopts "t" opt; do
+	case $opt in
+	t)
+		format="txt"
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		usage
+		exit 1
+		;;
+	esac
+done
+
 
 if [[ "$format" == "txt" ]]; then
 	i=0
