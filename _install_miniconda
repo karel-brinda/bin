@@ -77,7 +77,7 @@ fi
 # 4) UPDATE EVERYTHING
 ######################
 
-"$mamba" install -y python=3.9
+"$mamba" install -y python=3.10
 "$mamba" update conda -y
 "$mamba" update --all -y
 
