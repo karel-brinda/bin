@@ -67,25 +67,30 @@ alias uu="awk '"'!x[$0]++'"'" # uniq lines without sorting
 alias b='cd -'
 alias cd-='cd -'
 
-# cd..='cd ..', etc.
-_dotcmd cd
+alias cd.='cd .'
+alias cd..='cd ..'
+alias cd...='cd ...'
+alias cd....='cd ....'
+alias cd.....='cd .....'
 
-alias ..='cd..'
-alias ...='cd...'
-alias ....='cd....'
-alias .....='cd.....'
+alias ..='cd ..'
+alias ...='cd ...'
+alias ....='cd ....'
+alias .....='cd .....'
 
 # go to the first / last subdirectory
-for i in $(seq 5);
-do
-	alias cf$i='cd "$(ls -d */ | mm '"$i"')"'
-done
+alias cf1='cd "$(ls -d */ | mm 1)"'
+alias cf2='cd "$(ls -d */ | mm 2)"'
+alias cf3='cd "$(ls -d */ | mm 3)"'
+alias cf4='cd "$(ls -d */ | mm 4)"'
+alias cf5='cd "$(ls -d */ | mm 5)"'
 alias cf='cf1'
 
-for i in $(seq 5);
-do
-	alias cl$i='cd "$(ls -d */ | mm -'"$i"')"'
-done
+alias cl1='cd "$(ls -d */ | mm 1)"'
+alias cl2='cd "$(ls -d */ | mm 2)"'
+alias cl3='cd "$(ls -d */ | mm 3)"'
+alias cl4='cd "$(ls -d */ | mm 4)"'
+alias cl5='cd "$(ls -d */ | mm 5)"'
 alias cl='cl1'
 
 
@@ -96,12 +101,6 @@ alias ctt='t=~`date +%Y%m%d%H%M%S` && mkdir /tmp/$t && cd /tmp/$t'
 ############
 # CALENDAR #
 ############
-
-# see https://github.com/insanum/gcalcli
-
-alias calm='gcalcli calm -w 15 --monday'
-alias calw='gcalcli calw -w 15 --monday'
-alias cald='gcalcli agenda -w 15 --monday `gdate "+%Y-%m-%d"` `gdate --date="tomorrow" "+%Y-%m-%d"`'
 
 function cal {
 	x=$(echo "$@" | perl -pe 's/ /%20/g')
@@ -165,21 +164,8 @@ alias mi='mamba install -y'
 #alias ss='conda search'
 alias sl='conda info --envs'
 
-alias piu='pip install --upgrade'
-_dotcmd piu
-alias ppiu='pp install --upgrade'
-_dotcmd ppiu
 
-alias pi='pip install'
-_dotcmd pi
-alias ppi='pp install'
-_dotcmd ppi
-alias pu='pip uninstall'
-_dotcmd pu
-alias ppu='pp uninstall'
-_dotcmd ppu
 
-alias pui.='pu. && pi.'
 
 ########
 # EDIT #
@@ -189,11 +175,6 @@ alias pui.='pu. && pi.'
 
 alias V='vim -u ~/bin/.vimrc.light -U NONE -N -i NONE'
 alias svim='vim -u ~/.SpaceVim/vimrc'
-
-
-_dotcmd v
-_dotcmd vv
-_dotcmd vim
 
 # Sublime
 alias e='subl'
@@ -213,29 +194,20 @@ alias of='open "`ls | head -n 1`"'
 alias ol='open "`ls | tail -n 1`"'
 
 # open the first / last directory/file
-for i in $(seq 5);
-do
-	alias of$i='open "$(ls | mm '"$i"')"'
-done
+alias of1='open "$(ls | mm 1)"'
+alias of2='open "$(ls | mm 2)"'
+alias of3='open "$(ls | mm 3)"'
+alias of4='open "$(ls | mm 4)"'
+alias of5='open "$(ls | mm 5)"'
 alias of='of1'
 
-for i in $(seq 5);
-do
-	alias ol$i='open "$(ls | mm -'"$i"')"'
-done
+alias ol1='open "$(ls | mm 1)"'
+alias ol2='open "$(ls | mm 2)"'
+alias ol3='open "$(ls | mm 3)"'
+alias ol4='open "$(ls | mm 4)"'
+alias ol5='open "$(ls | mm 5)"'
 alias ol='ol1'
 
-# open in a tmp dir
-function ott {
-    (
-    p=$(pwd)
-    t=$(date +%Y%m%d%H%M%S)
-    mkdir "/tmp/$t"
-    cd "/tmp/$t"
-    cp "$p/$1" .
-    open "$1"
-    )
-}
 
 ###############
 # FIND & GREP #
@@ -243,7 +215,6 @@ function ott {
 
 alias f='find'
 alias f.='find .'
-_dotcmd f
 
 
 alias gg='grep --color=auto'
@@ -300,13 +271,20 @@ alias mjb='make -B -j'
 alias mbj='make -B -j'
 alias mjB='make -B -j'
 alias mBj='make -B -j'
-_dotcmd mC
 
-alias mjC='make -j -C'
-_dotcmd mjC
+alias mC.="make -C ."
+alias mC..="make -C .."
+alias mC...="make -C ..."
+alias mC....="make -C ...."
+alias mC.....="make -C ....."
 
-alias mCj='make -j -C'
-_dotcmd mCj
+alias mjC='make -j -C .'
+alias mjC.="make -j -C .."
+alias mjC..="make -j -C .."
+alias mjC...="make -j -C ..."
+alias mjC....="make -j -C ...."
+alias mjC.....="make -j -C ....."
+
 
 alias mcl='make clean'
 alias mcll='make cleanall'
@@ -377,23 +355,15 @@ function tableL {
 alias tL='tableL'
 alias tl='tableL'
 alias ggdb='sudo gdb --args'
-alias u='_update_all'
 alias pe='perl -pe'
 alias timev='/usr/bin/time -v'
 alias pdflatexmk='latexmk -pdf'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
-alias morning="open \
-		http://gmail.com\
-		http://github.com\
-		http://twitter.com\
-		https://bioinformatics.stackexchange.com\
-		"
 alias pg='while True; do ping google.com; sleep 1; done'
 alias hi='history'
 alias hist='history'
 alias cx='chmod +x'
 alias yi='yapf -i'
-alias clf='clang-format -style=microsoft -i'
 alias fv='fg v || fg vim'
 alias hg='history | grep'
 alias rdm='readme'
@@ -418,49 +388,3 @@ function w {
 
 unalias ll >/dev/null 2> /dev/null || true
 unset ll
-
-
-#######
-# LFS #
-#######
-
-alias bj="bjobs | grep $USER"
-alias bjn='bjobs | grep -v interactive | awk '"'"'{print $1}'"'"
-alias bjh='bjobs | head'
-alias bjt='bjobs | tail'
-alias bjr='bjobs | grep RUN'
-
-########
-# DASH #
-########
-
-# C++
-function D.c {
-    q=$(echo "$@" | perl -pe 's/ /%20/g')
-    open "dash://cpp:$q"
-}
-
-# C
-function D.cc {
-    q=$(echo "$@" | perl -pe 's/ /%20/g')
-    open "dash://c:$q"
-}
-
-# Python 3
-function D.p {
-    q=$(echo "$@" | perl -pe 's/ /%20/g')
-    open "dash://python3:$q"
-}
-
-# Man pages
-function D.m {
-    q=$(echo "$@" | perl -pe 's/ /%20/g')
-    open "dash://manpages:$q"
-}
-
-# Make
-function D.mk {
-    q=$(echo "$@" | perl -pe 's/ /%20/g')
-    open "dash://make:$q"
-}
-
