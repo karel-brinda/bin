@@ -1,13 +1,16 @@
 #! /usr/bin/env bash
 
 #set -e
-set -x
+#set -x
 
 envs=(
-		"p:prophyle pandas xopen"
-		"py38:python=3.8"
-		"py39:python=3.9"
-		"py310:python=3.10"
+		"p:prophyle pandas xopen ete3"
+		"rnftools:rnftools"
+		"nanosimh:nanosim-h"
+		"jf:jellyfish>=2"
+		"py:python=3.10 xopen numpy pandas pprint"
+		"py311:python=3.11"
+		"py312:python=3.12"
 	)
 
 for e in "${envs[@]}"; do
