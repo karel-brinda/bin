@@ -42,9 +42,7 @@ brew install neovim
 #######################
 # COMPILERS & LIBRARIES
 #######################
-brew install rust
-#brew install ruby
-brew install npm
+brew install rust go ruby npm
 brew install clang-format yapf
 brew install boost libstxxl open-mpi
 
