@@ -60,7 +60,7 @@ fi
 # TOOLS FOR DOCUMENT CONVERSION
 ###############################
 brew install ghostscript pandoc pandoc-citeproc
-brew install imagemagick qpdf ffmpeg exiftool
+brew install imagemagick qpdf ffmpeg exiftool briss
 brew install pdfgrep svg2pdf pdf2svg
 brew install colordiff diff-pdf latexdiff git-latexdiff
 

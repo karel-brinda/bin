@@ -1,4 +1,0 @@
-#! /usr/bin/env bash
-
-java -jar ~/bin/programs/briss-0.9/briss-0.9.jar $@
-
