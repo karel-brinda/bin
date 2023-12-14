@@ -86,11 +86,11 @@ alias cf4='cd "$(ls -d */ | mm 4)"'
 alias cf5='cd "$(ls -d */ | mm 5)"'
 alias cf='cf1'
 
-alias cl1='cd "$(ls -d */ | mm 1)"'
-alias cl2='cd "$(ls -d */ | mm 2)"'
-alias cl3='cd "$(ls -d */ | mm 3)"'
-alias cl4='cd "$(ls -d */ | mm 4)"'
-alias cl5='cd "$(ls -d */ | mm 5)"'
+alias cl1='cd "$(ls -rd */ | mm 1)"'
+alias cl2='cd "$(ls -rd */ | mm 2)"'
+alias cl3='cd "$(ls -rd */ | mm 3)"'
+alias cl4='cd "$(ls -rd */ | mm 4)"'
+alias cl5='cd "$(ls -rd */ | mm 5)"'
 alias cl='cl1'
 
 
@@ -201,11 +201,11 @@ alias of4='open "$(ls | mm 4)"'
 alias of5='open "$(ls | mm 5)"'
 alias of='of1'
 
-alias ol1='open "$(ls | mm 1)"'
-alias ol2='open "$(ls | mm 2)"'
-alias ol3='open "$(ls | mm 3)"'
-alias ol4='open "$(ls | mm 4)"'
-alias ol5='open "$(ls | mm 5)"'
+alias ol1='open "$(ls -r | mm 1)"'
+alias ol2='open "$(ls -r | mm 2)"'
+alias ol3='open "$(ls -r | mm 3)"'
+alias ol4='open "$(ls -r | mm 4)"'
+alias ol5='open "$(ls -r | mm 5)"'
 alias ol='ol1'
 
 
