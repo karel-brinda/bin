@@ -1,4 +1,4 @@
-.PHONY: all help clean cleanall
+.PHONY: all help clean cleanall view
 
 SHELL=/usr/bin/env bash -eo pipefail
 
@@ -21,4 +21,5 @@ clean: ## Clean
 
 cleanall: clean ## Clean all
 
-
+view: ## View output
+	
