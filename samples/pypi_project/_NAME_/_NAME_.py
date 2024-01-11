@@ -2,7 +2,7 @@
 
 """_NAME_
 
-Author:  Karel Brinda <kbrinda@hsph.harvard.edu>
+Author:  Karel Brinda <karel.brinda@inria.fr>
 
 License: MIT
 """
@@ -55,7 +55,7 @@ def parse_args():
             description=
             "Program: {} ({})\n".format(PROGRAM, DESC)+
             "Version: {}\n".format(VERSION) +
-            "Author:  Karel Brinda <kbrinda@hsph.harvard.edu>",
+            "Author:  Karel Brinda <karel.brinda@inria.fr>",
             )
     parser.add_argument('-v', '--version',
             action='version',
