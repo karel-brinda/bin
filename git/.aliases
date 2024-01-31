@@ -57,6 +57,7 @@ alias gpull='git pull --rebase --all'
 alias gpush='git push'
 alias gshow='gsh'
 alias gp='git pull ; git push'
+alias gpp='git pull --rebase --all ; git push'
 
 alias g{='git stash -u'
 alias g}='git stash pop'
