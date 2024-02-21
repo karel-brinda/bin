@@ -183,6 +183,10 @@ alias en='subl -n'
 _dotcmd en
 
 
+# textstudio
+alias texstudio='open -a TexStudio'
+
+
 ########
 # OPEN #
 ########
