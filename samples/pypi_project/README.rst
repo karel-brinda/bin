@@ -1,9 +1,6 @@
 _NAME_
 ==================================================================================
 
-.. image:: https://travis-ci.org/karel-brinda/_NAME_.svg?branch=master
-        :target: https://travis-ci.org/karel-brinda/_NAME_
-
 
 Introduction
 ------------
@@ -35,5 +32,5 @@ Licence
 Authors
 -------
 
-`Karel Brinda <http://brinda.cz>`_ <kbrinda@hsph.harvard.edu>
+`Karel Brinda <http://brinda.eu>`_ <karel.brinda@inria.fr>
 
