@@ -64,6 +64,7 @@
 	smudge = git-lfs smudge -- %f
 [push]
 	default = simple # matching
+	autoSetupRemote = true
 
 [grep]
 	extendRegexp = true
