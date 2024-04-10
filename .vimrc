@@ -109,16 +109,16 @@ let g:nerdtree_tabs_open_on_console_startup=2
 Plug 'tpope/vim-fugitive'
 
 
-if !has('nvim')
-	""""""""""""""""""""""""""""""
-	" Syntastic - a syntax checker
-	""""""""""""""""""""""""""""""
-	" - either flake8, pyflakes or pylint have to be installed
-	Plug 'scrooloose/syntastic'
-	let g:syntastic_check_on_open = 1
-else
-	Plug 'neomake/neomake'
-endif
+"if !has('nvim')
+"	""""""""""""""""""""""""""""""
+"	" Syntastic - a syntax checker
+"	""""""""""""""""""""""""""""""
+"	" - either flake8, pyflakes or pylint have to be installed
+"	Plug 'scrooloose/syntastic'
+"	let g:syntastic_check_on_open = 1
+"else
+"	Plug 'neomake/neomake'
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround - transformation of ", ', (, [, ...
@@ -133,11 +133,13 @@ Plug 'tpope/vim-surround'
 " PowerLine - a status bar
 """"""""""""""""""""""""""
 " unfortunately, doesn't work with neovim
-if !has('nvim')
-	Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-else
-	Plug 'bling/vim-airline'
-endif
+Plug 'bling/vim-airline'
+"if !has('nvim')
+	"Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"else
+"	Plug 'bling/vim-airline'
+	"let g:airline_extensions = []
+"endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Blockit - a vim plugin to wrap lines in a block
