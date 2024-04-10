@@ -1,0 +1,66 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+
+usage() {
+    cat <<EOM
+print citations in bibtex or txt
+usage: $(basename $0) [-t] DOI [DOI] [[DOI]]
+       -t     print txt instead of bibtext
+EOM
+}
+
+if [[ $NARGS -eq 0 ]]; then
+	usage
+	exit 1
+fi
+
+format="bibtex"
+
+while getopts "t" opt; do
+	case $opt in
+	t)
+		format="txt"
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		usage
+		exit 1
+		;;
+	esac
+done
+
+
+if [[ "$format" == "txt" ]]; then
+	i=0
+	for x in $@; do
+		i=$(( $i + 1))
+		y=$(curl -s -LH "accept: text/bibliography" "http://doi.org/$x";)
+		printf '[%d] %s\n' "$i" "$y"
+	done
+else
+	for x in $@; do
+		y=$(curl -s -LH "accept: text/bibliography; style=bibtex" "http://doi.org/$x";)
+		yy=$(echo "$y" \
+			| perl -pe 's/,/,\n/' \
+			| perl -pe 's/},/},\n/g' \
+			| perl -pe 's/ }/\n}/g' \
+			| perl -pe 's/^\s+/\t/g' \
+			| perl -pe 's/^\t@/@/g'
+		)
+					#\
+		echo "$yy"
+	done
+fi
+
+
+

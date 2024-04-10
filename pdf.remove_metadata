@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+if [[ $# -ne 1 && $# -ne 2 ]]; then
+	s=`basename $0`
+	echo "Remove metadata from PDF (in order to make computations reproducible)"
+	echo "usage: $s in.pdf [out.pdf]"
+	exit 1
+fi
+
+d=`mktemp -d`
+
+cp $1 $d/1.pdf
+exiftool -all:all= $d/1.pdf
+qpdf --linearize --deterministic-id $d/1.pdf $d/2.pdf
+
+if [ $# -eq 1 ]; then
+	cp $d/2.pdf $1
+else
+	cp $d/2.pdf $2
+fi
+

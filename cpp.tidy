@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "usage: $s directory"
+	exit 1
+fi
+
+
+clang-tidy \
+    -fix \
+    -fix-errors \
+    -header-filter=.* \
+    --checks=readability-braces-around-statements,misc-macro-parentheses \
+    $1 \
+    -- -I.
+

@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+# Shortcut to gzcat | less
+
+set -o
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "convert a TSV file to CSV"
+	echo "usage: $s in.tsv"
+	exit 1
+fi
+
+awk -F '	' 'BEGIN { OFS=","}{$1=$1; print}' $1
+

@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+
+if [[ $# -eq 0 ]]; then
+	find . -type d
+	exit 0
+fi
+
+if [[ $# -eq 1 ]]; then
+	find $1 -type d
+	exit 0
+fi
+
+s=`basename $0`
+echo "usage $0 [directory]"
+exit 1
+

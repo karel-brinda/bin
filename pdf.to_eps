@@ -1,0 +1,22 @@
+#!/bin/bash
+# normalize PDF
+
+# Based on https://tex.stackexchange.com/questions/20883/how-to-convert-pdf-to-eps
+# $Id: pdf2eps,v 0.01 2005/10/28 00:55:46 Herbert Voss Exp $
+# Convert PDF to encapsulated PostScript.
+# usage:
+# pdf2eps <page number> <pdf file without ext>
+
+if [ -z "$1" ]; then
+	# display usage if no parameters given
+	s=`basename $0`
+	echo "usage: $s file.pdf"
+	exit 1
+else
+	d=$(dirname "$1")
+	b=$(basename "$1" .pdf)
+	cd "$d"
+	pdfcrop "$b.pdf"
+	pdftops "$b-crop.pdf" -eps "$b.eps"
+	rm -f "$b-crop.pdf"
+fi

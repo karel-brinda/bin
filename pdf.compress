@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+# Shortcut to gzcat | less
+
+set -o
+
+if [ $# -ne 2 ]; then
+	s=`basename $0`
+	echo "compress pdf using ghost script"
+	echo "usage: $s in.pdf out.pdf"
+	exit 1
+fi
+
+/usr/bin/env gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1
+

@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "convert a CSV file to TSV"
+	echo "usage: $s in.csv"
+	exit 1
+fi
+
+awk -F ',' 'BEGIN { OFS="\t"}{$1=$1; print}' "$1"
+

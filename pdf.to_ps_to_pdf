@@ -1,0 +1,15 @@
+#!/bin/bash
+# normalize PDF
+
+if [ -z "$1" ]; then
+	# display usage if no parameters given
+	s=`basename $0`
+	echo "usage: $s file.pdf"
+	exit 1
+else
+	temp_file=$(mktemp)
+	pdf2ps $1 ${temp_file}.ps
+	ps2pdf ${temp_file}.ps $1
+	#pdftops $1 ${temp_file}.ps
+	#pstopdf ${temp_file}.ps $1
+fi
