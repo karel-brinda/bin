@@ -5,8 +5,6 @@ set -uo pipefail
 PROGDIR=$(dirname "$BASH_SOURCE")
 DIRID=$(echo "$PROGDIR" | tr '/' '_')
 
-echo "beg1"
-
 ##
 ## WAS THIS ALREADY LOADED?
 ##
@@ -58,8 +56,5 @@ else
     if [ -d "$HOME/miniconda/bin" ]; then
         export PATH="$HOME/miniconda/bin:$PATH"
     fi
-
-
-    echo "end1"
 
 fi
