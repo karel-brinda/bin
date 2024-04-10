@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "$s project_name"
+	exit 1
+fi
+
+BASEDIR=$(dirname "$0")
+NAME=$1
+cp -a $BASEDIR/samples/pypi_project/ .
+rename -f "s/_NAME_/$NAME/g" $(find . -type d)
+rename -f "s/_NAME_/$NAME/g" $(find . -type f)
+#sed -i.bak "s/_NAME_/$NAME/g" $(find . -type f -not -name '*.bak')
+find . -type f -not -name '*.bak' -not -name '*.swp' -not -name '*~' -exec sed -i.bak "s/_NAME_/$NAME/g" {} \;
+find . -type f -name '*.bak' | xargs rm

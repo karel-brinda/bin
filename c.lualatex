@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+BASEDIR=$(dirname "$0")
+SAMPLE="$BASEDIR/samples/sample.lualatex.tex"
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "usage: $s file.tex"
+	exit 1
+fi
+
+cp $SAMPLE "$1"
