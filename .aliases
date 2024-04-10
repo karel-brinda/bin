@@ -1,0 +1,366 @@
+#! /usr/bin/env bash
+
+####################
+# CHANGE DIRECTORY #
+####################
+
+alias b='cd -'
+alias cd-='cd -'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+
+# go to the first / last subdirectory
+alias cf1='cd "$(ls -d */ | head -n1)"'
+alias cf2='cd "$(ls -d */ | head -n2 | tail -n1)"'
+alias cf3='cd "$(ls -d */ | head -n3 | tail -n1)"'
+alias cf4='cd "$(ls -d */ | head -n4 | tail -n1)"'
+alias cf5='cd "$(ls -d */ | head -n5 | tail -n1)"'
+alias cf='cf1'
+
+alias cl1='cd "$(ls -rd */ | head -n1)"'
+alias cl2='cd "$(ls -rd */ | head -n2 | tail -n1)"'
+alias cl3='cd "$(ls -rd */ | head -n3 | tail -n1)"'
+alias cl4='cd "$(ls -rd */ | head -n4 | tail -n1)"'
+alias cl5='cd "$(ls -rd */ | head -n5 | tail -n1)"'
+alias cl='cl1'
+
+
+alias ct='cd /tmp'
+alias ctt='t=~$(date +%Y-%m-%d_%H%-M-%S) && mkdir /tmp/$t && cd /tmp/$t'
+
+
+############
+# MAKE DIR #
+############
+
+alias md='mkdir -p'
+alias rd='rmdir'
+
+M () {
+	mkdir -p "$1" && cd "$1"
+}
+
+
+###############
+# HEAD & TAIL #
+###############
+
+alias hh='head'
+alias hhh='head -n 9999999999999'
+alias hh1="head -n 1"
+alias hh2="head -n 2"
+alias hh3="head -n 3"
+alias hh4="head -n 4"
+alias hh5="head -n 5"
+alias hh6="head -n 6"
+alias hh7="head -n 7"
+alias hh8="head -n 8"
+alias hh9="head -n 9"
+alias hh10="head -n 10"
+
+alias tt='tail'
+alias tth='tail -n 9999999999999'
+alias tt1="tail -n 1"
+alias tt2="tail -n 2"
+alias tt3="tail -n 3"
+alias tt4="tail -n 4"
+alias tt5="tail -n 5"
+alias tt6="tail -n 6"
+alias tt7="tail -n 7"
+alias tt8="tail -n 8"
+alias tt9="tail -n 9"
+alias tt10="tail -n 10"
+
+
+##################
+# CONDA & PYTHON #
+##################
+
+alias sa='source activate'
+alias sd='source deactivate'
+alias si='conda install -y'
+alias mi='mamba install -y'
+alias sl='conda info --envs'
+
+
+########
+# EDIT #
+########
+
+# Vim
+alias V='vim -u ~/bin/.vimrc.light -U NONE -N -i NONE'
+
+# Sublime
+alias e='subl'
+alias en='subl -n'
+
+
+########
+# OPEN #
+########
+
+alias o='open'
+_dotcmd o
+
+alias of='open "`ls | head -n 1`"'
+alias ol='open "`ls | tail -n 1`"'
+
+alias of1='open "$(ls | head -n1 | tail -n1)"'
+alias of2='open "$(ls | head -n2 | tail -n1)"'
+alias of3='open "$(ls | head -n3 | tail -n1)"'
+alias of4='open "$(ls | head -n4 | tail -n1)"'
+alias of5='open "$(ls | head -n5 | tail -n1)"'
+
+alias ol1='open "$(ls -r | head -n1 | tail -n1)"'
+alias ol2='open "$(ls -r | head -n2 | tail -n1)"'
+alias ol3='open "$(ls -r | head -n3 | tail -n1)"'
+alias ol4='open "$(ls -r | head -n4 | tail -n1)"'
+alias ol5='open "$(ls -r | head -n5 | tail -n1)"'
+
+
+###############
+# FIND & GREP #
+###############
+
+alias f='find'
+alias f.='find .'
+
+
+alias gg='grep --color=auto'
+alias ggv='grep --color=auto -v'
+alias ggi='grep --color=auto -i'
+alias gge='grep -E --color=auto'
+alias ggve='grep -E --color=auto -v'
+alias ggie='grep -E --color=auto -i'
+alias ggev='grep -E --color=auto -v'
+alias ggei='grep -E --color=auto -i'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias grepi='grep --color=auto -i'
+alias grepv='grep --color=auto -v'
+
+function ggr(){
+    grep --color=auto -R $@ .
+}
+
+#########
+# SHELL #
+#########
+
+alias r='echo "$?" "(${PIPESTATUS[*]})"'
+alias cpa='cp -av'
+alias t='touch'
+alias lns='ln -s'
+alias dfh='df -h'
+alias dush='du -sh'
+alias dh='du -sh'
+alias 'dh*'='du -sh *'
+alias wcl='wc -l'
+alias wcc='wc -c'
+alias x='xargs'
+alias x1='xargs -n 1'
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias cp.rsync='rsync -a -v -h --stats --progress'
+alias hhtop='htop -u $USER'
+
+
+####################
+# MAKE & SNAKEMAKE #
+####################
+
+alias m='make V=1'
+alias mn='make -n'
+alias mj='make V=1 -j'
+alias mt='make V=1 test'
+alias me='make edit'
+alias mh='make help'
+alias mC='make -C'
+alias mb='make -B'
+alias mjb='make -B -j'
+alias mbj='make -B -j'
+alias mjB='make -B -j'
+alias mBj='make -B -j'
+
+alias mC.="make -C ."
+alias mC..="make -C .."
+alias mC...="make -C ..."
+alias mC....="make -C ...."
+alias mC.....="make -C ....."
+
+alias mjC='make -j -C .'
+alias mjC.="make -j -C .."
+alias mjC..="make -j -C .."
+alias mjC...="make -j -C ..."
+alias mjC....="make -j -C ...."
+alias mjC.....="make -j -C ....."
+
+
+alias mcl='make clean'
+alias mcll='make cleanall'
+alias mcla='make cleanall'
+alias mw='make view'
+alias cm='cmake . && clear && make -j 4'
+alias sm='snakemake -p'
+alias smj='snakemake -p --cores 4242'
+alias smn='snakemake -n -p'
+alias smd='snakemake -n -p --debug-dag'
+
+
+#######
+# PDF #
+#######
+
+alias pdf_merge='pdfunite'
+alias exif_delete_metadata='exiftool -all=""'
+
+
+##########
+# PYTHON #
+##########
+
+alias jp='jupyter lab'
+alias py3='ipython --no-confirm-exit || /usr/bin/env python3 -i -c "import re;import os;import sys;import math;import glob;import collections;import itertools;"'
+alias p3timeit='python -m timeit'
+
+
+#####
+# R #
+#####
+
+alias R="R --no-save"
+
+
+#########
+# DATES #
+#########
+
+alias date.date='date "+%Y-%m-%d"'
+alias date.datetime='date "+%Y-%m-%d_%H_%M_%S"'
+
+
+
+########
+# MISC #
+########
+
+G () {
+	q=$(echo "$@" | perl -pe 's/\s+/+/g')
+	open "https://google.com/search?q=$q"
+}
+alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
+alias brc=bashrc
+alias bin='bashrc'
+alias c='C_'
+alias C='C_'
+alias gzk='gzip -k'
+#alias tarcat='tar -xOvf' #a separate command new, with a support for multiple arguments
+alias les='less -S'
+alias L='less -S'
+alias table="column -t -s '	'"
+function tableL {
+	column -t -s '	' $1 | less -S
+}
+alias tL='tableL'
+alias tl='tableL'
+alias ggdb='sudo gdb --args'
+alias pe='perl -pe'
+alias timev='/usr/bin/time -v'
+alias pdflatexmk='latexmk -pdf'
+alias path='echo $PATH | perl -pe "s/:/\n/g"'
+alias pg='while True; do ping google.com; sleep 1; done'
+alias hi='history'
+alias hist='history'
+alias cx='chmod +x'
+alias yi='yapf -i'
+alias fv='fg v || fg vim'
+alias hg='history | grep'
+alias rdm='readme'
+alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit -m "Update log"; git push)'
+alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
+
+alias kw='killall "Microsoft Word"'
+
+alias ss='seqtk seq'
+
+function w {
+	t=$(type "$1" 2>/dev/null || true)
+	w=$(which "$1" 2>/dev/null || true)
+	if [[ ! -z "$t" ]]; then
+		echo "type:  $t"
+	fi
+	if [[ ! -z "$w" ]]; then
+		echo "where: $w"
+		echo "$w" | pbcopy || true
+	fi
+}
+
+unalias ll >/dev/null 2> /dev/null || true
+unset ll
+
+
+
+
+
+
+if [[ $(uname) == 'Darwin' ]]; then
+
+	alias Rstudio='open -a "Rstudio"'
+	alias Rproj='open -a "Rstudio" *.Rproj'
+	alias acrobat='open -a "Adobe Acrobat"'
+	alias ch='open -a "Google Chrome"'
+	alias charm='open -a /Applications/PyCharm\ CE.app'
+	alias chrome='open -a "Google Chrome"'
+	alias excel='open -a "Microsoft Excel"'
+	alias figtree='open -a "FigTree"'
+	alias gimp='open -a gimp'
+	alias gvim='macvim'
+	alias illustrator='open -a "Adobe Illustrator"'
+	alias vlc='open -a "VLC"'
+	alias photoshop='open -a /Applications/Adobe\ Photoshop*/*.app/'
+	alias inkscape='open -a inkscape'
+	alias macvim='open -a MacVim '
+	alias ow='open -a Preview'
+	alias vscode='open -a "Visual Studio Code"'
+	alias word='open -a "Microsoft Word"'
+	alias ww='open -a Preview'
+
+	alias orp='open *.Rproj'
+
+	# sorted by name
+	alias l='ls -Galh'
+
+	# sorted by time
+	alias ll='ls -Galhtr'
+
+	# sorted by name, followed symlinks
+	alias lll='ls -GalhL'
+
+	# sorted by size
+	alias lS='ls -GalhtSr'
+
+	alias oepn='open'
+
+	# textstudio
+	alias texstudio='open -a TexStudio'
+fi
+
+
+if [[ `uname` == 'Linux' ]]; then
+	alias open='gnome-open'
+
+	# sorted by name
+	alias l='ls --color=auto -Galh'
+
+	# sorted by date
+	alias ll='ls --color=auto -Galhtr'
+
+	# sorted by name, followed symlinks
+	alias lll='ls --color=auto -GalhL'
+
+	# sorted by size
+	alias lS='ls --color=auto -GalhSr'
+fi
