@@ -308,11 +308,17 @@ Plugin 'mzlogin/vim-markdown-toc'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+
+""""""""""""""
+" vim-sensible
+""""""""""""""
+Plugin 'tpope/vim-sensible'
+
+
 """""""""""""""
 " PLUGINS - END
 """""""""""""""
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
