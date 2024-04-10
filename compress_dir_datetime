@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+# Shortcut to gzcat | less
+
+set -e
+
+prog=$(basename $0)
+if [[ $# -ne 1 ]]; then
+	s=`basename $0`
+	echo "compress dir using tar and gz"
+	echo "usage: $s dir"
+	exit 1
+fi
+
+date=$(date "+%Y-%m-%d_%H-%M-%S")
+(
+p=$(pwd)
+cd "$1" && dirpath=$(pwd) && dirname=$(basename "$dirpath") && echo "$dirname"
+cd ..
+filename="${dirname}_${date}.tar.gz"
+tar -zcvf "${filename}" "${dirname}"
+mv "$filename" "$p"
+)
+

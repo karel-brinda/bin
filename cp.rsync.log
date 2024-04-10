@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+rsync -a -v -h --stats --progress "$@" 2>&1 | tee rsync.log
+

@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+if [[ $# -eq 0 ]]; then
+	ps aux | head -n1
+	ps aux | grep $USER
+	exit 0
+fi
+
+if [[ $# -eq 1 ]]; then
+	ps aux | head -n1
+	ps aux | grep $USER | grep -i "$1"
+	exit 0
+fi
+
+exit 1
