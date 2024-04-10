@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+set -o verbose
+
+Rscript -e 'install.packages("tidyverse")'
+Rscript -e 'install.packages("scales")'
+Rscript -e 'install.packages("IRkernel")'
+Rscript -e 'install.packages("RColorBrewer")'
+Rscript -e 'install.packages("optparse")'
+Rscript -e 'install.packages("patchwork")'
+Rscript -e 'install.packages("ggsci")'
+Rscript -e 'install.packages("reshape2")'

@@ -1,0 +1,66 @@
+#! /usr/bin/env bash
+
+set -o verbose
+
+
+######
+## GIT
+######
+brew install git
+
+
+###################
+## BASIC UNIX TOOLS
+###################
+brew install wget gnu-time coreutils
+brew install pv cmake rename ascii parallel
+brew install rename ag wtfutil git-sizer
+brew install bat ccat
+brew install autoconf automake
+brew install tmux screen htop
+
+# misc tools from @sharkdp
+#brew install insect hexyl
+#
+#brew install tree
+#brew install iotop
+#brew install links
+#brew install lynx
+#brew install mc
+#brew install ranger
+
+
+#########
+# EDITORS
+#########
+#/usr/local/bin/pip2 install neovim --upgrade --user
+#/usr/local/bin/pip3 install neovim --upgrade --user
+#brew install neovim/neovim/neovim
+brew install neovim
+
+
+#######################
+# COMPILERS & LIBRARIES
+#######################
+brew install rust go ruby npm
+brew install clang-format yapf
+brew install boost libstxxl open-mpi
+
+# other unix utilities
+if [[ `uname` == 'Linux' ]]; then
+#	brew install bash
+	echo ""
+else
+	brew install gcc
+	brew install gcc@5
+fi
+
+
+###############################
+# TOOLS FOR DOCUMENT CONVERSION
+###############################
+brew install ghostscript pandoc pandoc-citeproc
+brew install imagemagick qpdf ffmpeg exiftool briss
+brew install pdfgrep svg2pdf pdf2svg
+brew install colordiff diff-pdf latexdiff git-latexdiff
+

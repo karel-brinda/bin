@@ -1,0 +1,73 @@
+#! /usr/bin/env bash
+
+set -o verbose
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+x="mamba install -y"
+
+
+$x \
+	snakemake \
+	pandas xopen numpy ete3 markdown biopython \
+	jupyterlab bash_kernel \
+	pylint yapf \
+	sra-tools \
+	samtools seqtk \
+	bwa bowtie2 minimap2 blast \
+	ococo prophasm prophex \
+	mccortex bcalm \
+	mashtree
+
+exit 0
+
+
+######################
+# WORKFLOW MANAGERS
+######################
+$x snakemake
+
+
+######################
+# PROGRAMMING & PLOTTING
+######################
+$x pandas xopen numpy ete3 markdown biopython
+$x jupyterlab bash_kernel
+#$x pyqt
+$x pylint yapf
+#$x pysam
+
+
+######################
+# DATA DOWNLOADERS
+######################
+$x sra-tools
+
+
+######################
+# BIODATA MANIPULATION
+######################
+$x samtools seqtk #pysam
+
+
+######################
+# ALIGNMENT
+######################
+$x bwa bowtie2 minimap2 blast
+
+
+##########
+# MY TOOLS
+##########
+$x ococo rnftools nanosim-h
+$x prophyle prophasm prophex
+
+
+##################
+# De Bruijn graphs
+##################
+$x mccortex ggcat
+

@@ -1,0 +1,90 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+
+
+#####################
+# 1) SET UP VARIABLES
+#####################
+
+echo "Setting up variables"
+d="$HOME/miniconda"
+bd="$HOME/miniconda_$(date +%s)"
+tmpd="$(mktemp -d)"
+
+conda="$d/bin/conda"
+mamba="$d/bin/mamba"
+
+if [[ -f "$conda" && -f "$mamba" ]]; then
+	echo
+	echo "Both conda and mamba already installed, quitting"
+	echo
+	exit 0
+fi
+
+
+# NOTE: List of all files available here:
+# https://repo.anaconda.com/miniconda/
+
+if [[ "$(uname)" == "Linux" ]]; then
+	#url="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+	url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-Linux-x86_64.sh"
+else
+	#url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+	url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-MacOSX-x86_64.sh"
+
+	## note: the following lines are to be commented until bioconda starts supporting arm64
+	#if [[ "$(uname -m)" == "arm64" ]]; then
+	#	url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
+	#else
+	#	url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+	#fi
+fi
+echo "url=$url"
+
+
+######################
+# 2) INSTALL MINICONDA
+######################
+
+if [[ -f "$conda" ]]; then
+	echo
+	echo "Conda already installed ($conda), skipping"
+	echo
+else
+	if [[ -d "$d" ]]; then
+		echo
+		echo "Conda directory without conda already exists ($d), moving it to $bd"
+		echo
+		mv "$d" "$bd"
+	fi
+	echo
+	echo "Installing miniconda"
+	echo
+	(cd "$tmpd" && wget -O miniconda.sh "$url" && /usr/bin/env bash "miniconda.sh" -b -p "$d")
+fi
+
+
+##################
+# 3) INSTALL MAMBA
+##################
+
+if [[ -f "$mamba" ]]; then
+	echo
+	echo "Mamba already installed ($mamba), skipping"
+	echo
+else
+	"$conda" install -y mamba
+fi
+
+
+######################
+# 4) UPDATE EVERYTHING
+######################
+
+## Python Python 3.10 already fixed by the installation so the following can be skipped
+#"$mamba" install -y python=3.10
+"$mamba" update conda -y
+"$mamba" update --all -y
+

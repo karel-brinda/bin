@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+source ~/.rvm/scripts/rvm
+
+gem install bundler
+gem install jekyll
+gem install jekyll-sitemap
+gem install jekyll-feed
+
