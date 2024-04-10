@@ -44,7 +44,7 @@ fi
 ##
 ## PREPREND TO PATH
 ##
-export PATH="${BINDIR}:${BINDIR}/bioinformatics:${BIN_DIR}/git:${BINDIR}/grep:$PATH"
+export PATH="${BINDIR}:${BINDIR}/bioinformatics:${BINDIR}/git:${BINDIR}/grep:$PATH"
 
 if [ -d "$HOME/.linuxbrew/bin" ]; then
 	export PATH="$HOME/.linuxbrew/bin:$PATH"
