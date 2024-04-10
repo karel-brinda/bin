@@ -4,8 +4,6 @@
 " - http://nvie.com/posts/how-i-boosted-my-vim/
 "
 
-source $HOME/bin/.vim/vim-sensible/plugin/sensible.vim
-
 " source $VIMRUNTIME/mswin.vim
 "if has("clipboard")
 "	" CTRL-X is Cut
@@ -44,24 +42,44 @@ map <C-}> :call Uncomment()<CR>
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+
+
+
+
+
+
+
+
 """""""""""""""""
 " PLUGINS - BEGIN
 """""""""""""""""
 
-set rtp+=$HOME/bin/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-""""""""
-" Vundle
-""""""""
-" - :PluginInstall
-" - :PluginUpdate
-Plugin 'VundleVim/Vundle.vim'
+
+
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
 
 """"""""""""""""""""""""""""
 " Nerdtree - a tree explorer
 """"""""""""""""""""""""""""
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -73,16 +91,22 @@ let NERDTreeShowHidden=1
 "let NERDTreeMapOpenInTab='<CR>'
 
 
+
+
+
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree-tabs - NERDTree and tabs together in Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'jistr/vim-nerdtree-tabs'
+Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=2
 
 """"""""""""""
 " Vim-fugitive
 """"""""""""""
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 
 if !has('nvim')
@@ -90,10 +114,10 @@ if !has('nvim')
 	" Syntastic - a syntax checker
 	""""""""""""""""""""""""""""""
 	" - either flake8, pyflakes or pylint have to be installed
-	Plugin 'scrooloose/syntastic'
+	Plug 'scrooloose/syntastic'
 	let g:syntastic_check_on_open = 1
 else
-	Plugin 'neomake/neomake'
+	Plug 'neomake/neomake'
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -103,23 +127,23 @@ endif
 " - cs'<q>
 " - cst"
 " - ds"
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 """"""""""""""""""""""""""
 " PowerLine - a status bar
 """"""""""""""""""""""""""
 " unfortunately, doesn't work with neovim
 if !has('nvim')
-	Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+	Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 else
-	Plugin 'bling/vim-airline'
+	Plug 'bling/vim-airline'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Blockit - a vim plugin to wrap lines in a block
 """""""""""""""""""""""""""""""""""""""""""""""""
 " - visual block mode - <leader>bi
-Plugin 'sk1418/blockit'
+Plug 'sk1418/blockit'
 
 """"""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe - a code completition engine
@@ -128,34 +152,28 @@ Plugin 'sk1418/blockit'
 "   cd ~/.vim/bundle/YouCompleteMe
 "   ./install.py --clang-completer --system-libclang #--system-boost
 if v:version > 740
-	"Plugin 'Valloric/YouCompleteMe'
+	"Plug 'Valloric/YouCompleteMe'
 endif
 
 """"""""""""""""""
 " Vim-ansible-yaml
 """"""""""""""""""
-Plugin 'avakhov/vim-yaml'
-
-""""""""""""""""""
-" Vim-colorschemes
-""""""""""""""""""
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'sjl/badwolf'
+Plug 'avakhov/vim-yaml'
 
 """""""""""""""
 " Vim-Snakemake
 """""""""""""""
-Plugin 'karel-brinda/vim-snakemake'
+Plug 'karel-brinda/vim-snakemake'
 
 """""
 " ALE
 """""
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
 """""""""""
 " ctrlp.vim
 """""""""""
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -171,38 +189,38 @@ let g:ctrlp_prompt_mappings = {
 """"""""""
 " acck.vim
 """"""""""
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 
 """"""""""
 " html5-syntax
 """"""""""
-Plugin 'othree/html5-syntax.vim'
+Plug 'othree/html5-syntax.vim'
 
 
 """"""""
 " vimtex
 """"""""
-Plugin 'lervag/vimtex'
+Plug 'lervag/vimtex'
 let g:tex_flavor = 'latex'
 
 
 """""""""""""""""""
 " vim-pandoc-syntax
 """""""""""""""""""
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 
 """""""""""""""
 " vim-rmarkdown
 """""""""""""""
-"Plugin 'vim-pandoc/vim-rmarkdown'
+"Plug 'vim-pandoc/vim-rmarkdown'
 
 
 """""""""""""
 " Python-mode
 """""""""""""
-"Plugin 'python-mode/python-mode'
+"Plug 'python-mode/python-mode'
 let g:pymode_python = 'python3'
 " Override go-to.definition key shortcut to Ctrl-]
 let g:pymode_rope_goto_definition_bind = "<C-]>"
@@ -219,7 +237,7 @@ let g:pymode_options_colorcolumn = 0
 """""""""""
 " gundo.vim
 """""""""""
-Plugin 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
@@ -231,21 +249,21 @@ endif
 " - [count]<leader>cc - comment
 " - [count]<leader>cu - uncomment
 
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 
 """"""""""""
 " vim-pencil
 """"""""""""
 " activate by :Pencil
-Plugin 'reedes/vim-pencil'
+Plug 'reedes/vim-pencil'
 
 
 """"""
 " goyo
 """"""
 " activate by :goyo
-Plugin 'junegunn/goyo.vim' " Full screen writing mode
+Plug 'junegunn/goyo.vim' " Full screen writing mode
 
 function! s:goyo_enter()
   let b:quitting = 0
@@ -283,13 +301,13 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 " vim-peekaboo
 """"""""""""""
 " you can see the contents of the registers
-Plugin 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
 
 """"""""""""""
 " vim-markdown
 """"""""""""""
-Plugin 'gabrielelana/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 
 
 """"""""""""""""""
@@ -297,23 +315,44 @@ Plugin 'gabrielelana/vim-markdown'
 """"""""""""""""""
 " generating github toc:
 " :GenTocGFM
-Plugin 'mzlogin/vim-markdown-toc'
+Plug 'mzlogin/vim-markdown-toc'
 
 
 """"
 "if has('nvim')
-"	Plugin 'roxma/nvim-completion-manager'
+"	Plug 'roxma/nvim-completion-manager'
 "endif
-
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 
 
 """"""""""""""
 " vim-sensible
 """"""""""""""
-Plugin 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible'
+
+
+
+
+
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
+
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+
+
 
 
 """""""""""""""
