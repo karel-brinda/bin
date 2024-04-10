@@ -1,9 +1,16 @@
 #! /usr/bin/env bash
 
-#set -eux pipefail
-set -o pipefail
+set -uo pipefail
 
-readonly BINDIR="$HOME/bin"
+
+##
+## STOP IF ALREADY LOADED
+##
+if [ -n "${LOADED_BASHRC_BIN+x}" ]; then
+	exit 0
+else
+	export LOADED_BASHRC_BIN=$(date)
+fi
 
 ##
 ## ENVIRONMENT SETUP
@@ -24,22 +31,16 @@ export LANG=en_US.UTF-8
 # bash behavior
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export HISTIGNORE=' *'
+export HISTTIMEFORMAT='%d/%m/%y %T '
 
-##
-## STOP IF POSSIBLE
-##
-if [ -n "$LOADED_BASHRC_BIN" ]; then
-	exit 0
-else
-	export LOADED_BASHRC_BIN=$(date)
-fi
 
 ##
 ## ALIASES
 ##
-
+readonly BINDIR="$HOME/bin"
 . "${BINDIR}/.aliases"
 . "${BINDIR}/git/.aliases"
+
 
 ##
 ## PREPREND TO PATH
@@ -53,5 +54,4 @@ fi
 if [ -d "$HOME/miniconda/bin" ]; then
 	export PATH="$HOME/miniconda/bin:$PATH"
 fi
-
 
