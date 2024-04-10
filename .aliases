@@ -104,7 +104,11 @@ alias en='subl -n'
 ########
 
 alias o='open'
-_dotcmd o
+alias o.='open .'
+alias o..='open ..'
+alias o...='open ../..'
+alias o....='open ../../..'
+alias o.....='open ../../../..'
 
 alias of='open "`ls | head -n 1`"'
 alias ol='open "`ls | tail -n 1`"'
