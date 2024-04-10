@@ -251,10 +251,6 @@ alias date.datetime='date "+%Y-%m-%d_%H_%M_%S"'
 # MISC #
 ########
 
-G () {
-	q=$(echo "$@" | perl -pe 's/\s+/+/g')
-	open "https://google.com/search?q=$q"
-}
 alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
 alias brc=bashrc
 alias bin='bashrc'
@@ -315,22 +311,18 @@ if [[ $(uname) == 'Darwin' ]]; then
 	alias Rstudio='open -a "Rstudio"'
 	alias Rproj='open -a "Rstudio" *.Rproj'
 	alias acrobat='open -a "Adobe Acrobat"'
-	alias ch='open -a "Google Chrome"'
 	alias charm='open -a /Applications/PyCharm\ CE.app'
-	alias chrome='open -a "Google Chrome"'
 	alias excel='open -a "Microsoft Excel"'
 	alias figtree='open -a "FigTree"'
-	alias gimp='open -a gimp'
 	alias gvim='macvim'
 	alias illustrator='open -a "Adobe Illustrator"'
 	alias vlc='open -a "VLC"'
 	alias photoshop='open -a /Applications/Adobe\ Photoshop*/*.app/'
-	alias inkscape='open -a inkscape'
 	alias macvim='open -a MacVim '
-	alias ow='open -a Preview'
 	alias vscode='open -a "Visual Studio Code"'
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
+	alias texstudio='open -a TexStudio'
 
 	alias orp='open *.Rproj'
 
@@ -346,10 +338,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 	# sorted by size
 	alias lS='ls -GalhtSr'
 
-	alias oepn='open'
 
-	# textstudio
-	alias texstudio='open -a TexStudio'
 fi
 
 
