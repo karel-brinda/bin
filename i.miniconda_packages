@@ -11,6 +11,7 @@ x="mamba install -y"
 
 
 $x \
+	neovim \
 	snakemake \
 	pandas xopen numpy ete3 markdown biopython \
 	jupyterlab bash_kernel \
