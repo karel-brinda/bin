@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	s=`basename $0`
+	echo "usage: $s directory"
+	exit 1
+fi
+
+find . -type f -not -path "*/.git/*" -exec grep -H -n --colour=auto $1 {} \;

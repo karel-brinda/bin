@@ -1,0 +1,38 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+help() {
+	s=`basename $0`
+	echo "process outputfile"
+	echo "usage: $s [output.prof]"
+}
+
+
+case "$#" in
+	0)
+		help
+		exit 1
+		;;
+	1)
+		if ! [[ -f "$1" ]]; then
+			echo "File '$1' does not exist"
+			exit 1
+		fi
+		;;
+	*)
+		help
+		exit 1
+		;;
+esac
+
+
+snakeviz "$1" ||
+	(
+	echo "error, try to install the programs:"
+	echo
+	echo "  pip install snakeviz"
+	echo
+	)
+
+

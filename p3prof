@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+help() {
+	s=`basename $0`
+	echo "profile a Python program and save the output as output.prof"
+	echo "usage: $s [cmd]"
+}
+
+
+case "$#" in
+	0)
+		help
+		exit 1
+		;;
+	*)
+		;;
+esac
+
+/usr/bin/env python3 -m cProfile -o output.prof $@
+

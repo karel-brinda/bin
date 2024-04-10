@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+PROG="$1"
+CMD="$@"
+
+which "$PROG" ||
+	(
+		echo "program $PROG is not installed"
+		exit 1
+	)
+
+($CMD --help || $CMD -h) 2>&1 | less
+

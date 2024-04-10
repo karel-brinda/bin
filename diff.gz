@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 2 ]; then
+	s=`basename $0`
+	echo "usage: $s file1.gz file2.gz"
+	exit 1
+fi
+
+diff <(zcat "$1") <(zcat "$2")
+

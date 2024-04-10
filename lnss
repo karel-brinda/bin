@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+for x in "$@";
+do
+	ln -s "$x"
+done
