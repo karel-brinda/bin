@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ -t 0 ] ; then
+	# not a pipe
+	view $@
+else
+	# pipe
+	view -
+fi
+
