@@ -313,8 +313,8 @@ unset ll
 
 if [[ $(uname) == 'Darwin' ]]; then
 
-	alias Rstudio='open -a "Rstudio"'
-	alias Rproj='open -a "Rstudio" *.Rproj'
+	alias rstudio='open -a "Rstudio"'
+	alias rproj='open -a "Rstudio" *.Rproj'
 	alias acrobat='open -a "Adobe Acrobat"'
 	alias charm='open -a /Applications/PyCharm\ CE.app'
 	alias excel='open -a "Microsoft Excel"'
@@ -328,8 +328,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
 	alias texstudio='open -a TexStudio'
-
-	alias orp='open *.Rproj'
 
 	# sorted by name
 	alias l='ls -Galh'
