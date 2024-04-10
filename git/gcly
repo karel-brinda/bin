@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+set -e -o pipefail
+
+gcl='git clean -fxdn ; echo "aa"; ask_yes && git clean -fxd'
+
+if [ $# -eq 0 ]; then
+    git clean -fxd
+	exit 0
+fi
+
+if [ $# -eq 1 ]; then
+	cd "$1"
+    git clean -fxd
+	exit 0
+fi
+
+s=`basename $0`
+echo "usage: $s [dir]"
+exit 1

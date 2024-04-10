@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+# Create a local copy of the repo and copy its path to clipboard
+
+set -e -o pipefail -x
+
+t=~$(date +%Y%m%d%H%M%S)
+d="$HOME/git-tmp/$t"
+mkdir -p "$d"
+echo "$d"
+git worktree add "$d" $(git symbolic-ref HEAD)
+echo "$d" | pbcopy
+

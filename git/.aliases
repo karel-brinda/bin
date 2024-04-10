@@ -1,0 +1,87 @@
+#! /usr/bin/env bash
+
+alias g='git'
+
+alias ggg='git grep'
+alias gggi='git grep -i'
+alias gggc='git grep -B 2 -A 2'
+alias gggcc='git grep -B 5 -A 5'
+alias gggccc='git grep -B 20 -A 20'
+
+alias ga='git add -v'
+alias g.a='git add -v .'
+alias ga.='git add -v .'
+alias ga..='git add -v ..'
+alias ga...='git add -v ../..'
+alias ga....='git add -v ../../..'
+alias ga.....='git add -v ../../../..'
+
+alias gb='git branch'
+alias gba='git branch --all'
+
+alias gc='git checkout'
+alias gc*="git checkout '*'"
+alias gcb='git checkout -b'
+
+alias gs='git status'
+alias g.s='git status .'
+alias gs.='git status .'
+alias gs..='git status ..'
+alias gs...='git status ../..'
+alias gs....='git status ../../..'
+alias gs.....='git status ../../../..'
+alias gss='git sizer -v --branches'
+
+alias gt='git commit'
+function gtm {
+	command="git commit -m "'"'$@'"'
+	echo "$command"
+	eval $command
+    git push
+}
+function gtmm {
+	command="git commit -m "'"'$@'"'
+	echo "$command"
+	eval $command
+}
+alias gta='git commit --amend'
+
+alias gr='git reset'
+alias gr*='git reset "*"'
+
+alias grv='git remote -v'
+
+alias gf='git diff --cached --ignore-space-at-eol'
+alias gff='git diff --ignore-space-at-eol'
+alias gfH='git diff HEAD --ignore-space-at-eol'
+
+alias gwff='git wdiff --ignore-space-at-eol'
+alias gwfH='git wdiff HEAD --ignore-space-at-eol'
+alias gwf='git wdiff --cached --ignore-space-at-eol'
+
+alias gfo='git fetch origin -v'
+
+alias gpull='git pull --rebase --all'
+alias gpush='git push'
+alias gshow='gsh'
+alias gp='git pull ; git push'
+alias gpp='git pull --rebase --all ; git push'
+
+alias g{='git stash -u'
+alias g}='git stash pop'
+
+alias git.index-='git update-index --assume-unchanged'
+alias git.index+='git update-index --no-assume-unchanged'
+alias gm='git merge'
+alias gcl.='gcl'
+alias gl='git log'
+alias gci='git check-ignore -v'
+
+alias gur='git_update_repos'
+
+alias gitignore='touch .gitignore && ~/bin/v .gitignore'
+alias gi='gitignore'
+
+alias rme='readme'
+
+alias cgs='gcs'
