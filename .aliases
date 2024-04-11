@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+alias reload='RELOAD=1 . ~/.bashrc'
+
 ####################
 # CHANGE DIRECTORY #
 ####################
