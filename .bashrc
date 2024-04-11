@@ -2,8 +2,10 @@
 
 set -uo pipefail
 
-PROGDIR=$(dirname "$BASH_SOURCE")
-DIRID=$(echo "$PROGDIR" | tr '/' '_')
+HOSTNAME=$(hostname)
+#PROGDIR=$(dirname "${BASH_SOURCE}")"${HOSTNAME}"
+PROGDIR="$HOME/bin"
+DIRID=$(echo "$PROGDIR" | tr '/' '_')"__$HOSTNAME"
 
 ##
 ## WAS THIS ALREADY LOADED?
