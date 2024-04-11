@@ -3,18 +3,24 @@
 #set -u
 set -o pipefail
 
+
 HOSTNAME=$(hostname)
 PROGDIR="$HOME/bin"
 DIRID=$(echo "__${PROGDIR}__${HOSTNAME}__" | tr -cd '[:alnum:]_')
 eval "DIRID_TEST=\${$DIRID+set}"
+RELOAD_TEST="${RELOAD+set}" #is the RELOAD env variable set?
 
+if [ "$RELOAD_TEST" = "set" ]; then
+    >&2 echo "Force-reloading all configuration files"
+fi
 
 ##
 ## ALIASES
 ##
-if [ "$(type -t $DIRID)" = 'alias' ]; then
+if [ "$(type -t $DIRID)" = 'alias' ] && [ "$RELOAD_TEST" != "set" ]; then
     true
 else
+
     ## 1) SETUP ALIASES
     . "${PROGDIR}/.aliases"
     . "${PROGDIR}/git/.aliases"
@@ -27,7 +33,7 @@ fi
 ##
 ## VARIABLES
 ##
-if [ "$DIRID_TEST" = "set" ]; then
+if [ "$DIRID_TEST" = "set" ] && [ "$RELOAD_TEST" != "set" ]; then
     true
 else
     ## 1) ENVIRONMENT SETUP
