@@ -7,18 +7,29 @@ PROGDIR="$HOME/bin"
 DIRID=$(echo "${PROGDIR}__${HOSTNAME}" | tr -cd '[:alnum:]_')
 
 ##
-## WAS THIS ALREADY LOADED?
+## ALIASES
+##
+
+if [ "$(type -t _alias_stamp_)" = 'alias' ]; then
+    true
+else
+    ## 1) SETUP ALIASES
+    . "${PROGDIR}/.aliases"
+    . "${PROGDIR}/git/.aliases"
+
+    ## 2) MARK AS COMPLETED
+    alias _alias_stamp_=true
+fi
+
+
+##
+## VARIABLES
 ##
 eval "value=\${$DIRID+set}"
 if [ "$value" = "set" ]; then
     true
 else
-    dt=$(date)
-    export "$DIRID"="$dt"
-
-    ##
-    ## ENVIRONMENT SETUP
-    ##
+    ## 1) ENVIRONMENT SETUP
 
     # colors
     export CLICOLOR=1
@@ -38,16 +49,7 @@ else
     export HISTTIMEFORMAT='%d/%m/%y %T '
 
 
-    ##
-    ## ALIASES
-    ##
-    . "${PROGDIR}/.aliases"
-    . "${PROGDIR}/git/.aliases"
-
-
-    ##
-    ## PREPREND TO PATH
-    ##
+    ## 2) PREPREND TO PATH
     export PATH="${PROGDIR}:${PROGDIR}/bioinformatics:${PROGDIR}/git:$PATH"
 
     if [ -d "$HOME/.linuxbrew/bin" ]; then
@@ -63,4 +65,8 @@ else
     fi
 
     export PATH="${PROGDIR}/bin:$PATH"
+
+    ## 3) MARK AS COMPLETED
+    dt=$(date)
+    export "$DIRID"="$dt"
 fi
