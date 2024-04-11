@@ -1,4 +1,8 @@
 #! /usr/bin/env bash
 
-yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+d="$HOME/.linuxbrew"
+
+mkdir -p "$d" && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C "$d"
+eval "$($d/bin/brew shellenv)"
+brew update --force --quiet
 
