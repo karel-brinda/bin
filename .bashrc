@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
-set -uo pipefail
+#set -u
+set -o pipefail
 
 HOSTNAME=$(hostname)
 PROGDIR="$HOME/bin"
