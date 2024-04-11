@@ -5,7 +5,7 @@ set -uo pipefail
 HOSTNAME=$(hostname)
 #PROGDIR=$(dirname "${BASH_SOURCE}")"${HOSTNAME}"
 PROGDIR="$HOME/bin"
-DIRID=$(echo "$PROGDIR" | tr '/' '_')"__$HOSTNAME"
+DIRID=$(echo "${PROGDIR}__${HOSTNAME}" | tr -cd '[:alnum:]_')
 
 ##
 ## WAS THIS ALREADY LOADED?
