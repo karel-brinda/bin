@@ -73,10 +73,6 @@ else
 		export PATH="$HOME/miniconda/bin:$PATH"
 	fi
 
-	if [ -d "$HOME/binbin" ]; then
-		export PATH="$HOME/miniconda/bin:$PATH"
-	fi
-
 	export PATH="${PROGDIR}/bin:$PATH"
 
 	## 3) MARK AS COMPLETED
