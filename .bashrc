@@ -49,7 +49,7 @@ else
     ##
     ## PREPREND TO PATH
     ##
-    export PATH="${PROGDIR}:${PROGDIR}/bioinformatics:${PROGDIR}/git:${PROGDIR}/grep:$PATH"
+    export PATH="${PROGDIR}:${PROGDIR}/bioinformatics:${PROGDIR}/git:$PATH"
 
     if [ -d "$HOME/.linuxbrew/bin" ]; then
         export PATH="$HOME/.linuxbrew/bin:$PATH"
