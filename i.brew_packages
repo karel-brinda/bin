@@ -1,33 +1,58 @@
 #! /usr/bin/env bash
 
-set -o verbose
+#set -o verbose
+set -o xtrace
+
+
+if [[ `uname` == 'Linux' ]]; then
+	#INSTALL="brew install --force-bottle"
+	#INSTALL() {
+		#brew install $@
+	#}
+	INSTALL() {
+		for x in $@; do
+			y=$(brew deps "$x")
+			for z in $y; do
+				INSTALL $z
+			done
+		done
+		brew install --force-bottle $@
+	}
+else
+	#INSTALL="brew install"
+	INSTALL() {
+		brew install $@
+	}
+fi
+
+export -f INSTALL
 
 
 ######
 ## GIT
 ######
-brew install git
+INSTALL git
 
 
 ###################
 ## BASIC UNIX TOOLS
 ###################
-brew install wget gnu-time coreutils
-brew install pv cmake rename ascii parallel
-brew install rename ag wtfutil git-sizer
-brew install bat ccat
-brew install autoconf automake
-brew install tmux screen htop
+INSTALL wget gnu-time coreutils
+INSTALL pv cmake rename ascii parallel
+INSTALL rename ag wtfutil git-sizer
+INSTALL bat ccat
+INSTALL autoconf automake
+INSTALL tmux screen htop
 
 # misc tools from @sharkdp
-#brew install insect hexyl
+#INSTALL insect hexyl
 #
-#brew install tree
-#brew install iotop
-#brew install links
-#brew install lynx
-#brew install mc
-#brew install ranger
+#INSTALL tree
+#INSTALL iotop
+#INSTALL links
+#INSTALL lynx
+#INSTALL mc
+#INSTALL ranger
 
 
 #########
@@ -35,32 +60,32 @@ brew install tmux screen htop
 #########
 #/usr/local/bin/pip2 install neovim --upgrade --user
 #/usr/local/bin/pip3 install neovim --upgrade --user
-#brew install neovim/neovim/neovim
-brew install neovim
+#INSTALL neovim/neovim/neovim
+INSTALL neovim
 
 
 #######################
 # COMPILERS & LIBRARIES
 #######################
-brew install rust go ruby npm
-brew install clang-format yapf
-brew install boost libstxxl open-mpi
+INSTALL rust go ruby npm
+INSTALL clang-format yapf
+INSTALL boost libstxxl open-mpi
 
 # other unix utilities
 if [[ `uname` == 'Linux' ]]; then
-#	brew install bash
+#	INSTALL bash
 	echo ""
 else
-	brew install gcc
-	brew install gcc@5
+	INSTALL gcc
+	INSTALL gcc@5
 fi
 
 
 ###############################
 # TOOLS FOR DOCUMENT CONVERSION
 ###############################
-brew install ghostscript pandoc pandoc-citeproc
-brew install imagemagick qpdf ffmpeg exiftool briss
-brew install pdfgrep svg2pdf pdf2svg
-brew install colordiff diff-pdf latexdiff git-latexdiff
+INSTALL ghostscript pandoc pandoc-citeproc
+INSTALL imagemagick qpdf ffmpeg exiftool briss
+INSTALL pdfgrep svg2pdf pdf2svg
+INSTALL colordiff diff-pdf latexdiff git-latexdiff
 
