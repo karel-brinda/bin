@@ -3,7 +3,6 @@
 set -uo pipefail
 
 HOSTNAME=$(hostname)
-#PROGDIR=$(dirname "${BASH_SOURCE}")"${HOSTNAME}"
 PROGDIR="$HOME/bin"
 DIRID=$(echo "${PROGDIR}__${HOSTNAME}" | tr -cd '[:alnum:]_')
 
@@ -59,4 +58,9 @@ else
         export PATH="$HOME/miniconda/bin:$PATH"
     fi
 
+    if [ -d "$HOME/binbin" ]; then
+        export PATH="$HOME/miniconda/bin:$PATH"
+    fi
+
+    export PATH="${PROGDIR}/bin:$PATH"
 fi
