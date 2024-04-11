@@ -255,10 +255,6 @@ alias cg='cd ~/github'
 alias cgb='cd ~/bin'
 alias cgm='cd ~/github/my'
 
-
-alias bashrc='(cd ~/bin && git pull >/dev/null) ; (cd ~/github/my/projects && git pull >/dev/null) ; . ~/bin/.bashrc'
-alias brc=bashrc
-alias bin='bashrc'
 alias c='C_'
 alias C='C_'
 alias gzk='gzip -k'
