@@ -1,26 +1,40 @@
 #! /usr/bin/env bash
 
 #set -o verbose
-set -o xtrace
+#set -o xtrace
 
+readonly PROGDIR=$(dirname $0)
 
 if [[ `uname` == 'Linux' ]]; then
 	#INSTALL="brew install --force-bottle"
 	#INSTALL() {
 		#brew install $@
 	#}
+	f="$PROGDIR/tmp.linuxbrew"
+	finished="_"
 	INSTALL() {
 		for x in $@; do
-			y=$(brew deps "$x")
-			for z in $y; do
-				INSTALL $z
-			done
+			>&2 echo "=== Checking $x"
+			if grep "_${x}_" <<< "$finished"; then
+				>&2 echo "---- Skipping $x (_${x}_ is in $finished)"
+				true
+			else
+				>&2 echo "---- Installing $x"
+				finished="${finished}${x}_"
+				>&2 echo "....... processed list: $finished"
+				>&2 echo "....... running: brew deps $x"
+				y=$(brew deps "$x")
+				for z in $y; do
+					INSTALL $z
+				done
+				brew install --force-bottle $@
+			fi
 		done
-		brew install --force-bottle $@
 	}
 else
 	#INSTALL="brew install"
 	INSTALL() {
+		>&2 echo "Going to install $@"
 		brew install $@
 	}
 fi
