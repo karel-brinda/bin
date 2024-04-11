@@ -5,13 +5,14 @@ set -o pipefail
 
 HOSTNAME=$(hostname)
 PROGDIR="$HOME/bin"
-DIRID=$(echo "${PROGDIR}__${HOSTNAME}" | tr -cd '[:alnum:]_')
+DIRID=$(echo "__${PROGDIR}__${HOSTNAME}__" | tr -cd '[:alnum:]_')
+eval "DIRID_TEST=\${$DIRID+set}"
+
 
 ##
 ## ALIASES
 ##
-
-if [ "$(type -t _alias_stamp_)" = 'alias' ]; then
+if [ "$(type -t $DIRID)" = 'alias' ]; then
     true
 else
     ## 1) SETUP ALIASES
@@ -19,15 +20,14 @@ else
     . "${PROGDIR}/git/.aliases"
 
     ## 2) MARK AS COMPLETED
-    alias _alias_stamp_=true
+    alias $DIRID=true
 fi
 
 
 ##
 ## VARIABLES
 ##
-eval "value=\${$DIRID+set}"
-if [ "$value" = "set" ]; then
+if [ "$DIRID_TEST" = "set" ]; then
     true
 else
     ## 1) ENVIRONMENT SETUP
