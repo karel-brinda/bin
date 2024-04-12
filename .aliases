@@ -14,6 +14,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias cd.='cd .'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
+alias cd.....='cd ../../../..'
+
 
 # go to the first / last subdirectory
 alias cf1='cd "$(ls -d */ | head -n1)"'
