@@ -222,6 +222,25 @@ alias smn='snakemake -n -p'
 alias smd='snakemake -n -p --debug-dag'
 
 
+#########
+# SLURM #
+#########
+
+alias s.j='squeue -u $USER'
+alias s.jr='squeue -u $USER -t RUNNING'
+alias s.jp='squeue -u $USER -t PENDING'
+alias s.fairshare='sshare -u $USER -U'
+alias s.sprio='sprio -l -u $USER'
+alias s.details='scontrol show jobid -dd'
+s.i () {
+	for x in $@; do
+		sacct -j "$i" \
+			--format JobId,NNodes,Partition,NCPUs,State,ReqMem,MaxRSS,Elapsed,CPUTime,TimeLimit,ExitCode,Start,End
+	done
+}
+alias s.k='scancel'
+
+
 #######
 # PDF #
 #######
