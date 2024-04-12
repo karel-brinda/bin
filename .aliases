@@ -220,7 +220,7 @@ alias smd='snakemake -n -p --debug-dag'
 # PDF #
 #######
 
-alias pdf_merge='pdfunite'
+alias pdf.merge='pdfunite'
 alias exif_delete_metadata='exiftool -all=""'
 
 
