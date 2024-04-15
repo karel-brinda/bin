@@ -61,8 +61,11 @@ cp "$x" "$d/a.docx"
 		cat "$frel" | perl -pe 's@</Relationships>@@g'
 		cat "$fdoc" \
 			| egrep -o '10.\d{4,9}/[-._;()/:a-zA-Z0-9]+' \
-			| tr -dc A-Za-z0-9 \
-			| perl -pe 's@^(.*)$@<Relationship Id="rId$1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="http://www.doi.org/$1" TargetMode="External"/>@g'
+			| tr -cd 'A-Za-z0-9' \
+			| perl -pe 's@^(.*)$@
+					<Relationship Id="rId$1"
+						Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+						Target="http://www.doi.org/$1" TargetMode="External"/>@g'
 		 echo '</Relationships>'
 	) > "$frel.tmp"
 	mv "$frel.tmp" "$frel"
@@ -72,17 +75,26 @@ cp "$x" "$d/a.docx"
 	msg "Step 4: switching DOIs to hyperlinks\n        \"$d/$fdoc\""
 
 	cat "$fdoc" \
-		| perl -pe 's@(10.\d{4,9}/[-._;()/:a-zA-Z0-9]+)@<w:hyperlink r:id="rId10" w:history="1">
-    <w:r>
+		| perl -pe 's@(10.\d{4,9}/[-._;()/:a-zA-Z0-9]+)@
+		<w:hyperlink r:id="
+		rId=====\1=====
+		" w:history="1">
+	    <w:r>
         <w:rPr>
             <w:rStyle w:val="Hyperlink"/>
         </w:rPr>
-        <w:t>\1--huu</w:t>
+        <w:t>\1</w:t>
     </w:r>
 	</w:hyperlink>@g' \
+		| perl -ne 'print if not /====/; tr/a-z/A-Z/ if /====/' \
 		> "$fdoc.tmp"
 	mv "$fdoc.tmp" "$fdoc"
 
+		#| perl -ne 'print if not /====/; tr/a-zA-Z0-9// if /=====/' \
+		#| perl -ne 'print if not /====/; tr/a-z/A-Z/ if /=====/' \
+		#| perl -pe 's/(rId=====.*=====)/$1 =~ tr/A-Za-z0-9//ce' \
+		#| perl -pe 's/(rId=====.*=====)/haha/; print "aaa $1 bbbb"' \
+		#| perl -pe 's/(rId=====.*=====)/$1 =~ tr -cd "A-Za-z0-9" /r/e' \
 
 	msg "Step 5: re-zipping the content of\n        \"$d/a\"\n        into \"$y\""
 	(
