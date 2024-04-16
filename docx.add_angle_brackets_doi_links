@@ -67,7 +67,7 @@ cp "$x" "$d/a.docx"
       cat "$frel" | perl -pe 's@</Relationships>@@g'
       cat "$fdoc" \
          | egrep -o '10.\d{4,9}/[-._;()/:a-zA-Z0-9]+' \
-         | tr -cd 'A-Za-z0-9' \
+         | tr -cd 'A-Za-z0-9\n' \
          | perl -pe 's@^(.*)$@
          <Relationship Id="rId$1"
          Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
