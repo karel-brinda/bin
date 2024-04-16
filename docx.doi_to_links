@@ -34,7 +34,7 @@ msg() {
 }
 
 if [[ $NARGS -ne 2 ]]; then
-   >&2 echo "usage: $PROGNAME protected.docx unprotected.docx"
+   >&2 echo "usage: $PROGNAME document.docx document_linked_dois.docx"
    exit 1
 fi
 
@@ -95,11 +95,7 @@ cp "$x" "$d/a.docx"
       > "$fdoc.tmp"
    mv "$fdoc.tmp" "$fdoc"
 
-   #| perl -ne 'print if not /====/; tr/a-zA-Z0-9// if /=====/' \
-   #| perl -ne 'print if not /====/; tr/a-z/A-Z/ if /=====/' \
-   #| perl -pe 's/(rId=====.*=====)/$1 =~ tr/A-Za-z0-9//ce' \
-   #| perl -pe 's/(rId=====.*=====)/haha/; print "aaa $1 bbbb"' \
-   #| perl -pe 's/(rId=====.*=====)/$1 =~ tr -cd "A-Za-z0-9" /r/e' \
+
 
    msg "Step 5: re-zipping the content of\n        \"$d/a\"\n        into \"$y\""
    (
