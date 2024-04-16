@@ -13,7 +13,7 @@
 set -e
 set -o pipefail
 set -u
-#set -f
+set -x
 
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(dirname $0)
@@ -42,7 +42,6 @@ x="$1"
 y="$2"
 d=$(mktemp -d) #d="./tmp"
 
-set -x
 msg "||           $PROGNAME                 ||"
 msg "Step 1: creating a tmp dir:\n        \"$d\""
 
@@ -58,12 +57,12 @@ cp "$x" "$d/a.docx"
    fdoc="a/word/document.xml"
    frel="a/word/_rels/document.xml.rels"
 
-   msg "Step 3: adding DOI URLs as links to\n        \"$d/$frel\""
+   fdocabs="$d/$fdoc"
+   frelabs="$d/$frel"
+
+   msg "Step 3: adding DOI URLs as links to\n        \"$frelabs (using $fdocabs)\""
 
    (
-      #>&2 cat "$frel" \
-      #   | egrep -o '10.\d{4,9}/[-._;()/:a-zA-Z0-9]+' \
-         #| tr -cd 'A-Za-z0-9';
       cat "$frel" | perl -pe 's@</Relationships>@@g'
       cat "$fdoc" \
          | egrep -o '10.\d{4,9}/[-._;()/:a-zA-Z0-9]+' \
@@ -79,7 +78,7 @@ cp "$x" "$d/a.docx"
 
 
 
-   msg "Step 4: switching DOIs to hyperlinks\n        \"$d/$fdoc\""
+   msg "Step 4: switching DOIs to hyperlinks\n        \"$fdocabs\""
 
    cat "$fdoc" \
       | perl -pe 's@(10.\d{4,9}/[-._;()/:a-zA-Z0-9]+)@
