@@ -2,6 +2,7 @@
 " LINKS
 """""""
 " - http://nvie.com/posts/how-i-boosted-my-vim/
+" - https://dev.to/animo/vim-configuration-from-minimal-to-complete-5o9
 "
 
 " source $VIMRUNTIME/mswin.vim
