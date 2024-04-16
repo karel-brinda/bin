@@ -315,6 +315,13 @@ Plug 'mzlogin/vim-markdown-toc'
 " TPOPE PLUGINGS
 """"""""""""""""
 
+"" VIM-COMMENTARY
+"" git functionality for vim
+" comment stuff out
+" - gcc to comment out a line
+" - gc to comment out the target of a motion (for example, gcap to comment out a paragraph)
+Plug 'tpope/vim-commentary'
+
 "" VIM-FUGITIVE
 "" git functionality for vim
 "Plug 'tpope/vim-fugitive'
@@ -322,10 +329,6 @@ Plug 'mzlogin/vim-markdown-toc'
 "" VIM-SLEUTH
 "" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug 'tpope/vim-sleuth'
-
-"" VIM-SENSIBLE
-"" a universal set of defaults
-Plug 'tpope/vim-sensible'
 
 "" VIM-SURROUND
 "" plugin provides mappings to easily delete, change and add surroundings in pairs
@@ -335,6 +338,10 @@ Plug 'tpope/vim-sensible'
 "" - ds"
 Plug 'tpope/vim-surround'
 
+
+"" VIM-SENSIBLE
+"" a universal set of defaults
+Plug 'tpope/vim-sensible'
 
 
 " Initialize plugin system
