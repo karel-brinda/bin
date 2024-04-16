@@ -89,7 +89,7 @@ cp "$x" "$d/a.docx"
         <w:t>\1</w:t>
     </w:r>
 	</w:hyperlink>@g' \
-		| perl -pe 's/(.*)====(.*?)====(.*)/${1} . (${2} =~ tr/auc/ABC/) . ${3}/ge if /====/' \
+		| perl -pe 's/(.*)====(.*?)====(.*)/${1} . ($2 =~ tr|abc|ABC|) . ${3}/ge if /====/' \
 		> "$fdoc.tmp"
 	mv "$fdoc.tmp" "$fdoc"
 
