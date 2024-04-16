@@ -2,6 +2,7 @@
 " LINKS
 """""""
 " - http://nvie.com/posts/how-i-boosted-my-vim/
+" - https://dev.to/animo/vim-configuration-from-minimal-to-complete-5o9
 "
 
 " source $VIMRUNTIME/mswin.vim
@@ -103,12 +104,6 @@ let NERDTreeShowHidden=1
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=2
 
-""""""""""""""
-" Vim-fugitive
-""""""""""""""
-Plug 'tpope/vim-fugitive'
-
-
 "if !has('nvim')
 "	""""""""""""""""""""""""""""""
 "	" Syntastic - a syntax checker
@@ -120,14 +115,6 @@ Plug 'tpope/vim-fugitive'
 "	Plug 'neomake/neomake'
 "endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim-surround - transformation of ", ', (, [, ...
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" - cs"'
-" - cs'<q>
-" - cst"
-" - ds"
-Plug 'tpope/vim-surround'
 
 """"""""""""""""""""""""""
 " PowerLine - a status bar
@@ -320,21 +307,43 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 
 
-""""
-"if has('nvim')
-"	Plug 'roxma/nvim-completion-manager'
-"endif
 
 
 
-""""""""""""""
-" vim-sensible
-""""""""""""""
+
+
+""""""""""""""""
+" TPOPE PLUGINGS
+""""""""""""""""
+
+"" VIM-COMMENTARY
+"" git functionality for vim
+" comment stuff out
+" - gcc to comment out a line
+" - gc to comment out the target of a motion (for example, gcap to comment out a paragraph)
+" - adding a custom type: autocmd FileType apache setlocal commentstring=#\ %s
+Plug 'tpope/vim-commentary'
+
+"" VIM-FUGITIVE
+"" git functionality for vim
+"Plug 'tpope/vim-fugitive'
+
+"" VIM-SLEUTH
+"" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+Plug 'tpope/vim-sleuth'
+
+"" VIM-SURROUND
+"" plugin provides mappings to easily delete, change and add surroundings in pairs
+"" - cs"'
+"" - cs'<q>
+"" - cst"
+"" - ds"
+Plug 'tpope/vim-surround'
+
+
+"" VIM-SENSIBLE
+"" a universal set of defaults
 Plug 'tpope/vim-sensible'
-
-
-
-
 
 
 " Initialize plugin system
