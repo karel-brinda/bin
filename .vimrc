@@ -320,6 +320,7 @@ Plug 'mzlogin/vim-markdown-toc'
 " comment stuff out
 " - gcc to comment out a line
 " - gc to comment out the target of a motion (for example, gcap to comment out a paragraph)
+" - adding a custom type: autocmd FileType apache setlocal commentstring=#\ %s
 Plug 'tpope/vim-commentary'
 
 "" VIM-FUGITIVE
