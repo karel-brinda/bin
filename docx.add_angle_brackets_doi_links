@@ -5,6 +5,11 @@
 # Contact: Karel Brinda (karel.brinda@gmail.com)
 #
 
+# cat word/document.xml  | pe 's/>/>\n/g' | bat
+#
+# docx.add_angle_brackets_doi_links AIS*.docx a.docx && unzip -o a.docx && cat word/document.xml  | pe 's/>/>\n/g' | grep -B20 -A10 10.1038/ng.1028 | bat
+#
+
 set -e
 set -o pipefail
 set -u
@@ -76,9 +81,7 @@ cp "$x" "$d/a.docx"
 
 	cat "$fdoc" \
 		| perl -pe 's@(10.\d{4,9}/[-._;()/:a-zA-Z0-9]+)@
-		<w:hyperlink r:id="
-		rId=====\1=====
-		" w:history="1">
+		<w:hyperlink r:id="rId=====\1=====" w:history="1">
 	    <w:r>
         <w:rPr>
             <w:rStyle w:val="Hyperlink"/>
@@ -86,7 +89,7 @@ cp "$x" "$d/a.docx"
         <w:t>\1</w:t>
     </w:r>
 	</w:hyperlink>@g' \
-		| perl -ne 'print if not /====/; tr/a-z/A-Z/ if /====/' \
+		| perl -pe 's/(.*)====(.*?)====(.*)/${1} . (${2} =~ tr/auc/ABC/) . ${3}/ge if /====/' \
 		> "$fdoc.tmp"
 	mv "$fdoc.tmp" "$fdoc"
 
