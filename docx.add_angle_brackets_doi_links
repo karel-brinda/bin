@@ -67,12 +67,12 @@ cp "$x" "$d/a.docx"
       cat "$frel" | perl -pe 's@</Relationships>@@g'
       cat "$fdoc" \
          | egrep -o '10.\d{4,9}/[-._;()/:a-zA-Z0-9]+' \
-         | tr -cd 'A-Za-z0-9\n' \
          | perl -pe 's@^(.*)$@
-         <Relationship Id="rId$1"
-         Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-         Target="http://www.doi.org/$1" TargetMode="External"/>@g
-         '
+           <Relationship Id="rId=====\1====="
+             Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+               Target="http://www.doi.org/\1" TargetMode="External"/>\n@g' \
+         | perl -pe 's/(.*)=====(.*?)=====(.*)/$1 . ($a=$2, $a =~ tr|a-zA-Z0-9||cd, $a) . $3/ge if /====/'
+
          echo '</Relationships>'
    ) > "$frel.tmp"
    mv "$frel.tmp" "$frel"
