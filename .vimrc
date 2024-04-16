@@ -103,12 +103,6 @@ let NERDTreeShowHidden=1
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=2
 
-""""""""""""""
-" Vim-fugitive
-""""""""""""""
-Plug 'tpope/vim-fugitive'
-
-
 "if !has('nvim')
 "	""""""""""""""""""""""""""""""
 "	" Syntastic - a syntax checker
@@ -120,14 +114,6 @@ Plug 'tpope/vim-fugitive'
 "	Plug 'neomake/neomake'
 "endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim-surround - transformation of ", ', (, [, ...
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" - cs"'
-" - cs'<q>
-" - cst"
-" - ds"
-Plug 'tpope/vim-surround'
 
 """"""""""""""""""""""""""
 " PowerLine - a status bar
@@ -320,20 +306,34 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 
 
-""""
-"if has('nvim')
-"	Plug 'roxma/nvim-completion-manager'
-"endif
 
 
 
-""""""""""""""
-" vim-sensible
-""""""""""""""
+
+
+""""""""""""""""
+" TPOPE PLUGINGS
+""""""""""""""""
+
+"" VIM-FUGITIVE
+"" git functionality for vim
+"Plug 'tpope/vim-fugitive'
+
+"" VIM-SLEUTH
+"" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+Plug 'tpope/vim-sleuth'
+
+"" VIM-SENSIBLE
+"" a universal set of defaults
 Plug 'tpope/vim-sensible'
 
-
-
+"" VIM-SURROUND
+"" plugin provides mappings to easily delete, change and add surroundings in pairs
+"" - cs"'
+"" - cs'<q>
+"" - cst"
+"" - ds"
+Plug 'tpope/vim-surround'
 
 
 
