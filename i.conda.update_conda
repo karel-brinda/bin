@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+set -x
+
+mamba update -y -c conda-forge -n base conda
+
+mamba update -y -n base mamba
+
+mamba update -y -n base --all
