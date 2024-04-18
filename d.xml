@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -ne 2 ]]; then
+	echo "usage: $PROGNAME doc1.xml doc2.xml"
+	exit 1
+fi
+
+xcat () {
+	x="$1"
+	cat "$x" \
+		| perl -pe 's|>|>\n|g'
+}
+
+diff --color=always <(xcat "$1") <(xcat "$2") | less -R
+
