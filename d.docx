@@ -11,9 +11,9 @@ readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
 if [[ $NARGS -ne 2 ]]; then
-	echo "usage: $PROGNAME options"
+	echo "usage: $PROGNAME doc1.docx doc2.docx"
 	exit 1
 fi
 
-colordiff <(pandoc -t markdown "$1") <(pandoc -t markdown "$2") | less -R
+diff --color=auto <(pandoc -t markdown "$1") <(pandoc -t markdown "$2") | less -R
 

@@ -6,5 +6,5 @@ if [ $# -ne 2 ]; then
 	exit 1
 fi
 
-diff <(zcat "$1") <(zcat "$2")
+diff --color=auto <(zcat "$1") <(zcat "$2") | less -R
 
