@@ -150,6 +150,23 @@ function ggr(){
 }
 
 
+######
+# LS #
+######
+#
+# sorted by name
+alias l='ls -Galh --color=auto'
+
+# sorted by time
+alias l.t='ls -Galhtr --color=auto'
+
+# follow symlinks; sorted by name
+alias l.ln='ls -GalhL --color=auto'
+
+# sorted by size
+alias l.s='ls -GalhtSr --color=auto'
+
+
 #########
 # SHELL #
 #########
@@ -245,7 +262,7 @@ alias s.k='scancel'
 #######
 
 alias pdf.merge='pdfunite'
-alias exif_delete_metadata='exiftool -all=""'
+alias pdf.exif_delete_metadata='exiftool -all=""'
 
 
 ##########
@@ -309,9 +326,6 @@ alias rdm='readme'
 alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit -m "Update log"; git push)'
 alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
 
-alias kw='killall "Microsoft Word"'
-
-alias ss='seqtk seq'
 
 function w {
 	t=$(type "$1" 2>/dev/null || true)
@@ -325,16 +339,12 @@ function w {
 	fi
 }
 
-unalias ll >/dev/null 2> /dev/null || true
-unset ll
 
-
-
-
-
+###############
+# OS-SPECIFIC #
+###############
 
 if [[ $(uname) == 'Darwin' ]]; then
-
 	alias rstudio='open -a "Rstudio"'
 	alias rproj='open -a "Rstudio" *.Rproj'
 	alias acrobat='open -a "Adobe Acrobat"'
@@ -350,35 +360,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
 	alias texstudio='open -a TexStudio'
-
-	# sorted by name
-	alias l='ls -Galh'
-
-	# sorted by time
-	alias ll='ls -Galhtr'
-
-	# sorted by name, followed symlinks
-	alias lll='ls -GalhL'
-
-	# sorted by size
-	alias lS='ls -GalhtSr'
-
-
-fi
-
-
-if [[ `uname` == 'Linux' ]]; then
+elif [[ `uname` == 'Linux' ]]; then
 	alias open='gnome-open'
-
-	# sorted by name
-	alias l='ls --color=auto -Galh'
-
-	# sorted by date
-	alias ll='ls --color=auto -Galhtr'
-
-	# sorted by name, followed symlinks
-	alias lll='ls --color=auto -GalhL'
-
-	# sorted by size
-	alias lS='ls --color=auto -GalhSr'
 fi
