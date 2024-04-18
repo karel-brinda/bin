@@ -164,9 +164,8 @@ function ggr(){
 #########
 
 alias r='echo "$?" "(${PIPESTATUS[*]})"'
-alias cpa='cp -av'
-alias t='touch'
 alias lns='ln -s'
+alias t='touch'
 alias dfh='df -h'
 alias dush='du -sh'
 alias dh='du -sh'
@@ -176,8 +175,14 @@ alias wcc='wc -c'
 alias x='xargs'
 alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias cp.rsync='rsync -a -v -h --stats --progress'
 alias hhtop='htop -u $USER'
+
+
+######
+# CP #
+######
+alias cp.a='cp -av'
+alias cp.rsync='rsync -a -v -h --stats --progress'
 
 
 ####################
