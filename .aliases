@@ -135,54 +135,48 @@ alias ol5='open "$(ls -r | head -n5 | tail -n1)"'
 
 
 ###############
-# FIND & GREP #
+# GREP #
 ###############
 
-alias f='find'
-alias f.='find .'
-
-
-alias gg='grep --color=auto'
-alias ggv='grep --color=auto -v'
-alias ggi='grep --color=auto -i'
-alias gge='grep -E --color=auto'
-alias ggve='grep -E --color=auto -v'
-alias ggie='grep -E --color=auto -i'
-alias ggev='grep -E --color=auto -v'
-alias ggei='grep -E --color=auto -i'
-alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-alias grepi='grep --color=auto -i'
-alias grepv='grep --color=auto -v'
+alias grep='grep --color=auto'
+
+alias gg='egrep --color=auto'
+alias gg.v='egrep --color=auto -v'
+alias gg.i='egrep --color=auto -i'
 
 function ggr(){
     grep --color=auto -R $@ .
 }
 
+
 #########
 # SHELL #
 #########
 
+# Misc
 alias r='echo "$?" "(${PIPESTATUS[*]})"'
 alias lns='ln -s'
 alias t='touch'
-alias dfh='df -h'
-alias dush='du -sh'
-alias dh='du -sh'
-alias 'dh*'='du -sh *'
-alias wcl='wc -l'
-alias wcc='wc -c'
 alias x='xargs'
 alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias hhtop='htop -u $USER'
 
+# Find
+alias f='find'
+alias f.='find .'
 
-######
-# CP #
-######
+# Copying
 alias cp.a='cp -av'
 alias cp.rsync='rsync -a -v -h --stats --progress'
+
+# Sizes
+alias df.h='df -h'
+alias du.sh='du -sh'
+alias 'dh*'='du -sh *'
+alias wc.l='wc -l'
+alias wc.c='wc -c'
 
 
 ####################
