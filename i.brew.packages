@@ -52,7 +52,7 @@ INSTALL git
 ## BASIC UNIX TOOLS
 ###################
 INSTALL wget gnu-time coreutils
-INSTALL pv cmake rename ascii parallel
+INSTALL pv fd cmake rename ascii parallel
 INSTALL rename ag wtfutil git-sizer
 INSTALL bat ccat
 INSTALL autoconf automake
