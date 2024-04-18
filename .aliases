@@ -186,6 +186,10 @@ alias x1='xargs -n 1'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias hhtop='htop -u $USER'
 
+
+# Diff
+alias d='diff --color=auto'
+
 # Find
 alias f='find'
 alias f.='find .'
