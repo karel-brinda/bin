@@ -6,9 +6,11 @@ alias reload='RELOAD=1 . ~/.bashrc'
 # CHANGE DIRECTORY #
 ####################
 
+# go back
 alias b='cd -'
 alias cd-='cd -'
 
+# cd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -19,7 +21,6 @@ alias cd..='cd ..'
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
-
 
 # go to the first / last subdirectory
 alias cf1='cd "$(ls -d */ | head -n1)"'
@@ -36,7 +37,12 @@ alias cl4='cd "$(ls -rd */ | head -n4 | tail -n1)"'
 alias cl5='cd "$(ls -rd */ | head -n5 | tail -n1)"'
 alias cl='cl1'
 
+# custom directory aliases
+alias cg='cd ~/github'
+alias cgb='cd ~/bin'
+alias cgm='cd ~/github/my'
 
+# tmp directories
 alias ct='cd /tmp'
 alias ctt='t=~$(date +%Y-%m-%d_%H%-M-%S) && mkdir /tmp/$t && cd /tmp/$t'
 
@@ -294,13 +300,7 @@ alias date.datetime='date "+%Y-%m-%d_%H_%M_%S"'
 # MISC #
 ########
 
-alias cg='cd ~/github'
-alias cgb='cd ~/bin'
-alias cgm='cd ~/github/my'
-
-alias c='C_'
 alias C='C_'
-alias gzk='gzip -k'
 #alias tarcat='tar -xOvf' #a separate command new, with a support for multiple arguments
 alias les='less -S'
 alias L='less -S'
@@ -310,20 +310,12 @@ function tableL {
 }
 alias tL='tableL'
 alias tl='tableL'
-alias ggdb='sudo gdb --args'
 alias pe='perl -pe'
-alias timev='/usr/bin/time -v'
-alias pdflatexmk='latexmk -pdf'
+alias latexmk.pdf='latexmk -pdf'
+alias latexmk.lua_pdf='latexmk -pdflatex=lualatex -pdf'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
-alias pg='while True; do ping google.com; sleep 1; done'
-alias hi='history'
-alias hist='history'
 alias cx='chmod +x'
 alias yi='yapf -i'
-alias fv='fg v || fg vim'
-alias hg='history | grep'
-alias rdm='readme'
-alias wl='((printf "## " ; date | cut -d " " -f 1-3) | pbcopy; cd ~/github/my/projects/; vim log.md; git add log.md; git commit -m "Update log"; git push)'
 alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
 
 
