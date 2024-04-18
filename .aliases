@@ -184,41 +184,41 @@ alias wc.c='wc -c'
 ####################
 
 alias m='make V=1'
-alias mn='make -n'
-alias mj='make V=1 -j'
-alias mt='make V=1 test'
-alias me='make edit'
-alias mh='make help'
-alias mC='make -C'
-alias mb='make -B'
-alias mjb='make -B -j'
-alias mbj='make -B -j'
-alias mjB='make -B -j'
-alias mBj='make -B -j'
+alias m.n='make -n'
+alias m.j='make V=1 -j'
+alias m.t='make V=1 test'
+alias m.e='make edit'
+alias m.h='make help'
+alias m.c='make -C'
+alias m.b='make -B'
+alias m.jb='make -B -j'
+alias m.bj='make -B -j'
 
-alias mC.="make -C ."
-alias mC..="make -C .."
-alias mC...="make -C ..."
-alias mC....="make -C ...."
-alias mC.....="make -C ....."
+alias m.c.="make -C ."
+alias m.c..="make -C .."
+alias m.c...="make -C ..."
+alias m.c....="make -C ...."
+alias m.c.....="make -C ....."
 
-alias mjC='make -j -C .'
-alias mjC.="make -j -C .."
-alias mjC..="make -j -C .."
-alias mjC...="make -j -C ..."
-alias mjC....="make -j -C ...."
-alias mjC.....="make -j -C ....."
+alias m.jc='make -j -C .'
+alias m.jc.="make -j -C .."
+alias m.jc..="make -j -C .."
+alias m.jc...="make -j -C ..."
+alias m.jc....="make -j -C ...."
+alias m.jc.....="make -j -C ....."
 
 
-alias mcl='make clean'
-alias mcll='make cleanall'
-alias mcla='make cleanall'
-alias mw='make view'
+alias m.cl='make clean'
+alias m.cll='make cleanall'
+alias m.cla='make cleanall'
+alias m.w='make view'
+
 alias cm='cmake . && clear && make -j 4'
-alias sm='snakemake -p'
-alias smj='snakemake -p --cores 4242'
-alias smn='snakemake -n -p'
-alias smd='snakemake -n -p --debug-dag'
+
+alias sm='snakemake -p --cores all'
+alias sm.j='snakemake -p --cores 4242'
+alias sm.n='snakemake -n -p --cores all'
+alias sm.d='snakemake -n -p --cores all --debug-dag'
 
 
 #########
