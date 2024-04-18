@@ -2,12 +2,19 @@
 
 alias g='git'
 
-alias ggg='git grep'
-alias gggi='git grep -i'
-alias gggc='git grep -B 2 -A 2'
-alias gggcc='git grep -B 5 -A 5'
-alias gggccc='git grep -B 20 -A 20'
+#
+# git grep
+#
 
+alias ggg='git grep'
+alias ggg.i='git grep -i'
+alias ggg.c='git grep -B 2 -A 2'
+alias ggg.cc='git grep -B 5 -A 5'
+alias ggg.ccc='git grep -B 20 -A 20'
+
+#
+# git add
+#
 alias ga='git add -v'
 alias g.a='git add -v .'
 alias ga.='git add -v .'
@@ -16,13 +23,27 @@ alias ga...='git add -v ../..'
 alias ga....='git add -v ../../..'
 alias ga.....='git add -v ../../../..'
 
+#
+# git branch
+#
 alias gb='git branch'
 alias gba='git branch --all'
 
+#
+# git checkout
+#
 alias gc='git checkout'
+alias gc.='git checkout .'
+alias gc..='git checkout ..'
+alias gc...='git checkout ../..'
+alias gc....='git checkout ../../..'
+alias gc.....='git checkout ../../../..'
 alias gc*="git checkout '*'"
 alias gcb='git checkout -b'
 
+#
+# git status
+#
 alias gs='git status'
 alias g.s='git status .'
 alias gs.='git status .'
