@@ -151,8 +151,8 @@ alias gg='egrep --color=auto'
 alias gg.v='egrep --color=auto -v'
 alias gg.i='egrep --color=auto -i'
 
-function ggr(){
-    grep --color=auto -R $@ .
+function gg.r(){
+    grep -R $@ .
 }
 
 
