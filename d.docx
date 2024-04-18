@@ -15,5 +15,5 @@ if [[ $NARGS -ne 2 ]]; then
 	exit 1
 fi
 
-diff --color=auto <(pandoc -t markdown "$1") <(pandoc -t markdown "$2") | less -R
+diff --color=always <(pandoc -t markdown "$1") <(pandoc -t markdown "$2") | less -R
 
