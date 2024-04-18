@@ -101,5 +101,5 @@ fi
 INSTALL ghostscript pandoc pandoc-citeproc
 INSTALL imagemagick qpdf ffmpeg exiftool briss
 INSTALL pdfgrep svg2pdf pdf2svg
-INSTALL colordiff diff-pdf latexdiff git-latexdiff
+INSTALL diff-pdf latexdiff git-latexdiff
 
