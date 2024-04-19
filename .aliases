@@ -179,6 +179,7 @@ alias l.s='ls -GalhtSr --color=auto'
 
 # Misc
 alias r='echo "$?" "(${PIPESTATUS[*]})"'
+alias c='clear'
 alias lns='ln -s'
 alias t='touch'
 alias x='xargs'
