@@ -56,4 +56,5 @@ process_dir () {
 	done
 }
 
+cd "$td"
 process_dir
