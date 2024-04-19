@@ -39,7 +39,8 @@ else
 	## 1) ENVIRONMENT SETUP
 
 	# my vars
-	export GITDIR="$HOME/github/my"
+	export GITDIR="$HOME/git"
+	export GITDIR2="$GITDIR/_OTHERS_"
 
 	# colors
 	export CLICOLOR=1

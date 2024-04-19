@@ -38,9 +38,9 @@ alias cl5='cd "$(ls -rd */ | head -n5 | tail -n1)"'
 alias cl='cl1'
 
 # custom directory aliases
-alias cg='cd ~/github'
+alias cg='cd "$GITDIR"'
+alias cgg='cd "$GITDIR2"'
 alias cgb='cd ~/bin'
-alias cgm='cd ~/github/my'
 
 # tmp directories
 alias ct='cd /tmp'
