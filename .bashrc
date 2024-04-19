@@ -38,6 +38,9 @@ if [ "$DIRID_TEST" = "set" ] && [ "$RELOAD_TEST" != "set" ]; then
 else
 	## 1) ENVIRONMENT SETUP
 
+	# my vars
+	export GITDIR="$HOME/github/my"
+
 	# colors
 	export CLICOLOR=1
 	export LSCOLORS=GxFxCxDxBxegedabagaced
