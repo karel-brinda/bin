@@ -1,0 +1,55 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+
+readonly PROGDIR=$(dirname $0)
+readonly PROGNAME=$(basename $0)
+
+
+. ${PROGDIR}/../colors.sh
+
+case "$#" in
+	0)
+		td="$GITDIR"
+		;;
+	1)
+		td="$1"
+		;;
+	*)
+		echo "git gc --aggressive all github repositories in the specified directory"
+		echo "usage: $PROGNAME [directory]"
+		exit 1
+		;;
+esac
+
+process_dir () {
+	for d in $(ls -d */); do
+		(
+			cd "$d"
+			local p=$(pwd)
+			echo
+			echo -e "Entering directory $YELLOW$p$NC"
+			if [[ -d ".git" ]]; then
+				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
+				echo -e "    repository: $CYAN$orig$NC; going to pull"
+
+				{
+					{
+						{ git gc --aggressive; } \
+							&& echo -e "    ${GREEN}ok${NC}"
+					} 2>&1 \
+					|| {
+						echo -e "    ${RED}ERROR:${NC} gc cleaning failed; can try '${LIGHTRED}cd $p && git gc --aggressive${NC}'";
+					}
+				}
+			else
+				echo -e "    not a repository, checking subdirectories..."
+				process_dir
+			fi
+		)
+	done
+}
+
+cd $td
+process_dir
