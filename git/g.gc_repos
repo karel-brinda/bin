@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
+set -eu
 set -o pipefail
 
 readonly PROGDIR=$(dirname $0)
@@ -32,12 +32,14 @@ process_dir () {
 			echo -e "Entering directory $YELLOW$p$NC"
 			if [[ -d ".git" ]]; then
 				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
-				echo -e "    repository: $CYAN$orig$NC; going to pull"
+				echo -e "    repository: $CYAN$orig$NC; going to gc"
 
 				{
 					{
-						{ git gc --aggressive; } \
-							&& echo -e "    ${GREEN}ok${NC}"
+						x=$(du -sh .git | cut -d "	" -f1 | xargs echo)
+						git gc --aggressive
+						y=$(du -sh .git | cut -d "	" -f1 | xargs echo)
+						echo -e "    ${GREEN}ok${NC} (reduced size from $PURPLE$x$NC to $PURPLE$y$NC)"
 					} 2>&1 \
 					|| {
 						echo -e "    ${RED}ERROR:${NC} gc cleaning failed; can try '${LIGHTRED}cd $p && git gc --aggressive${NC}'";
@@ -51,5 +53,5 @@ process_dir () {
 	done
 }
 
-cd $td
+cd "$td"
 process_dir
