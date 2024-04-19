@@ -6,7 +6,25 @@ set -o pipefail
 readonly PROGDIR=$(dirname $0)
 readonly PROGNAME=$(basename $0)
 
+
 . ${PROGDIR}/../colors.sh
+
+case "$#" in
+	0)
+		td="$GITDIR"
+		log="$HOME/log_repos_update_errors.log"
+		printf "" > $log
+		;;
+	1)
+		td="$1"
+		log=/dev/null
+		;;
+	*)
+		echo "update all github repositories in the specified directory"
+		echo "usage: $PROGNAME [directory]"
+		exit 1
+		;;
+esac
 
 process_dir () {
 	for d in $(ls -d */); do
@@ -17,15 +35,21 @@ process_dir () {
 			echo -e "Entering directory $YELLOW$p$NC"
 			if [[ -d ".git" ]]; then
 				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
-				echo -e "    repository: $LIGHTGRAY$orig$NC; going to pull"
+				echo -e "    repository: $CYAN$orig$NC; going to pull"
 
 				{
-					{ git pull --rebase --all || git pull --all; } 2>&1 \
-					|| echo -e "    ${RED}ERROR:${NC} pulling failed; can try '${ORANGE}cd $p && git pull${NC}'"
+					{
+						{ git pull --rebase --all || git pull --all ; } \
+							&& echo -e "    ${GREEN}ok${NC}"
+					} 2>&1 \
+					|| {
+						echo -e "    ${RED}ERROR:${NC} pulling failed; can try '${LIGHTRED}cd $p && git pull${NC}'";
+						printf "$p\n" >> $log;
+					}
 				} \
 					| { grep -v "^Fetching" | grep -v "^Already"; } || true
 			else
-				echo -e "    not a repository, entering..."
+				echo -e "    not a repository, checking subdirectories..."
 				process_dir
 			fi
 		)
