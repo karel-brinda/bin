@@ -321,7 +321,8 @@ alias latexmk.lua_pdf='latexmk -pdflatex=lualatex -pdf'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
 alias cx='chmod +x'
 alias yi='yapf -i'
-alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
+#alias tm='srun --pty tmux attach-session || tmux attach-session || tmux'
+alias tm='tmux attach-session || tmux'
 
 
 function w {
