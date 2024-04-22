@@ -39,7 +39,7 @@ process_dir () {
 
 				{
 					{
-						{ git pull --rebase --all || git pull --all ; } \
+						{ git pull --rebase --all || git pull --all || git push || git pull ; } \
 							&& echo -e "    ${GREEN}ok${NC}"
 					} 2>&1 \
 					|| {
