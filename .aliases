@@ -316,8 +316,6 @@ function tableL {
 alias tL='tableL'
 alias tl='tableL'
 alias pe='perl -pe'
-alias latexmk.pdf='latexmk -pdf'
-alias latexmk.lua_pdf='latexmk -pdflatex=lualatex -pdf'
 alias path='echo $PATH | perl -pe "s/:/\n/g"'
 alias cx='chmod +x'
 alias yi='yapf -i'
