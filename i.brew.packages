@@ -13,7 +13,7 @@ if [[ `uname` == 'Linux' ]]; then
 	f="$PROGDIR/tmp.linuxbrew"
 	finished="_"
 	INSTALL() {
-		for x in $@; do
+		for x in "$@"; do
 			>&2 echo "=== Checking $x"
 			if grep "_${x}_" <<< "$finished"; then
 				>&2 echo "---- Skipping $x (_${x}_ is in $finished)"
@@ -27,7 +27,7 @@ if [[ `uname` == 'Linux' ]]; then
 				for z in $y; do
 					INSTALL $z
 				done
-				brew install --force-bottle $@
+				brew install --force-bottle "$@"
 			fi
 		done
 	}
@@ -35,7 +35,7 @@ else
 	#INSTALL="brew install"
 	INSTALL() {
 		>&2 echo "Going to install $@"
-		brew install $@
+		brew install "$@"
 	}
 fi
 

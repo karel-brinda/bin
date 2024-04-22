@@ -2,7 +2,7 @@
 
 if [ -t 0 ] ; then
 	# not a pipe
-	view $@
+	view "$@"
 else
 	# pipe
 	view -

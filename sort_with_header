@@ -1,4 +1,8 @@
 #! /usr/bin/env bash
 
-(read -r; printf "%s\n" "$REPLY"; sort $@)
+(
+	read -r
+	printf "%s\n" "$REPLY"
+	sort "$@"
+)
 

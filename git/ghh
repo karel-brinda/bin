@@ -7,8 +7,14 @@ readonly NARGS="$#"
 if  [[ "$NARGS" = "0" ]]; then
 	args=
 else
-	args="--follow $@"
+	args="--follow ""$@"
 fi
 
-git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --date-order $args
+git log \
+	--graph \
+	--pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
+	--abbrev-commit \
+	--date=short \
+	--date-order \
+	$args
 

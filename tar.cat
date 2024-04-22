@@ -4,6 +4,6 @@ set -e
 set -o pipefail
 set -u
 
-for x in $@; do
+for x in "$@"; do
 	tar -xOvf "$x"
 done

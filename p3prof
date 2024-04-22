@@ -18,5 +18,5 @@ case "$#" in
 		;;
 esac
 
-/usr/bin/env python3 -m cProfile -o output.prof $@
+/usr/bin/env python3 -m cProfile -o output.prof "$@"
 

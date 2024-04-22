@@ -152,7 +152,7 @@ alias gg.v='egrep --color=auto -v'
 alias gg.i='egrep --color=auto -i'
 
 function gg.r(){
-    grep -R $@ .
+    grep -R "$@" .
 }
 
 
@@ -260,7 +260,7 @@ alias s.fairshare='sshare -u $USER -U'
 alias s.sprio='sprio -l -u $USER'
 alias s.details='scontrol show jobid -dd'
 s.i () {
-	for x in $@; do
+	for x in "$@"; do
 		sacct -j "$i" \
 			--format JobId,NNodes,Partition,NCPUs,State,ReqMem,MaxRSS,Elapsed,CPUTime,TimeLimit,ExitCode,Start,End
 	done

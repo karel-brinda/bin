@@ -7,7 +7,7 @@
 #    gcs https://github.com/lh3/bwa/blob/master/bntseq.c
 #    gcs https://github.com/lh3/bwa/tree/Apache2
 
-for x in $@; do
+for x in "$@"; do
 	x=$(echo "$x" | perl -pe 's@^http://@@g')
 	x=$(echo "$x" | perl -pe 's@^https://@@g')
 	x=$(echo "$x" | perl -pe 's@^git://@@g')

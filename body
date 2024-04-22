@@ -13,4 +13,4 @@
 # See also: header (https://github.com/jeroenjanssens/command-line-tools-for-data-science)
 IFS= read -r header
 printf '%s\n' "$header"
-eval $@
+eval "$@"
