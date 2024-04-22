@@ -1,9 +1,43 @@
-\documentclass{article}
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+
+\usepackage{fontspec}         % allows font customization
+\usepackage{polyglossia}      % for language support
+
+
+\usepackage{amsmath}        % Enhanced mathematical formatting
+\usepackage{amssymb}        % Extended symbol collection
+\usepackage{graphicx}       % Include graphics
+\usepackage{hyperref}       % Hyperlinks
+\usepackage{color}          % Colors
+\usepackage{enumitem}       % Customize lists
+\usepackage{booktabs}       % Professional-quality tables
+
+\usepackage{unicode-math}     % for using unicode math fonts
+
 \usepackage{luacode}
+
+% Set the main document language
+\setmainlanguage{english}
+\setotherlanguages{french}  % Example secondary languages
+
+% Set up fonts
+\setmainfont{TeX Gyre Termes}             % Substitute with any Unicode font you have
+\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]
+\setmonofont{TeX Gyre Cursor}[Scale=MatchLowercase]
+\setmathfont{TeX Gyre Termes Math}        % Math font
+
 
 \begin{document}
 A random number:
 \begin{luacode}
 tex.print(math.random())
 \end{luacode}
+
+\begin{french}
+    Voici un texte en français.
+\end{french}
+
 \end{document}
