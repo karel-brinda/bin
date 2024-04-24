@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+while true; do
+	ping google.com
+	sleep 0.42
+done
+
