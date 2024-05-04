@@ -159,19 +159,26 @@ function gg.r(){
 ######
 # LS #
 ######
-#
-# sorted by name
-alias l='ls -Galh --color=auto'
+if [[ $(uname) == 'Darwin' ]]; then
+	# sorted by name
+	alias l='ls -Galh'
+	# sorted by time
+	alias l.t='ls -Galhtr'
+	# follow symlinks; sorted by name
+	alias l.ln='ls -GalhL'
+	# sorted by size
+	alias l.s='ls -GalhtSr'
 
-# sorted by time
-alias l.t='ls -Galhtr --color=auto'
-
-# follow symlinks; sorted by name
-alias l.ln='ls -GalhL --color=auto'
-
-# sorted by size
-alias l.s='ls -GalhtSr --color=auto'
-
+else
+	# sorted by name
+	alias l='ls -Galh --color=auto'
+	# sorted by time
+	alias l.t='ls -Galhtr --color=auto'
+	# follow symlinks; sorted by name
+	alias l.ln='ls -GalhL --color=auto'
+	# sorted by size
+	alias l.s='ls -GalhtSr --color=auto'
+fi
 
 #########
 # SHELL #
