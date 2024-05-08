@@ -91,7 +91,7 @@ if [[ `uname` == 'Linux' ]]; then
 	echo ""
 else
 	INSTALL gcc
-	INSTALL gcc@5
+	#INSTALL gcc@5
 fi
 
 
