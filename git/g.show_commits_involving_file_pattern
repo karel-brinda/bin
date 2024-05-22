@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -eq 0 ]]; then
+	>&2 echo "usage: $PROGNAME file_wildcard_pattern"
+	>&2 echo "print all commits involving files matching a given pattern"
+	exit 1
+fi
+
+git log --all --oneline "$@"
+
