@@ -39,6 +39,7 @@ alias cl='cl1'
 
 # custom directory aliases
 alias cg='cd "$GITDIR"'
+alias cgm='cd "$GITDIR"'
 alias cgg='cd "$GITDIR2"'
 alias cgb='cd ~/bin'
 
