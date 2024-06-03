@@ -3,10 +3,16 @@
 BASEDIR=$(dirname "$0")
 SUFFIX=Rproj
 
-if [ $# -ne 1 ]; then
+if [ $# -ge 2 ]; then
 	s=`basename $0`
-	echo "$s file.$SUFFIX"
+	echo "$s >name<.$SUFFIX"
 	exit 1
 fi
 
-cp $BASEDIR/samples/sample.$SUFFIX $1.Rproj
+if [ $# -eq 0 ]; then
+	x="a"
+else
+	x="$1"
+fi
+
+cp "$BASEDIR/samples/sample.$SUFFIX" "$x.$SUFFIX"
