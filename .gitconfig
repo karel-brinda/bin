@@ -12,6 +12,7 @@
 	excludesfile = ~/bin/git/.gitignore
 	editor = vim -u ~/bin/.vimrc.light -U NONE -N -i NONE
 	autocrlf = input
+	whitespace = cr-at-eol
 	#excludesfile = /bin/.gitignore
 
 [alias]
