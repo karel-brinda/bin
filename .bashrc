@@ -82,6 +82,10 @@ else
 		export PATH="$HOME/miniconda/bin:$PATH"
 	fi
 
+	if [ -d "$HOME/.cargo/env" ]; then
+		. "$HOME/.cargo/env"
+	fi
+
 	export PATH="${PROGDIR}/bin:$PATH"
 
 	## 3) MARK AS COMPLETED
