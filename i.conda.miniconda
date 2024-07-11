@@ -2,6 +2,7 @@
 
 set -e
 set -o pipefail
+#set -x
 
 
 #####################
@@ -27,20 +28,23 @@ fi
 # NOTE: List of all files available here:
 # https://repo.anaconda.com/miniconda/
 
+# NOTE: Python 3.10 is the latest supported version by Bioconda (as of July 2024)
+# https://bioconda.github.io/faqs.html#what-versions-are-supported
+
 if [[ "$(uname)" == "Linux" ]]; then
 	#url="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-	url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-Linux-x86_64.sh"
+	#url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-Linux-x86_64.sh"
+	arch="Linux-x86_64"
 else
-	#url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-	url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-MacOSX-x86_64.sh"
-
-	## note: the following lines are to be commented until bioconda starts supporting arm64
-	#if [[ "$(uname -m)" == "arm64" ]]; then
-	#	url="https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh"
-	#else
-	#	url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-	#fi
+	##url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
+	#url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-MacOSX-x86_64.sh"
+	if [[ "$(uname -m)" == "arm64" ]]; then
+		arch="MacOSX-arm64"
+	else
+		arch="MacOSX-x86_64"
+	fi
 fi
+url="https://repo.anaconda.com/miniconda/Miniconda3-py310_24.5.0-0-$arch.sh"
 echo "url=$url"
 
 
@@ -86,5 +90,5 @@ fi
 ## Python Python 3.10 already fixed by the installation so the following can be skipped
 #"$mamba" install -y python=3.10
 "$mamba" update conda -y
-"$mamba" update --all -y
+#"$mamba" update --all -y
 
