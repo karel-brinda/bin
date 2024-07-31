@@ -363,7 +363,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 	alias vscode='open -a "Visual Studio Code"'
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
-	alias texstudio='open -a TexStudio'
+	alias texstudio='open -a TexStudio *.txss2 || open -a TexStudio'
 elif [[ `uname` == 'Linux' ]]; then
 	alias open='gnome-open'
 fi
