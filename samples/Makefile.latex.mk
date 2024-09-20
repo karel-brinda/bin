@@ -12,7 +12,7 @@ SOURCES := $(MAIN).tex $(shell find . -name "*.tex" -type f)
 all: $(MAIN).pdf
 
 $(MAIN).pdf: $(SOURCES) $(FIGURES)
-	latexmk -pdf $(MAIN)
+	latexmk -synctex=1 -pdflatex=lualatex -pdf $(MAIN)
 
 
 view:
