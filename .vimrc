@@ -429,7 +429,8 @@ nnoremap <leader>w <C-w>v<C-w>l
 set shellcmdflag=-ic
 
 nnoremap <leader>m :w<CR>:! make<CR>
-nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
+nnoremap <leader>M :w<CR>:terminal make<CR>
+"nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
 " smart matching
 set ignorecase
 set smartcase
