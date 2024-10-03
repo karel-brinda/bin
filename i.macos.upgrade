@@ -4,4 +4,4 @@ set -e
 set -o pipefail
 set -u
 
-softwareupdate --list -i -a
+softwareupdate --list -i -a --agree-to-license
