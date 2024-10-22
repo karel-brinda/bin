@@ -261,7 +261,7 @@ alias sm.d='snakemake -n -p --cores all --debug-dag'
 # SLURM #
 #########
 
-alias s.j='squeue -u $USER -o "%.9i %.10P %.40j %.10u %.4t %.8M %.6D %.10R"'
+alias s.j='squeue -u $USER -o "%.9i %.10P %.40j %.10u %.4t %.8M %.6D %.10R" | column -t'
 alias s.jr='squeue -u $USER -t RUNNING'
 alias s.jp='squeue -u $USER -t PENDING'
 alias s.fairshare='sshare -u $USER -U'
