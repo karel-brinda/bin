@@ -5,3 +5,4 @@ channels:
 show_channel_urls: true
 
 channel_priority: strict
+#subdir: osx-64
