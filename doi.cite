@@ -45,7 +45,9 @@ if [[ "$format" == "txt" ]]; then
 	for x in "$@"; do
 		i=$(( $i + 1))
 		y=$(curl -s -LH "accept: text/bibliography" "http://doi.org/$x";)
-		printf '[%d] %s\n' "$i" "$y"
+		yy=$(printf '[%d] %s\n' "$i" "$y")
+		echo "$yy"
+		(echo "$yy" | pbcopy) || true
 	done
 else
 	for x in "$@"; do
@@ -59,6 +61,7 @@ else
 		)
 					#\
 		echo "$yy"
+		(echo "$yy" | pbcopy) || true
 	done
 fi
 
