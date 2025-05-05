@@ -66,29 +66,29 @@ M () {
 
 alias hh='head'
 alias hhh='head -n 9999999999999'
-alias hh1="head -n 1"
-alias hh2="head -n 2"
-alias hh3="head -n 3"
-alias hh4="head -n 4"
-alias hh5="head -n 5"
-alias hh6="head -n 6"
-alias hh7="head -n 7"
-alias hh8="head -n 8"
-alias hh9="head -n 9"
-alias hh10="head -n 10"
+#alias hh1="head -n 1"
+#alias hh2="head -n 2"
+#alias hh3="head -n 3"
+#alias hh4="head -n 4"
+#alias hh5="head -n 5"
+#alias hh6="head -n 6"
+#alias hh7="head -n 7"
+#alias hh8="head -n 8"
+#alias hh9="head -n 9"
+#alias hh10="head -n 10"
 
 alias tt='tail'
-alias tth='tail -n 9999999999999'
-alias tt1="tail -n 1"
-alias tt2="tail -n 2"
-alias tt3="tail -n 3"
-alias tt4="tail -n 4"
-alias tt5="tail -n 5"
-alias tt6="tail -n 6"
-alias tt7="tail -n 7"
-alias tt8="tail -n 8"
-alias tt9="tail -n 9"
-alias tt10="tail -n 10"
+alias ttt='tail -n 9999999999999'
+#alias tt1="tail -n 1"
+#alias tt2="tail -n 2"
+#alias tt3="tail -n 3"
+#alias tt4="tail -n 4"
+#alias tt5="tail -n 5"
+#alias tt6="tail -n 6"
+#alias tt7="tail -n 7"
+#alias tt8="tail -n 8"
+#alias tt9="tail -n 9"
+#alias tt10="tail -n 10"
 
 
 ##################
@@ -149,7 +149,9 @@ alias egrep='egrep --color=auto'
 alias grep='grep --color=auto'
 
 alias gg='egrep --color=auto'
+alias ggv='egrep --color=auto -v'
 alias gg.v='egrep --color=auto -v'
+alias ggi='egrep --color=auto -i'
 alias gg.i='egrep --color=auto -i'
 
 function gg.r(){
@@ -212,7 +214,9 @@ alias df.h='df -h'
 alias du.sh='du -sh'
 alias 'dh*'='du -sh *'
 alias wc.l='wc -l'
+alias wcl='wc -l'
 alias wc.c='wc -c'
+alias wcc='wc -c'
 
 
 ####################
@@ -222,14 +226,18 @@ alias wc.c='wc -c'
 alias m='make V=1'
 alias m.n='make -n'
 alias m.j='make V=1 -j'
+alias mj='make V=1 -j'
 alias m.t='make V=1 test'
+alias mt='make V=1 test'
 alias m.e='make edit'
+alias me='make edit'
 alias m.h='make help'
-alias m.c='make -C'
+alias mh='make help'
 alias m.b='make -B'
 alias m.jb='make -B -j'
 alias m.bj='make -B -j'
 
+alias m.c='make -C'
 alias m.c.="make -C ."
 alias m.c..="make -C .."
 alias m.c...="make -C ..."
@@ -245,9 +253,11 @@ alias m.jc.....="make -j -C ....."
 
 
 alias m.cl='make clean'
+alias mcl='make clean'
 alias m.cll='make cleanall'
 alias m.cla='make cleanall'
 alias m.w='make view'
+alias mw='make view'
 
 alias cm='cmake . && clear && make -j 4'
 
@@ -352,16 +362,15 @@ function w {
 if [[ $(uname) == 'Darwin' ]]; then
 	alias rstudio='open -a "Rstudio"'
 	alias rproj='open -a "Rstudio" *.Rproj'
-	alias acrobat='open -a "Adobe Acrobat"'
-	alias charm='open -a /Applications/PyCharm\ CE.app'
-	alias excel='open -a "Microsoft Excel"'
 	alias figtree='open -a "FigTree"'
 	alias gvim='macvim'
+	alias acrobat='open -a "Adobe Acrobat"'
 	alias illustrator='open -a "Adobe Illustrator"'
-	alias vlc='open -a "VLC"'
 	alias photoshop='open -a /Applications/Adobe\ Photoshop*/*.app/'
+	alias vlc='open -a "VLC"'
 	alias macvim='open -a MacVim '
 	alias vscode='open -a "Visual Studio Code"'
+	alias excel='open -a "Microsoft Excel"'
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
 	alias texstudio='open -a TexStudio *.txss2 || open -a TexStudio'
