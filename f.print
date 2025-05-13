@@ -1,0 +1,34 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -eq 1 ]]; then
+	>&2 echo "usage: $PROGNAME files"
+	>&2 echo "info:  print the file names and their content and pbcopy if possible"
+	exit 1
+fi
+
+y=$(for x in "$@"; do
+	echo "=================================================="
+	echo " $x"
+	echo "=================================================="
+	echo
+	cat "$x"
+	echo
+	echo
+	echo
+done)
+
+echo "$y"
+
+(echo "$y" | pbcopy) || true
+
