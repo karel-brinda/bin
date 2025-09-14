@@ -53,6 +53,16 @@ else
 	# default languages
 	#export LC_ALL=en_US.UTF-8
 	export LANG=en_US.UTF-8
+	# Locale fallback setup
+	if locale -a 2>/dev/null | grep -q '^en_US\.UTF-8$'; then
+		export LANG=en_US.UTF-8
+	elif locale -a 2>/dev/null | grep -q '^en_US\.utf8$'; then
+		export LANG=en_US.utf8
+	else
+		export LANG=POSIX
+	fi
+	export LC_ALL="$LANG"
+	export LC_CTYPE="$LANG"
 
 	# bash behavior
 	export BASH_SILENCE_DEPRECATION_WARNING=1
