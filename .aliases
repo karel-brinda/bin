@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 alias reload='RELOAD=1 . ~/.bashrc'
+alias bashrc='(cd ~/bin && git pull >/dev/null) ; RELOAD=1 . ~/bin/.bashrc'
 
 ####################
 # CHANGE DIRECTORY #
