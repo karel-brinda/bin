@@ -75,3 +75,5 @@
 	ff = only
 [init]
 	defaultBranch = main
+[safe]
+	directory = /projects/barde/barde-project
