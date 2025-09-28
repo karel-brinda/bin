@@ -53,16 +53,15 @@ else
 	# default languages
 	#export LC_ALL=en_US.UTF-8
 	export LANG=en_US.UTF-8
-	# Locale fallback setup
-	if locale -a 2>/dev/null | grep -q '^en_US\.UTF-8$'; then
-		export LANG=en_US.UTF-8
-	elif locale -a 2>/dev/null | grep -q '^en_US\.utf8$'; then
-		export LANG=en_US.utf8
-	else
-		export LANG=POSIX
-	fi
-	export LC_ALL="$LANG"
-	export LC_CTYPE="$LANG"
+
+	# Try UTF-8 locales in order of typical availability (with POSIX as fallback)
+	# (if ABC...abc... not ideal, switch to the US style)
+	for loc in C.UTF-8 en_US.UTF-8 en_US.utf8 POSIX; do
+		if LC_ALL="$loc" locale >/dev/null 2>&1; then
+			export LC_ALL="$loc"
+			break
+		fi
+	done
 
 	# bash behavior
 	export BASH_SILENCE_DEPRECATION_WARNING=1

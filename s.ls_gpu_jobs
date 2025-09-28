@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+squeue -o "%.18i %.9P %.20j %.8u %.2t %.10M %.6D %.15R %.8b %.10Q %.10l %.19V" -p gpu
+
