@@ -6,19 +6,27 @@
 #    gcs lh3/bwa
 #    gcs https://github.com/lh3/bwa/blob/master/bntseq.c
 #    gcs https://github.com/lh3/bwa/tree/Apache2
+#    gcs lh3/bwa mydir
 
-for x in "$@"; do
-	x=$(echo "$x" | perl -pe 's@^http://@@g')
-	x=$(echo "$x" | perl -pe 's@^https://@@g')
-	x=$(echo "$x" | perl -pe 's@^git://@@g')
-	x=$(echo "$x" | perl -pe 's@github.com@@g')
-	echo $x
-	x=$(echo "$x" | perl -pe 's@^/@@g')
-	echo $x
-	x=$(echo "$x" | perl -pe 's@([^/]*)/([^/]*)(/.*)+@\1/\2@g')
-	echo $x
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: gcs <repo> [destination]"
+    exit 1
+fi
 
-	echo "Github repository: $x"
-	git clone --recursive "ssh://git@github.com/$x"
-done;
+x="$1"
+x="${x#http://}"
+x="${x#https://}"
+x="${x#git://}"
+x="${x#github.com}"
+x="${x#/}"
 
+# Reduce URLs pointing to files/trees to owner/repo
+x=$(echo "$x" | perl -pe 's@([^/]*)/([^/]*)(/.*)+@\1/\2@g')
+
+echo "Github repository: $x"
+
+if [ "$#" -eq 2 ]; then
+    git clone --recursive "ssh://git@github.com/$x" "$2"
+else
+    git clone --recursive "ssh://git@github.com/$x"
+fi
