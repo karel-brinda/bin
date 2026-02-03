@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(dirname $0)
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -ne 2 ]]; then
+	echo "usage: $PROGNAME doc1.pdf doc2.pdf"
+	exit 1
+fi
+
+xcat () {
+	x="$1"
+	pdftotext "$x" -
+}
+
+diff --color=always <(xcat "$1") <(xcat "$2") | less -R
+
