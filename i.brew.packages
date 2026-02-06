@@ -81,7 +81,7 @@ INSTALL neovim
 #######################
 # COMPILERS & LIBRARIES
 #######################
-INSTALL rust go ruby npm
+INSTALL rust rustup go ruby npm
 INSTALL clang-format yapf
 INSTALL boost libstxxl open-mpi
 
