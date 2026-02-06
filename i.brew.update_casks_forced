@@ -4,4 +4,4 @@ set -e
 set -o pipefail
 set -u
 
- brew upgrade --cask --greedy --verbose
+brew upgrade --cask --greedy --verbose
