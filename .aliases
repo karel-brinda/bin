@@ -114,6 +114,9 @@ alias V='vim -u ~/bin/.vimrc.light -U NONE -N -i NONE'
 alias e='subl'
 alias en='subl -n'
 
+# Textmate
+alias E='open -a "Textmate"'
+
 
 ########
 # OPEN #
