@@ -214,6 +214,7 @@ alias cp.rsync='rsync -a -v -h --stats --progress'
 
 # Sizes
 alias df.h='df -h'
+alias dfh='df -h'
 alias du.sh='du -sh'
 alias dush='du -sh'
 alias 'dh*'='du -sh *'
