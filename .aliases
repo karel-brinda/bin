@@ -163,6 +163,8 @@ function gg.r(){
 ######
 # LS #
 ######
+
+alias lsd='ls -d */'
 if [[ $(uname) == 'Darwin' ]]; then
 	# sorted by name
 	alias l='ls -Galh'
@@ -213,6 +215,7 @@ alias cp.rsync='rsync -a -v -h --stats --progress'
 # Sizes
 alias df.h='df -h'
 alias du.sh='du -sh'
+alias dush='du -sh'
 alias 'dh*'='du -sh *'
 alias wc.l='wc -l'
 alias wcl='wc -l'
