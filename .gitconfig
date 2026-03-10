@@ -6,7 +6,6 @@
 	#pager = less -F
 	pager =  less -+F -+X
 
-
 	# do not quote non-ascii characters; display unicodes as-is
 	quotepath = false
 	excludesfile = ~/bin/git/.gitignore
@@ -41,14 +40,6 @@
 	textconv=pandoc --to=markdown
 	prompt = false
 
-[diff "xlsx42tsv"]
-	textconv=xlsx42tsv
-	prompt = false
-
-[diff "pdf42txt"]
-	textconv = pdf42txt
-	binary = true
-
 [merge]
 	conflictstyle = diff3
 
@@ -59,21 +50,19 @@
 	# Make all new branches to automatically use rebase rather than merge, on pull
 	autosetuprebase = always
 
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 [push]
 	default = simple
 	autoSetupRemote = true
 
+[fetch]
+	prune = true
+
+[rerere]
+	enabled = true
+
 [grep]
 	extendRegexp = true
 	lineNumber = true
-[pull]
-	ff = only
+
 [init]
 	defaultBranch = main
-[safe]
-	directory = /projects/barde/barde-project
