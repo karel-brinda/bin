@@ -55,15 +55,13 @@ alias gss='git sizer -v --branches'
 
 alias gt='git commit'
 function gtm {
-	command="git commit -m "'"'$@'"'
-	echo "$command"
-	eval $command
-    git push
+	echo "git commit -m $*"
+	git commit -m "$*"
+	git push
 }
 function gtmm {
-	command="git commit -m "'"'$@'"'
-	echo "$command"
-	eval $command
+	echo "git commit -m $*"
+	git commit -m "$*"
 }
 alias gta='git commit --amend'
 
@@ -104,4 +102,3 @@ alias gitignore='touch .gitignore && ~/bin/v .gitignore'
 alias gi='gitignore'
 
 alias rme='readme'
-
