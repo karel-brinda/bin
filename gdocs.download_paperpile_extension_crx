@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Paperpile Chrome extension ID
+EXT_ID="bomfdkbfpdhijjbeoicnfhjbdhncfhig"
+
+# Chrome version only affects the CRX request format
+CHROME_VERSION="122.0.0.0"
+
+BASE_DIR="$HOME/Paperpile"
+EXT_DIR="$BASE_DIR/paperpile_extension"
+
+URL="https://clients2.google.com/service/update2/crx?response=redirect&prodversion=${CHROME_VERSION}&acceptformat=crx2,crx3&x=id%3D${EXT_ID}%26installsource%3Dondemand%26uc"
+
+TMP_CRX="$(mktemp)"
+
+mkdir -p "$BASE_DIR"
+
+echo "Downloading Paperpile extension..."
+curl -fL "$URL" -o "$TMP_CRX"
+
+echo "Locating ZIP payload inside CRX..."
+ZIP_START=$(grep -abo $'PK\x03\x04' "$TMP_CRX" | head -n1 | cut -d: -f1)
+
+if [[ -z "$ZIP_START" ]]; then
+  echo "ERROR – Could not locate ZIP payload inside CRX"
+  exit 1
+fi
+
+echo "Extracting extension..."
+rm -rf "$EXT_DIR"
+mkdir -p "$EXT_DIR"
+
+# Skip the CRX header, save the embedded ZIP archive temporarily, and extract it
+TMP_ZIP="$(mktemp).zip"
+tail -c +$((ZIP_START + 1)) "$TMP_CRX" > "$TMP_ZIP"
+unzip -q "$TMP_ZIP" -d "$EXT_DIR"
+
+rm -f "$TMP_CRX" "$TMP_ZIP"
+
+echo
+echo "Extension extracted to:"
+echo "  $EXT_DIR"
+echo
+echo "Next step:"
+echo "  1. Open Chromium → chrome://extensions"
+echo "  2. Enable Developer mode"
+echo "  3. Click 'Load unpacked'"
+echo "  4. Select: $EXT_DIR"
+
