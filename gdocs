@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+/Applications/Chromium.app/Contents/MacOS/Chromium \
+	--app=https://docs.google.com \
+	--disable-sync \
+	--no-first-run \
+	--disable-features=TranslateUI
+
+#	--disable-extensions \
