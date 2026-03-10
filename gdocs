@@ -4,10 +4,16 @@ set -e
 set -o pipefail
 set -u
 
-/Applications/Chromium.app/Contents/MacOS/Chromium \
+CHROMIUM_BIN='/Applications/Chromium.app/Contents/MacOS/Chromium'
+
+if [[ ! -x "$CHROMIUM_BIN" ]]; then
+  printf '%s\n\n  %s\n\n' "Chromium is not installed. Install it with:" "brew install --cask ungoogled-chromium" >&2
+  exit 1
+fi
+
+"$CHROMIUM_BIN" \
 	--app=https://docs.google.com \
 	--disable-sync \
 	--no-first-run \
-	--disable-features=TranslateUI
-
-#	--disable-extensions \
+	--disable-features=TranslateUI \
+	>/dev/null 2>&1 &
