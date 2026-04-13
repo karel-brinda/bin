@@ -24,19 +24,41 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 
 # go to the first / last subdirectory
-alias cf1='cd "$(ls -d */ | head -n1)"'
-alias cf2='cd "$(ls -d */ | head -n2 | tail -n1)"'
-alias cf3='cd "$(ls -d */ | head -n3 | tail -n1)"'
-alias cf4='cd "$(ls -d */ | head -n4 | tail -n1)"'
-alias cf5='cd "$(ls -d */ | head -n5 | tail -n1)"'
-alias cf='cf1'
+cdfirst() {
+    local n="${1:-1}"
+    local dirs=()
+    shopt -s nullglob
+    dirs=(*/)
+    shopt -u nullglob
+    (( n >= 1 && n <= ${#dirs[@]} )) || return 1
+    cd "${dirs[n-1]}"
+}
 
-alias cl1='cd "$(ls -rd */ | head -n1)"'
-alias cl2='cd "$(ls -rd */ | head -n2 | tail -n1)"'
-alias cl3='cd "$(ls -rd */ | head -n3 | tail -n1)"'
-alias cl4='cd "$(ls -rd */ | head -n4 | tail -n1)"'
-alias cl5='cd "$(ls -rd */ | head -n5 | tail -n1)"'
-alias cl='cl1'
+cdlast() {
+    local n="${1:-1}"
+    local dirs=()
+    local idx
+    shopt -s nullglob
+    dirs=(*/)
+    shopt -u nullglob
+    (( n >= 1 && n <= ${#dirs[@]} )) || return 1
+    idx=$((${#dirs[@]} - n))
+    cd "${dirs[idx]}"
+}
+
+alias cf='cdfirst 1'
+alias cf1='cdfirst 1'
+alias cf2='cdfirst 2'
+alias cf3='cdfirst 3'
+alias cf4='cdfirst 4'
+alias cf5='cdfirst 5'
+
+alias cl='cdlast 1'
+alias cl1='cdlast 1'
+alias cl2='cdlast 2'
+alias cl3='cdlast 3'
+alias cl4='cdlast 4'
+alias cl5='cdlast 5'
 
 # custom directory aliases
 alias cg='cd "$GITDIR"'
