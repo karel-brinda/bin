@@ -1,0 +1,34 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+readonly PROGNAME="$(basename "$0")"
+readonly PROGDIR="$(dirname "$0")"
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ "$NARGS" -ne 1 ]]; then
+	>&2 echo "usage: $PROGNAME DIR"
+	exit 1
+fi
+
+readonly DIR="${ARGS[0]}"
+
+if [[ ! -d "$DIR" ]]; then
+	>&2 echo "error: not a directory: $DIR"
+	exit 1
+fi
+
+readonly DIR_CLEAN="${DIR%/}"
+readonly DIR_PARENT="$(dirname "$DIR_CLEAN")"
+readonly DIR_BASENAME="$(basename "$DIR_CLEAN")"
+readonly TIMESTAMP="$(date '+%Y-%m-%d_%H-%M-%S')"
+readonly OUTFILE="${DIR_BASENAME}__${TIMESTAMP}.tar.xz"
+
+tar -C "$DIR_PARENT" -cf - "$DIR_BASENAME" \
+	| xz -9e -T0 -v \
+	> "$OUTFILE"
+
+echo "$OUTFILE"
