@@ -1,0 +1,86 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+#set -f
+#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+
+readonly PROGNAME=$(basename "$0")
+readonly PROGDIR=$(dirname "$0")
+readonly -a ARGS=("$@")
+readonly NARGS="$#"
+
+if [[ $NARGS -lt 2 ]]; then
+    >&2 echo "usage: $PROGNAME file1.pdf file2.pdf [file3.pdf ...]"
+    exit 1
+fi
+
+readonly TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
+
+readonly HASHES="$TMPDIR/hashes.tsv"
+
+extract_text_hash() {
+    local pdf="$1"
+
+    {
+        pdfgrep -h --color=never -e '.' -- "$pdf" || {
+            local status="$?"
+
+            # pdfgrep returns 1 when no match is found.
+            # For our purposes, that means "empty extractable text", not a crash.
+            if [[ "$status" -eq 1 ]]; then
+                true
+            else
+                return "$status"
+            fi
+        }
+    } |
+        tr '\r' '\n' |
+        sed 's/[[:space:]]\+$//' |
+        sha256sum |
+        awk '{print $1}'
+}
+
+for pdf in "${ARGS[@]}"; do
+    if [[ ! -f "$pdf" ]]; then
+        >&2 echo "$PROGNAME: error: not a file: $pdf"
+        exit 1
+    fi
+
+    hash="$(extract_text_hash "$pdf")" || {
+        >&2 echo "$PROGNAME: error: pdfgrep failed on: $pdf"
+        exit 1
+    }
+
+    printf '%s\t%s\n' "$hash" "$pdf" >> "$HASHES"
+done
+
+sort "$HASHES" |
+awk -F '\t' '
+{
+    hash = $1
+    file = $2
+
+    count[hash]++
+    files[hash] = files[hash] "\n  " file
+}
+END {
+    found = 0
+
+    for (hash in count) {
+        if (count[hash] > 1) {
+            found = 1
+            print "DUPLICATE TEXT HASH: " hash
+            print files[hash]
+            print ""
+        }
+    }
+
+    if (!found) {
+        print "No text duplicates detected."
+    }
+}
+'
+
