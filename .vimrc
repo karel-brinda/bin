@@ -8,30 +8,21 @@ let mapleader = ','
 syntax enable
 filetype plugin indent on
 
-set nocompatible              " be iMproved, required
-let mapleader = ','
-
-syntax enable
-filetype plugin indent on
-
 nnoremap Y y$
 
-colorscheme badwolf
-
-<<<<<<< HEAD
-set guifont=Hack:h11
-||||||| parent of 935a037 (Vim: clean up portable core configuration)
-set guifont=Hack:h11
-
-syntax on
-filetype indent plugin on
-=======
->>>>>>> 935a037 (Vim: clean up portable core configuration)
+if globpath(&runtimepath, 'colors/badwolf.vim') !=# ''
+  colorscheme badwolf
+endif
 set modeline
 set number
 
 " CTRL-A comment, CTRL-B uncomment
-source ~/bin/vcomments.vim
+let s:vimrc_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let s:vcomments = s:vimrc_dir . '/vcomments.vim'
+if filereadable(s:vcomments)
+  execute 'source ' . fnameescape(s:vcomments)
+endif
+unlet s:vimrc_dir s:vcomments
 map <C-{> :call Comment()<CR>
 map <C-}> :call Uncomment()<CR>
 
@@ -47,6 +38,7 @@ map <C-}> :call Uncomment()<CR>
 " PLUGINS - BEGIN
 """""""""""""""""
 
+if exists('*plug#begin') || globpath(&runtimepath, 'autoload/plug.vim') !=# ''
 call plug#begin()
 
 
@@ -139,7 +131,12 @@ Plug 'kien/ctrlp.vim'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+unlet! g:ctrlp_user_command
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --hidden --glob "!.git/*"'
+elseif executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
 
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
@@ -321,6 +318,7 @@ Plug 'tpope/vim-sensible'
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
+endif
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
@@ -453,7 +451,11 @@ iab loremmm Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacu
 
 
 set list
-set listchars=tab:▸\ ,eol:¬
+if &encoding ==# 'utf-8'
+  set listchars=tab:▸\ ,eol:¬
+else
+  set listchars=tab:>-,eol:$
+endif
 
 set expandtab
 " allow toggling between local and default mode
@@ -541,16 +543,6 @@ set spelllang=en_us
 
 " Goyo
 nmap <silent> <leader>g :Goyo<CR>
-
-
-" Put these lines at the very end of your vimrc file.
-
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
 
 
 let g:ale_completion_enabled = 1
