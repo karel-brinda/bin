@@ -1,7 +1,6 @@
-"""""""
-" LINKS
-"""""""
-
+" =============================================================================
+" Section: Core initialization
+" =============================================================================
 set nocompatible
 let mapleader = ','
 
@@ -15,16 +14,25 @@ if globpath(&runtimepath, 'colors/badwolf.vim') !=# ''
 endif
 set modeline
 set number
+set undofile
 
-" CTRL-A comment, CTRL-B uncomment
+" Do not parse conventional commit prefixes such as "vim:" as modelines.
+augroup git_commit_messages
+  autocmd!
+  autocmd BufReadPost COMMIT_EDITMSG setlocal nomodeline
+augroup END
+
+" Optional repository-local commenting helpers.
 let s:vimrc_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let s:vcomments = s:vimrc_dir . '/vcomments.vim'
 if filereadable(s:vcomments)
   execute 'source ' . fnameescape(s:vcomments)
 endif
 unlet s:vimrc_dir s:vcomments
-map <C-{> :call Comment()<CR>
-map <C-}> :call Uncomment()<CR>
+if exists('*Comment') && exists('*Uncomment')
+  noremap <C-{> :call Comment()<CR>
+  noremap <C-}> :call Uncomment()<CR>
+endif
 
 
 
@@ -34,9 +42,9 @@ map <C-}> :call Uncomment()<CR>
 
 
 
-"""""""""""""""""
-" PLUGINS - BEGIN
-"""""""""""""""""
+" =============================================================================
+" Section: Optional plugins
+" =============================================================================
 
 let g:tex_flavor = 'latex'
 
@@ -44,20 +52,14 @@ if exists('*plug#begin') || globpath(&runtimepath, 'autoload/plug.vim') !=# ''
 call plug#begin()
 
 
-""""""""""""""""""""""""""""
-" Nerdtree - a tree explorer
-""""""""""""""""""""""""""""
-" File tree; toggle with <C-n>.
+" Plugin: NERDTree — file tree; toggle with <C-n>.
 Plug 'preservim/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
 let NERDTreeShowHidden=1
-"let NERDTreeMapOpenInTab='<CR>'
 
 
 
@@ -66,46 +68,27 @@ let NERDTreeShowHidden=1
 
 
 
-""""""""""""""""""""""""""
-" vim-airline - a status bar
-""""""""""""""""""""""""""
-" Status/tabline; configured automatically.
+" Plugin: vim-airline — status/tabline; automatic.
 Plug 'vim-airline/vim-airline'
-"""""""""""""""""""""""""""""""""""""""""""""""""
-" Blockit - a vim plugin to wrap lines in a block
-"""""""""""""""""""""""""""""""""""""""""""""""""
-" - visual block mode - <leader>bi
-" Wrap a visual selection in a text block with <leader>bi.
+" Plugin: Blockit — wrap a visual selection in a text block with <leader>bi.
 Plug 'sk1418/blockit'
 
-""""""""""""""""""
-" Vim-ansible-yaml
-""""""""""""""""""
-" YAML syntax and indentation; automatic.
+" Plugin: vim-yaml — YAML syntax and indentation; automatic.
 Plug 'avakhov/vim-yaml'
 
-"""""""""""""""
-" Vim-Snakemake
-"""""""""""""""
-" Snakemake syntax and indentation; automatic.
+" Plugin: vim-snakemake — Snakemake syntax and indentation; automatic.
 Plug 'karel-brinda/vim-snakemake'
 
-"""""
-" ALE
-"""""
-" ALE requires Vim 8.2+ or Neovim 0.10+.
+" Plugin: ALE — async diagnostics/completion; use :ALEInfo or :ALEFix.
+" Requires Vim 8.2+ or Neovim 0.10+.
 let s:ale_supported = (has('nvim') && has('nvim-0.10')) || (!has('nvim') && v:version >= 802 && has('job') && has('channel') && has('timers'))
 if s:ale_supported
-  " Async diagnostics/completion; use :ALEInfo or :ALEFix.
   Plug 'dense-analysis/ale'
   let g:ale_completion_enabled = 1
 endif
 unlet s:ale_supported
 
-"""""""""""
-" ctrlp.vim
-"""""""""""
-" Fuzzy file, buffer, and MRU finder; start with :CtrlP.
+" Plugin: ctrlp.vim — fuzzy file, buffer, and MRU finder; start with :CtrlP.
 Plug 'ctrlpvim/ctrlp.vim'
 
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -124,59 +107,36 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 
-""""""""""
-" acck.vim
-""""""""""
-" Project text search; use :Ack {pattern}.
+" Plugin: ack.vim — project text search; use :Ack {pattern}.
 Plug 'mileszs/ack.vim'
 
 
-""""""""""
-" html5-syntax
-""""""""""
-" Extended HTML5 syntax highlighting; automatic.
+" Plugin: html5-syntax — extended HTML5 syntax highlighting; automatic.
 Plug 'othree/html5-syntax.vim'
 
 
-""""""""
-" vimtex
-""""""""
-" Current VimTeX requires Vim 9.2+ or Neovim 0.12.4+.
+" Plugin: VimTeX — LaTeX editing/compilation; use :VimtexCompile or <localleader>ll.
+" Requires Vim 9.2+ or Neovim 0.12.4+.
 if (has('nvim') && has('nvim-0.12.4')) || (!has('nvim') && v:version >= 902)
-  " LaTeX editing and compilation; use :VimtexCompile or <localleader>ll.
   Plug 'lervag/vimtex'
 endif
 
 
-"""""""""""""""""""
-" vim-pandoc-syntax
-"""""""""""""""""""
-" Pandoc Markdown (markdown.pandoc), including embedded LaTeX and YAML; automatic.
+" Plugin: vim-pandoc-syntax — Pandoc Markdown with embedded LaTeX/YAML; automatic.
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 
-"""""""""""
-" undotree
-"""""""""""
-" Visual undo history; toggle with <leader>u.
+" Plugin: Undotree — visual undo history; toggle with <leader>u.
 Plug 'mbbill/undotree'
 
 
 
-""""""""""""
-" vim-pencil
-""""""""""""
-" activate by :Pencil
-" Prose mode: soft wrapping and concealed Markdown markup; automatic for Markdown, else :Pencil.
+" Plugin: vim-pencil — prose mode; automatic for Markdown, else :Pencil.
 Plug 'reedes/vim-pencil'
 
 
-""""""
-" goyo
-""""""
-" activate by :goyo
-" Distraction-free writing; toggle with <leader>g or :Goyo.
-Plug 'junegunn/goyo.vim' " Full screen writing mode
+" Plugin: Goyo — distraction-free writing; toggle with <leader>g or :Goyo.
+Plug 'junegunn/goyo.vim'
 
 function! s:goyo_enter()
   let b:quitting = 0
@@ -200,27 +160,15 @@ autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 
 
-""""""""""""""
-" vim-peekaboo
-""""""""""""""
-" you can see the contents of the registers
-" Register previews; press " or @ in Normal mode, or <C-r> while inserting.
+" Plugin: vim-peekaboo — register previews; press " or @, or <C-r> while inserting.
 Plug 'junegunn/vim-peekaboo'
 
 
-""""""""""""""
-" vim-markdown
-""""""""""""""
-" GitHub-flavored Markdown syntax; use <leader>e to edit a selected/fenced section.
+" Plugin: vim-markdown — GitHub-flavored Markdown; use <leader>e to edit a section.
 Plug 'gabrielelana/vim-markdown'
 
 
-""""""""""""""""""
-" vim-markdown-toc
-""""""""""""""""""
-" generating github toc:
-" :GenTocGFM
-" Markdown: generate a GitHub-style table of contents with :GenTocGFM.
+" Plugin: vim-markdown-toc — Markdown TOC; generate one with :GenTocGFM.
 Plug 'mzlogin/vim-markdown-toc'
 
 
@@ -229,78 +177,33 @@ Plug 'mzlogin/vim-markdown-toc'
 
 
 
-""""""""""""""""
-" TPOPE PLUGINGS
-""""""""""""""""
-
-"" VIM-COMMENTARY
-"" git functionality for vim
-" comment stuff out
-" - gcc to comment out a line
-" - gc to comment out the target of a motion (for example, gcap to comment out a paragraph)
-" - adding a custom type: autocmd FileType apache setlocal commentstring=#\ %s
-" Comment/uncomment with gcc (line) or gc plus a motion/visual selection.
+" Plugin: vim-commentary — comment with gcc, or gc plus a motion/visual selection.
 Plug 'tpope/vim-commentary'
 
-"" VIM-SLEUTH
-"" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
-" Detect indentation from the buffer, modelines, and EditorConfig; automatic.
+" Plugin: vim-sleuth — detect indentation from buffer, modelines, and EditorConfig.
 Plug 'tpope/vim-sleuth'
 
-"" VIM-SURROUND
-"" plugin provides mappings to easily delete, change and add surroundings in pairs
-"" - cs"'
-"" - cs'<q>
-"" - cst"
-"" - ds"
-" Surround text: ysiw" adds quotes, cs"' changes quotes, and ds" deletes quotes.
+" Plugin: vim-surround — ysiw" adds quotes, cs"' changes, and ds" deletes them.
 Plug 'tpope/vim-surround'
 
 
-"" VIM-SENSIBLE
-"" a universal set of defaults
-" Sensible baseline editor defaults; automatic.
+" Plugin: vim-sensible — sensible baseline editor defaults; automatic.
 Plug 'tpope/vim-sensible'
 
 
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
 endif
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
 
+" =============================================================================
+" Section: Navigation and mappings
+" =============================================================================
 
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
+" Toggle undo history.
+if exists(':UndotreeToggle')
+  nnoremap <leader>u :UndotreeToggle<CR>
+endif
 
-
-
-
-
-"""""""""""""""
-" PLUGINS - END
-"""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"set relativenumber
-set undofile
-
-" toggle undotree
-nnoremap <leader>u :UndotreeToggle<CR>
-
-" fix regex
-" nnoremap / /\v
-" #vnoremap / /\v
+" Disabled commands: nnoremap / /\v; vnoremap / /\v
 
 " search highlighting
 set incsearch
@@ -310,79 +213,77 @@ nnoremap <leader><space> :noh<cr>
 
 nnoremap <leader>r :w<CR>:source $MYVIMRC<CR>
 
-" line numbers on/off
+" Toggle line numbers.
 nnoremap <leader>l :set number!<cr>
 
-" match bracket pairs using tab
+" Match bracket pairs with Tab.
 nnoremap <tab> %
 vnoremap <tab> %
 
-" screen line instead of file line
+" Move by screen line.
 nnoremap j gj
 nnoremap k gk
 
-" get rid of F1=help
+" Disable F1 help.
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" ; := :
+" Use ; for :.
 nnoremap ; :
 
-" jk is escape
+" Use jk as Escape in Insert mode.
 inoremap jk <esc>
 
 
-"" leader
-" strip all lines
+" Remove trailing whitespace.
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" reformat paragraphs
+" Reformat the current paragraph.
 nnoremap <leader>q gqip
 
-" split window and jump there
+" Split vertically and enter the new window.
 nnoremap <leader>w <C-w>v<C-w>l
 
 nnoremap <leader>m :w<CR>:! make<CR>
 if exists(':terminal')
   nnoremap <leader>M :w<CR>:terminal make<CR>
 endif
-"nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
-" smart matching
+" Disabled command: nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
+" Smart case-sensitive searching.
 set ignorecase
 set smartcase
 
-"" Other tips
+" Swap ' and ` motions.
 nnoremap ' `
 nnoremap ` '
 
 set title
 
 
-""" https://hashrocket.com/blog/posts/8-great-vim-mappings
+" Change tabs.
+nnoremap <S-l> gt
+nnoremap <S-h> gT
 
-" Change tabs
-noremap <S-l> gt
-noremap <S-h> gT
+" Change panes.
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
 
-" Change panes
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-"noremap <C-j> <C-w>j
-"noremap <C-k> <C-w>k
-
-" Quick navigation
-noremap <C-j> <C-d>z.
-noremap <C-k> <C-u>z.
+" Quick navigation.
+nnoremap <C-j> <C-d>z.
+nnoremap <C-k> <C-u>z.
 
 
-" Stop using arrows
+" Disable arrow keys in Normal, Visual, and Operator-pending modes.
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" =============================================================================
+" Section: Editor options
+" =============================================================================
 set hidden
 set history=1000
 set wildmenu
@@ -398,6 +299,9 @@ iab loremm Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus
 iab loremmm Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor
 
 
+" =============================================================================
+" Section: Indentation and whitespace
+" =============================================================================
 set list
 if &encoding ==# 'utf-8'
   set listchars=tab:▸\ ,eol:¬
@@ -406,7 +310,7 @@ else
 endif
 
 set expandtab
-" allow toggling between local and default mode
+" Toggle between spaces and tabs for the current buffer.
 function TabToggle()
 	if &expandtab
 		set shiftwidth=8
@@ -418,8 +322,11 @@ function TabToggle()
 		set expandtab
 	endif
 endfunction
-nmap <silent> <leader>t mz:execute TabToggle()<CR>'z
+nnoremap <silent> <leader>t mz:execute TabToggle()<CR>'z
 
+" =============================================================================
+" Section: Filetype-specific settings
+" =============================================================================
 augroup python_files
 	autocmd!
 	autocmd BufWritePre * %s/\s\+$//e
@@ -462,12 +369,17 @@ augroup vim_files
 	autocmd FileType vim nnoremap <leader>2 I"<space><esc> \| yyPv$r" \| yyjp
 augroup END
 
-augroup pencil
-	autocmd!
-	autocmd filetype markdown,mkd call pencil#init()
-augroup END
+" =============================================================================
+" Section: Writing and Markdown
+" =============================================================================
+if globpath(&runtimepath, 'autoload/pencil.vim') !=# ''
+  augroup pencil
+    autocmd!
+    autocmd filetype markdown,mkd call pencil#init()
+  augroup END
+endif
 
-" Pencil / Writing Controls {{{
+" Pencil defaults.
 let g:pencil#wrapModeDefault = 'soft'
 let g:pencil#textwidth = 74
 let g:pencil#joinspaces = 0
@@ -476,12 +388,12 @@ let g:pencil#conceallevel = 3
 let g:pencil#concealcursor = 'c'
 let g:pencil#softDetectSample = 20
 let g:pencil#softDetectThreshold = 130
-" }}}
-
-" Spellcheck
-nmap <silent> <F5> :set spell!<CR>
-nmap <silent> <leader>s :set spell!<CR>
+" Toggle spellcheck with F5 or <leader>s.
+nnoremap <silent> <F5> :set spell!<CR>
+nnoremap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
-" Goyo
-nmap <silent> <leader>g :Goyo<CR>
+" Toggle Goyo if the plugin is available.
+if exists(':Goyo')
+  nnoremap <silent> <leader>g :Goyo<CR>
+endif
