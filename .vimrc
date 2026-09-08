@@ -38,6 +38,8 @@ map <C-}> :call Uncomment()<CR>
 " PLUGINS - BEGIN
 """""""""""""""""
 
+let g:tex_flavor = 'latex'
+
 if exists('*plug#begin') || globpath(&runtimepath, 'autoload/plug.vim') !=# ''
 call plug#begin()
 
@@ -45,7 +47,8 @@ call plug#begin()
 """"""""""""""""""""""""""""
 " Nerdtree - a tree explorer
 """"""""""""""""""""""""""""
-Plug 'scrooloose/nerdtree'
+" File tree; toggle with <C-n>.
+Plug 'preservim/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -63,12 +66,6 @@ let NERDTreeShowHidden=1
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree-tabs - NERDTree and tabs together in Vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-Plug 'jistr/vim-nerdtree-tabs'
-let g:nerdtree_tabs_open_on_console_startup=2
-
 "if !has('nvim') """"""""""""""""""""""""""""""
 "	" Syntastic - a syntax checker
 "	""""""""""""""""""""""""""""""
@@ -84,7 +81,8 @@ let g:nerdtree_tabs_open_on_console_startup=2
 " PowerLine - a status bar
 """"""""""""""""""""""""""
 " unfortunately, doesn't work with neovim
-Plug 'bling/vim-airline'
+" Status/tabline; configured automatically.
+Plug 'vim-airline/vim-airline'
 "if !has('nvim')
 	"Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "else
@@ -96,6 +94,7 @@ Plug 'bling/vim-airline'
 " Blockit - a vim plugin to wrap lines in a block
 """""""""""""""""""""""""""""""""""""""""""""""""
 " - visual block mode - <leader>bi
+" Wrap a visual selection in a text block with <leader>bi.
 Plug 'sk1418/blockit'
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -111,22 +110,32 @@ endif
 """"""""""""""""""
 " Vim-ansible-yaml
 """"""""""""""""""
+" YAML syntax and indentation; automatic.
 Plug 'avakhov/vim-yaml'
 
 """""""""""""""
 " Vim-Snakemake
 """""""""""""""
+" Snakemake syntax and indentation; automatic.
 Plug 'karel-brinda/vim-snakemake'
 
 """""
 " ALE
 """""
-Plug 'w0rp/ale'
+" ALE requires Vim 8.2+ or Neovim 0.10+.
+let s:ale_supported = (has('nvim') && has('nvim-0.10')) || (!has('nvim') && v:version >= 802 && has('job') && has('channel') && has('timers'))
+if s:ale_supported
+  " Async diagnostics/completion; use :ALEInfo or :ALEFix.
+  Plug 'dense-analysis/ale'
+  let g:ale_completion_enabled = 1
+endif
+unlet s:ale_supported
 
 """""""""""
 " ctrlp.vim
 """""""""""
-Plug 'kien/ctrlp.vim'
+" Fuzzy file, buffer, and MRU finder; start with :CtrlP.
+Plug 'ctrlpvim/ctrlp.vim'
 
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -147,25 +156,31 @@ let g:ctrlp_prompt_mappings = {
 """"""""""
 " acck.vim
 """"""""""
+" Project text search; use :Ack {pattern}.
 Plug 'mileszs/ack.vim'
 
 
 """"""""""
 " html5-syntax
 """"""""""
+" Extended HTML5 syntax highlighting; automatic.
 Plug 'othree/html5-syntax.vim'
 
 
 """"""""
 " vimtex
 """"""""
-Plug 'lervag/vimtex'
-let g:tex_flavor = 'latex'
+" Current VimTeX requires Vim 9.2+ or Neovim 0.12.4+.
+if (has('nvim') && has('nvim-0.12.4')) || (!has('nvim') && v:version >= 902)
+  " LaTeX editing and compilation; use :VimtexCompile or <localleader>ll.
+  Plug 'lervag/vimtex'
+endif
 
 
 """""""""""""""""""
 " vim-pandoc-syntax
 """""""""""""""""""
+" Pandoc Markdown (markdown.pandoc), including embedded LaTeX and YAML; automatic.
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 
@@ -193,27 +208,18 @@ let g:pymode_options_colorcolumn = 0
 
 
 """""""""""
-" gundo.vim
+" undotree
 """""""""""
-Plug 'sjl/gundo.vim'
-if has('python3')
-    let g:gundo_prefer_python3 = 1
-endif
+" Visual undo history; toggle with <leader>u.
+Plug 'mbbill/undotree'
 
-
-"""""""""""""""
-" NerdCommenter
-"""""""""""""""
-" - [count]<leader>cc - comment
-" - [count]<leader>cu - uncomment
-
-Plug 'scrooloose/nerdcommenter'
 
 
 """"""""""""
 " vim-pencil
 """"""""""""
 " activate by :Pencil
+" Prose mode: soft wrapping and concealed Markdown markup; automatic for Markdown, else :Pencil.
 Plug 'reedes/vim-pencil'
 
 
@@ -221,6 +227,7 @@ Plug 'reedes/vim-pencil'
 " goyo
 """"""
 " activate by :goyo
+" Distraction-free writing; toggle with <leader>g or :Goyo.
 Plug 'junegunn/goyo.vim' " Full screen writing mode
 
 function! s:goyo_enter()
@@ -259,12 +266,14 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 " vim-peekaboo
 """"""""""""""
 " you can see the contents of the registers
+" Register previews; press " or @ in Normal mode, or <C-r> while inserting.
 Plug 'junegunn/vim-peekaboo'
 
 
 """"""""""""""
 " vim-markdown
 """"""""""""""
+" GitHub-flavored Markdown syntax; use <leader>e to edit a selected/fenced section.
 Plug 'gabrielelana/vim-markdown'
 
 
@@ -273,6 +282,7 @@ Plug 'gabrielelana/vim-markdown'
 """"""""""""""""""
 " generating github toc:
 " :GenTocGFM
+" Markdown: generate a GitHub-style table of contents with :GenTocGFM.
 Plug 'mzlogin/vim-markdown-toc'
 
 
@@ -291,6 +301,7 @@ Plug 'mzlogin/vim-markdown-toc'
 " - gcc to comment out a line
 " - gc to comment out the target of a motion (for example, gcap to comment out a paragraph)
 " - adding a custom type: autocmd FileType apache setlocal commentstring=#\ %s
+" Comment/uncomment with gcc (line) or gc plus a motion/visual selection.
 Plug 'tpope/vim-commentary'
 
 "" VIM-FUGITIVE
@@ -299,6 +310,7 @@ Plug 'tpope/vim-commentary'
 
 "" VIM-SLEUTH
 "" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+" Detect indentation from the buffer, modelines, and EditorConfig; automatic.
 Plug 'tpope/vim-sleuth'
 
 "" VIM-SURROUND
@@ -307,11 +319,13 @@ Plug 'tpope/vim-sleuth'
 "" - cs'<q>
 "" - cst"
 "" - ds"
+" Surround text: ysiw" adds quotes, cs"' changes quotes, and ds" deletes quotes.
 Plug 'tpope/vim-surround'
 
 
 "" VIM-SENSIBLE
 "" a universal set of defaults
+" Sensible baseline editor defaults; automatic.
 Plug 'tpope/vim-sensible'
 
 
@@ -347,8 +361,8 @@ endif
 "set relativenumber
 set undofile
 
-" toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
+" toggle undotree
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " fix regex
 " nnoremap / /\v
@@ -543,6 +557,3 @@ set spelllang=en_us
 
 " Goyo
 nmap <silent> <leader>g :Goyo<CR>
-
-
-let g:ale_completion_enabled = 1
