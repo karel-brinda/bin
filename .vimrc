@@ -66,46 +66,17 @@ let NERDTreeShowHidden=1
 
 
 
-"if !has('nvim') """"""""""""""""""""""""""""""
-"	" Syntastic - a syntax checker
-"	""""""""""""""""""""""""""""""
-"	" - either flake8, pyflakes or pylint have to be installed
-"	Plug 'scrooloose/syntastic'
-"	let g:syntastic_check_on_open = 1
-"else
-"	Plug 'neomake/neomake'
-"endif
-
-
 """"""""""""""""""""""""""
-" PowerLine - a status bar
+" vim-airline - a status bar
 """"""""""""""""""""""""""
-" unfortunately, doesn't work with neovim
 " Status/tabline; configured automatically.
 Plug 'vim-airline/vim-airline'
-"if !has('nvim')
-	"Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"else
-"	Plug 'bling/vim-airline'
-	"let g:airline_extensions = []
-"endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Blockit - a vim plugin to wrap lines in a block
 """""""""""""""""""""""""""""""""""""""""""""""""
 " - visual block mode - <leader>bi
 " Wrap a visual selection in a text block with <leader>bi.
 Plug 'sk1418/blockit'
-
-""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe - a code completition engine
-""""""""""""""""""""""""""""""""""""""""""""
-" Installation
-"   cd ~/.vim/bundle/YouCompleteMe
-"   ./install.py --clang-completer --system-libclang #--system-boost
-if v:version > 740
-	"Plug 'Valloric/YouCompleteMe'
-endif
 
 """"""""""""""""""
 " Vim-ansible-yaml
@@ -184,29 +155,6 @@ endif
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 
-"""""""""""""""
-" vim-rmarkdown
-"""""""""""""""
-"Plug 'vim-pandoc/vim-rmarkdown'
-
-
-"""""""""""""
-" Python-mode
-"""""""""""""
-"Plug 'python-mode/python-mode'
-let g:pymode_python = 'python3'
-" Override go-to.definition key shortcut to Ctrl-]
-let g:pymode_rope_goto_definition_bind = "<C-]>"
-"
-" Override run current python file key shortcut to Ctrl-Shift-e
-let g:pymode_run_bind = "<C-S-e>"
-"
-" Override view python doc key shortcut to Ctrl-Shift-d
-let g:pymode_doc_bind = "<C-S-d>"
-
-let g:pymode_options_colorcolumn = 0
-
-
 """""""""""
 " undotree
 """""""""""
@@ -246,16 +194,6 @@ function! s:goyo_leave()
       qa
     endif
   endif
-endfunction
-
-function! s:auto_goyo()
-	if &ft == 'markdown'
-		Goyo
-	else
-		"let bufnr = bufnr('%')
-		"Goyo!
-		"execute 'b '.bufnr
-	endif
 endfunction
 
 autocmd! User GoyoEnter call <SID>goyo_enter()
@@ -303,10 +241,6 @@ Plug 'mzlogin/vim-markdown-toc'
 " - adding a custom type: autocmd FileType apache setlocal commentstring=#\ %s
 " Comment/uncomment with gcc (line) or gc plus a motion/visual selection.
 Plug 'tpope/vim-commentary'
-
-"" VIM-FUGITIVE
-"" git functionality for vim
-"Plug 'tpope/vim-fugitive'
 
 "" VIM-SLEUTH
 "" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
@@ -532,12 +466,6 @@ augroup pencil
 	autocmd!
 	autocmd filetype markdown,mkd call pencil#init()
 augroup END
-
-augroup goyo_markdown
-	autocmd!
-	autocmd BufNewFile,BufRead * call s:auto_goyo()
-augroup END
-
 
 " Pencil / Writing Controls {{{
 let g:pencil#wrapModeDefault = 'soft'
