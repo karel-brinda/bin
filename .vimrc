@@ -18,6 +18,12 @@
 "	cmap <C-V>	<C-R>+
 "endif
 
+set nocompatible              " be iMproved, required
+let mapleader = ','
+
+syntax enable
+filetype plugin indent on
+
 nnoremap Y y$
 
 "if !exists('g:colors_name') || g:colors_name != 'badwolf'
@@ -25,23 +31,13 @@ colorscheme badwolf
 "endif
 
 set guifont=Hack:h11
-
-syntax on
-filetype indent plugin on
 set modeline
 set number
-
-" allow aliases
-:set shellcmdflag=-ic
 
 " CTRL-A comment, CTRL-B uncomment
 source ~/bin/vcomments.vim
 map <C-{> :call Comment()<CR>
 map <C-}> :call Uncomment()<CR>
-
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
 
 
@@ -376,7 +372,6 @@ call plug#end()
 
 "set relativenumber
 set undofile
-let mapleader = ","
 
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
@@ -391,7 +386,7 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <leader>r :w<cr> \| :so ~/.vimrc \| :PluginInstall<cr>
+nnoremap <leader>r :w<CR>:source $MYVIMRC<CR>
 
 " line numbers on/off
 nnoremap <leader>l :set number!<cr>
@@ -426,10 +421,10 @@ nnoremap <leader>q gqip
 " split window and jump there
 nnoremap <leader>w <C-w>v<C-w>l
 
-set shellcmdflag=-ic
-
 nnoremap <leader>m :w<CR>:! make<CR>
-nnoremap <leader>M :w<CR>:terminal make<CR>
+if exists(':terminal')
+  nnoremap <leader>M :w<CR>:terminal make<CR>
+endif
 "nnoremap <leader>M :w<CR>:! make \|\| 1<CR>
 " smart matching
 set ignorecase
@@ -484,9 +479,6 @@ iab loremmm Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacu
 set list
 set listchars=tab:▸\ ,eol:¬
 
-filetype plugin indent on
-
-
 set expandtab
 " allow toggling between local and default mode
 function TabToggle()
@@ -504,24 +496,15 @@ nmap <silent> <leader>t mz:execute TabToggle()<CR>'z
 
 augroup python_files
 	autocmd!
-	"autocmd FileType python setlocal noexpandtab
-	"autocmd FileType python set tabstop=4
-	"autocmd FileType python set shiftwidth=4
-	au BufRead,BufNewFile *.py set expandtab
 	autocmd BufWritePre * %s/\s\+$//e
-
-	set expandtab           " enter spaces when tab is pressed
-	set textwidth=110       " break lines when line length increases
-	set tabstop=4           " use 4 spaces to represent tab
-	set softtabstop=4
-	set shiftwidth=4        " number of spaces to use for auto indent
-	set autoindent          " copy indent from current line when starting a new line
+	autocmd FileType python setlocal expandtab textwidth=110 tabstop=4 softtabstop=4 shiftwidth=4 autoindent
 
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
 augroup END
 
 augroup sh_files
-	set noexpandtab
+	autocmd!
+	autocmd FileType sh setlocal noexpandtab
 augroup END
 
 augroup markdown_files
@@ -595,4 +578,3 @@ silent! helptags ALL
 
 
 let g:ale_completion_enabled = 1
-
