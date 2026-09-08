@@ -55,7 +55,7 @@ call plug#begin()
 " Plugin: NERDTree — file tree; toggle with <C-n>.
 Plug 'preservim/nerdtree'
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && exists(':NERDTree') | NERDTree | endif
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
@@ -199,9 +199,7 @@ endif
 " =============================================================================
 
 " Toggle undo history.
-if exists(':UndotreeToggle')
-  nnoremap <leader>u :UndotreeToggle<CR>
-endif
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Disabled commands: nnoremap / /\v; vnoremap / /\v
 
@@ -393,7 +391,5 @@ nnoremap <silent> <F5> :set spell!<CR>
 nnoremap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
-" Toggle Goyo if the plugin is available.
-if exists(':Goyo')
-  nnoremap <silent> <leader>g :Goyo<CR>
-endif
+" Toggle Goyo.
+nnoremap <silent> <leader>g :Goyo<CR>
