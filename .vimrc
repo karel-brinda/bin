@@ -1,22 +1,12 @@
 """""""
 " LINKS
 """""""
-" - http://nvie.com/posts/how-i-boosted-my-vim/
-" - https://dev.to/animo/vim-configuration-from-minimal-to-complete-5o9
-"
 
-" source $VIMRUNTIME/mswin.vim
-"if has("clipboard")
-"	" CTRL-X is Cut
-"	vnoremap <C-X> "+x
-"
-"	" CTRL-C is Copy
-"	vnoremap <C-C> "+y
-"
-"	" CTRL-V is Paste
-"	map <C-V> "+gP
-"	cmap <C-V>	<C-R>+
-"endif
+set nocompatible
+let mapleader = ','
+
+syntax enable
+filetype plugin indent on
 
 set nocompatible              " be iMproved, required
 let mapleader = ','
@@ -26,11 +16,17 @@ filetype plugin indent on
 
 nnoremap Y y$
 
-"if !exists('g:colors_name') || g:colors_name != 'badwolf'
 colorscheme badwolf
-"endif
 
+<<<<<<< HEAD
 set guifont=Hack:h11
+||||||| parent of 935a037 (Vim: clean up portable core configuration)
+set guifont=Hack:h11
+
+syntax on
+filetype indent plugin on
+=======
+>>>>>>> 935a037 (Vim: clean up portable core configuration)
 set modeline
 set number
 
@@ -51,26 +47,7 @@ map <C-}> :call Uncomment()<CR>
 " PLUGINS - BEGIN
 """""""""""""""""
 
-
-
-
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-
 call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
 
 
 """"""""""""""""""""""""""""
@@ -100,8 +77,7 @@ let NERDTreeShowHidden=1
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=2
 
-"if !has('nvim')
-"	""""""""""""""""""""""""""""""
+"if !has('nvim') """"""""""""""""""""""""""""""
 "	" Syntastic - a syntax checker
 "	""""""""""""""""""""""""""""""
 "	" - either flake8, pyflakes or pylint have to be installed
