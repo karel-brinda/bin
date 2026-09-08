@@ -1,4 +1,66 @@
 " =============================================================================
+" Quick reference (leader key: ,)
+" =============================================================================
+" Plugin maintenance
+"   :PlugInstall       install declared plugins
+"   :PlugUpdate        update installed plugins
+"
+" Everyday editing
+"   Y               yank to end of line
+"   ,<Space>        clear search highlight
+"   ,r              save and reload config
+"   ,l              toggle line numbers
+"   Tab             jump to matching bracket
+"   j / k           move by screen line
+"   jk              Escape in Insert mode
+"   ;               enter Command-line mode
+"   ,W              remove trailing whitespace
+"   ,q              reformat paragraph
+"   ,w              split vertically and enter it
+"   ,m              save and run make
+"   ,M              save and run :terminal make (if supported)
+"   ' / `           swap mark motions
+"   Shift-h / Shift-l  previous / next tab
+"   Ctrl-h / Ctrl-l   change panes
+"   Ctrl-j / Ctrl-k   scroll half a page
+"   ,t              toggle spaces or tabs
+"   F5 or ,s        toggle spellcheck
+"   Arrow keys are disabled in Normal, Visual, and Operator-pending modes.
+"
+" Filetype helpers
+"   Markdown ,1 through ,4   insert heading levels
+"   reStructuredText ,1 through ,9  insert heading underlines
+"   reStructuredText ,c      insert a directive
+"   Python ,1                add a # comment block
+"   Vim ,1 or ,2             create a comment template
+"   Insert-mode abbreviations include kg and lorem.
+"
+" Plugins that work automatically
+"   NERDTree     opens at startup with no file; Ctrl-n toggles it
+"   Airline      shows the statusline
+"   YAML, Snakemake, HTML5, and Pandoc Markdown syntax load for matching files
+"   vim-sleuth   detects indentation from the current buffer
+"   vim-sensible applies sensible editor defaults
+"   ALE          enables diagnostics/completion when the editor version supports it
+"   Pencil       starts in Markdown files with soft wrapping and concealed markup
+"
+" On-demand plugin features (off until invoked)
+"   ,u or :UndotreeToggle  show undo history
+"   :CtrlP                 fuzzy-find files and buffers
+"   :Ack {pattern}         search project text
+"   Visual ,bi             wrap a selection with Blockit
+"   ,g or :Goyo            toggle distraction-free writing; :Goyo! turns it off
+"   :Pencil / :PencilOff   enable/disable prose mode in non-Markdown buffers
+"   :VimtexCompile         start/stop LaTeX compilation (where VimTeX is supported)
+"   :GenTocGFM             create a GitHub-style Markdown TOC
+"   Markdown ,e            edit a code block or selected section in a temporary buffer
+"   gcc / gc{motion}       comment a line / motion
+"   ysiw", cs"', ds"      add, change, or delete surroundings
+"   " or @ (Normal)        preview registers with vim-peekaboo
+"   Ctrl-r (Insert)        preview registers with vim-peekaboo
+"   Ctrl-{ / Ctrl-}        comment/uncomment via the optional repository-local helper
+"
+" =============================================================================
 " Section: Core initialization
 " =============================================================================
 set nocompatible
