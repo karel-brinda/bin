@@ -389,6 +389,12 @@ nnoremap <silent> <leader>t mz:execute TabToggle()<CR>'z
 " =============================================================================
 " Section: Filetype-specific settings
 " =============================================================================
+let g:r_indent_align_args = 0
+augroup r_indent
+	autocmd!
+	autocmd FileType r setlocal expandtab shiftwidth=4 softtabstop=4
+augroup END
+
 augroup python_files
 	autocmd!
 	autocmd BufWritePre * %s/\s\+$//e
