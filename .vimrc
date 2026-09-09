@@ -146,7 +146,9 @@ Plug 'karel-brinda/vim-snakemake'
 let s:ale_supported = (has('nvim') && has('nvim-0.10')) || (!has('nvim') && v:version >= 802 && has('job') && has('channel') && has('timers'))
 if s:ale_supported
   Plug 'dense-analysis/ale'
+  let g:ale_enabled = 0
   let g:ale_completion_enabled = 1
+  nmap <silent> <leader>a <Plug>(ale_toggle)
 endif
 unlet s:ale_supported
 
