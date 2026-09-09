@@ -1,13 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-BASEDIR=$(dirname "$0")
-SAMPLE="$BASEDIR/samples/.gitattributes"
+set -euo pipefail
 
-if [ $# -eq 0 ]; then
-	cp $SAMPLE .gitattributes
-	exit 0
+if [[ $# -ne 0 ]]; then
+	printf 'usage: %s\n' "${0##*/}" >&2
+	exit 1
 fi
 
-s=`basename $0`
-echo "usage: $s"
-exit 1
+BASEDIR=$(dirname "$0")
+cp "$BASEDIR/samples/.gitattributes" .gitattributes

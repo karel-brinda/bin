@@ -1,12 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-BASEDIR=$(dirname "$0")
-SUFFIX=md
+set -euo pipefail
 
-if [ $# -ne 1 ]; then
-	s=`basename $0`
-	echo "$s file.$SUFFIX"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file.md\n' "${0##*/}" >&2
 	exit 1
 fi
 
-cp $BASEDIR/samples/sample.$SUFFIX $1
+BASEDIR=$(dirname "$0")
+cp "$BASEDIR/samples/sample.md" "$1"

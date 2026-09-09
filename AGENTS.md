@@ -61,7 +61,7 @@ General style:
 - Do not use unsafe `find | xargs` patterns for filenames.
 - Use `mktemp` for temporary files/directories.
 - Keep tiny scripts tiny.
-- Do not add unused `PROGNAME`, `PROGDIR`, `ARGS`, `NARGS`, author blocks, dates, or similar boilerplate.
+- Do not add unused `PROGNAME`, `PROGDIR`, `ARGS`, `NARGS`, author blocks, dates, or similar boilerplate to ordinary scripts. Templates may retain illustrative boilerplate as described below.
 
 A shell script header should contain only:
 
@@ -101,7 +101,7 @@ Creators should be thin wrappers around `samples/` whenever a template exists.
 - Keep template content in one place.
 - Validate arguments before creating anything.
 - Quote source and destination paths.
-- Do not overwrite an existing destination unless overwrite behavior is explicitly part of the command.
+- Do not add preflight destination-existence checks; preserve the underlying command's normal overwrite behavior unless explicitly asked to change it.
 - Do not `touch` a destination before copying a template.
 
 ### Empty files
@@ -174,7 +174,9 @@ Keep major sections visually separated and named consistently:
 
 ## Templates
 
-`samples/` defines the preferred style for newly created files. Keep templates minimal and remove unused imports/dependencies/boilerplate.
+`samples/` defines the preferred style for newly created files. Keep new template content focused and avoid adding unused imports or dependencies.
+
+Preserve existing instructional comments, commented examples, optional scaffolding, and illustrative boilerplate in templates unless explicitly asked to remove them. Do not treat template content as unused solely because the template itself does not invoke it.
 
 A template should represent how a new file should look today, while still respecting the compatibility rules above.
 

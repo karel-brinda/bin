@@ -1,10 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-if [ $# -ne 1 ]; then
-	s=`basename $0`
-	echo "$s file.py"
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file.py\n' "${0##*/}" >&2
 	exit 1
 fi
 
 BASEDIR=$(dirname "$0")
-cp $BASEDIR/samples/sample.py $1
+cp "$BASEDIR/samples/sample.py" "$1"

@@ -1,18 +1,17 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-BASEDIR=$(dirname "$0")
-SUFFIX=Rproj
+set -euo pipefail
 
-if [ $# -ge 2 ]; then
-	s=`basename $0`
-	echo "$s >name<.$SUFFIX"
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [name]\n' "${0##*/}" >&2
 	exit 1
 fi
 
-if [ $# -eq 0 ]; then
-	x="a"
+BASEDIR=$(dirname "$0")
+if [[ $# -eq 0 ]]; then
+	DESTINATION=a.Rproj
 else
-	x="$1"
+	DESTINATION="$1.Rproj"
 fi
 
-cp "$BASEDIR/samples/sample.$SUFFIX" "$x.$SUFFIX"
+cp "$BASEDIR/samples/sample.Rproj" "$DESTINATION"

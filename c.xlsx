@@ -1,12 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-BASEDIR=$(dirname "$0")
-SAMPLE="$BASEDIR/samples/sample.xlsx"
+set -euo pipefail
 
-if [ $# -ne 1 ]; then
-	s=`basename $0`
-	echo "usage: $s file.docx"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file.xlsx\n' "${0##*/}" >&2
 	exit 1
 fi
 
-cp "$SAMPLE" "$1"
+BASEDIR=$(dirname "$0")
+cp "$BASEDIR/samples/sample.xlsx" "$1"

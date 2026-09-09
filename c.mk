@@ -1,19 +1,17 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [Makefile]\n' "${0##*/}" >&2
+	exit 1
+fi
 
 BASEDIR=$(dirname "$0")
-SAMPLE="$BASEDIR/samples/sample.mk"
-
-if [ $# -eq 0 ]; then
-	cp $SAMPLE Makefile
-	exit 0
+if [[ $# -eq 0 ]]; then
+	DESTINATION=Makefile
+else
+	DESTINATION="$1"
 fi
 
-if [ $# -eq 1 ]; then
-	cp $SAMPLE "$1"
-	exit 0
-fi
-
-
-s=`basename $0`
-echo "usage: $s [Makefile]"
-exit 1
+cp "$BASEDIR/samples/sample.mk" "$DESTINATION"
