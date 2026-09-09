@@ -1,16 +1,25 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-if [ $# -ne 1 ]; then
-	s=`basename $0`
-	echo "$s project_name"
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s project_name\n' "${0##*/}" >&2
 	exit 1
 fi
 
 BASEDIR=$(dirname "$0")
-NAME=$1
-cp -a $BASEDIR/samples/cpp_project/ .
-rename -f "s/_NAME_/$NAME/g" $(find . -type d)
-rename -f "s/_NAME_/$NAME/g" $(find . -type f)
-#sed -i.bak "s/_NAME_/$NAME/g" $(find . -type f -not -name '*.bak')
-find . -type f -not -name '*.bak' -not -name '*.swp' -not -name '*~' -exec sed -i.bak "s/_NAME_/$NAME/g" {} \;
-find . -type f -name '*.bak' | xargs rm
+export PROJECT_NAME="$1"
+
+cp -a "$BASEDIR/samples/cpp_project/." .
+
+find . -depth -name '*_NAME_*' -exec perl -e '
+	my $path = shift;
+	my ($directory, $basename) = $path =~ m{\A(.*)/(.*)\z};
+	$basename =~ s/_NAME_/$ENV{PROJECT_NAME}/g;
+	my $new_path = "$directory/$basename";
+	rename $path, $new_path or die "cannot rename $path: $!\n";
+' {} \;
+
+find . -type f ! -name '*.bak' ! -name '*.swp' ! -name '*~' \
+	-exec perl -pi.bak -e 's/_NAME_/$ENV{PROJECT_NAME}/g' {} +
+find . -type f -name '*.bak' -exec rm -f {} +

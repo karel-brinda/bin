@@ -1,7 +1,13 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -ne 0 ]]; then
+	printf 'usage: %s\n' "${0##*/}" >&2
+	exit 1
+fi
 
 BASEDIR=$(dirname "$0")
-cp "$BASEDIR/samples/sample.cluster.snakefile"  Snakefile
-cp "$BASEDIR/samples/sample.cluster.makefile"  Makefile
-cp "$BASEDIR/samples/sample.cluster.json"  cluster.json
-
+cp "$BASEDIR/samples/sample.cluster.snakefile" Snakefile
+cp "$BASEDIR/samples/sample.cluster.makefile" Makefile
+cp "$BASEDIR/samples/sample.cluster.json" cluster.json
