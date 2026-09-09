@@ -1,4 +1,19 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-open "https://docs.google.com/document/create"
+set -euo pipefail
 
+if [[ $# -ne 0 ]]; then
+	printf 'usage: %s\n' "${0##*/}" >&2
+	exit 1
+fi
+
+URL=https://docs.google.com/document/create
+
+if command -v open >/dev/null 2>&1; then
+	open "$URL"
+elif command -v xdg-open >/dev/null 2>&1; then
+	xdg-open "$URL"
+else
+	printf '%s: no supported browser opener found\n' "${0##*/}" >&2
+	exit 1
+fi
