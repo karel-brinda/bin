@@ -5,12 +5,11 @@
 # Aggregate memory usage by process/application name.
 #
 # macOS:
-#   RAM     = RSS: memory currently resident in physical RAM
-#   PRIVATE = RPRVT: resident private memory
-#   CMPRS   = compressed memory attributed to the process
+#   RAM   = RSS: memory currently resident in physical RAM
+#   CMPRS = compressed memory attributed to the process
 #
 # Linux:
-#   RAM     = RSS: memory currently resident in physical RAM
+#   RAM   = RSS: memory currently resident in physical RAM
 #
 # Summed RSS can double-count shared pages between processes.
 #
@@ -34,7 +33,7 @@ macos()
     # Use the second sample so CPU usage is measured over an interval.
     #
     top -l 2 -s 1 -ncols 500 \
-        -stats pid,cpu,rprvt,cmprs |
+        -stats pid,cpu,cmprs |
     awk '
         /^PID[[:space:]]/ {
             sample++
@@ -42,7 +41,7 @@ macos()
         }
 
         sample == 2 && $1 ~ /^[0-9]+$/ {
-            print $1 "\t" $2 "\t" $3 "\t" $4
+            print $1 "\t" $2 "\t" $3
         }
     ' > "$top_tmp"
 
@@ -109,9 +108,8 @@ macos()
     NR == FNR {
         pid = $1
 
-        cpu[pid]     = $2
-        private[pid] = mib($3)
-        cmprs[pid]   = mib($4)
+        cpu[pid]   = $2
+        cmprs[pid] = mib($3)
 
         next
     }
@@ -135,7 +133,6 @@ macos()
             next
 
         ram_sum[name] += rss / 1024
-        private_sum[name] += private[pid]
         cmprs_sum[name] += cmprs[pid]
 
         c = cpu[pid]
@@ -148,9 +145,8 @@ macos()
 
     END {
         for (name in ram_sum) {
-            printf "%.6f\t%.6f\t%.6f\t%.3f\t%d\t%s\n",
+            printf "%.6f\t%.6f\t%.3f\t%d\t%s\n",
                    ram_sum[name],
-                   private_sum[name],
                    cmprs_sum[name],
                    cpu_sum[name],
                    count[name],
@@ -161,12 +157,12 @@ macos()
     sort -t $'\t' -k1,1nr |
     awk -F '\t' '
     BEGIN {
-        print "PROCESS\tRAM\tPRIVATE\tCMPRS\t%CPU\tN"
+        print "PROCESS\tRAM\tCMPRS\t%CPU\tN"
     }
 
     {
-        printf "%s\t%.0fM\t%.0fM\t%.0fM\t%.1f\t%d\n",
-               $6, $1, $2, $3, $4, $5
+        printf "%s\t%.0fM\t%.0fM\t%.1f\t%d\n",
+               $5, $1, $2, $3, $4
     }
     ' |
     column -t -s $'\t' |
