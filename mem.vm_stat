@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# macOS only; samples every N seconds (default 1) until interrupted.
+vm_stat "${@:-1}"
