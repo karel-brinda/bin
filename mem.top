@@ -1,159 +1,253 @@
 #!/usr/bin/env bash
 #
-# mem.top - aggregate memory usage by process/application name
+# mem.top
+#
+# Aggregate memory usage by process/application name.
 #
 # macOS:
-#   UNCOMP ≈ MEM - CMPRS
-#   shows compressed memory separately
+#   RAM     = RSS: memory currently resident in physical RAM
+#   PRIVATE = RPRVT: resident private memory
+#   CMPRS   = compressed memory attributed to the process
 #
 # Linux:
-#   RSS is resident, uncompressed physical memory
+#   RAM     = RSS: memory currently resident in physical RAM
 #
-# Related helper processes such as:
-#   Brave Browser Helper (Renderer)
-#   Brave Browser Helper (GPU)
-# are grouped under:
-#   Brave Browser
+# Summed RSS can double-count shared pages between processes.
 #
 
 set -euo pipefail
+export LC_ALL=C
 
-normalize_awk='
-function normalize(s) {
-    # Generic macOS-style helper-process grouping.
-    # No application names are hardcoded.
-    sub(/[[:space:]]+Helper.*$/, "", s)
-    return s
-}
-'
+
+###############################################################################
+# macOS
+###############################################################################
 
 macos()
 {
-    top -l 1 -ncols 400 -stats command,cpu,mem,cmprs |
-    awk "
-$normalize_awk
+    top_tmp=$(mktemp)
+    ps_tmp=$(mktemp)
 
-function mib(x,    u,n) {
-    gsub(/[+%]$/, \"\", x)
+    trap 'rm -f "$top_tmp" "$ps_tmp"' EXIT
 
-    u = substr(x, length(x), 1)
-    n = substr(x, 1, length(x)-1) + 0
+    #
+    # Use the second sample so CPU usage is measured over an interval.
+    #
+    top -l 2 -s 1 -ncols 500 \
+        -stats pid,cpu,rprvt,cmprs |
+    awk '
+        /^PID[[:space:]]/ {
+            sample++
+            next
+        }
 
-    if (u == \"T\") return n * 1024 * 1024
-    if (u == \"G\") return n * 1024
-    if (u == \"M\") return n
-    if (u == \"K\") return n / 1024
-    if (u == \"B\") return n / 1024 / 1024
+        sample == 2 && $1 ~ /^[0-9]+$/ {
+            print $1 "\t" $2 "\t" $3 "\t" $4
+        }
+    ' > "$top_tmp"
 
-    # Fallback: assume bytes.
-    return x / 1024 / 1024
-}
+    #
+    # RSS is reported by ps in KiB.
+    #
+    ps -axo pid=,rss=,comm= > "$ps_tmp"
 
-/^COMMAND[[:space:]]/ {
-    started = 1
-    next
-}
+    awk '
+    ###########################################################################
+    # Convert top memory values to MiB.
+    ###########################################################################
 
-started && NF >= 4 {
-    cmprs = \$NF
-    mem   = \$(NF-1)
-    cpu   = \$(NF-2)
+    function mib(x,    u,n) {
+        gsub(/[+%]$/, "", x)
 
-    name = \$1
-    for (i = 2; i <= NF-3; i++)
-        name = name \" \" \$i
+        if (x == "" || x == "-" || x == "N/A")
+            return 0
 
-    name = normalize(name)
+        u = substr(x, length(x), 1)
+        n = substr(x, 1, length(x)-1) + 0
 
-    m[name] += mib(mem)
-    c[name] += mib(cmprs)
+        if (u == "T") return n * 1024 * 1024
+        if (u == "G") return n * 1024
+        if (u == "M") return n
+        if (u == "K") return n / 1024
+        if (u == "B") return n / 1024 / 1024
 
-    gsub(/%/, \"\", cpu)
-    p[name] += cpu + 0
-
-    n[name]++
-}
-
-END {
-    for (name in m) {
-        u = m[name] - c[name]
-
-        # Rounding/accounting can occasionally make this slightly negative.
-        if (u < 0)
-            u = 0
-
-        printf \"%.6f\\t%.6f\\t%.6f\\t%.3f\\t%d\\t%s\\n\",
-               u, m[name], c[name], p[name], n[name], name
+        return x / 1024 / 1024
     }
-}" |
+
+
+    ###########################################################################
+    # Normalize a process name.
+    #
+    # If the executable is inside an application bundle, use the name of the
+    # outermost .app bundle. Otherwise use the executable basename.
+    ###########################################################################
+
+    function process_name(s,    a,n,i,x) {
+        n = split(s, a, "/")
+
+        for (i = 1; i <= n; i++) {
+            if (a[i] ~ /\.app$/) {
+                x = a[i]
+                sub(/\.app$/, "", x)
+                return x
+            }
+        }
+
+        x = a[n]
+
+        sub(/[[:space:]]+Helper([[:space:]].*)?$/, "", x)
+        sub(/[[:space:]]+\([^()]*\)$/, "", x)
+
+        return x
+    }
+
+
+    ###########################################################################
+    # First input: top statistics indexed by PID.
+    ###########################################################################
+
+    NR == FNR {
+        pid = $1
+
+        cpu[pid]     = $2
+        private[pid] = mib($3)
+        cmprs[pid]   = mib($4)
+
+        next
+    }
+
+
+    ###########################################################################
+    # Second input: ps statistics.
+    ###########################################################################
+
+    {
+        pid = $1
+        rss = $2
+
+        command = $3
+        for (i = 4; i <= NF; i++)
+            command = command " " $i
+
+        name = process_name(command)
+
+        if (name == "")
+            next
+
+        ram_sum[name] += rss / 1024
+        private_sum[name] += private[pid]
+        cmprs_sum[name] += cmprs[pid]
+
+        c = cpu[pid]
+        gsub(/%/, "", c)
+        cpu_sum[name] += c + 0
+
+        count[name]++
+    }
+
+
+    END {
+        for (name in ram_sum) {
+            printf "%.6f\t%.6f\t%.6f\t%.3f\t%d\t%s\n",
+                   ram_sum[name],
+                   private_sum[name],
+                   cmprs_sum[name],
+                   cpu_sum[name],
+                   count[name],
+                   name
+        }
+    }
+    ' "$top_tmp" "$ps_tmp" |
     sort -t $'\t' -k1,1nr |
     awk -F '\t' '
     BEGIN {
-        printf "%-36s %10s %10s %10s %8s %5s\n",
-               "PROCESS", "UNCOMP", "MEM", "CMPRS", "%CPU", "N"
+        print "PROCESS\tRAM\tPRIVATE\tCMPRS\t%CPU\tN"
     }
+
     {
-        printf "%-36s %9.0fM %9.0fM %9.0fM %7.1f %5d\n",
+        printf "%s\t%.0fM\t%.0fM\t%.0fM\t%.1f\t%d\n",
                $6, $1, $2, $3, $4, $5
-    }'
+    }
+    ' |
+    column -t -s $'\t' |
+    less -S
 }
 
+
+###############################################################################
+# Linux
+###############################################################################
 
 linux()
 {
-    ps -eo pid=,rss=,%cpu=,comm= |
-    awk "
-$normalize_awk
+    ps -eo rss=,%cpu=,comm= |
+    awk '
+    function normalize(s) {
+        sub(/[[:space:]]+Helper([[:space:]].*)?$/, "", s)
+        sub(/[[:space:]]+\([^()]*\)$/, "", s)
+        return s
+    }
 
-{
-    # Columns:
-    # PID RSS %CPU COMMAND...
-    rss = \$2
-    cpu = \$3
+    {
+        rss = $1
+        cpu = $2
 
-    name = \$4
-    for (i = 5; i <= NF; i++)
-        name = name \" \" \$i
+        name = $3
+        for (i = 4; i <= NF; i++)
+            name = name " " $i
 
-    if (name == \"\")
-        next
+        name = normalize(name)
 
-    name = normalize(name)
+        if (name == "")
+            next
 
-    # Linux ps RSS is in KiB.
-    r[name] += rss / 1024
+        ram[name] += rss / 1024
 
-    gsub(/%/, \"\", cpu)
-    p[name] += cpu + 0
+        gsub(/%/, "", cpu)
+        cpus[name] += cpu + 0
 
-    n[name]++
-}
+        count[name]++
+    }
 
-END {
-    for (name in r)
-        printf \"%.6f\\t%.3f\\t%d\\t%s\\n\",
-               r[name], p[name], n[name], name
-}" |
+    END {
+        for (name in ram) {
+            printf "%.6f\t%.3f\t%d\t%s\n",
+                   ram[name],
+                   cpus[name],
+                   count[name],
+                   name
+        }
+    }
+    ' |
     sort -t $'\t' -k1,1nr |
     awk -F '\t' '
     BEGIN {
-        printf "%-36s %10s %8s %5s\n",
-               "PROCESS", "RSS", "%CPU", "N"
+        print "PROCESS\tRAM\t%CPU\tN"
     }
+
     {
-        printf "%-36s %9.0fM %7.1f %5d\n",
+        printf "%s\t%.0fM\t%.1f\t%d\n",
                $4, $1, $2, $3
-    }'
+    }
+    ' |
+    column -t -s $'\t' |
+    less -S
 }
 
+
+###############################################################################
+# Select implementation.
+###############################################################################
 
 case "$(uname -s)" in
     Darwin)
         macos
         ;;
+
     Linux)
         linux
         ;;
+
     *)
         echo "Unsupported operating system: $(uname -s)" >&2
         exit 1
