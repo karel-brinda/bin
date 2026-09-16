@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [directory]\n' "${0##*/}" >&2
+	exit 1
+fi
+
+if [[ $(uname) != Darwin ]]; then
+	printf '%s: macOS is required\n' "${0##*/}" >&2
+	exit 1
+fi
+
+dir=${1-.}
+if [[ ! -d "$dir" ]]; then
+	printf '%s: not a directory: %s\n' "${0##*/}" "$dir" >&2
+	exit 1
+fi
+
+dir=$(CDPATH= cd -P -- "$dir" && pwd -P)
+antigravity-ide "$dir"
