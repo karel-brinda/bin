@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Antigravity 2.0 requires selecting the folder in the app.
 
 set -euo pipefail
 
@@ -20,5 +19,4 @@ if [[ ! -d "$dir" ]]; then
 fi
 
 dir=$(CDPATH= cd -P -- "$dir" && pwd -P)
-open -b com.google.antigravity
-printf '%s: select this folder in Antigravity: %s\n' "${0##*/}" "$dir"
+antigravity-ide "$dir"
