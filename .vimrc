@@ -43,6 +43,7 @@
 "   vim-sensible applies sensible editor defaults
 "   ALE          enables diagnostics/completion when the editor version supports it
 "   Pencil       starts in Markdown files with soft wrapping and concealed markup
+"   local-highlight  highlights other uses of the word under the cursor (Neovim)
 "
 " On-demand plugin features (off until invoked)
 "   ,u or :UndotreeToggle  show undo history
@@ -58,6 +59,7 @@
 "   ysiw", cs"', ds"      add, change, or delete surroundings
 "   " or @ (Normal)        preview registers with vim-peekaboo
 "   Ctrl-r (Insert)        preview registers with vim-peekaboo
+"   ,h                     toggle word highlighting in the current buffer
 "   Ctrl-{ / Ctrl-}        comment/uncomment via the optional repository-local helper
 "
 " =============================================================================
@@ -236,6 +238,15 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 
 
+" Plugin: local-highlight.nvim — highlight other occurrences of the word under
+" the cursor; Neovim only, so plain Vim skips it. Toggle with <leader>h.
+" Its options are set after plug#end(), once the plugin is on the runtimepath.
+if has('nvim')
+  Plug 'tzachar/local-highlight.nvim'
+  nnoremap <silent> <leader>h :LocalHighlightToggle<CR>
+endif
+
+
 
 
 
@@ -256,6 +267,24 @@ Plug 'tpope/vim-sensible'
 
 
 call plug#end()
+
+" Options for local-highlight.nvim; ignored by Vim, which has no Lua interface
+" compatible with Neovim plugins.
+if has('nvim')
+lua << EOF
+local ok, local_highlight = pcall(require, 'local-highlight')
+if ok then
+  local_highlight.setup({
+    -- Leave prose buffers alone, including Goyo and Pencil sessions.
+    disable_file_types = { 'markdown', 'pandoc', 'tex', 'text' },
+    -- Ignore single characters such as i, n, and x.
+    min_match_len = 2,
+    -- Animation needs snacks.nvim, which is not installed.
+    animate = { enabled = false },
+  })
+end
+EOF
+endif
 endif
 
 " =============================================================================
