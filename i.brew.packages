@@ -3,14 +3,11 @@
 #set -o verbose
 #set -o xtrace
 
-readonly PROGDIR="$(dirname "$0")"
-
 if [[ $(uname) == 'Linux' ]]; then
 	#INSTALL="brew install --force-bottle"
 	#INSTALL() {
 		#brew install $@
 	#}
-	f="$PROGDIR/tmp.linuxbrew"
 	finished=" "
 	# --force-bottle applies only to the named formula, not to the dependencies
 	# brew installs for it, so install the dependencies first, one by one.
@@ -36,8 +33,6 @@ else
 		brew install "$@"
 	}
 fi
-
-export -f INSTALL
 
 
 ######
