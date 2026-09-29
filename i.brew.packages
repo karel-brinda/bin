@@ -102,7 +102,3 @@ INSTALL imagemagick qpdf ffmpeg exiftool
 INSTALL pdfgrep pdf2svg librsvg
 INSTALL diff-pdf #latexdiff git-latexdiff
 
-if [[ $(uname) == 'Darwin' ]]; then
-	brew install --cask skim
-fi
-
