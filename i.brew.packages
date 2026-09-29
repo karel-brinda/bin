@@ -95,7 +95,7 @@ fi
 ###############################
 INSTALL ghostscript pandoc poppler
 INSTALL imagemagick qpdf ffmpeg exiftool
-INSTALL pdfgrep pdf2svg
+INSTALL pdfgrep pdf2svg librsvg
 INSTALL diff-pdf #latexdiff git-latexdiff
 
 if [[ $(uname) == 'Darwin' ]]; then

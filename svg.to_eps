@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+	printf 'convert an SVG file to EPS\nusage: %s in.svg [out.eps]\n' "${0##*/}" >&2
+	exit 1
+fi
+
+if [[ $# -eq 2 ]]; then
+	rsvg-convert -f eps -o "$2" "$1"
+else
+	rsvg-convert -f eps "$1"
+fi
