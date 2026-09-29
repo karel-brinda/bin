@@ -3,38 +3,36 @@
 #set -o verbose
 #set -o xtrace
 
-readonly PROGDIR=$(dirname $0)
+readonly PROGDIR="$(dirname "$0")"
 
-if [[ `uname` == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
 	#INSTALL="brew install --force-bottle"
 	#INSTALL() {
 		#brew install $@
 	#}
 	f="$PROGDIR/tmp.linuxbrew"
-	finished="_"
+	finished=" "
+	# --force-bottle applies only to the named formula, not to the dependencies
+	# brew installs for it, so install the dependencies first, one by one.
 	INSTALL() {
 		for x in "$@"; do
 			>&2 echo "=== Checking $x"
-			if grep "_${x}_" <<< "$finished"; then
-				>&2 echo "---- Skipping $x (_${x}_ is in $finished)"
-				true
-			else
-				>&2 echo "---- Installing $x"
-				finished="${finished}${x}_"
-				>&2 echo "....... processed list: $finished"
-				>&2 echo "....... running: brew deps $x"
-				y=$(brew deps "$x")
-				for z in $y; do
-					INSTALL $z
-				done
-				brew install --force-bottle "$@"
-			fi
+			>&2 echo "....... running: brew deps --topological $x"
+			for y in $(brew deps --topological "$x") "$x"; do
+				if [[ $finished == *" $y "* ]]; then
+					>&2 echo "---- Skipping $y (already processed)"
+				else
+					>&2 echo "---- Installing $y"
+					finished="${finished}${y} "
+					brew install --force-bottle "$y"
+				fi
+			done
 		done
 	}
 else
 	#INSTALL="brew install"
 	INSTALL() {
-		>&2 echo "Going to install $@"
+		>&2 echo "Going to install $*"
 		brew install "$@"
 	}
 fi
@@ -51,17 +49,19 @@ INSTALL git
 ###################
 ## BASIC UNIX TOOLS
 ###################
-INSTALL wget gnu-time coreutils
+INSTALL wget gnu-time coreutils tree
 INSTALL pv fd cmake rename ascii parallel
-INSTALL rename ag wtfutil git-sizer
-INSTALL bat ccat
+INSTALL ripgrep fzf jq hyperfine
+INSTALL gh git-sizer git-delta
+INSTALL bat
 INSTALL autoconf automake
-INSTALL tmux screen htop
+INSTALL shellcheck shfmt
+INSTALL tmux htop btop
+INSTALL eza dust duf
 
 # misc tools from @sharkdp
 #INSTALL insect hexyl
 #
-#INSTALL tree
 #INSTALL iotop
 #INSTALL links
 #INSTALL lynx
@@ -81,12 +81,12 @@ INSTALL neovim
 #######################
 # COMPILERS & LIBRARIES
 #######################
-INSTALL rust rustup go ruby npm
+INSTALL rustup go ruby node
 INSTALL clang-format yapf
-INSTALL boost libstxxl open-mpi
+INSTALL boost open-mpi
 
 # other unix utilities
-if [[ `uname` == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
 #	INSTALL bash
 	echo ""
 else
@@ -98,8 +98,12 @@ fi
 ###############################
 # TOOLS FOR DOCUMENT CONVERSION
 ###############################
-INSTALL ghostscript pandoc pandoc-citeproc
-INSTALL imagemagick qpdf ffmpeg exiftool briss
-INSTALL pdfgrep svg2pdf pdf2svg skim
+INSTALL ghostscript pandoc poppler
+INSTALL imagemagick qpdf ffmpeg exiftool
+INSTALL pdfgrep pdf2svg
 INSTALL diff-pdf #latexdiff git-latexdiff
+
+if [[ $(uname) == 'Darwin' ]]; then
+	brew install --cask skim
+fi
 
