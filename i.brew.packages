@@ -3,6 +3,10 @@
 #set -o verbose
 #set -o xtrace
 
+# Homebrew >= 7 asks for confirmation by default; unlike --yes, this variable
+# is also safe with older Homebrew versions.
+export HOMEBREW_NO_ASK=1
+
 if [[ $(uname) == 'Linux' ]]; then
 	#INSTALL="brew install --force-bottle"
 	#INSTALL() {
