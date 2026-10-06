@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ -f AGENTS.md ]]; then
+	exec "v" AGENTS.md
+fi
+
+if root=$(git rev-parse --show-toplevel 2>/dev/null) && [[ -f "$root/AGENTS.md" ]]; then
+	exec "v" "$root/AGENTS.md"
+fi
+
+printf 'agents: AGENTS.md not found in the current directory or Git repository root\n' >&2
+exit 1
