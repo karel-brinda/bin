@@ -54,8 +54,16 @@
 	default = simple
 	autoSetupRemote = true
 
+[transfer]
+	# Verify every object received or sent; rejects corrupted or malformed objects.
+	fsckObjects = true
+
 [fetch]
 	prune = true
+	fsckObjects = true
+
+[receive]
+	fsckObjects = true
 
 [rerere]
 	enabled = true
