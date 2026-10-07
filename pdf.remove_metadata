@@ -1,23 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Remove metadata from a PDF (to make builds reproducible); in place unless out.pdf is given.
 
-set -e -o pipefail
+set -euo pipefail
 
-if [[ $# -ne 1 && $# -ne 2 ]]; then
-	s=`basename $0`
-	echo "Remove metadata from PDF (in order to make computations reproducible)"
-	echo "usage: $s in.pdf [out.pdf]"
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+	printf 'usage: %s in.pdf [out.pdf]\n' "${0##*/}" >&2
 	exit 1
 fi
 
-d=`mktemp -d`
+d=$(mktemp -d)
+trap 'rm -rf "$d"' EXIT
 
-cp $1 $d/1.pdf
-exiftool -all:all= $d/1.pdf
-qpdf --linearize --deterministic-id $d/1.pdf $d/2.pdf
+cp "$1" "$d/1.pdf"
+exiftool -all:all= "$d/1.pdf"
+qpdf --linearize --deterministic-id "$d/1.pdf" "$d/2.pdf"
 
-if [ $# -eq 1 ]; then
-	cp $d/2.pdf $1
-else
-	cp $d/2.pdf $2
-fi
-
+cp "$d/2.pdf" "${2:-$1}"

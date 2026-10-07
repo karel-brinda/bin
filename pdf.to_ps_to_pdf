@@ -1,15 +1,16 @@
-#!/bin/bash
-# normalize PDF
+#!/usr/bin/env bash
+# Normalize a PDF in place by converting it to PostScript and back.
 
-if [ -z "$1" ]; then
-	# display usage if no parameters given
-	s=`basename $0`
-	echo "usage: $s file.pdf"
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file.pdf\n' "${0##*/}" >&2
 	exit 1
-else
-	temp_file=$(mktemp)
-	pdf2ps $1 ${temp_file}.ps
-	ps2pdf ${temp_file}.ps $1
-	#pdftops $1 ${temp_file}.ps
-	#pstopdf ${temp_file}.ps $1
 fi
+
+d=$(mktemp -d)
+trap 'rm -rf "$d"' EXIT
+
+pdf2ps "$1" "$d/tmp.ps"
+ps2pdf "$d/tmp.ps" "$1"
+# Alternative: pdftops "$1" "$d/tmp.ps" && pstopdf "$d/tmp.ps" "$1"
