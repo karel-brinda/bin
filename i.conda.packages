@@ -1,74 +1,29 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Install the usual conda packages into the current environment with mamba.
 
 set -o verbose
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-x="mamba install -y"
-
-
-$x \
-	neovim \
-	snakemake \
-	pandas xopen numpy ete3 markdown biopython \
-	jupyterlab bash_kernel \
-	pylint yapf \
-	sra-tools \
-	samtools seqtk \
-	bwa bowtie2 minimap2 blast \
-	ococo prophasm prophex \
-	mccortex bcalm \
+packages=(
+	# editors
+	neovim
+	# workflow managers
+	snakemake
+	# programming & plotting
+	pandas xopen numpy ete3 markdown biopython
+	jupyterlab bash_kernel
+	pylint yapf
+	# data downloaders
+	sra-tools
+	# biodata manipulation
+	samtools seqtk
+	# alignment
+	bwa bowtie2 minimap2 blast
+	# my tools
+	ococo prophasm prophex
+	# de Bruijn graphs
+	mccortex bcalm
+	# phylogenetics
 	mashtree
+)
 
-exit 0
-
-
-######################
-# WORKFLOW MANAGERS
-######################
-$x snakemake
-
-
-######################
-# PROGRAMMING & PLOTTING
-######################
-$x pandas xopen numpy ete3 markdown biopython
-$x jupyterlab bash_kernel
-#$x pyqt
-$x pylint yapf
-#$x pysam
-
-
-######################
-# DATA DOWNLOADERS
-######################
-$x sra-tools
-
-
-######################
-# BIODATA MANIPULATION
-######################
-$x samtools seqtk #pysam
-
-
-######################
-# ALIGNMENT
-######################
-$x bwa bowtie2 minimap2 blast
-
-
-##########
-# MY TOOLS
-##########
-$x ococo rnftools nanosim-h
-$x prophyle prophasm prophex
-
-
-##################
-# De Bruijn graphs
-##################
-$x mccortex ggcat
-
+mamba install -y "${packages[@]}"
