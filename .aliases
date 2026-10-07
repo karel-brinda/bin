@@ -253,8 +253,12 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias hhtop='htop -u $USER'
 
 
-# Diff
-alias d='diff --color=auto'
+# Diff (--color needs diffutils 3.4+, missing on CentOS 7 and macOS before 13)
+if diff --color=auto /dev/null /dev/null >/dev/null 2>&1; then
+	alias d='diff --color=auto'
+else
+	alias d='diff'
+fi
 
 # Find
 alias f='find'
