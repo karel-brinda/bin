@@ -1,12 +1,13 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Linux only: install Homebrew into ~/.linuxbrew from the GitHub tarball.
 
-set -e
-set -o pipefail
+set -euo pipefail
 set -o xtrace
 
+url="https://github.com/Homebrew/brew/tarball/master"
 d="$HOME/.linuxbrew"
 
-mkdir -p "$d" && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C "$d"
-eval "$($d/bin/brew shellenv)"
+mkdir -p "$d"
+curl -fsSL "$url" | tar xz --strip 1 -C "$d"
+eval "$("$d/bin/brew" shellenv)"
 brew update --force --quiet
-

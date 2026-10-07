@@ -1,8 +1,25 @@
-#! /usr/bin/env bash -u -f -e -o pipefail
+#!/usr/bin/env bash
+# Symlink the shared dotfiles from ~/bin into the home directory (skips links that already exist).
 
-cd ~
+set -euo pipefail
 
-ln -s ~/bin/.vimrc
-ln -s ~/bin/.tmux.conf
-ln -s ~/bin/.gitconfig
+link() {
+	local target="$1"
+	local dest="$HOME/${1##*/}"
 
+	if [[ -L "$dest" && "$(readlink "$dest")" == "$target" ]]; then
+		printf 'already linked: %s\n' "$dest"
+	elif [[ -e "$dest" || -L "$dest" ]]; then
+		printf 'exists and is not a link to %s: %s\n' "$target" "$dest" >&2
+		return 1
+	else
+		ln -s "$target" "$dest"
+		printf 'linked: %s -> %s\n' "$dest" "$target"
+	fi
+}
+
+status=0
+for f in .vimrc .tmux.conf .gitconfig; do
+	link "$HOME/bin/$f" || status=1
+done
+exit "$status"

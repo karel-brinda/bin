@@ -1,8 +1,16 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Install Miniconda and mamba into ~/miniconda (Linux x86_64, macOS Intel and Apple Silicon).
 
-set -e
-set -o pipefail
-#set -x
+set -euo pipefail
+
+# Pinned installer; all files and their SHA256 checksums are listed at
+# https://repo.anaconda.com/miniconda/
+# NOTE: Python 3.10 is the latest version supported by Bioconda (as of July 2024)
+# https://bioconda.github.io/faqs.html#what-versions-are-supported
+version="py310_24.5.0-0"
+sha256_linux_x86_64="b3d73db6a05069fbdf20dc33fc9b6a29fa7198578f0d090c639f5ca0e84102bd"
+sha256_macos_arm64="e422602aa19140c600b5889e5b41a0d7187640107ea82fcb5da857dd25330148"
+sha256_macos_x86_64="6d7c1cc138adfc4bb2ccbb8a22eb8e9eb13a366b6af0d63245b643e6c3a3c708"
 
 
 #####################
@@ -13,6 +21,7 @@ echo "Setting up variables"
 d="$HOME/miniconda"
 bd="$HOME/miniconda_$(date +%s)"
 tmpd="$(mktemp -d)"
+trap 'rm -rf "$tmpd"' EXIT
 
 conda="$d/bin/conda"
 mamba="$d/bin/mamba"
@@ -24,28 +33,42 @@ if [[ -f "$conda" && -f "$mamba" ]]; then
 	exit 0
 fi
 
-
-# NOTE: List of all files available here:
-# https://repo.anaconda.com/miniconda/
-
-# NOTE: Python 3.10 is the latest supported version by Bioconda (as of July 2024)
-# https://bioconda.github.io/faqs.html#what-versions-are-supported
-
-if [[ "$(uname)" == "Linux" ]]; then
-	#url="https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-	#url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-Linux-x86_64.sh"
-	arch="Linux-x86_64"
-else
-	##url="https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
-	#url="https://repo.anaconda.com/miniconda/Miniconda3-py310_23.10.0-1-MacOSX-x86_64.sh"
-	if [[ "$(uname -m)" == "arm64" ]]; then
+case "$(uname -s)-$(uname -m)" in
+	Linux-x86_64)
+		arch="Linux-x86_64"
+		sha256="$sha256_linux_x86_64"
+		;;
+	Darwin-arm64)
 		arch="MacOSX-arm64"
-	else
+		sha256="$sha256_macos_arm64"
+		;;
+	Darwin-x86_64)
 		arch="MacOSX-x86_64"
-	fi
-fi
-url="https://repo.anaconda.com/miniconda/Miniconda3-py310_24.5.0-0-$arch.sh"
+		sha256="$sha256_macos_x86_64"
+		;;
+	*)
+		echo "Unsupported platform: $(uname -s) $(uname -m)" >&2
+		exit 1
+		;;
+esac
+url="https://repo.anaconda.com/miniconda/Miniconda3-$version-$arch.sh"
 echo "url=$url"
+
+download() {
+	if command -v curl >/dev/null 2>&1; then
+		curl -fL -o "$2" "$1"
+	else
+		wget -O "$2" "$1"
+	fi
+}
+
+sha256_of() {
+	if command -v sha256sum >/dev/null 2>&1; then
+		sha256sum "$1" | cut -d ' ' -f 1
+	else
+		shasum -a 256 "$1" | cut -d ' ' -f 1
+	fi
+}
 
 
 ######################
@@ -66,7 +89,16 @@ else
 	echo
 	echo "Installing miniconda"
 	echo
-	(cd "$tmpd" && wget -O miniconda.sh "$url" && /usr/bin/env bash "miniconda.sh" -b -p "$d")
+	installer="$tmpd/miniconda.sh"
+	download "$url" "$installer"
+	actual="$(sha256_of "$installer")"
+	if [[ "$actual" != "$sha256" ]]; then
+		echo "Checksum mismatch for $url" >&2
+		echo "expected: $sha256" >&2
+		echo "actual:   $actual" >&2
+		exit 1
+	fi
+	bash "$installer" -b -p "$d"
 fi
 
 
@@ -87,8 +119,7 @@ fi
 # 4) UPDATE EVERYTHING
 ######################
 
-## Python Python 3.10 already fixed by the installation so the following can be skipped
+## Python 3.10 already fixed by the installation so the following can be skipped
 #"$mamba" install -y python=3.10
 "$mamba" update conda -y
 #"$mamba" update --all -y
-
