@@ -1,33 +1,43 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Upload a file to an existing Zenodo deposition (needs ZENODO_TOKEN); based on https://github.com/jhpoelen/zenodo-upload
 
-# based on https://github.com/jhpoelen/zenodo-upload
+set -euo pipefail
 
-set -e
-set -o pipefail
-set -u
-#set -f
-
-#set -x
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 2 ]]; then
-	>&2 echo "usage: $PROGNAME [deposition id] [filename]"
+if [[ $# -ne 2 ]]; then
+	printf 'usage: %s deposition_id file\n' "${0##*/}" >&2
 	exit 1
 fi
 
-DEPOSITION=$1
-FILEPATH=$2
-FILENAME=$(echo $FILEPATH | sed 's+.*/++g')
+if [[ -z "${ZENODO_TOKEN:-}" ]]; then
+	printf '%s: ZENODO_TOKEN is not set\n' "${0##*/}" >&2
+	exit 1
+fi
 
-echo "Deposition: $1; filepath: $2"
+deposition="$1"
+filepath="$2"
+filename="${filepath##*/}"
 
-BUCKET=$(curl -H "Accept: application/json" -H "Authorization: Bearer $ZENODO_TOKEN" "https://zenodo.org/api/deposit/depositions/$DEPOSITION" | tee -a "$DEPOSITION.log" | jq --raw-output .links.bucket)
+if [[ ! -f "$filepath" ]]; then
+	printf '%s: not a file: %s\n' "${0##*/}" "$filepath" >&2
+	exit 1
+fi
 
-echo
-echo
+# Pass the token through a private curl config file so that it never appears
+# in the process list, in URLs, or in server logs.
+curlrc="$(mktemp)"
+trap 'rm -f "$curlrc"' EXIT
+chmod 600 "$curlrc"
+printf 'header = "Authorization: Bearer %s"\n' "$ZENODO_TOKEN" > "$curlrc"
 
-curl --progress-bar --upload-file $FILEPATH $BUCKET/$FILENAME?access_token=$ZENODO_TOKEN
+printf 'Deposition: %s; file: %s\n' "$deposition" "$filepath"
+
+bucket="$(
+	curl -fsS -K "$curlrc" -H 'Accept: application/json' \
+		"https://zenodo.org/api/deposit/depositions/$deposition" \
+		| tee -a "$deposition.log" \
+		| jq --raw-output .links.bucket
+)"
+
+printf '\n\n'
+
+curl -fS --progress-bar -K "$curlrc" --upload-file "$filepath" "$bucket/$filename"
