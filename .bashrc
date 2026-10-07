@@ -1,11 +1,39 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Shared Bash setup for every machine: aliases, PATH, and environment.
+#
+# Wire it in once per machine (or run i.bashrc, which adds these lines if missing):
+#   ~/.bashrc:        . ~/bin/.bashrc
+#   ~/.bash_profile:  [[ -f ~/.bashrc ]] && . ~/.bashrc
+#
+# Machine-specific additions go after that line in ~/.bashrc; use path.prepend and
+# path.append there so that repeated sourcing never duplicates PATH. Sourcing this
+# file twice is safe: aliases and the environment are set up once per host, and
+# RELOAD=1 forces a re-run.
 
 #set -u
 set -o pipefail
 
+# Prepend/append a directory to PATH if it exists and is not there yet.
+path.prepend() {
+	local d="$1"
+	[ -d "$d" ] || return 0
+	case ":$PATH:" in
+		*":$d:"*) ;;
+		*) export PATH="$d:$PATH" ;;
+	esac
+}
+
+path.append() {
+	local d="$1"
+	[ -d "$d" ] || return 0
+	case ":$PATH:" in
+		*":$d:"*) ;;
+		*) export PATH="$PATH:$d" ;;
+	esac
+}
 
 HOSTNAME=$(hostname)
-PROGDIR="$HOME/bin"
+PROGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DIRID=$(echo "__${PROGDIR}__${HOSTNAME}__" | tr -cd '[:alnum:]_')
 eval "DIRID_TEST=\${$DIRID+set}"
 RELOAD_TEST="${RELOAD+set}" #is the RELOAD env variable set?
@@ -72,33 +100,31 @@ else
 	export HISTTIMEFORMAT='%d/%m/%y %T '
 
 
-	## 2) PREPREND TO PATH
-	export PATH="${PROGDIR}:${PROGDIR}/git:$PATH"
+	## 2) PATH: tools first, then this repository in front of everything
 
-	if [ -d "$HOME/.linuxbrew/bin" ]; then
-		export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH";
-
-		export HOMEBREW_PREFIX="$HOME/.linuxbrew";
-		export HOMEBREW_CELLAR="$HOME/.linuxbrew/Cellar";
-		export HOMEBREW_REPOSITORY="$HOME/.linuxbrew";
-		export MANPATH="$HOME/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
-		export INFOPATH="$HOME/.linuxbrew/share/info:${INFOPATH:-}";
-
-		#export C_INCLUDE_PATH="${HOMEBREW_PREFIX}/include${C_INCLUDE_PATH:+:"${C_INCLUDE_PATH}"}"
-		#export CPLUS_INCLUDE_PATH="${HOMEBREW_PREFIX}/include${CPLUS_INCLUDE_PATH:+:"${CPLUS_INCLUDE_PATH}"}"
-		#export LIBRARY_PATH="${HOMEBREW_PREFIX}/lib${LIBRARY_PATH:+:"${LIBRARY_PATH}"}"
-		#export LD_LIBRARY_PATH="${HOMEBREW_PREFIX}/lib${LD_LIBRARY_PATH:+:"${LD_LIBRARY_PATH}"}"
-	fi
-
-	if [ -d "$HOME/miniconda/bin" ]; then
-		export PATH="$HOME/miniconda/bin:$PATH"
-	fi
+	path.prepend "$HOME/.local/bin"
 
 	if [ -f "$HOME/.cargo/env" ]; then
 		. "$HOME/.cargo/env"
 	fi
 
-	export PATH="${PROGDIR}/bin:$PATH"
+	# Homebrew: Apple Silicon, Intel macOS, or Linuxbrew (brew shellenv also sets
+	# HOMEBREW_*, MANPATH, and INFOPATH; HOMEBREW_PREFIX marks it as done).
+	if [ -z "${HOMEBREW_PREFIX:-}" ]; then
+		for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+			if [ -x "$brew_bin" ]; then
+				eval "$("$brew_bin" shellenv)"
+				break
+			fi
+		done
+		unset brew_bin
+	fi
+
+	path.prepend "$HOME/miniconda/bin"
+
+	path.prepend "${PROGDIR}/git"
+	path.prepend "${PROGDIR}"
+	path.prepend "${PROGDIR}/bin"
 
 	## 3) MARK AS COMPLETED
 	dt=$(date)
