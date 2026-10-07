@@ -11,7 +11,7 @@ readonly PROGDIR=$(dirname $0)
 readonly -a ARGS=("$@")
 readonly NARGS="$#"
 
-if [[ $NARGS -eq 1 ]]; then
+if [[ $NARGS -lt 1 ]]; then
 	>&2 echo "usage: $PROGNAME files"
 	>&2 echo "info:  print the file names and their content and pbcopy if possible"
 	exit 1
