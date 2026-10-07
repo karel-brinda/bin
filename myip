@@ -1,7 +1,8 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print the public IP address and its reverse DNS name.
 
-ip=`curl http://ipecho.net/plain 2> /dev/null`
-echo "ip   = $ip"
-name=`nslookup $ip | grep -o 'name.*$'`
-echo "$name"
+set -euo pipefail
 
+ip="$(curl -fsS https://ipecho.net/plain)"
+printf 'ip   = %s\n' "$ip"
+nslookup "$ip" | grep -o 'name.*$' || true

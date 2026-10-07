@@ -44,14 +44,14 @@ if [[ "$format" == "txt" ]]; then
 	i=0
 	for x in "$@"; do
 		i=$(( $i + 1))
-		y=$(curl -s -LH "accept: text/bibliography" "http://doi.org/$x";)
+		y=$(curl -s -LH "accept: text/bibliography" "https://doi.org/$x";)
 		yy=$(printf '[%d] %s\n' "$i" "$y")
 		echo "$yy"
 		(echo "$yy" | pbcopy) || true
 	done
 else
 	for x in "$@"; do
-		y=$(curl -s -LH "accept: text/bibliography; style=bibtex" "http://doi.org/$x";)
+		y=$(curl -s -LH "accept: text/bibliography; style=bibtex" "https://doi.org/$x";)
 		yy=$(echo "$y" \
 			| perl -pe 's/,/,\n/' \
 			| perl -pe 's/},/},\n/g' \
