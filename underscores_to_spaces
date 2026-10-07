@@ -1,9 +1,23 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Rename files, replacing underscores with spaces (existing destinations are left alone).
 
-set -e
-set -o pipefail
-set -u
-#set -f
+set -euo pipefail
 
-set -x
-rename 's/_/ /g' "$@"
+if [[ $# -eq 0 ]]; then
+	printf 'usage: %s file...\n' "${0##*/}" >&2
+	exit 1
+fi
+
+for src in "$@"; do
+	dir="$(dirname -- "$src")"
+	base="$(basename -- "$src")"
+	new="${base//_/ }"
+	if [[ "$new" == "$base" ]]; then
+		continue
+	fi
+	if [[ -e "$dir/$new" ]]; then
+		printf '%s: exists, skipping: %s\n' "${0##*/}" "$dir/$new" >&2
+		continue
+	fi
+	mv -v -- "$src" "$dir/$new"
+done
