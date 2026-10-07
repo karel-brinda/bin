@@ -1,14 +1,11 @@
-#! /usr/bin/env bash
-# Shortcut to gzcat | less
+#!/usr/bin/env bash
+# Compress a PDF with Ghostscript.
 
-set -o
+set -euo pipefail
 
-if [ $# -ne 2 ]; then
-	s=`basename $0`
-	echo "compress pdf using ghost script"
-	echo "usage: $s in.pdf out.pdf"
+if [[ $# -ne 2 ]]; then
+	printf 'usage: %s in.pdf out.pdf\n' "${0##*/}" >&2
 	exit 1
 fi
 
-/usr/bin/env gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1
-
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$2" "$1"
