@@ -1,17 +1,26 @@
-#!/usr/bin/env Rscript --vanilla
+#!/usr/bin/env bash
+# Reformat an R source file in place with formatR.
 
-#install.packages("formatR", repos = "http://cran.rstudio.com")
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file.R\n' "${0##*/}" >&2
+	exit 1
+fi
+
+Rscript --vanilla - "$1" <<'RSCRIPT'
+#install.packages("formatR", repos = "https://cran.rstudio.com")
 library(formatR)
 
-args = commandArgs(trailingOnly=TRUE)
+args <- commandArgs(trailingOnly = TRUE)
 
 options(width = 120)
 
-options(formatR.arrow=T)
-options(formatR.comment=T)
-options(formatR.blank=T)
-options(formatR.indent=3)
-options(formatR.brace.newline=F)
+options(formatR.arrow = TRUE)
+options(formatR.comment = TRUE)
+options(formatR.blank = TRUE)
+options(formatR.indent = 3)
+options(formatR.brace.newline = FALSE)
 
-tidy_source(args[1], file=args[1])
-
+tidy_source(args[1], file = args[1])
+RSCRIPT
