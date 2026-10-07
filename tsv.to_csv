@@ -1,10 +1,28 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
+"""Convert a TSV file (or standard input) to CSV.
 
-set -euo pipefail
+The input is plain TSV without quoting; fields are quoted on output when
+they contain a comma, a quote, or a line break.
+"""
 
-if [[ $# -ne 1 ]]; then
-	printf 'convert a TSV file to CSV\nusage: %s in.tsv\n' "${0##*/}" >&2
-	exit 1
-fi
+import csv
+import sys
 
-awk -F '	' 'BEGIN { OFS = "," } { $1 = $1; print }' "$1"
+
+def main():
+    if len(sys.argv) > 2 or sys.argv[1:] in (["-h"], ["--help"]):
+        print("usage: tsv.to_csv [in.tsv]", file=sys.stderr)
+        sys.exit(1)
+
+    if len(sys.argv) == 2:
+        source = open(sys.argv[1], newline="")
+    else:
+        source = sys.stdin
+
+    writer = csv.writer(sys.stdout, lineterminator="\n")
+    for line in source:
+        writer.writerow(line.rstrip("\r\n").split("\t"))
+
+
+if __name__ == "__main__":
+    main()

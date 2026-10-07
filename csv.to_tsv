@@ -1,10 +1,28 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
+"""Convert a CSV file (or standard input) to TSV.
 
-set -euo pipefail
+Quoted CSV fields are parsed properly; the output is plain TSV without quoting,
+so tabs, newlines, and carriage returns inside fields are replaced by spaces.
+"""
 
-if [[ $# -ne 1 ]]; then
-	printf 'convert a CSV file to TSV\nusage: %s in.csv\n' "${0##*/}" >&2
-	exit 1
-fi
+import csv
+import sys
 
-awk -F ',' 'BEGIN { OFS = "\t" } { $1 = $1; print }' "$1"
+
+def main():
+    if len(sys.argv) > 2 or sys.argv[1:] in (["-h"], ["--help"]):
+        print("usage: csv.to_tsv [in.csv]", file=sys.stderr)
+        sys.exit(1)
+
+    if len(sys.argv) == 2:
+        source = open(sys.argv[1], newline="")
+    else:
+        source = sys.stdin
+
+    for row in csv.reader(source):
+        cells = [c.replace("\t", " ").replace("\r", " ").replace("\n", " ") for c in row]
+        print("\t".join(cells))
+
+
+if __name__ == "__main__":
+    main()
