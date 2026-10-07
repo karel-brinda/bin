@@ -407,7 +407,7 @@ endif
 
 set expandtab
 " Toggle between spaces and tabs for the current buffer.
-function TabToggle()
+function! TabToggle()
 	if &expandtab
 		set shiftwidth=8
 		set softtabstop=0
