@@ -46,6 +46,14 @@ Do not assume GNU userland on macOS. Avoid GNU-only `sed`, `grep`, `find`, `read
 - Use `command -v`, never `which`.
 - Put `--` before user-supplied paths in `cp`, `mv`, `rm`, `ln`, and `cd`.
 
+## Security
+
+- Never pass secrets on a command line or in a URL; they are visible in `ps`, shell history, and server logs. Read them from environment variables or files and hand them to `curl` through a private config file (`-K`) created with `mktemp`.
+- Create temporary files and directories with `mktemp`, never with fixed names under `/tmp`, and remove them with `trap ... EXIT`.
+- Download over HTTPS with `curl -fsSL`; never pipe a download into `sh` or `bash`, with or without `sudo`.
+- Verify a pinned SHA256 checksum before executing a downloaded installer (`sha256sum`, falling back to `shasum -a 256`).
+- Scripts that rewrite or delete files recursively must restrict themselves to the files they created or were given, never the whole working directory.
+
 ## Shell scripts
 
 Use:
@@ -135,6 +143,8 @@ Prefer create-if-absent semantics for helpers that initialize files.
 `.vimrc` is the shared source of truth. Neovim-specific configuration should remain minimal and source `.vimrc`.
 
 The shared configuration must start successfully on Vim 7.4 and Neovim 0.9.0. Features requiring newer versions must be guarded with `has()`, `exists()`, `executable()`, `filereadable()`, or explicit version checks.
+
+Keep `modeline` disabled on Vim without patch 8.1.1366 (CVE-2019-12735); the guard in `.vimrc` must stay.
 
 Do not rewrite portable Vimscript into Neovim-only Lua.
 
