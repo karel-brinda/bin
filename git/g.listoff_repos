@@ -21,8 +21,12 @@ process_dir() {
 			target="$(readlink "$d")"
 			printf 'mkdir -p %q && ln -s %q %q\n' "$(rel_home "$(dirname "$d")")" "$target" "$(rel_home "$d")"
 		elif [[ -d "$d/.git" ]]; then
-			repo="$(cd "$d" && git config --get remote.origin.url)"
-			printf 'mkdir -p %q && git clone --recursive %q %q\n' "$(rel_home "$d")" "$repo" "$(rel_home "$d")"
+			repo="$(cd "$d" && git config --get remote.origin.url || true)"
+			if [[ -z "$repo" ]]; then
+				printf '# no origin remote: %s\n' "$d"
+			else
+				printf 'mkdir -p %q && git clone --recursive %q %q\n' "$(rel_home "$d")" "$repo" "$(rel_home "$d")"
+			fi
 		elif [[ -d "$d" ]]; then
 			process_dir "$d"
 		fi
