@@ -1,20 +1,20 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# macOS only: open the TeXstudio session files (*.txss2) in the current directory.
 
-set -e
-set -o pipefail
-set -u
-#set -f
-#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
+if [[ $(uname) != Darwin ]]; then
+	printf '%s: macOS is required\n' "${0##*/}" >&2
+	exit 1
+fi
 
-#if [[ $NARGS -ne 1 ]]; then
-#	>&2 echo "usage: $PROGNAME options"
-#	exit 1
-#fi
+shopt -s nullglob
+sessions=(*.txss2)
+shopt -u nullglob
 
-open *.txss2
+if [[ ${#sessions[@]} -eq 0 ]]; then
+	printf '%s: no *.txss2 session file in the current directory\n' "${0##*/}" >&2
+	exit 1
+fi
 
+open "${sessions[@]}"
