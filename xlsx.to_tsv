@@ -117,8 +117,11 @@ def print_sheet(z, sheet_num):
     workbook_x = ET.XML(z.read("xl/workbook.xml"))
     sheet_xs = workbook_x.find(n("sheets")).findall(n("sheet"))
 
-    ss_xml = z.read("xl/sharedStrings.xml")
-    ss_list = ET.XML(ss_xml).findall(n("si"))
+    # Workbooks without any text cell have no shared strings part.
+    if "xl/sharedStrings.xml" in z.namelist():
+        ss_list = ET.XML(z.read("xl/sharedStrings.xml")).findall(n("si"))
+    else:
+        ss_list = []
 
     xml = z.read("xl/worksheets/sheet%s.xml" % sheet_num)
     s = ET.fromstring(xml)
@@ -126,8 +129,9 @@ def print_sheet(z, sheet_num):
 
     all_cells = flatten([[c for c in row.findall(n("c"))] for row in rows])
     max_col = max(
-        letter2col_index(re.search("^[A-Z]+", c.attrib['r']).group())
-        for c in all_cells)
+        (letter2col_index(re.search("^[A-Z]+", c.attrib['r']).group())
+         for c in all_cells),
+        default=-1)
 
     global warning_count
     warning_count = 0
@@ -150,7 +154,8 @@ def print_sheet(z, sheet_num):
     while len(rows_text) > 0 and rows_text[-1].strip() == "":
         del rows_text[-1]
 
-    print(*rows_text, sep="\n")
+    if rows_text:
+        print(*rows_text, sep="\n")
 
     if warning_count > warning_max:
         print(
