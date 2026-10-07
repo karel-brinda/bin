@@ -1,20 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Pretty git log graph; with file arguments, follow their history.
 
-set -e -o pipefail
+set -euo pipefail
 
-readonly NARGS="$#"
-
-if  [[ "$NARGS" = "0" ]]; then
-	args=
-else
-	args="--follow ""$@"
+args=()
+if [[ $# -gt 0 ]]; then
+	args=(--follow "$@")
 fi
 
+# ${args[@]+...} keeps Bash 3.2 happy with an empty array under set -u.
 git log \
 	--graph \
 	--pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
 	--abbrev-commit \
 	--date=short \
 	--date-order \
-	$args
-
+	${args[@]+"${args[@]}"}
