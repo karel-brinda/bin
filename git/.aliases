@@ -96,9 +96,13 @@ alias gcl.='gcl'
 alias gl='git log'
 alias gci='git check-ignore -v'
 
-alias gur='git_update_repos'
+alias gur='g.update_repos'
 
-alias gitignore='touch .gitignore && ~/bin/v .gitignore'
+# open .gitignore, creating it if absent
+gitignore() {
+	[[ -e .gitignore ]] || : > .gitignore
+	~/bin/v .gitignore
+}
 alias gi='gitignore'
 
 alias rme='readme'

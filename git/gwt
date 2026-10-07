@@ -1,13 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Create a detached worktree of the current branch under ~/git-tmp and copy its path to the clipboard.
 
-# Create a local copy of the repo and copy its path to clipboard
-
-set -e -o pipefail -x
+set -euo pipefail
 
 t=~$(date +%Y%m%d%H%M%S)
 d="$HOME/git-tmp/$t"
 mkdir -p "$d"
-echo "$d"
-git worktree add "$d" $(git symbolic-ref HEAD)
-echo "$d" | pbcopy
-
+git worktree add "$d" "$(git symbolic-ref HEAD)"
+printf '%s\n' "$d"
+printf '%s\n' "$d" | clip 2>/dev/null || true

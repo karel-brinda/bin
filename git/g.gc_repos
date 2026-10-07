@@ -1,52 +1,44 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Run git gc --aggressive in all Git repositories below a directory (default: $GITDIR), recursing into directories that are not repositories.
 
-set -eu
-set -o pipefail
+set -euo pipefail
 
-readonly PROGDIR=$(dirname $0)
-readonly PROGNAME=$(basename $0)
-
-
-. ${PROGDIR}/../colors.sh
+. "$(dirname "$0")/../colors.sh"
 
 case "$#" in
 	0)
-		td="$GITDIR"
+		td="${GITDIR:?GITDIR is not set}"
 		;;
 	1)
 		td="$1"
 		;;
 	*)
-		echo "git gc --aggressive all github repositories in the specified directory"
-		echo "usage: $PROGNAME [directory]"
+		printf 'git gc --aggressive all Git repositories in the specified directory\nusage: %s [directory]\n' "${0##*/}" >&2
 		exit 1
 		;;
 esac
 
-process_dir () {
-	for d in $(ls -d */); do
+process_dir() {
+	local d p orig x y
+	for d in */; do
+		[[ -d "$d" ]] || continue
 		(
 			cd "$d"
-			local p=$(pwd)
-			echo
-			echo -e "Entering directory $YELLOW$p$NC"
-			if [[ -d ".git" ]]; then
-				orig=$(git remote -v | grep origin | awk '{print $2}' | uniq)
-				echo -e "    repository: $CYAN$orig$NC; going to gc"
+			p="$(pwd)"
+			printf '\n%b\n' "Entering directory $YELLOW$p$NC"
+			if [[ -d .git ]]; then
+				orig="$(git remote -v | grep origin | awk '{print $2}' | uniq || true)"
+				printf '%b\n' "    repository: $CYAN$orig$NC; going to gc"
 
 				{
-					{
-						x=$(du -sh .git | cut -d "	" -f1 | xargs echo)
-						git gc --aggressive
-						y=$(du -sh .git | cut -d "	" -f1 | xargs echo)
-						echo -e "    ${GREEN}ok${NC} (reduced size from $PURPLE$x$NC to $PURPLE$y$NC)"
-					} 2>&1 \
-					|| {
-						echo -e "    ${RED}ERROR:${NC} gc cleaning failed; can try '${LIGHTRED}cd $p && git gc --aggressive${NC}'";
-					}
-				}
+					x="$(du -sh .git | cut -f 1 | xargs echo)"
+					git gc --aggressive
+					y="$(du -sh .git | cut -f 1 | xargs echo)"
+					printf '%b\n' "    ${GREEN}ok${NC} (reduced size from $PURPLE$x$NC to $PURPLE$y$NC)"
+				} 2>&1 \
+				|| printf '%b\n' "    ${RED}ERROR:${NC} gc cleaning failed; can try '${LIGHTRED}cd $p && git gc --aggressive${NC}'"
 			else
-				echo -e "    not a repository, checking subdirectories..."
+				printf '%b\n' "    not a repository, checking subdirectories..."
 				process_dir
 			fi
 		)

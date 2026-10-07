@@ -1,52 +1,39 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print a shell script that recreates the Git clones and symlinks found below a directory (default: $GITDIR).
 
-#set -x
-set -o pipefail
+set -euo pipefail
 
-if [ $# -ne 1 ] && [ $# -ne 0 ]; then
-	s=`basename $0`
-	echo "usage: $s [dir]"
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [dir]\n' "${0##*/}" >&2
 	exit 1
 fi
 
-(
-if [ $# -eq 0 ]; then
-	cd ~/github
-	echo "#! /usr/bin/env bash"
+# Paths in the generated script are relative to $HOME when possible.
+rel_home() {
+	printf '%s\n' "${1#"$HOME"/}"
+}
+
+process_dir() {
+	local d target repo
+	for d in "$1"/*/; do
+		d="${d%/}"
+		if [[ -L "$d" ]]; then
+			target="$(readlink "$d")"
+			printf 'mkdir -p %q && ln -s %q %q\n' "$(rel_home "$(dirname "$d")")" "$target" "$(rel_home "$d")"
+		elif [[ -d "$d/.git" ]]; then
+			repo="$(cd "$d" && git config --get remote.origin.url)"
+			printf 'mkdir -p %q && git clone --recursive %q %q\n' "$(rel_home "$d")" "$repo" "$(rel_home "$d")"
+		elif [[ -d "$d" ]]; then
+			process_dir "$d"
+		fi
+	done
+}
+
+if [[ $# -eq 0 ]]; then
+	printf '#!/usr/bin/env bash\n'
+	top="${GITDIR:-$HOME/git}"
 else
-	cd "$1"
+	top="$1"
 fi
 
-for d in `ls -d */ 2>/dev/null || echo ""`; 
-do
-	(
-	p_up=`pwd`
-	p_home=$(cd ~ && echo `pwd`)
-
-
-	# dir/ => dir; otherwise test on link does not work
-	d=${d%/}
-	if [ -L $d ]; then
-		symlink_file=$p_up/$d
-		symlink_file_rel_home=`realpath --no-symlinks --relative-to=${p_home} $symlink_file`
-
-		r=`readlink $d`
-		p_rel=`realpath --relative-to=${p_home} $p_up`
-		echo "mkdir -p $p_rel && ln -s $r $symlink_file_rel_home"
-	else
-		cd "$d"
-		p=`pwd`
-
-
-		if [ -d ".git" ]; then
-			p_rel=`realpath --relative-to=${p_home} $p`
- 			repo=`git remote -v | grep fetch | grep origin | awk '{print $2;}'`
- 			echo "mkdir -p $p_rel && git clone --recursive $repo $p_rel"
-		else
-			#echo "not a git repo; going to iterate though its subdirs"
-			$0 ./
-		fi
-	fi
-	)
-done;
-)
+process_dir "$(cd "$top" && pwd -P)"

@@ -1,8 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Remove macOS Icon files that ended up inside .git.
 
-set -e
-set -o pipefail
-set -u
+set -euo pipefail
 
-find .git -name 'Icon*' \
-	| xargs rm -v
+find .git -name 'Icon*' -exec rm -v {} +

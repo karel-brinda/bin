@@ -1,20 +1,15 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# git clean -fxd without confirmation (see gcl).
 
-set -e -o pipefail
+set -euo pipefail
 
-gcl='git clean -fxdn ; echo "aa"; ask_yes && git clean -fxd'
-
-if [ $# -eq 0 ]; then
-    git clean -fxd
-	exit 0
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [dir]\n' "${0##*/}" >&2
+	exit 1
 fi
 
-if [ $# -eq 1 ]; then
+if [[ $# -eq 1 ]]; then
 	cd "$1"
-    git clean -fxd
-	exit 0
 fi
 
-s=`basename $0`
-echo "usage: $s [dir]"
-exit 1
+git clean -fxd

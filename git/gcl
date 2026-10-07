@@ -1,22 +1,27 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Show what git clean -fxd would remove and remove it after confirmation.
 
-set -e -o pipefail
+set -euo pipefail
 
-gcl='git clean -fxdn ; echo "aa"; ask_yes && git clean -fxd'
-
-if [ $# -eq 0 ]; then
-    git clean -fxdn
-    ask_yes && git clean -fxd
-	exit 0
+if [[ $# -gt 1 ]]; then
+	printf 'usage: %s [dir]\n' "${0##*/}" >&2
+	exit 1
 fi
 
-if [ $# -eq 1 ]; then
+if [[ $# -eq 1 ]]; then
 	cd "$1"
-    git clean -fxdn
-    ask_yes && git clean -fxd
+fi
+
+to_remove="$(git clean -fxdn)"
+
+if [[ -z "$to_remove" ]]; then
+	printf 'nothing to clean\n'
 	exit 0
 fi
 
-s=`basename $0`
-echo "usage: $s [dir]"
-exit 1
+printf '%s\n' "$to_remove"
+read -r -n 1 -p "Remove these files? [y/N] " answer
+printf '\n'
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+	git clean -fxd
+fi
