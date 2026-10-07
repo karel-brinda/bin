@@ -37,6 +37,15 @@ Indexed arrays, `[[ ... ]]`, `local`, `BASH_SOURCE`, `$(...)`, and `pipefail` ar
 
 Do not assume GNU userland on macOS. Avoid GNU-only `sed`, `grep`, `find`, `readlink`, `date`, `diff`, etc. unless the command is explicitly Linux-only or there is a portable fallback.
 
+### Portability notes
+
+- A shebang carries at most one argument on Linux: use `#!/usr/bin/env bash` and set options inside the script; wrap awk or R programs in a Bash script instead of `#!/usr/bin/env awk -f`.
+- Decompress with `gzip -dc`, `bzip2 -dc`, and `xz -dc`; macOS `zcat` only understands `.Z` files.
+- Guard or provide a fallback for `realpath` (missing before macOS 13; `--relative-to` is GNU-only), `diff --color` (diffutils 3.4+), `rename` (Perl on macOS/Homebrew, util-linux on RHEL), `rs`, `open` and `pbcopy` (macOS only), `xdg-open` (Linux only), and `ls -G` (color on macOS, "no group" on GNU).
+- Copy to the clipboard with `clip`, which wraps `pbcopy`, `wl-copy`, `xclip`, and `xsel`.
+- Use `command -v`, never `which`.
+- Put `--` before user-supplied paths in `cp`, `mv`, `rm`, `ln`, and `cd`.
+
 ## Shell scripts
 
 Use:
