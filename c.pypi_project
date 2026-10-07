@@ -8,18 +8,22 @@ if [[ $# -ne 1 ]]; then
 fi
 
 BASEDIR=$(dirname "$0")
+TEMPLATE="$BASEDIR/samples/pypi_project"
 export PROJECT_NAME="$1"
 
-cp -a "$BASEDIR/samples/pypi_project/." .
+cp -a "$TEMPLATE/." .
 
-find . -depth -name '*_NAME_*' -exec perl -e '
-	my $path = shift;
-	my ($directory, $basename) = $path =~ m{\A(.*)/(.*)\z};
-	$basename =~ s/_NAME_/$ENV{PROJECT_NAME}/g;
-	my $new_path = "$directory/$basename";
-	rename $path, $new_path or die "cannot rename $path: $!\n";
-' {} \;
+# Only the files copied from the template are rewritten and renamed;
+# pre-existing files in the current directory are left alone.
+(cd "$TEMPLATE" && find . -type f -print0) \
+	| while IFS= read -r -d '' f; do
+		perl -pi -e 's/_NAME_/$ENV{PROJECT_NAME}/g' "$f"
+	done
 
-find . -type f ! -name '*.bak' ! -name '*.swp' ! -name '*~' \
-	-exec perl -pi.bak -e 's/_NAME_/$ENV{PROJECT_NAME}/g' {} +
-find . -type f -name '*.bak' -exec rm -f {} +
+# Deepest paths first, renaming only the last component so parents stay valid.
+(cd "$TEMPLATE" && find . -depth -name '*_NAME_*' -print0) \
+	| while IFS= read -r -d '' path; do
+		dir="${path%/*}"
+		base="${path##*/}"
+		mv "$path" "$dir/${base//_NAME_/$PROJECT_NAME}"
+	done
