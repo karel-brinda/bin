@@ -12,7 +12,10 @@ EXT_DIR="$BASE_DIR/paperpile_extension"
 
 URL="https://clients2.google.com/service/update2/crx?response=redirect&prodversion=${CHROME_VERSION}&acceptformat=crx2,crx3&x=id%3D${EXT_ID}%26installsource%3Dondemand%26uc"
 
-TMP_CRX="$(mktemp)"
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+TMP_CRX="$TMP_DIR/extension.crx"
+TMP_ZIP="$TMP_DIR/extension.zip"
 
 mkdir -p "$BASE_DIR"
 
@@ -32,11 +35,8 @@ rm -rf "$EXT_DIR"
 mkdir -p "$EXT_DIR"
 
 # Skip the CRX header, save the embedded ZIP archive temporarily, and extract it
-TMP_ZIP="$(mktemp).zip"
 tail -c +$((ZIP_START + 1)) "$TMP_CRX" > "$TMP_ZIP"
 unzip -q "$TMP_ZIP" -d "$EXT_DIR"
-
-rm -f "$TMP_CRX" "$TMP_ZIP"
 
 echo
 echo "Extension extracted to:"
