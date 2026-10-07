@@ -310,7 +310,7 @@ alias s.sprio='sprio -l -u $USER'
 alias s.details='scontrol show jobid -dd'
 s.i () {
 	for x in "$@"; do
-		sacct -j "$i" \
+		sacct -j "$x" \
 			--format JobId,NNodes,Partition,NCPUs,State,ReqMem,MaxRSS,Elapsed,CPUTime,TimeLimit,ExitCode,Start,End
 	done
 }
