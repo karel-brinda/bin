@@ -1,79 +1,70 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Open the current GitHub repository (or a part of it) in the browser.
 
-set -e -o pipefail
-
-# todo: add support for bitbucket
-
-what=master
+set -euo pipefail
 
 usage() {
-    cat <<EOM
-usage: $(basename $0)  open the current Github repository
+	cat <<EOM
+usage: ${0##*/} [option]   open the current GitHub repository
        -h     print help
        -c     open current commit
        -b     open current branch
-       -d     open current directory in master
+       -d     open current directory in the default branch
        -i     open issues
        -p     open pull requests
        -a     open webpage of the author
-       -t     open Travis
+       -s     open settings
+       -t     open GitHub Actions
        -D     print debugging messages
 EOM
 }
 
+browse() {
+	if [[ $(uname) == Darwin ]]; then
+		open "$1"
+	else
+		xdg-open "$1"
+	fi
+}
+
+default_branch() {
+	local ref
+	if ref=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null); then
+		printf '%s\n' "${ref#origin/}"
+	elif git show-ref --verify --quiet refs/heads/main; then
+		printf 'main\n'
+	else
+		printf 'master\n'
+	fi
+}
+
+what=root
 debug=0
 
 while getopts "bschdatipD" opt; do
 	case $opt in
-	i)
-		what=issues
-		;;
-	p)
-		what=pullreq
-		;;
-	b)
-		what=branch
-		;;
-	c)
-		what=commit
-		;;
-	t)
-		what=travis
-		;;
-	d)
-		what=directory
-		;;
-	a)
-		what=author
-		;;
-	s)
-		what=settings
-		;;
-	h)
-		usage
-		exit 0
-		;;
-	D)
-		debug=1
-		;;
-	\?)
-		echo "Invalid option: -$OPTARG" >&2
-		usage
-		exit 1
-		;;
+	i) what=issues ;;
+	p) what=pullreq ;;
+	b) what=branch ;;
+	c) what=commit ;;
+	t) what=actions ;;
+	d) what=directory ;;
+	a) what=author ;;
+	s) what=settings ;;
+	h) usage; exit 0 ;;
+	D) debug=1 ;;
+	\?) usage >&2; exit 1 ;;
 	esac
 done
 
-# is it a git repo?
-git status > /dev/null 2> /dev/null || open "http://github.com"
-git status > /dev/null 2> /dev/null || exit 0
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+	browse "https://github.com"
+	exit 0
+fi
 
-# get info about current repo and state
-url=$(git remote -v \
-	| grep fetch \
-	| awk '{print $2}')
+url=$(git remote -v | grep fetch | awk '{print $2}' | head -n 1)
 
-base=$(echo "$url" \
+base=$(printf '%s\n' "$url" \
 	| perl -pe 's/^(ssh|git|http|https):\/\///g' \
 	| perl -pe 's/^.*\@//g' \
 	| perl -pe 's/:/\//g' \
@@ -81,16 +72,17 @@ base=$(echo "$url" \
 
 http="https://$base"
 
-repo=$(echo "$base" | perl -pe 's/^.*?\///g')
-author=$(echo "$repo" | sed 's@/.*@@g')
-branch=$(git branch | grep "*" | awk '{print $2}')
+repo=$(printf '%s\n' "$base" | perl -pe 's/^.*?\///g')
+author="${repo%%/*}"
+branch=$(git rev-parse --abbrev-ref HEAD)
 commit=$(git rev-parse HEAD)
 p=$(pwd -P)
 toplevel=$(git rev-parse --show-toplevel)
-rel=$(echo "$p" | sed "s@^$toplevel@@g" | sed 's@^/@@g')
+rel="${p#"$toplevel"}"
+rel="${rel#/}"
 
-#if [[ $branch =~ ^\( && "$what" != "master" ]]; then
-if [[ $branch =~ ^\( ]]; then
+# Detached HEAD: there is no branch to open.
+if [[ "$branch" == HEAD && "$what" == branch ]]; then
 	what=commit
 fi
 
@@ -101,6 +93,7 @@ if [[ $debug -eq 1 ]]; then
 	echo "Repo:             $repo"
 	echo "Author:           $author"
 	echo "Current branch:   $branch"
+	echo "Default branch:   $(default_branch)"
 	echo "Commit:           $commit"
 	echo "Path:             $p"
 	echo "Git toplevel:     $toplevel"
@@ -108,34 +101,14 @@ if [[ $debug -eq 1 ]]; then
 	exit 0
 fi
 
-
 case "$what" in
-	master)
-		open "$http"
-		;;
-	pullreq)
-		open "$http/pulls"
-		;;
-	issues)
-		open "$http/issues"
-		;;
-	settings)
-		open "$http/settings"
-		;;
-	branch)
-		open "$http/tree/$branch/$rel"
-		;;
-	directory)
-		open "$http/tree/master/$rel"
-		;;
-	author)
-		open "https://github.com/$author"
-		;;
-	travis)
-		open "https://travis-ci.org/$repo"
-		;;
-	commit)
-		open "$http/tree/$commit/$rel"
-		;;
+	root) browse "$http" ;;
+	pullreq) browse "$http/pulls" ;;
+	issues) browse "$http/issues" ;;
+	settings) browse "$http/settings" ;;
+	branch) browse "$http/tree/$branch/$rel" ;;
+	directory) browse "$http/tree/$(default_branch)/$rel" ;;
+	author) browse "https://github.com/$author" ;;
+	actions) browse "$http/actions" ;;
+	commit) browse "$http/tree/$commit/$rel" ;;
 esac
-
