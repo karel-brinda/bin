@@ -1,9 +1,0 @@
-{
-    "__default__":
-    {
-        "time"   : "0-08:00",
-        "n"      : 1,
-        "queue"  : "short",
-        "memory" : 12000
-    }
-}
