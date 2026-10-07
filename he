@@ -1,15 +1,16 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Show a program's --help (or -h) output in less.
 
-set -e -o pipefail
+set -euo pipefail
 
-PROG="$1"
-CMD="$@"
+if [[ $# -lt 1 ]]; then
+	printf 'usage: %s program [args...]\n' "${0##*/}" >&2
+	exit 1
+fi
 
-which "$PROG" ||
-	(
-		echo "program $PROG is not installed"
-		exit 1
-	)
+command -v "$1" || {
+	printf '%s: program %s is not installed\n' "${0##*/}" "$1" >&2
+	exit 1
+}
 
-($CMD --help || $CMD -h) 2>&1 | less
-
+("$@" --help || "$@" -h) 2>&1 | less
