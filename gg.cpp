@@ -1,8 +1,13 @@
-#! /bin/bash
+#!/usr/bin/env bash
+# Search C/C++ sources below the current directory.
 
-grep -n --color=auto "$*" $(\
-	find . -iname '*.c'; \
-	find . -iname '*.cpp'; \
-	find . -iname '*.h'; \
-	find . -iname '*.hpp'; \
-	)
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+	printf 'usage: %s pattern...\n' "${0##*/}" >&2
+	exit 1
+fi
+
+grep -rn --color=auto --exclude-dir=.git \
+	--include='*.c' --include='*.cpp' --include='*.h' --include='*.hpp' \
+	-- "$*" .

@@ -1,5 +1,13 @@
-#! /bin/bash
+#!/usr/bin/env bash
+# Search R sources below the current directory.
 
-grep -n --color=auto "$*" $(\
-	find . -iname '*.R'; \
-	)
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+	printf 'usage: %s pattern...\n' "${0##*/}" >&2
+	exit 1
+fi
+
+grep -rn --color=auto --exclude-dir=.git \
+	--include='*.R' --include='*.r' \
+	-- "$*" .
