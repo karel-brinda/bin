@@ -202,13 +202,13 @@ if [[ $(uname) == 'Darwin' ]]; then
 
 else
 	# sorted by name
-	alias l='ls -Galh --color=auto'
+	alias l='ls -alh --color=auto'
 	# sorted by time
-	alias l.t='ls -Galhtr --color=auto'
+	alias l.t='ls -alhtr --color=auto'
 	# follow symlinks; sorted by name
-	alias l.ln='ls -GalhL --color=auto'
+	alias l.ln='ls -alhL --color=auto'
 	# sorted by size
-	alias l.s='ls -GalhtSr --color=auto'
+	alias l.s='ls -alhtSr --color=auto'
 fi
 
 #########
@@ -414,6 +414,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 	alias word='open -a "Microsoft Word"'
 	alias ww='open -a Preview'
 	alias texstudio='open -a TexStudio *.txss2 || open -a TexStudio'
-elif [[ `uname` == 'Linux' ]]; then
-	alias open='gnome-open'
+elif [[ $(uname) == 'Linux' ]]; then
+	alias open='xdg-open'
 fi
