@@ -70,7 +70,7 @@ else
 
 
 	## 2) PREPREND TO PATH
-	export PATH="${PROGDIR}:${PROGDIR}/bioinformatics:${PROGDIR}/git:$PATH"
+	export PATH="${PROGDIR}:${PROGDIR}/git:$PATH"
 
 	if [ -d "$HOME/.linuxbrew/bin" ]; then
 		export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH";
