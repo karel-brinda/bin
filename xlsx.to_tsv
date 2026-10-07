@@ -28,8 +28,8 @@ import zipfile
 import re
 import itertools
 
-warning_count=0
-warning_max=0
+warning_count = 0
+warning_max = 50
 
 
 def letter2col_index(letter):
@@ -129,8 +129,8 @@ def print_sheet(z, sheet_num):
         letter2col_index(re.search("^[A-Z]+", c.attrib['r']).group())
         for c in all_cells)
 
+    global warning_count
     warning_count = 0
-    warning_max = 50
 
     rows_text = []
 
