@@ -1,19 +1,20 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Cancel all my Slurm jobs in the given partition(s) (comma-separated).
 
-set -e
-set -o pipefail
-set -u
-#set -f
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 1 ]]; then
-	>&2 echo "usage: $PROGNAME partition"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s partition[,partition...]\n' "${0##*/}" >&2
 	exit 1
 fi
 
-squeue -u $USER | grep "$1" | perl -pe 's/^\s+//g' | cut -f 1 -d ' ' | xargs scancel
+jobs=$(squeue -h -u "$USER" -p "$1" -o '%i')
 
+if [[ -z "$jobs" ]]; then
+	printf '%s: no jobs in partition %s\n' "${0##*/}" "$1" >&2
+	exit 0
+fi
+
+# One job id per line; split on purpose.
+# shellcheck disable=SC2086
+scancel $jobs

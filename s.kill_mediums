@@ -1,8 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Cancel all my Slurm jobs in the medium partition.
 
-set -e
-set -o pipefail
-set -u
+set -euo pipefail
 
-squeue -u $USER | grep -E '(medium)' | perl -pe 's/^\s+//g' | cut -f 1 -d ' ' | xargs scancel
-
+exec "$(dirname "$0")/s.ka" medium
