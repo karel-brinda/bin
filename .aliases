@@ -68,7 +68,12 @@ alias cgb='cd ~/bin'
 
 # tmp directories
 alias ct='cd /tmp'
-alias ctt='t=~$(date +%Y-%m-%d_%H%-M-%S) && mkdir /tmp/$t && cd /tmp/$t'
+# create a dated directory in /tmp and enter it
+ctt() {
+	local t
+	t=~$(date +%Y-%m-%d_%H-%M-%S)
+	mkdir "/tmp/$t" && cd "/tmp/$t"
+}
 
 
 ############
