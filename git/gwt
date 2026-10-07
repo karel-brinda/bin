@@ -3,7 +3,8 @@
 
 set -euo pipefail
 
-t=~$(date +%Y%m%d%H%M%S)
+# The leading ~ marks the directory as temporary.
+t="~$(date +%Y%m%d%H%M%S)"
 d="$HOME/git-tmp/$t"
 mkdir -p "$d"
 git worktree add "$d" "$(git symbolic-ref HEAD)"
