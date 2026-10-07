@@ -1,20 +1,20 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Create a new conda environment for osx-64 with mamba, falling back to conda.
+
+set -euo pipefail
 
 if [[ $# -eq 0 ]]; then
-	s=`basename $0`
-	echo "create a new Conda environment"
-	echo "usage: $s env_name [packages]"
+	printf 'usage: %s env_name [packages...]\n' "${0##*/}" >&2
 	exit 1
 fi
 
-command1="mamba create -y --platform=osx-64 --name $1 ${@:2}"
-command2="conda create -y --platform=osx-64 --name $1 ${@:2}"
-(
-	echo "Command to create the enviroment:"
-	echo "$command1"
-	$command1
-) || (
-	echo "Mamba failed, trying Conda via the following command:"
-	echo "$command2"
-	$command2
-)
+name="$1"
+shift
+
+args=(create -y --platform=osx-64 --name "$name" "$@")
+
+printf 'Command to create the environment:\n  mamba %s\n' "${args[*]}"
+if ! mamba "${args[@]}"; then
+	printf 'Mamba failed, trying conda via the following command:\n  conda %s\n' "${args[*]}"
+	conda "${args[@]}"
+fi
