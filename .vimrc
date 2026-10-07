@@ -32,6 +32,7 @@
 "   reStructuredText ,1 through ,9  insert heading underlines
 "   reStructuredText ,c      insert a directive
 "   Python ,1                add a # comment block
+"   Python                   trailing whitespace is stripped on save
 "   Vim ,1 or ,2             create a comment template
 "   Insert-mode abbreviations include kg and lorem.
 "
@@ -429,9 +430,18 @@ augroup r_indent
 	autocmd FileType r setlocal expandtab shiftwidth=4 softtabstop=4
 augroup END
 
+" Strip trailing whitespace without moving the cursor or clobbering the search pattern.
+function! StripTrailingWhitespace()
+	let l:view = winsaveview()
+	let l:search = @/
+	%s/\s\+$//e
+	let @/ = l:search
+	call winrestview(l:view)
+endfunction
+
 augroup python_files
 	autocmd!
-	autocmd BufWritePre * %s/\s\+$//e
+	autocmd BufWritePre *.py call StripTrailingWhitespace()
 	autocmd FileType python setlocal expandtab textwidth=110 tabstop=4 softtabstop=4 shiftwidth=4 autoindent
 
 	autocmd FileType python nnoremap <leader>1 I#<space><esc> \| A<space>#<esc> \| kyypv$r# \| yykP
