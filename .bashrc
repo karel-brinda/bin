@@ -54,14 +54,17 @@ else
 	#export LC_ALL=en_US.UTF-8
 	export LANG=en_US.UTF-8
 
-	# Try UTF-8 locales in order of typical availability (with POSIX as fallback)
+	# Pick the first installed UTF-8 locale (POSIX as a fallback); checked against
+	# locale -a because an unknown LC_ALL does not make locale fail on macOS.
 	# (if ABC...abc... not ideal, switch to the US style)
-	for loc in C.UTF-8 en_US.UTF-8 en_US.utf8 POSIX; do
-		if LC_ALL="$loc" locale >/dev/null 2>&1; then
+	locales=$(locale -a 2>/dev/null)
+	for loc in C.UTF-8 C.utf8 en_US.UTF-8 en_US.utf8 POSIX; do
+		if grep -qxF "$loc" <<< "$locales"; then
 			export LC_ALL="$loc"
 			break
 		fi
 	done
+	unset loc locales
 
 	# bash behavior
 	export BASH_SILENCE_DEPRECATION_WARNING=1
