@@ -2,10 +2,10 @@
 .SILENT: all
 
 
-SHELL:=/bin/bash -o pipefail
+SHELL=/usr/bin/env bash -eo pipefail
 
 MAIN = main
-FIGURES := $(shell find figures -name "*.pdf" -type f)
+FIGURES := $(shell find figures -name "*.pdf" -type f 2>/dev/null)
 SOURCES := $(MAIN).tex $(shell find . -name "*.tex" -type f)
 
 
