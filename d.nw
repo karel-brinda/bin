@@ -1,25 +1,22 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Diff two .nw files as text.
 
-set -e
-set -o pipefail
-set -u
-#set -f
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 2 ]]; then
-	echo "usage: $PROGNAME doc1.nw doc2.nw"
+if [[ $# -ne 2 ]]; then
+	printf 'usage: %s doc1.nw doc2.nw\n' "${0##*/}" >&2
 	exit 1
 fi
 
-xcat () {
-	x="$1"
-	cat "$x" \
-		| perl -pe 's|\)\:|):\n|g'
+xcat() {
+	perl -pe 's|\)\:|):\n|g' "$1"
 }
 
-diff --color=always <(xcat "$1") <(xcat "$2") | less -R
+# --color needs diffutils 3.4+ (missing on CentOS 7 and macOS before 13).
+color=""
+if diff --color=auto /dev/null /dev/null >/dev/null 2>&1; then
+	color="--color=always"
+fi
 
+# shellcheck disable=SC2086
+diff $color <(xcat "$1") <(xcat "$2") | less -R
