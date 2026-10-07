@@ -156,20 +156,42 @@ alias o...='open ../..'
 alias o....='open ../../..'
 alias o.....='open ../../../..'
 
-alias of='open "`ls | head -n 1`"'
-alias ol='open "`ls | tail -n 1`"'
+# open the n-th first / last entry of the current directory
+ofirst() {
+	local n="${1:-1}"
+	local entries=()
+	shopt -s nullglob
+	entries=(*)
+	shopt -u nullglob
+	(( n >= 1 && n <= ${#entries[@]} )) || return 1
+	open "${entries[n-1]}"
+}
 
-alias of1='open "$(ls | head -n1 | tail -n1)"'
-alias of2='open "$(ls | head -n2 | tail -n1)"'
-alias of3='open "$(ls | head -n3 | tail -n1)"'
-alias of4='open "$(ls | head -n4 | tail -n1)"'
-alias of5='open "$(ls | head -n5 | tail -n1)"'
+olast() {
+	local n="${1:-1}"
+	local entries=()
+	local idx
+	shopt -s nullglob
+	entries=(*)
+	shopt -u nullglob
+	(( n >= 1 && n <= ${#entries[@]} )) || return 1
+	idx=$((${#entries[@]} - n))
+	open "${entries[idx]}"
+}
 
-alias ol1='open "$(ls -r | head -n1 | tail -n1)"'
-alias ol2='open "$(ls -r | head -n2 | tail -n1)"'
-alias ol3='open "$(ls -r | head -n3 | tail -n1)"'
-alias ol4='open "$(ls -r | head -n4 | tail -n1)"'
-alias ol5='open "$(ls -r | head -n5 | tail -n1)"'
+alias of='ofirst 1'
+alias of1='ofirst 1'
+alias of2='ofirst 2'
+alias of3='ofirst 3'
+alias of4='ofirst 4'
+alias of5='ofirst 5'
+
+alias ol='olast 1'
+alias ol1='olast 1'
+alias ol2='olast 2'
+alias ol3='olast 3'
+alias ol4='olast 4'
+alias ol5='olast 5'
 
 
 ###############
