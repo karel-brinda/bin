@@ -1,25 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Install an R package from CRAN; based on https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
 
-# downloaded from https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/
+set -euo pipefail
 
-set -e
-set -o pipefail
-set -u
-
-pkg=${1}
-
-function help {
-  echo "Usage: $(basename $0) <package name>"
-  exit 1
-}
-
-[ -z ${pkg} ] && help
-
-REXEC=$(which R)
-
-if [ -z ${REXEC} ]; then
-  echo "R not found, please ensure R is available and try again."
-  exit 1
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s package_name\n' "${0##*/}" >&2
+	exit 1
 fi
 
-echo "install.packages(\"${pkg}\", repos=\"https://cran.rstudio.com\")" | R --no-save
+pkg="$1"
+
+if ! command -v R >/dev/null 2>&1; then
+	printf '%s: R not found, please ensure R is available and try again\n' "${0##*/}" >&2
+	exit 1
+fi
+
+printf 'install.packages("%s", repos="https://cran.rstudio.com")\n' "$pkg" | R --no-save
