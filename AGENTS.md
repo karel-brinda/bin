@@ -96,6 +96,8 @@ Functions must use `local` variables and quote their arguments.
 
 Examples such as `ct`, `ctt`, `cdfirst`, and `cdlast` must remain sourced functions because they change the current directory.
 
+`.bashrc` is the single entry point: `~/.bashrc` sources it and `~/.bash_profile` sources `~/.bashrc` (`i.bashrc` adds both lines). It must stay safe to source repeatedly; change PATH only through `path.prepend` and `path.append`, and keep the repository directories ahead of conda, Homebrew, and `~/.local/bin`.
+
 ## Command families
 
 Preserve the existing naming model:
