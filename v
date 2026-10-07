@@ -1,17 +1,23 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Open a file or directory in Neovim (or Vim), optionally at a line number or search string; file:line also works.
 
-set -e -o pipefail
+set -euo pipefail
 
-if [[ "$@" == *:* ]]; then
-	newargs=$(echo "$@" | perl -pe 's/:/ /g')
-	"$0" $newargs
+if [[ "$*" == *:* ]]; then
+	newargs=$(printf '%s ' "$@" | tr ':' ' ')
+	# shellcheck disable=SC2086
+	exec "$0" $newargs
+fi
+
+if command -v nvim >/dev/null 2>&1; then
+	editor=nvim
+else
+	editor=vim
 fi
 
 case "$#" in
 	0)
-		nvim || vim
-		#vim
-		exit 0
+		exec "$editor"
 		;;
 	1)
 		file="$1"
@@ -20,31 +26,25 @@ case "$#" in
 	2)
 		file="$1"
 		str="$2"
-		if [[ $str =~ ^[0-9]+$ ]]; then
+		if [[ "$str" =~ ^[0-9]+$ ]]; then
 			cmd="+$str"
 		else
 			cmd="+/$str"
 		fi
 		;;
 	*)
-		s=`basename $0`
-		echo "open file/dir in vim"
-		echo "usage: $s [file/directory] [line_no/string_to_search]"
+		printf 'usage: %s [file/directory] [line_no/string_to_search]\n' "${0##*/}" >&2
 		exit 1
 		;;
 esac
 
-
 if ! [[ -f "$file" || -d "$file" ]]; then
-	echo "File '$file' does not exist" 1>&2
+	printf "File '%s' does not exist\\n" "$file" >&2
 	exit 1
 fi
 
-if [[ ! -z "$cmd" ]]; then
-	nvim "$cmd" "$file" || vim "$cmd" "$file"
-	#vim "$cmd" "$file"
+if [[ -n "$cmd" ]]; then
+	exec "$editor" "$cmd" "$file"
 else
-	nvim "$file" || vim "$file"
-	#vim "$file"
+	exec "$editor" "$file"
 fi
-
