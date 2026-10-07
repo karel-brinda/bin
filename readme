@@ -1,26 +1,13 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Open the readme (trying common names); if none exists, create readme.md.
 
-# open readme (try various common names); if none found, create readme.md
-
-set -e
-set -o pipefail
-set -u
-#set -f
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
+set -euo pipefail
 
 for x in README.md readme.md README.rst readme.rst README.txt readme.txt README readme; do
 	if [[ -f "$x" ]]; then
-		v  "$x"
-		exit 0;
+		exec v "$x"
 	fi
 done
 
-touch readme.md
-v readme.md
-exit 0
-
+: > readme.md
+exec v readme.md

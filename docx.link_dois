@@ -1,24 +1,12 @@
-#! /usr/bin/env bash
-
-#
-# Licence: MIT
-# Contact: Karel Brinda (karel.brinda@gmail.com)
-#
+#!/usr/bin/env bash
 
 # cat word/document.xml  | pe 's/>/>\n/g' | bat
 #
 # docx.add_angle_brackets_doi_links AIS*.docx a.docx && unzip -o a.docx && cat word/document.xml  | pe 's/>/>\n/g' | grep -B20 -A10 10.1038/ng.1028 | bat
 #
 
-set -e
-set -o pipefail
-set -u
+set -euo pipefail
 set -x
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
 
 C='\033[0;33m'
 NC='\033[0m'
@@ -27,14 +15,14 @@ msg() {
    set +x
    echo
    echo -e "${C}=================================================${NC}"
-   echo -e "${C}$@${NC}"
+   echo -e "${C}$*${NC}"
    echo -e "${C}=================================================${NC}"
    echo
    set -x
 }
 
-if [[ $NARGS -ne 2 ]]; then
-   >&2 echo "usage: $PROGNAME document.docx document_linked_dois.docx"
+if [[ $# -ne 2 ]]; then
+   printf 'usage: %s document.docx document_linked_dois.docx\n' "${0##*/}" >&2
    exit 1
 fi
 
@@ -43,7 +31,7 @@ y="$2"
 d=$(mktemp -d) #d="./tmp"
 trap 'rm -rf "$d"' EXIT
 
-msg "||           $PROGNAME                 ||"
+msg "||           ${0##*/}                 ||"
 msg "Step 1: creating a tmp dir:\n        \"$d\""
 
 cp "$x" "$d/a.docx"
@@ -100,7 +88,7 @@ cp "$x" "$d/a.docx"
    msg "Step 5: re-zipping the content of\n        \"$d/a\"\n        into \"$y\""
    (
       cd a
-      zip ../b.docx $(find .)
+      zip -r ../b.docx .
    )
 )
 

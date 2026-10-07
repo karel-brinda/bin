@@ -1,20 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print all files affected by the given commits.
 
-set -e
-set -o pipefail
-set -u
-#set -f
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -eq 0 ]]; then
-	>&2 echo "usage: $PROGNAME list_of_commits"
-	>&2 echo "print all files affected by given commits"
+if [[ $# -eq 0 ]]; then
+	printf 'usage: %s commit...\n' "${0##*/}" >&2
 	exit 1
 fi
 
 git diff-tree --no-commit-id --name-only -r "$@"
-

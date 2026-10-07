@@ -1,22 +1,13 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Keep only the columns of a TSV (standard input) whose content matches a regexp.
 
-set -e
-set -o pipefail
-set -u
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 1 ]]; then
-	>&2 echo "usage: $PROGNAME regexp"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s regexp\n' "${0##*/}" >&2
 	exit 1
 fi
 
-x="$1"
-
 tsv.transpose \
-	| grep -E "$x" \
+	| grep -E "$1" \
 	| tsv.transpose
-

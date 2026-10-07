@@ -1,13 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Build a PDF with latexmk (lualatex).
 
-set -e
-set -o pipefail
-set -u
-#set -f
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
+set -euo pipefail
 
 latexmk -pdflatex=lualatex -pdf "$@"

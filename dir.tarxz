@@ -1,34 +1,27 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Pack a directory into a timestamped .tar.xz archive in the current directory.
 
-set -e
-set -o pipefail
-set -u
+set -euo pipefail
 
-readonly PROGNAME="$(basename "$0")"
-readonly PROGDIR="$(dirname "$0")"
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ "$NARGS" -ne 1 ]]; then
-	>&2 echo "usage: $PROGNAME DIR"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s DIR\n' "${0##*/}" >&2
 	exit 1
 fi
 
-readonly DIR="${ARGS[0]}"
+dir="${1%/}"
 
-if [[ ! -d "$DIR" ]]; then
-	>&2 echo "error: not a directory: $DIR"
+if [[ ! -d "$dir" ]]; then
+	printf '%s: not a directory: %s\n' "${0##*/}" "$dir" >&2
 	exit 1
 fi
 
-readonly DIR_CLEAN="${DIR%/}"
-readonly DIR_PARENT="$(dirname "$DIR_CLEAN")"
-readonly DIR_BASENAME="$(basename "$DIR_CLEAN")"
-readonly TIMESTAMP="$(date '+%Y-%m-%d_%H-%M-%S')"
-readonly OUTFILE="${DIR_BASENAME}__${TIMESTAMP}.tar.xz"
+parent="$(dirname "$dir")"
+name="$(basename "$dir")"
+timestamp="$(date '+%Y-%m-%d_%H-%M-%S')"
+outfile="${name}__${timestamp}.tar.xz"
 
-tar -C "$DIR_PARENT" -cf - "$DIR_BASENAME" \
+tar -C "$parent" -cf - "$name" \
 	| xz -9e -T0 -v \
-	> "$OUTFILE"
+	> "$outfile"
 
-echo "$OUTFILE"
+echo "$outfile"

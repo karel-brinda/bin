@@ -1,22 +1,12 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print the first and the last line of a file.
 
-# print first and last line of a file
+set -euo pipefail
 
-set -e
-set -o pipefail
-set -u
-#set -f
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 1 ]]; then
-	echo "usage: $PROGNAME options"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file\n' "${0##*/}" >&2
 	exit 1
 fi
 
 head -n1 "$1"
 tail -n1 "$1"
-

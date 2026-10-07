@@ -1,25 +1,16 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
-set -o pipefail
-set -u
-#set -f
-#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+set -euo pipefail
 
-readonly PROGNAME=$(basename "$0")
-readonly PROGDIR=$(dirname "$0")
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -lt 2 ]]; then
-    >&2 echo "usage: $PROGNAME file1.pdf file2.pdf [file3.pdf ...]"
+if [[ $# -lt 2 ]]; then
+    printf 'usage: %s file1.pdf file2.pdf [file3.pdf ...]\n' "${0##*/}" >&2
     exit 1
 fi
 
-readonly TMPDIR=$(mktemp -d)
-trap 'rm -rf "$TMPDIR"' EXIT
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
 
-readonly HASHES="$TMPDIR/hashes.tsv"
+readonly HASHES="$tmpdir/hashes.tsv"
 
 extract_text_hash() {
     local pdf="$1"
@@ -43,14 +34,14 @@ extract_text_hash() {
         awk '{print $1}'
 }
 
-for pdf in "${ARGS[@]}"; do
+for pdf in "$@"; do
     if [[ ! -f "$pdf" ]]; then
-        >&2 echo "$PROGNAME: error: not a file: $pdf"
+        printf '%s: error: not a file: %s\n' "${0##*/}" "$pdf" >&2
         exit 1
     fi
 
     hash="$(extract_text_hash "$pdf")" || {
-        >&2 echo "$PROGNAME: error: pdfgrep failed on: $pdf"
+        printf '%s: error: pdfgrep failed on: %s\n' "${0##*/}" "$pdf" >&2
         exit 1
     }
 

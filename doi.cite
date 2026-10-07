@@ -1,25 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print citations for DOIs as BibTeX or text and copy them to the clipboard.
 
-set -e
-set -o pipefail
-set -u
-#set -f
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
+set -euo pipefail
 
 
 usage() {
     cat <<EOM
 print citations in bibtex or txt
-usage: $(basename $0) [-t] DOI [DOI] [[DOI]]
+usage: ${0##*/} [-t] DOI...
        -t     print txt instead of bibtext
 EOM
 }
 
-if [[ $NARGS -eq 0 ]]; then
+if [[ $# -eq 0 ]]; then
 	usage
 	exit 1
 fi

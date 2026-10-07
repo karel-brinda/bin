@@ -1,23 +1,11 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Make Git ignore local changes to a tracked file (update-index --skip-worktree).
 
-set -e
-set -o pipefail
-set -u
-#set -f
-#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -ne 1 ]]; then
-	>&2 echo "Usage: $PROGNAME file"
+if [[ $# -ne 1 ]]; then
+	printf 'usage: %s file\n' "${0##*/}" >&2
 	exit 1
 fi
 
-
-file="$1"
-
-git update-index --skip-worktree "$file"
-
+git update-index --skip-worktree "$1"

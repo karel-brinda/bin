@@ -1,19 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-#
-# Licence: MIT
-# Contact: Karel Brinda (karel.brinda@gmail.com)
-#
-
-set -e
-set -o pipefail
-set -u
-#set -f
-
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
+set -euo pipefail
 
 C='\033[0;33m'
 NC='\033[0m'
@@ -22,14 +9,14 @@ msg() {
 	set +x
 	echo
 	echo -e "${C}=================================================${NC}"
-	echo -e "${C}$@${NC}"
+	echo -e "${C}$*${NC}"
 	echo -e "${C}=================================================${NC}"
 	echo
 	set -x
 }
 
-if [[ $NARGS -ne 2 ]]; then
-	>&2 echo "usage: $PROGNAME protected.docx unprotected.docx"
+if [[ $# -ne 2 ]]; then
+	printf 'usage: %s protected.docx unprotected.docx\n' "${0##*/}" >&2
 	exit 1
 fi
 
@@ -39,7 +26,7 @@ d=$(mktemp -d)
 trap 'rm -rf "$d"' EXIT
 
 set -x
-msg "||           $PROGNAME                 ||"
+msg "||           ${0##*/}                 ||"
 msg "Step 1: creating a tmp dir:\n        \"$d\""
 
 cp "$x" "$d/a.docx"
@@ -62,7 +49,7 @@ cp "$x" "$d/a.docx"
 	msg "Step 4: re-zipping the content of\n        \"$d/a\"\n        into \"$y\""
 	(
 		cd a
-		zip ../b.docx $(find .)
+		zip -r ../b.docx .
 	)
 )
 
