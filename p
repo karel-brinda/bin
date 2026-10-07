@@ -25,5 +25,5 @@ else
 	res="$(abspath "$1")"
 fi
 
-printf '"%s"' "$res" | pbcopy 2>/dev/null || true
+printf '"%s"' "$res" | clip 2>/dev/null || true
 printf '%s\n' "$res"

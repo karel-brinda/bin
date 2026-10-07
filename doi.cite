@@ -48,7 +48,7 @@ if [[ "$format" == "txt" ]]; then
 		y=$(curl -s -LH "accept: text/bibliography" "https://doi.org/$x";)
 		yy=$(printf '[%d] %s\n' "$i" "$y")
 		echo "$yy"
-		(echo "$yy" | pbcopy) || true
+		printf '%s\n' "$yy" | clip 2>/dev/null || true
 	done
 else
 	for x in "$@"; do
@@ -62,7 +62,7 @@ else
 		)
 					#\
 		echo "$yy"
-		(echo "$yy" | pbcopy) || true
+		printf '%s\n' "$yy" | clip 2>/dev/null || true
 	done
 fi
 

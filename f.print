@@ -1,19 +1,10 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+# Print file names with their contents and copy the result to the clipboard if possible.
 
-set -e
-set -o pipefail
-set -u
-#set -f
-#PS4='\[\e[32m\][$(date "+%Y-%m-%d %H:%M:%S") L${LINENO}]\[\e[0m\] '; set -x
+set -euo pipefail
 
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(dirname $0)
-readonly -a ARGS=("$@")
-readonly NARGS="$#"
-
-if [[ $NARGS -lt 1 ]]; then
-	>&2 echo "usage: $PROGNAME files"
-	>&2 echo "info:  print the file names and their content and pbcopy if possible"
+if [[ $# -lt 1 ]]; then
+	printf 'usage: %s file...\n' "${0##*/}" >&2
 	exit 1
 fi
 
@@ -28,7 +19,5 @@ y=$(for x in "$@"; do
 	echo
 done)
 
-echo "$y"
-
-(echo "$y" | pbcopy) || true
-
+printf '%s\n' "$y"
+printf '%s\n' "$y" | clip 2>/dev/null || true

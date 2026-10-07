@@ -382,6 +382,7 @@ alias tm='tmux attach-session || tmux'
 
 
 function w {
+	local t w
 	t=$(type "$1" 2>/dev/null || true)
 	w=$(which "$1" 2>/dev/null || true)
 	if [[ ! -z "$t" ]]; then
@@ -389,7 +390,7 @@ function w {
 	fi
 	if [[ ! -z "$w" ]]; then
 		echo "where: $w"
-		echo "$w" | pbcopy || true
+		printf '%s\n' "$w" | clip 2>/dev/null || true
 	fi
 }
 
