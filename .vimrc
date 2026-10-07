@@ -76,7 +76,12 @@ nnoremap Y y$
 if globpath(&runtimepath, 'colors/badwolf.vim') !=# ''
   colorscheme badwolf
 endif
-set modeline
+" Modelines could run code before Vim patch 8.1.1366 (CVE-2019-12735).
+if has('nvim') || has('patch-8.1.1366')
+  set modeline
+else
+  set nomodeline
+endif
 set number
 set undofile
 
