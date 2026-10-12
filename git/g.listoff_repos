@@ -8,9 +8,19 @@ if [[ $# -gt 1 ]]; then
 	exit 1
 fi
 
-# Paths in the generated script are relative to $HOME when possible.
-rel_home() {
-	printf '%s\n' "${1#"$HOME"/}"
+# Physical home directory: the paths below come from pwd -P and readlink, so they
+# do not start with $HOME when it is a symlink (common on clusters).
+home="$(cd "$HOME" && pwd -P)"
+
+# Quote a path for the generated script, writing paths below the home directory
+# as ~/... so that the script works from any directory and on any machine.
+# shellcheck disable=SC2088  # the ~ is meant for the generated script
+q() {
+	case "$1" in
+		"$home"/*) printf '~/%q' "${1#"$home"/}" ;;
+		"$HOME"/*) printf '~/%q' "${1#"$HOME"/}" ;;
+		*) printf '%q' "$1" ;;
+	esac
 }
 
 process_dir() {
@@ -19,13 +29,13 @@ process_dir() {
 		d="${d%/}"
 		if [[ -L "$d" ]]; then
 			target="$(readlink "$d")"
-			printf 'mkdir -p %q && ln -s %q %q\n' "$(rel_home "$(dirname "$d")")" "$target" "$(rel_home "$d")"
+			printf 'mkdir -p %s && ln -s %s %s\n' "$(q "$(dirname "$d")")" "$(q "$target")" "$(q "$d")"
 		elif [[ -d "$d/.git" ]]; then
 			repo="$(cd "$d" && git config --get remote.origin.url || true)"
 			if [[ -z "$repo" ]]; then
 				printf '# no origin remote: %s\n' "$d"
 			else
-				printf 'mkdir -p %q && git clone --recursive %q %q\n' "$(rel_home "$d")" "$repo" "$(rel_home "$d")"
+				printf 'mkdir -p %s && git clone --recursive %q %s\n' "$(q "$d")" "$repo" "$(q "$d")"
 			fi
 		elif [[ -d "$d" ]]; then
 			process_dir "$d"
