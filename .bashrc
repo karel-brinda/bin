@@ -120,6 +120,7 @@ else
 		unset brew_bin
 	fi
 
+	path.prepend "$HOME/.pixi/bin"
 	path.prepend "$HOME/miniconda/bin"
 
 	path.prepend "${PROGDIR}/git"
