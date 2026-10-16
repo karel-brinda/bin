@@ -61,7 +61,14 @@ fi
 ##
 ## VARIABLES
 ##
-if [ "$DIRID_TEST" = "set" ] && [ "$RELOAD_TEST" != "set" ]; then
+# The $DIRID export survives into tmux/screen windows, whose login shells reset
+# PATH via /etc/profile; re-run the setup whenever this repository is not in PATH.
+case ":$PATH:" in
+	*":${PROGDIR}:"*) PATH_TEST="set" ;;
+	*) PATH_TEST="" ;;
+esac
+
+if [ "$DIRID_TEST" = "set" ] && [ "$PATH_TEST" = "set" ] && [ "$RELOAD_TEST" != "set" ]; then
 	true
 else
 	## 1) ENVIRONMENT SETUP
@@ -109,8 +116,9 @@ else
 	fi
 
 	# Homebrew: Apple Silicon, Intel macOS, or Linuxbrew (brew shellenv also sets
-	# HOMEBREW_*, MANPATH, and INFOPATH; HOMEBREW_PREFIX marks it as done).
-	if [ -z "${HOMEBREW_PREFIX:-}" ]; then
+	# HOMEBREW_*, MANPATH, and INFOPATH). HOMEBREW_PREFIX marks it as done, but it
+	# survives a PATH reset, so also re-run when brew has dropped out of PATH.
+	if [ -z "${HOMEBREW_PREFIX:-}" ] || ! command -v brew >/dev/null 2>&1; then
 		for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew "$HOME/.linuxbrew/bin/brew"; do
 			if [ -x "$brew_bin" ]; then
 				eval "$("$brew_bin" shellenv)"
