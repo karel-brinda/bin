@@ -17,6 +17,8 @@
 [alias]
 	wdiff = diff --color-words
 	wshow = show --color-words
+	cdiff = diff --color-words=.
+	cshow = show --color-words=.
 	g = grep --break --heading --line-number
 
 [color]
@@ -35,6 +37,10 @@
 
 	# smarter diff on splits around blank lines (Git 2.9.0+)
 	compactionHeuristic = true
+
+	# Token for --color-words/--word-diff: runs of word characters stay atomic,
+	# punctuation and markup split per character
+	wordRegex = [[:alnum:]_]+|[^[:space:]]
 
 [diff "pandoc"]
 	textconv=pandoc --to=markdown

@@ -1,6 +1,16 @@
 #! /usr/bin/env bash
+# git show; a non-option argument N falls back to HEAD~N. Options are passed through.
 
 set -e -o pipefail
 
+opts=()
+revs=()
+for arg in "$@"; do
+	case $arg in
+	-*) opts+=("$arg") ;;
+	*) revs+=("$arg") ;;
+	esac
+done
+
 set -x
-git show $@ || git show HEAD~$@
+git show "${opts[@]}" "${revs[@]}" || git show "${opts[@]}" "HEAD~${revs[0]-}" "${revs[@]:1}"
