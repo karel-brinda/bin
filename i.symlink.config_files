@@ -21,7 +21,7 @@ link() {
 }
 
 status=0
-for f in .vimrc .vim .config/nvim/init.vim .tmux.conf .gitconfig; do
+for f in .vimrc .vim .config/nvim/init.vim .tmux.conf .gitconfig .config/joplin-desktop/userchrome.css; do
 	link "$f" || status=1
 done
 exit "$status"
