@@ -1,0 +1,61 @@
+
+/* =====================================
+   Joplin - Compact, balanced typography
+   ===================================== */
+
+/* Overall line spacing */
+#tinymce {
+    line-height: 1.25 !important;
+}
+
+/* Normal paragraphs */
+#tinymce p {
+    line-height: 1.25 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.4em !important;
+}
+
+/* Lists */
+#tinymce ul,
+#tinymce ol {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.6em !important;
+    padding-left: 1.5em !important;
+}
+
+/* List items */
+#tinymce li {
+    line-height: 1.25 !important;
+    margin-top: 0.12em !important;
+    margin-bottom: 0.12em !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Paragraphs inside list items */
+#tinymce li p {
+    margin: 0 !important;
+}
+
+/* Headings */
+#tinymce h1,
+#tinymce h2,
+#tinymce h3,
+#tinymce h4 {
+    line-height: 1.2 !important;
+    margin-top: 0.8em !important;
+    margin-bottom: 0.35em !important;
+}
+
+/* H1: clear but not oversized */
+#tinymce h1 {
+    font-size: 1.5em !important;
+    padding-bottom: 0.2em !important;
+    border-bottom: 1px solid rgba(128,128,128,0.25) !important;
+}
+
+/* No extra space above first heading */
+#tinymce h1:first-child,
+#tinymce h2:first-child {
+    margin-top: 0 !important;
+}
