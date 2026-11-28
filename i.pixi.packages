@@ -21,4 +21,8 @@ pixi global install ghostscript pandoc
 pixi global install imagemagick ffmpeg exiftool
 pixi global install pdfgrep pdf2svg librsvg
 
+# Mise
+pixi global install mise
+
+
 # TODO: rustup, diff-pdf
