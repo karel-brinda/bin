@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+
+# Git
+pixi global install git
+
+# Basic Unix tools
+pixi global install wget coreutils pv fd cmake parallel
+pixi global install autoconf automake tmux htop
+pixi global install --expose gtime=time time
+pixi global install -c conda-forge -c bioconda rename
+
+# Editors
+pixi global install nvim
+
+# Compilers & libraries
+pixi global install go ruby clang-format yapf
+pixi global install -e compilers gcc gxx openmpi
+
+# Document conversion
+pixi global install ghostscript pandoc
+pixi global install imagemagick ffmpeg exiftool
+pixi global install pdfgrep pdf2svg librsvg
+
+# TODO: rustup, diff-pdf
