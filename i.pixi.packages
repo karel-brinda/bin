@@ -3,6 +3,10 @@
 # Git
 pixi global install git
 
+# Micromamba
+pixi global install micromamba
+
+
 # Basic Unix tools
 pixi global install wget coreutils pv fd cmake parallel
 pixi global install autoconf automake tmux htop
