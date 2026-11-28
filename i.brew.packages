@@ -48,41 +48,25 @@ INSTALL git
 ###################
 ## BASIC UNIX TOOLS
 ###################
-INSTALL wget gnu-time coreutils tree
-INSTALL pv fd cmake rename ascii parallel
-INSTALL ripgrep fzf jq hyperfine
-INSTALL gh git-sizer git-delta
-INSTALL bat
+INSTALL wget gnu-time coreutils 
+INSTALL pv fd cmake rename parallel
 INSTALL autoconf automake
-INSTALL shellcheck shfmt
-INSTALL tmux htop btop
-INSTALL eza dust duf
+INSTALL tmux htop 
 
-# misc tools from @sharkdp
-#INSTALL insect hexyl
-#
-#INSTALL iotop
-#INSTALL links
-#INSTALL lynx
-#INSTALL mc
-#INSTALL ranger
 
 
 #########
 # EDITORS
 #########
-#/usr/local/bin/pip2 install neovim --upgrade --user
-#/usr/local/bin/pip3 install neovim --upgrade --user
-#INSTALL neovim/neovim/neovim
 INSTALL neovim
 
 
 #######################
 # COMPILERS & LIBRARIES
 #######################
-INSTALL rustup go ruby node
+INSTALL rustup go ruby 
 INSTALL clang-format yapf
-INSTALL boost open-mpi
+INSTALL open-mpi
 
 # other unix utilities
 if [[ $(uname) == 'Linux' ]]; then
@@ -97,8 +81,8 @@ fi
 ###############################
 # TOOLS FOR DOCUMENT CONVERSION
 ###############################
-INSTALL ghostscript pandoc poppler
-INSTALL imagemagick qpdf ffmpeg exiftool
+INSTALL ghostscript pandoc #poppler
+INSTALL imagemagick ffmpeg exiftool
 INSTALL pdfgrep pdf2svg librsvg
 INSTALL diff-pdf #latexdiff git-latexdiff
 
